@@ -1,0 +1,77 @@
+{
+  "$id": "backend.ref.json",
+  "type": "object",
+  "properties": {
+    "framework": {
+      "type": "string",
+      "enum": ["functions", "lambda", "laravel", "nest", "dotnet"]
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": [
+            "mariadb",
+            "mongodb",
+            "oracle",
+            "postgresql",
+            "mysql",
+            "sqlserver"
+          ]
+        },
+        "connectionString": { "type": "string" },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "username": { "type": "string" },
+            "password": { "type": "string" },
+            "host": { "type": "string" },
+            "port": { "type": "integer" },
+            "databaseName": { "type": "string" }
+          },
+          "required": ["username", "password", "host", "databaseName"]
+        }
+      },
+      "required": ["provider", "connectionString", "credentials"]
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string", "enum": ["gcs", "s3", "azure"] },
+        "publicBucketName": { "type": "string" },
+        "privateBucketName": { "type": "string" },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "projectId": { "type": "string" },
+            "privateKey": { "type": "string" },
+            "clientEmail": { "type": "string" }
+          },
+          "required": ["projectId", "privateKey", "clientEmail"]
+        }
+      },
+      "required": [
+        "provider",
+        "publicBucketName",
+        "privateBucketName",
+        "credentials"
+      ]
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "discordWebhookUrl": { "type": "string" }
+      }
+    },
+    "email": {
+      "type": "object",
+      "properties": {
+        "smtpUser": { "type": "string" },
+        "smtpPass": { "type": "string" },
+        "smtpFrom": { "type": "string" }
+      }
+    }
+  },
+  "required": ["framework", "database", "jwtSecret"]
+}

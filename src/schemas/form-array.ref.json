@@ -1,0 +1,35 @@
+{
+  "$id": "form-array.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "array"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "elements": {
+      "$ref": "form-one-of.ref.json"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "title"
+  ]
+}

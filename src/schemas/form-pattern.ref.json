@@ -1,0 +1,42 @@
+{
+  "$id": "form-pattern.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "pattern"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    }
+  },
+  "required": ["type", "name", "label", "format"]
+}

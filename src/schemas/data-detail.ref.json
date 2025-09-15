@@ -1,0 +1,297 @@
+{
+  "$id": "data-detail.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": {
+      "const": "dataDetail"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "userStory": {
+      "type": "string"
+    },
+    "dataSource": {
+      "$ref": "form-common-api-request.ref.json"
+    },
+    "headerConfig": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "string"
+            }
+          },
+          "required": ["property"]
+        },
+        "subtitle": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "string"
+            }
+          },
+          "required": ["property"]
+        },
+        "imageConfig": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "string"
+            },
+            "fallbackUrl": {
+              "type": "string"
+            },
+            "isAvatar": {
+              "type": "boolean"
+            }
+          },
+          "required": ["property"]
+        },
+        "statusProperty": {
+          "type": "string"
+        },
+        "statusConfig": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              }
+            },
+            "required": ["label", "color"]
+          }
+        }
+      },
+      "required": ["title"]
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "collapsible": {
+            "type": "boolean"
+          },
+          "collapsed": {
+            "type": "boolean"
+          },
+          "layout": {
+            "type": "string",
+            "enum": ["oneColumn", "twoColumns", "threeColumns", "table"]
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "property": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "text",
+                    "date",
+                    "currency",
+                    "number",
+                    "boolean",
+                    "image",
+                    "file",
+                    "link",
+                    "html",
+                    "char",
+                    "nchar",
+                    "varchar",
+                    "varchar2",
+                    "nvarchar",
+                    "longtext",
+                    "clob",
+                    "nclob",
+                    "decimal",
+                    "numeric",
+                    "integer",
+                    "float",
+                    "double",
+                    "real",
+                    "timestamp",
+                    "datetime",
+                    "datetime2",
+                    "uniqueidentifier"
+                  ]
+                },
+                "format": {
+                  "type": "string"
+                },
+                "linkConfig": {
+                  "type": "object",
+                  "properties": {
+                    "route": {
+                      "type": "string"
+                    },
+                    "external": {
+                      "type": "boolean"
+                    },
+                    "target": {
+                      "type": "string",
+                      "enum": ["_blank", "_self"]
+                    }
+                  }
+                }
+              },
+              "required": ["property", "label"]
+            }
+          }
+        },
+        "required": ["id", "title", "layout", "properties"]
+      }
+    },
+    "relatedData": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "componentType": {
+            "type": "string",
+            "enum": ["dataTable", "dataGrid", "dataList"]
+          },
+          "componentConfig": {},
+          "dataSource": {
+            "type": "object",
+            "properties": {
+              "endpoint": {
+                "type": "string"
+              },
+              "paramProperty": {
+                "type": "string"
+              }
+            },
+            "required": ["endpoint", "paramProperty"]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "componentType",
+          "componentConfig",
+          "dataSource"
+        ]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["link", "request", "event"]
+              },
+              "link": {
+                "type": "object",
+                "properties": {
+                  "route": {
+                    "type": "string"
+                  },
+                  "paramProperty": {
+                    "type": "string"
+                  }
+                },
+                "required": ["route"]
+              },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE"]
+                  },
+                  "confirmMessage": {
+                    "type": "string"
+                  }
+                },
+                "required": ["endpoint", "method"]
+              },
+              "event": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "data": {}
+                },
+                "required": ["name"]
+              }
+            },
+            "required": ["type"]
+          },
+          "styling": {
+            "type": "object",
+            "properties": {
+              "variant": {
+                "type": "string",
+                "enum": ["primary", "secondary", "text", "outlined"]
+              },
+              "size": {
+                "type": "string",
+                "enum": ["sm", "md", "lg"]
+              }
+            }
+          }
+        },
+        "required": ["label", "action"]
+      }
+    }
+  },
+  "required": ["componentType", "id", "dataSource", "sections"]
+}

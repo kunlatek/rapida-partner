@@ -1,0 +1,101 @@
+{
+  "$id": "data-grid.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": { "const": "dataGrid" },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "icon": { "type": "string" },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": { "$ref": "business-rules.ref.json" },
+    "userStory": { "type": "string" },
+    "dataSource": { "$ref": "form-common-api-request.ref.json" },
+    "cardTemplate": { "$ref": "data-card.ref.json" },
+    "gridConfig": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "object",
+          "properties": {
+            "sm": { "type": "number" },
+            "md": { "type": "number" },
+            "lg": { "type": "number" },
+            "xl": { "type": "number" }
+          },
+          "required": ["sm", "md", "lg", "xl"]
+        },
+        "gap": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          },
+          "required": ["x", "y"]
+        }
+      },
+      "required": ["columns", "gap"]
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "pageSize": { "type": "number" },
+        "pageSizeOptions": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "position": {
+          "type": "string",
+          "enum": ["top", "bottom", "both"]
+        }
+      },
+      "required": ["enabled", "pageSize"]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": { "type": "string" },
+          "label": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["text", "select", "date", "dateRange", "number"]
+          },
+          "defaultValue": {},
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": {}
+              },
+              "required": ["label", "value"]
+            }
+          }
+        },
+        "required": ["property", "label", "type"]
+      }
+    },
+    "emptyState": {
+      "type": "object",
+      "properties": {
+        "message": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["message"]
+    }
+  },
+  "required": [
+    "componentType",
+    "id",
+    "dataSource",
+    "cardTemplate",
+    "gridConfig"
+  ]
+}

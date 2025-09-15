@@ -1,0 +1,69 @@
+{
+  "$id": "form.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": {
+      "const": "form"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "elements": {
+      "$ref": "form-one-of.ref.json"
+    },
+    "userStory": {
+      "type": "string"
+    },
+    "apiConfig": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string"
+            },
+            "method": {
+              "const": "POST"
+            }
+          },
+          "required": ["endpoint", "method"]
+        },
+        "update": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string"
+            },
+            "method": {
+              "const": "PUT"
+            },
+            "propertiesAsPathParam": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["endpoint", "method", "propertiesAsPathParam"]
+        }
+      },
+      "required": ["create"]
+    }
+  },
+  "required": ["componentType", "id", "title", "elements", "apiConfig"]
+}

@@ -1,0 +1,81 @@
+{
+  "$id": "form-file.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "file"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "accept": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "isMultiple": {
+      "type": "boolean"
+    },
+    "maxSize": {
+      "type": "number"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isDisabledOnUpdate": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["onlyImages", "png", "jpg", "pdf"]
+      }
+    },
+    "storageConfig": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path prefix inside the bucket. E.g., 'public/movies/' or 'private/documents/'. The generator will determine the bucket based on the first segment ('public' or 'private')."
+        },
+        "fileNameStrategy": {
+          "type": "string",
+          "enum": ["uuid", "original", "timestamp"]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "private"]
+        }
+      },
+      "required": ["path", "fileNameStrategy"]
+    }
+  },
+  "required": ["type", "name", "label", "storageConfig"]
+}

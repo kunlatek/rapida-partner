@@ -1,0 +1,245 @@
+{
+  "$id": "data-card.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": {
+      "const": "dataCard"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "userStory": {
+      "type": "string"
+    },
+    "dataSource": {
+      "$ref": "form-common-api-request.ref.json"
+    },
+    "layout": {
+      "type": "string",
+      "enum": ["horizontal", "vertical"]
+    },
+    "imageConfig": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "fallbackUrl": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string",
+          "enum": ["top", "left", "right"]
+        },
+        "aspectRatio": {
+          "type": "string",
+          "enum": ["1:1", "4:3", "16:9"]
+        }
+      },
+      "required": ["property"]
+    },
+    "titleConfig": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "isLink": {
+          "type": "boolean"
+        },
+        "linkRoute": {
+          "type": "string"
+        },
+        "linkParamProperty": {
+          "type": "string"
+        }
+      },
+      "required": ["property"]
+    },
+    "subtitleConfig": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "string"
+        }
+      },
+      "required": ["property"]
+    },
+    "descriptionConfig": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "number"
+        },
+        "showReadMore": {
+          "type": "boolean"
+        }
+      },
+      "required": ["property"]
+    },
+    "properties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "date",
+              "currency",
+              "number",
+              "boolean",
+              "badge",
+              "icon",
+              "char",
+              "nchar",
+              "varchar",
+              "varchar2",
+              "nvarchar",
+              "longtext",
+              "clob",
+              "nclob",
+              "decimal",
+              "numeric",
+              "integer",
+              "float",
+              "double",
+              "real",
+              "timestamp",
+              "datetime",
+              "datetime2",
+              "uniqueidentifier"
+            ]
+          },
+          "format": {
+            "type": "string"
+          },
+          "isHtml": {
+            "type": "boolean"
+          }
+        },
+        "required": ["property", "label"]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["link", "request", "event"]
+              },
+              "link": {
+                "type": "object",
+                "properties": {
+                  "route": {
+                    "type": "string"
+                  },
+                  "paramProperty": {
+                    "type": "string"
+                  }
+                },
+                "required": ["route"]
+              },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE"]
+                  },
+                  "confirmMessage": {
+                    "type": "string"
+                  }
+                },
+                "required": ["endpoint", "method"]
+              },
+              "event": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "data": {}
+                },
+                "required": ["name"]
+              }
+            },
+            "required": ["type"]
+          },
+          "styling": {
+            "type": "object",
+            "properties": {
+              "variant": {
+                "type": "string",
+                "enum": ["primary", "secondary", "text", "outlined"]
+              },
+              "size": {
+                "type": "string",
+                "enum": ["sm", "md", "lg"]
+              }
+            }
+          }
+        },
+        "required": ["label", "action"]
+      }
+    },
+    "styling": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": ["default", "elevated", "flat", "outlined"]
+        },
+        "cardClickable": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "required": [
+    "componentType",
+    "id",
+    "dataSource",
+    "layout",
+    "titleConfig",
+    "properties"
+  ]
+}

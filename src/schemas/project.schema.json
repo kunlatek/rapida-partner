@@ -1,0 +1,39 @@
+{
+  "$id": "project.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "string",
+      "enum": ["autentikigo", "invito", "permeson", "komerco", "labotablo", "reto"]
+    },
+    "businessPlan": {
+      "$ref": "business-plan.ref.json"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "frontend": {
+      "$ref": "frontend.ref.json"
+    },
+    "backend": {
+      "$ref": "backend.ref.json"
+    },
+    "externalApplications": {
+      "$ref": "external-application.ref.json"
+    },
+    "modules": {
+      "$ref": "module.ref.json"
+    }
+  },
+  "required": ["id", "title", "description"]
+}

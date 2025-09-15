@@ -1,0 +1,168 @@
+{
+  "$id": "data-chart.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": { "const": "dataChart" },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "icon": { "type": "string" },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": { "$ref": "business-rules.ref.json" },
+    "userStory": { "type": "string" },
+    "dataSource": { "$ref": "form-common-api-request.ref.json" },
+    "chartType": {
+      "type": "string",
+      "enum": [
+        "line",
+        "bar",
+        "pie",
+        "doughnut",
+        "radar",
+        "scatter",
+        "bubble",
+        "area",
+        "polarArea"
+      ]
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "string" },
+        "height": { "type": "string" },
+        "aspectRatio": { "type": "number" }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "properties": {
+            "property": { "type": "string" },
+            "formatter": { "type": "string" }
+          },
+          "required": ["property"]
+        },
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "property": { "type": "string" },
+              "label": { "type": "string" },
+              "backgroundColor": {
+                "oneOf": [
+                  { "type": "string" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
+              },
+              "borderColor": {
+                "oneOf": [
+                  { "type": "string" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
+              },
+              "borderWidth": { "type": "number" },
+              "fill": { "type": "boolean" },
+              "tension": { "type": "number" },
+              "aggregator": {
+                "type": "string",
+                "enum": ["sum", "avg", "min", "max", "count"]
+              }
+            },
+            "required": ["property", "label"]
+          }
+        }
+      },
+      "required": ["labels", "datasets"]
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "responsive": { "type": "boolean" },
+        "maintainAspectRatio": { "type": "boolean" },
+        "plugins": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "object",
+              "properties": {
+                "display": { "type": "boolean" },
+                "text": { "type": "string" }
+              }
+            },
+            "legend": {
+              "type": "object",
+              "properties": {
+                "display": { "type": "boolean" },
+                "position": {
+                  "type": "string",
+                  "enum": ["top", "bottom", "left", "right"]
+                }
+              }
+            },
+            "tooltip": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "scales": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "object",
+                  "properties": {
+                    "display": { "type": "boolean" },
+                    "text": { "type": "string" }
+                  }
+                },
+                "grid": {
+                  "type": "object",
+                  "properties": {
+                    "display": { "type": "boolean" }
+                  }
+                }
+              }
+            },
+            "y": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "object",
+                  "properties": {
+                    "display": { "type": "boolean" },
+                    "text": { "type": "string" }
+                  }
+                },
+                "grid": {
+                  "type": "object",
+                  "properties": {
+                    "display": { "type": "boolean" }
+                  }
+                },
+                "beginAtZero": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["componentType", "id", "dataSource", "chartType", "data"]
+}

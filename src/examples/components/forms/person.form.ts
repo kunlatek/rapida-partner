@@ -1,0 +1,450 @@
+import type { IForm } from "../../../interfaces/form.interface";
+
+export const personForm: IForm = {
+  title: "Gerenciamento de cliente pessoa",
+  userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de pessoa para inserir e editar informações de clientes, incluindo dados principais (como nome, nacionalidade, CPF, data de nascimento, gênero, foto, telefones e e-mails), contatos e redes sociais (como telefones secundários, e-mails e links de sites), e endereços, para que eu possa manter um registro completo e atualizado das pessoas no sistema.`,
+  componentType: "form",
+  id: "personForm",
+  apiConfig: {
+    create: {
+      endpoint: "/people",
+      method: "POST",
+    },
+    update: {
+      endpoint: "/people",
+      method: "PUT",
+      propertiesAsPathParam: ["_id"],
+    },
+  },
+  guards: "isAuthorized",
+  elements: [
+    {
+      id: "personTab",
+      type: "tab",
+      tabs: [
+        {
+          id: "personMainDataTab",
+          title: "Dados principais",
+          elements: [
+            {
+              label: "Nacionalidade",
+              type: "select",
+              name: "nationality",
+              dataType: "text",
+              options: [
+                // Países da América do Sul
+                { label: "Brasileiro", value: "brazilian", isSelected: true, },
+                { label: "Argentino", value: "argentinian" },
+                { label: "Chileno", value: "chilean" },
+                { label: "Colombiano", value: "colombian" },
+                { label: "Peruano", value: "peruvian" },
+                { label: "Uruguaio", value: "uruguayan" },
+                { label: "Paraguaio", value: "paraguayan" },
+                { label: "Boliviano", value: "bolivian" },
+                { label: "Venezuelano", value: "venezuelan" },
+                { label: "Equatoriano", value: "ecuadorian" },
+                //Países da América Central
+                { label: "Costarriquenho", value: "costarrican" },
+                { label: "Panamenho", value: "panamanian" },
+                { label: "Nicaraguense", value: "nicaraguan" },
+                { label: "Hondurenho", value: "honduran" },
+                { label: "Salvadorenho", value: "salvadoran" },
+                // Países da América do Norte
+                { label: "Estadunidense", value: "american" },
+                { label: "Mexicano", value: "mexican" },
+                { label: "Canadense", value: "canadian" },
+                // Países da Europa
+                { label: "Alemão", value: "german" },
+                { label: "Francês", value: "french" },
+                { label: "Britânico", value: "british" },
+                { label: "Italiano", value: "italian" },
+                { label: "Espanhol", value: "spanish" },
+                { label: "Português", value: "portuguese" },
+                { label: "Russo", value: "russian" },
+                { label: "Sueco", value: "swedish" },
+                { label: "Holandês", value: "dutch" },
+                { label: "Belga", value: "belgian" },
+                { label: "Suíço", value: "swiss" },
+                // Países da Ásia
+                { label: "Chinês", value: "chinese" },
+                { label: "Japonês", value: "japanese" },
+                { label: "Coreano", value: "korean" },
+                { label: "Indiano", value: "indian" },
+                { label: "Indonésio", value: "indonesian" },
+                { label: "Filipino", value: "filipino" },
+                { label: "Vietnamita", value: "vietnamese" },
+                { label: "Tailandês", value: "thai" },
+                { label: "Malásio", value: "malaysian" },
+                { label: "Singapuriano", value: "singaporean" },
+                // Países da África
+                { label: "Sul-africano", value: "southAfrican" },
+                { label: "Nigeriano", value: "nigerian" },
+                { label: "Egípcio", value: "egyptian" },
+                { label: "Marroquino", value: "moroccan" },
+                { label: "Queniano", value: "kenyan" },
+                { label: "Tanzaniano", value: "tanzanian" },
+                { label: "Ugandense", value: "ugandan" },
+                { label: "Angolano", value: "angolan" },
+                { label: "Moçambicano", value: "mozambican" },
+                { label: "Ghanês", value: "ghanian" },
+                // Países da Oceania
+                { label: "Australiano", value: "australian" },
+                { label: "Neozelandês", value: "newZealander" },
+                { label: "Fiji", value: "fijian" },
+                { label: "Samoano", value: "samoan" },
+                { label: "Tonganês", value: "tongan" },
+                // Outros países
+                { label: "Afegão", value: "afghan" },
+                { label: "Iraniano", value: "iranian" },
+                { label: "Iraquiano", value: "iraqi" },
+                { label: "Sírio", value: "syrian" },
+                { label: "Israelense", value: "israeli" },
+                { label: "Palestino", value: "palestinian" },
+              ],
+              isRequired: true,
+            },
+            {
+              label: "CPF",
+              type: "input",
+              dataType: "text",
+              name: "cpf",
+              validators: ["cpf"],
+              isUnique: true,
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "nationality",
+                      value: "brazilian",
+                      comparisonOperator: "===",
+                    }
+                  ]
+                },
+              ]
+            },
+            {
+              label: "Nome da pessoa",
+              type: "input",
+              dataType: "text",
+              name: "name",
+              isRequired: true,
+            },
+            {
+              label: "Data de nascimento",
+              type: "input",
+              dataType: "date",
+              name: "birthday",
+            },
+            {
+              label: "Gênero",
+              type: "select",
+              dataType: "text",
+              name: "gender",
+              options: [
+                { label: "Masculino", value: "m" },
+                { label: "Feminino", value: "f" },
+                { label: "Outro", value: "o" },
+              ],
+            },
+            {
+              label: "Foto da pessoa",
+              type: "file",
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "person/pictures",
+                visibility: "public",
+              },
+              name: "picture",
+            },
+            {
+              label: "Telefone principal",
+              type: "input",
+              dataType: "text",
+              name: "phoneOne",
+              validators: ["phone"],
+              isRequired: true,
+            },
+            {
+              label: "E-mail principal",
+              type: "input",
+              dataType: "email",
+              name: "emailOne",
+              isRequired: true,
+            },
+            {
+              label: "Relacionamentos",
+              type: "select",
+              dataType: "text",
+              name: "relationships",
+              options: [
+                {
+                  label: "Cliente",
+                  value: "customer",
+                },
+                {
+                  label: "Fornecedor",
+                  value: "supplier",
+                },
+              ],
+              isMultiple: true,
+            },
+          ],
+        },
+        {
+          id: "personContactTab",
+          title: "Contatos e redes",
+          elements: [
+            {
+              label: "Telefone secundário",
+              type: "input",
+              dataType: "text",
+              name: "phoneTwo",
+              validators: ["phone"],
+            },
+            {
+              label: "E-mail secundário",
+              type: "input",
+              dataType: "email",
+              name: "emailTwo",
+            },
+            {
+              label: "Site 1",
+              type: "input",
+              dataType: "text",
+              name: "siteOne",
+            },
+            {
+              label: "Site 2",
+              type: "input",
+              dataType: "text",
+              name: "siteTwo",
+            },
+            {
+              label: "Linkedin",
+              type: "input",
+              dataType: "text",
+              name: "linkedin",
+            },
+            {
+              label: "Instagram",
+              type: "input",
+              dataType: "text",
+              name: "instagram",
+            },
+            {
+              label: "Facebook",
+              type: "input",
+              dataType: "text",
+              name: "facebook",
+            },
+          ],
+        },
+        {
+          id: "personAddressTab",
+          title: "Endereços",
+          elements: [
+            {
+              type: "fieldset",
+              id: "addressOne",
+              title: "Endereço 1",
+              elements: [
+                {
+                  label: "CEP",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneZipCode",
+                  apiRequest: {
+                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    paramType: "path",
+                    formFieldsFilledByApiResponse: [
+                      {
+                        formFieldName: "addressOneStreet",
+                        propertiesFromApiToFillFormField: ["street"]
+                      },
+                      {
+                        formFieldName: "addressOneDistrict",
+                        propertiesFromApiToFillFormField: ["neighborhood"]
+                      },
+                      {
+                        formFieldName: "addressOneCity",
+                        propertiesFromApiToFillFormField: ["city"]
+                      },
+                      {
+                        formFieldName: "addressOneState",
+                        propertiesFromApiToFillFormField: ["state"]
+                      },
+                    ],
+                  },
+                  validators: ["cep"],
+                }, 
+                {
+                  label: "Logradouro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneStreet",
+                }, 
+                {
+                  label: "Bairro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneDistrict",
+                }, 
+                {
+                  label: "Número",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneNumber",
+                }, 
+                {
+                  label: "Complemento",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneComplement",
+                }, {
+                  label: "Cidade",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneCity",
+                }, 
+                {
+                  label: "Estado",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneState",
+                }, 
+                {
+                  label: "Latitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneLatitude",
+                }, 
+                {
+                  label: "Longitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneLongitude",
+                }
+              ],
+            }, 
+            {
+              title: "Endereço 2",
+              type: "fieldset",
+              id: "addressTwo",
+              elements: [
+                {
+                  label: "CEP",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoZipCode",
+                  apiRequest: {
+                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    paramType: "path",
+                    formFieldsFilledByApiResponse: [
+                      {
+                        formFieldName: "addressTwoStreet",
+                        propertiesFromApiToFillFormField: ["street"]
+                      },
+                      {
+                        formFieldName: "addressTwoDistrict",
+                        propertiesFromApiToFillFormField: ["neighborhood"]
+                      },
+                      {
+                        formFieldName: "addressTwoCity",
+                        propertiesFromApiToFillFormField: ["city"]
+                      },
+                      {
+                        formFieldName: "addressTwoState",
+                        propertiesFromApiToFillFormField: ["state"]
+                      },
+                    ],
+                  },
+                  validators: ["cep"],
+                }, 
+                {
+                  label: "Logradouro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoStreet",
+                }, 
+                {
+                  label: "Bairro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoDistrict",
+                }, 
+                {
+                  label: "Número",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoNumber",
+                }, 
+                {
+                  label: "Complemento",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoComplement",
+                }, {
+                  label: "Cidade",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoCity",
+                }, 
+                {
+                  label: "Estado",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoState",
+                }, 
+                {
+                  label: "Latitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoLatitude",
+                }, 
+                {
+                  label: "Longitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoLongitude",
+                }
+              ],
+            }, 
+          ],
+        },
+        {
+          id: "moreDetailsTab",
+          title: "Mais detalhes",
+          elements: [
+            {
+              label: "Nome social",
+              type: "input",
+              dataType: "text",
+              name: "nickname",
+            }, 
+            {
+              label: "Descrição da pessoa",
+              type: "input",
+              dataType: "wysiwyg",
+              name: "personDescription",
+            }, 
+            {
+              label: "Estado civil",
+              type: "select",
+              dataType: "text",
+              name: "personMaritalStatus",
+              options: [
+                { label: "Solteiro", value: "single" },
+                { label: "Casado", value: "married" },
+                { label: "Divorciado", value: "divorced" },
+                { label: "Viúvo", value: "widower" },
+                { label: "Noivo", value: "engaged" },
+                { label: "União estável", value: "stableUnion" },
+              ],
+            },
+          ],
+        },
+      ],
+    }
+  ],
+};

@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "form-button.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "button"
+    },
+    "id": {
+      "type": "string"
+    },
+    "actionType": {
+      "type": "string",
+      "enum": ["submit", "reset", "link", "apiRequest", "modal"]
+    },
+    "label": {
+      "type": "string"
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isDisabledOnUpdate": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "apiRequest": {
+      "$ref": "form-common-api-request.ref.json"
+    },
+    "modal": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "modal": { "$ref": "form.ref.json" },
+        "size": {
+          "type": "string",
+          "enum": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl",
+            "6xl",
+            "7xl"
+          ]
+        },
+        "closeButtonLabel": { "type": "string" },
+        "actionButtonLabel": { "type": "string" },
+        "actionButtonType": {
+          "type": "string",
+          "enum": ["submit", "reset", "link", "apiRequest", "modal"]
+        },
+        "actionButtonApiRequest": {
+          "$ref": "form-common-api-request.ref.json"
+        },
+        "actionButtonBusinessRules": { "$ref": "business-rules.ref.json" }
+      },
+      "required": ["id", "title", "modal"]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "openInNewTab": { "type": "boolean" }
+      },
+      "required": ["url"]
+    }
+  },
+  "required": ["type", "id", "label", "actionType"]
+}

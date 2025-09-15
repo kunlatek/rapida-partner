@@ -1,0 +1,127 @@
+{
+  "$id": "panel.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": { "const": "panel" },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "icon": { "type": "string" },
+    "collapsible": { "type": "boolean" },
+    "collapsed": { "type": "boolean" },
+    "userStory": { "type": "string" },
+    "headerActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": { "type": "string" },
+          "label": { "type": "string" },
+          "action": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["link", "request", "event"]
+              },
+              "link": {
+                "type": "object",
+                "properties": {
+                  "route": { "type": "string" }
+                },
+                "required": ["route"]
+              },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "endpoint": { "type": "string" },
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE"]
+                  }
+                },
+                "required": ["endpoint", "method"]
+              },
+              "event": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "data": {}
+                },
+                "required": ["name"]
+              }
+            },
+            "required": ["type"]
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["component", "html", "markdown"]
+        },
+        "component": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["dataTable", "dataGrid", "dataCard", "dataChart", "form"]
+            },
+            "config": {}
+          },
+          "required": ["type", "config"]
+        },
+        "html": { "type": "string" },
+        "markdown": { "type": "string" }
+      },
+      "required": ["type"],
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "component" } }
+          },
+          "then": {
+            "required": ["component"]
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "html" } }
+          },
+          "then": {
+            "required": ["html"]
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "markdown" } }
+          },
+          "then": {
+            "required": ["markdown"]
+          }
+        }
+      ]
+    },
+    "styling": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": ["default", "outlined", "elevated", "flat"]
+        },
+        "padding": {
+          "type": "string",
+          "enum": ["none", "small", "medium", "large"]
+        },
+        "maxHeight": { "type": "string" },
+        "scrollable": { "type": "boolean" }
+      }
+    }
+  },
+  "required": ["componentType", "id", "content"]
+}

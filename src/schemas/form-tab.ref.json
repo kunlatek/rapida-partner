@@ -1,0 +1,50 @@
+{
+  "$id": "form-tab.ref.json",
+  "type":"object",
+  "properties": {
+    "type": {
+      "const": "tab"
+    },
+    "id": {
+      "type":"string"
+    },
+    "todo": {
+      "type":"string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type":"string"
+          },
+          "title": {
+            "type":"string"
+          },
+          "elements": {
+            "$ref": "form-one-of.ref.json"
+          },
+          "conditions": {
+            "$ref": "form-condition.ref.json"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "elements"
+        ]
+      }
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

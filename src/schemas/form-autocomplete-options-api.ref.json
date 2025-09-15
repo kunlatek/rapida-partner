@@ -1,0 +1,53 @@
+{
+  "$id": "form-autocomplete-options-api.ref.json",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string"
+    },
+    "labelField": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "valueField": {
+      "type": "string"
+    },
+    "paramsToFilter": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "paramType": {
+      "type": "string",
+      "enum": ["query", "path"]
+    },
+    "populate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "formFieldsFilledByApiResponse": {
+      "$ref": "form-common-form-fields-filled-by-api-response.ref.json"
+    },
+    "filtersFromOtherFormFields": {
+      "$ref": "form-common-filters-from-other-form-fields.ref.json"
+    },
+    "isNotKunlatekResponse": {
+      "type": "boolean"
+    },
+    "rawQuery": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "endpoint",
+    "labelField",
+    "valueField",
+    "paramsToFilter",
+    "paramType"
+  ]
+}

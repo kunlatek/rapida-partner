@@ -1,0 +1,181 @@
+{
+  "$id": "data-table.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": { "const": "dataTable" },
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "icon": { "type": "string" },
+    "guards": {
+      "type": "string",
+      "enum": ["isAuthenticated", "isAuthorized"]
+    },
+    "businessRules": { "$ref": "business-rules.ref.json" },
+    "dataSource": { "$ref": "form-common-api-request.ref.json" },
+    "userStory": { "type": "string" },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": { "type": "string" },
+          "label": { "type": "string" },
+          "sortable": { "type": "boolean" },
+          "filterable": { "type": "boolean" },
+          "hidden": { "type": "boolean" },
+          "width": { "type": "string" },
+          "align": {
+            "type": "string",
+            "enum": ["left", "center", "right"]
+          },
+          "formatter": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["date", "currency", "number", "boolean", "custom"]
+              },
+              "format": { "type": "string" },
+              "customFunction": { "type": "string" }
+            },
+            "required": ["type"]
+          },
+          "renderAs": {
+            "type": "string",
+            "enum": ["text", "link", "badge", "image", "icon"]
+          },
+          "linkConfig": {
+            "type": "object",
+            "properties": {
+              "route": { "type": "string" },
+              "paramProperty": { "type": "string" },
+              "target": {
+                "type": "string",
+                "enum": ["_blank", "_self"]
+              }
+            },
+            "required": ["route"]
+          }
+        },
+        "required": ["property", "label"]
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "pageSize": { "type": "number" },
+        "pageSizeOptions": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "position": {
+          "type": "string",
+          "enum": ["top", "bottom", "both"]
+        }
+      },
+      "required": ["enabled", "pageSize"]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": { "type": "string" },
+          "label": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["text", "select", "date", "dateRange", "number"]
+          },
+          "defaultValue": {},
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": {}
+              },
+              "required": ["label", "value"]
+            }
+          }
+        },
+        "required": ["property", "label", "type"]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": { "type": "string" },
+          "label": { "type": "string" },
+          "action": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["link", "request", "event"]
+              },
+              "link": {
+                "type": "object",
+                "properties": {
+                  "route": { "type": "string" },
+                  "paramProperty": { "type": "string" }
+                },
+                "required": ["route"]
+              },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "endpoint": { "type": "string" },
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE"]
+                  },
+                  "confirmMessage": { "type": "string" }
+                },
+                "required": ["endpoint", "method"]
+              },
+              "event": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "data": {}
+                },
+                "required": ["name"]
+              }
+            },
+            "required": ["type"]
+          },
+          "visibilityCondition": {
+            "type": "object",
+            "properties": {
+              "property": { "type": "string" },
+              "operator": {
+                "type": "string",
+                "enum": ["===", "!==", ">", "<", ">=", "<=", "contains"]
+              },
+              "value": {}
+            },
+            "required": ["property", "operator", "value"]
+          }
+        },
+        "required": ["label", "action"]
+      }
+    },
+    "styling": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": ["default", "bordered", "striped"]
+        },
+        "rowClickable": { "type": "boolean" },
+        "highlightHoveredRow": { "type": "boolean" }
+      }
+    }
+  },
+  "required": ["componentType", "id", "dataSource", "columns"]
+}

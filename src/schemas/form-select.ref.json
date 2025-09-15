@@ -1,0 +1,122 @@
+{
+  "$id": "form-select.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "select"
+    },
+    "name": {
+      "type": "string"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "password",
+        "email",
+        "color",
+        "date",
+        "file",
+        "char",
+        "nchar",
+        "varchar",
+        "varchar2",
+        "nvarchar",
+        "longtext",
+        "clob",
+        "nclob",
+        "decimal",
+        "numeric",
+        "integer",
+        "float",
+        "double",
+        "real",
+        "timestamp",
+        "datetime",
+        "datetime2",
+        "uniqueidentifier",
+        "boolean"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "isAutofocus": {
+      "type": "boolean"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isDisabledOnUpdate": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "isUnique": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["cpf", "cnpj"]
+      }
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "isMultiple": {
+      "type": "boolean"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "isDisabled": {
+            "type": "boolean"
+          },
+          "isSelected": {
+            "type": "boolean"
+          }
+        },
+        "required": ["label", "value"]
+      }
+    },
+    "optionsApi": {
+      "$ref": "form-autocomplete-options-api.ref.json"
+    }
+  },
+  "required": ["type", "dataType", "name", "label"],
+  "oneOf": [{ "required": ["options"] }, { "required": ["optionsApi"] }]
+}

@@ -1,0 +1,203 @@
+{
+  "$id": "form-autocomplete.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "autocomplete"
+    },
+    "name": {
+      "type": "string"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "password",
+        "email",
+        "color",
+        "date",
+        "file",
+        "char",
+        "nchar",
+        "varchar",
+        "varchar2",
+        "nvarchar",
+        "longtext",
+        "clob",
+        "nclob",
+        "decimal",
+        "numeric",
+        "integer",
+        "float",
+        "double",
+        "real",
+        "timestamp",
+        "datetime",
+        "datetime2",
+        "uniqueidentifier",
+        "boolean"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "isAutofocus": {
+      "type": "boolean"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isDisabledOnUpdate": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "isUnique": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "form-condition.ref.json"
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["cpf", "cnpj"]
+      }
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "optionsApi": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "labelField": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "valueField": {
+          "type": "string"
+        },
+        "paramsToFilter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paramType": {
+          "type": "string",
+          "enum": ["query", "path"]
+        },
+        "populate": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "formFieldsFilledByApiResponse": {
+          "$ref": "form-common-form-fields-filled-by-api-response.ref.json"
+        },
+        "filtersFromOtherFormFields": {
+          "$ref": "form-common-filters-from-other-form-fields.ref.json"
+        },
+        "isNotKunlatekResponse": {
+          "type": "boolean"
+        },
+        "conditions": {
+          "$ref": "form-condition.ref.json"
+        },
+        "rawQuery": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "labelField",
+        "valueField",
+        "paramsToFilter",
+        "paramType"
+      ]
+    },
+    "optionsApiWithConditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "labelField": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "valueField": {
+            "type": "string"
+          },
+          "paramsToFilter": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "paramType": {
+            "type": "string",
+            "enum": ["query", "path"]
+          },
+          "relatedEntity": {
+            "type": "string"
+          },
+          "populate": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "formFieldsFilledByApiResponse": {
+            "$ref": "form-common-form-fields-filled-by-api-response.ref.json"
+          },
+          "filtersFromOtherFormFields": {
+            "$ref": "form-common-filters-from-other-form-fields.ref.json"
+          },
+          "isNotKunlatekResponse": {
+            "type": "boolean"
+          },
+          "conditions": {
+            "$ref": "form-condition.ref.json"
+          },
+          "rawQuery": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "endpoint",
+        "labelField",
+        "valueField",
+        "paramsToFilter",
+        "paramType"
+      ]
+    },
+    "isMultiple": {
+      "type": "boolean"
+    }
+  },
+  "required": ["type", "dataType", "name", "label"]
+}
