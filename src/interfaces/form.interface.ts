@@ -18,11 +18,11 @@ export interface IForm {
   guards?: "isAuthenticated" | "isAuthorized";
   businessRules?: IBusinessRule[];
   userStory?: string;
-  contracts: [{
+  contracts: {
     endpoint: string;
     methods: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
     request?: IApiRequest;
-  }];
+  }[];
 }
 
 export interface IApiRequest {
