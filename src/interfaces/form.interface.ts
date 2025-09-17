@@ -22,12 +22,51 @@ export interface IForm {
     create: {
       endpoint: string;
       method: "POST";
-    };
+      contract?: IApiContract;
+    }[];
     update?: {
       endpoint: string;
       method: "PUT";
       propertiesAsPathParam: string[];
     };
+  };
+}
+
+export interface IApiContract {
+  request: {
+    body: {
+      key: string;
+      dataType:
+        | "text"
+        | "number"
+        | "password"
+        | "email"
+        | "color"
+        | "date"
+        | "wysiwyg"
+        | "time"
+        | "file"
+        | "array"
+        | "char"
+        | "nchar"
+        | "varchar"
+        | "varchar2"
+        | "nvarchar"
+        | "longtext"
+        | "clob"
+        | "nclob"
+        | "decimal"
+        | "numeric"
+        | "integer"
+        | "float"
+        | "double"
+        | "real"
+        | "timestamp"
+        | "datetime"
+        | "datetime2"
+        | "uniqueidentifier"
+        | "boolean";
+    }[];
   };
 }
 

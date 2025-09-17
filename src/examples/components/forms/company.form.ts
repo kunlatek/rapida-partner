@@ -6,10 +6,19 @@ export const companyForm: IForm = {
   componentType: "form",
   id: "companyForm",
   apiConfig: {
-    create: {
-      endpoint: "/companies",
-      method: "POST",
-    },
+    create: [
+      {
+        endpoint: "/companies",
+        method: "POST",
+        contract: {
+          request: { 
+            body: [
+              { key: "nationality", dataType: "text" },
+            ] 
+          },
+        },
+      },
+    ],
     update: {
       endpoint: "/companies",
       method: "PUT",
@@ -33,7 +42,7 @@ export const companyForm: IForm = {
               dataType: "text",
               options: [
                 // Países da América do Sul
-                { label: "Brasileiro", value: "brazilian", isSelected: true, },
+                { label: "Brasileiro", value: "brazilian", isSelected: true },
                 { label: "Argentino", value: "argentinian" },
                 { label: "Chileno", value: "chilean" },
                 { label: "Colombiano", value: "colombian" },
@@ -118,9 +127,9 @@ export const companyForm: IForm = {
                       key: "nationality",
                       value: "brazilian",
                       comparisonOperator: "===",
-                    }
-                  ]
-                }
+                    },
+                  ],
+                },
               ],
             },
             {

@@ -18,6 +18,7 @@
         "color",
         "date",
         "file",
+        "array",
         "char",
         "nchar",
         "varchar",
@@ -161,9 +162,6 @@
             "type": "string",
             "enum": ["query", "path"]
           },
-          "relatedEntity": {
-            "type": "string"
-          },
           "populate": {
             "type": "array",
             "items": {
@@ -197,6 +195,9 @@
     },
     "isMultiple": {
       "type": "boolean"
+    },
+    "relatedEntity": {
+      "type": "string"
     }
   },
   "required": ["type", "dataType", "name", "label"]

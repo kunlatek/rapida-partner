@@ -17,6 +17,8 @@ export interface IFormInput {
     | "date"
     | "wysiwyg"
     | "time"
+    | "file"
+    | "array"
     | "char"
     | "nchar"
     | "varchar"

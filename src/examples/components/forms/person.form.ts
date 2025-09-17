@@ -6,10 +6,12 @@ export const personForm: IForm = {
   componentType: "form",
   id: "personForm",
   apiConfig: {
-    create: {
-      endpoint: "/people",
-      method: "POST",
-    },
+    create: [
+      {
+        endpoint: "/people",
+        method: "POST",
+      },
+    ],
     update: {
       endpoint: "/people",
       method: "PUT",
@@ -32,8 +34,7 @@ export const personForm: IForm = {
               name: "nationality",
               dataType: "text",
               options: [
-                // Países da América do Sul
-                { label: "Brasileiro", value: "brazilian", isSelected: true, },
+                { label: "Brasileiro", value: "brazilian", isSelected: true },
                 { label: "Argentino", value: "argentinian" },
                 { label: "Chileno", value: "chilean" },
                 { label: "Colombiano", value: "colombian" },
@@ -43,17 +44,14 @@ export const personForm: IForm = {
                 { label: "Boliviano", value: "bolivian" },
                 { label: "Venezuelano", value: "venezuelan" },
                 { label: "Equatoriano", value: "ecuadorian" },
-                //Países da América Central
                 { label: "Costarriquenho", value: "costarrican" },
                 { label: "Panamenho", value: "panamanian" },
                 { label: "Nicaraguense", value: "nicaraguan" },
                 { label: "Hondurenho", value: "honduran" },
                 { label: "Salvadorenho", value: "salvadoran" },
-                // Países da América do Norte
                 { label: "Estadunidense", value: "american" },
                 { label: "Mexicano", value: "mexican" },
                 { label: "Canadense", value: "canadian" },
-                // Países da Europa
                 { label: "Alemão", value: "german" },
                 { label: "Francês", value: "french" },
                 { label: "Britânico", value: "british" },
@@ -65,7 +63,6 @@ export const personForm: IForm = {
                 { label: "Holandês", value: "dutch" },
                 { label: "Belga", value: "belgian" },
                 { label: "Suíço", value: "swiss" },
-                // Países da Ásia
                 { label: "Chinês", value: "chinese" },
                 { label: "Japonês", value: "japanese" },
                 { label: "Coreano", value: "korean" },
@@ -76,7 +73,6 @@ export const personForm: IForm = {
                 { label: "Tailandês", value: "thai" },
                 { label: "Malásio", value: "malaysian" },
                 { label: "Singapuriano", value: "singaporean" },
-                // Países da África
                 { label: "Sul-africano", value: "southAfrican" },
                 { label: "Nigeriano", value: "nigerian" },
                 { label: "Egípcio", value: "egyptian" },
@@ -87,13 +83,11 @@ export const personForm: IForm = {
                 { label: "Angolano", value: "angolan" },
                 { label: "Moçambicano", value: "mozambican" },
                 { label: "Ghanês", value: "ghanian" },
-                // Países da Oceania
                 { label: "Australiano", value: "australian" },
                 { label: "Neozelandês", value: "newZealander" },
                 { label: "Fiji", value: "fijian" },
                 { label: "Samoano", value: "samoan" },
                 { label: "Tonganês", value: "tongan" },
-                // Outros países
                 { label: "Afegão", value: "afghan" },
                 { label: "Iraniano", value: "iranian" },
                 { label: "Iraquiano", value: "iraqi" },
@@ -118,10 +112,10 @@ export const personForm: IForm = {
                       key: "nationality",
                       value: "brazilian",
                       comparisonOperator: "===",
-                    }
-                  ]
+                    },
+                  ],
                 },
-              ]
+              ],
             },
             {
               label: "Nome da pessoa",
@@ -255,78 +249,80 @@ export const personForm: IForm = {
                   dataType: "text",
                   name: "addressOneZipCode",
                   apiRequest: {
-                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    endpoint:
+                      "https://viacep.com.br/ws/{{addressOneZipCode}}/json/",
                     paramType: "path",
                     formFieldsFilledByApiResponse: [
                       {
                         formFieldName: "addressOneStreet",
-                        propertiesFromApiToFillFormField: ["street"]
+                        propertiesFromApiToFillFormField: ["street"],
                       },
                       {
                         formFieldName: "addressOneDistrict",
-                        propertiesFromApiToFillFormField: ["neighborhood"]
+                        propertiesFromApiToFillFormField: ["neighborhood"],
                       },
                       {
                         formFieldName: "addressOneCity",
-                        propertiesFromApiToFillFormField: ["city"]
+                        propertiesFromApiToFillFormField: ["city"],
                       },
                       {
                         formFieldName: "addressOneState",
-                        propertiesFromApiToFillFormField: ["state"]
+                        propertiesFromApiToFillFormField: ["state"],
                       },
                     ],
                   },
                   validators: ["cep"],
-                }, 
+                },
                 {
                   label: "Logradouro",
                   type: "input",
                   dataType: "text",
                   name: "addressOneStreet",
-                }, 
+                },
                 {
                   label: "Bairro",
                   type: "input",
                   dataType: "text",
                   name: "addressOneDistrict",
-                }, 
+                },
                 {
                   label: "Número",
                   type: "input",
                   dataType: "text",
                   name: "addressOneNumber",
-                }, 
+                },
                 {
                   label: "Complemento",
                   type: "input",
                   dataType: "text",
                   name: "addressOneComplement",
-                }, {
+                },
+                {
                   label: "Cidade",
                   type: "input",
                   dataType: "text",
                   name: "addressOneCity",
-                }, 
+                },
                 {
                   label: "Estado",
                   type: "input",
                   dataType: "text",
                   name: "addressOneState",
-                }, 
+                },
                 {
                   label: "Latitude",
                   type: "input",
                   dataType: "text",
                   name: "addressOneLatitude",
-                }, 
+                },
                 {
                   label: "Longitude",
                   type: "input",
                   dataType: "text",
                   name: "addressOneLongitude",
-                }
+                },
               ],
-            }, 
+            },
             {
               title: "Endereço 2",
               type: "fieldset",
@@ -338,78 +334,80 @@ export const personForm: IForm = {
                   dataType: "text",
                   name: "addressTwoZipCode",
                   apiRequest: {
-                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    endpoint:
+                      "https://viacep.com.br/ws/{{addressTwoZipCode}}/json/",
                     paramType: "path",
                     formFieldsFilledByApiResponse: [
                       {
                         formFieldName: "addressTwoStreet",
-                        propertiesFromApiToFillFormField: ["street"]
+                        propertiesFromApiToFillFormField: ["street"],
                       },
                       {
                         formFieldName: "addressTwoDistrict",
-                        propertiesFromApiToFillFormField: ["neighborhood"]
+                        propertiesFromApiToFillFormField: ["neighborhood"],
                       },
                       {
                         formFieldName: "addressTwoCity",
-                        propertiesFromApiToFillFormField: ["city"]
+                        propertiesFromApiToFillFormField: ["city"],
                       },
                       {
                         formFieldName: "addressTwoState",
-                        propertiesFromApiToFillFormField: ["state"]
+                        propertiesFromApiToFillFormField: ["state"],
                       },
                     ],
                   },
                   validators: ["cep"],
-                }, 
+                },
                 {
                   label: "Logradouro",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoStreet",
-                }, 
+                },
                 {
                   label: "Bairro",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoDistrict",
-                }, 
+                },
                 {
                   label: "Número",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoNumber",
-                }, 
+                },
                 {
                   label: "Complemento",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoComplement",
-                }, {
+                },
+                {
                   label: "Cidade",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoCity",
-                }, 
+                },
                 {
                   label: "Estado",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoState",
-                }, 
+                },
                 {
                   label: "Latitude",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoLatitude",
-                }, 
+                },
                 {
                   label: "Longitude",
                   type: "input",
                   dataType: "text",
                   name: "addressTwoLongitude",
-                }
+                },
               ],
-            }, 
+            },
           ],
         },
         {
@@ -421,13 +419,13 @@ export const personForm: IForm = {
               type: "input",
               dataType: "text",
               name: "nickname",
-            }, 
+            },
             {
               label: "Descrição da pessoa",
               type: "input",
               dataType: "wysiwyg",
               name: "personDescription",
-            }, 
+            },
             {
               label: "Estado civil",
               type: "select",
@@ -445,6 +443,6 @@ export const personForm: IForm = {
           ],
         },
       ],
-    }
+    },
   ],
 };

@@ -32,16 +32,74 @@
       "type": "object",
       "properties": {
         "create": {
-          "type": "object",
-          "properties": {
-            "endpoint": {
-              "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "endpoint": {
+                "type": "string"
+              },
+              "method": {
+                "const": "POST"
+              },
+              "contract": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string"
+                            },
+                            "dataType": {
+                              "type": "string",
+                              "enum": [
+                                "text",
+                                "number",
+                                "password",
+                                "email",
+                                "color",
+                                "date",
+                                "time",
+                                "wysiwyg",
+                                "file",
+                                "array",
+                                "char",
+                                "nchar",
+                                "varchar",
+                                "varchar2",
+                                "nvarchar",
+                                "longtext",
+                                "clob",
+                                "nclob",
+                                "decimal",
+                                "numeric",
+                                "integer",
+                                "float",
+                                "double",
+                                "real",
+                                "timestamp",
+                                "datetime",
+                                "datetime2",
+                                "uniqueidentifier",
+                                "boolean"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
-            "method": {
-              "const": "POST"
-            }
-          },
-          "required": ["endpoint", "method"]
+            "required": ["endpoint", "method"]
+          }
         },
         "update": {
           "type": "object",

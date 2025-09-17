@@ -50,14 +50,15 @@ export interface IDataDetailProperty {
   label: string;
   type?:
     | "text"
-    | "date"
-    | "currency"
     | "number"
-    | "boolean"
-    | "image"
+    | "password"
+    | "email"
+    | "color"
+    | "date"
+    | "wysiwyg"
+    | "time"
     | "file"
-    | "link"
-    | "html"
+    | "array"
     | "char"
     | "nchar"
     | "varchar"
@@ -75,7 +76,8 @@ export interface IDataDetailProperty {
     | "timestamp"
     | "datetime"
     | "datetime2"
-    | "uniqueidentifier";
+    | "uniqueidentifier"
+    | "boolean";
   format?: string;
   linkConfig?: {
     route?: string;

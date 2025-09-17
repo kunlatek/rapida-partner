@@ -178,3 +178,4 @@ dist
 rapidaObject.json
 my_rapida_projects/
 src/constants
+index.ts

@@ -44,12 +44,15 @@ export interface IDataCardProperty {
   label: string;
   type?:
     | "text"
-    | "date"
-    | "currency"
     | "number"
-    | "boolean"
-    | "badge"
-    | "icon"
+    | "password"
+    | "email"
+    | "color"
+    | "date"
+    | "wysiwyg"
+    | "time"
+    | "file"
+    | "array"
     | "char"
     | "nchar"
     | "varchar"
@@ -67,7 +70,8 @@ export interface IDataCardProperty {
     | "timestamp"
     | "datetime"
     | "datetime2"
-    | "uniqueidentifier";
+    | "uniqueidentifier"
+    | "boolean";
   format?: string;
   isHtml?: boolean;
 }

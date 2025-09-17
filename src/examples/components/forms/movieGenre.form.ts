@@ -5,10 +5,20 @@ export const movieGenreForm: IForm = {
   userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de gênero de filme para criar e editar gêneros de filmes, fornecendo um nome e uma descrição para cada um. Isso me permite organizar e categorizar filmes de forma precisa no sistema.`,
   componentType: "form",
   apiConfig: {
-    create: {
-      endpoint: "/movies-genres",
-      method: "POST",
-    },
+    create: [
+      {
+        endpoint: "/movies-genres",
+        method: "POST",
+        contract: {
+          request: {
+            body: [
+              { key: "name", dataType: "text" },
+              { key: "description", dataType: "text" },
+            ],
+          },
+        },
+      },
+    ],
     update: {
       endpoint: "/movies-genres/:id",
       method: "PUT",

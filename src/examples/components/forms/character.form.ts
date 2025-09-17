@@ -59,10 +59,10 @@ export const characterForm: IForm = {
     }
   ],
   apiConfig: {
-    create: {
+    create: [{
       endpoint: "/characters",
       method: "POST",
-    },
+    }],
     update: {
       endpoint: "/characters/:id",
       method: "PUT",
