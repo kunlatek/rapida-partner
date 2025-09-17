@@ -28,100 +28,80 @@
     "userStory": {
       "type": "string"
     },
-    "apiConfig": {
-      "type": "object",
-      "properties": {
-        "create": {
-          "type": "array",
-          "items": {
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "methods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "verb": {
+                  "type": "string",
+                  "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+                }
+              }
+            }
+          },
+          "request": {
             "type": "object",
             "properties": {
-              "endpoint": {
-                "type": "string"
-              },
-              "method": {
-                "const": "POST"
-              },
-              "contract": {
-                "type": "object",
-                "properties": {
-                  "request": {
-                    "type": "object",
-                    "properties": {
-                      "body": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "key": {
-                              "type": "string"
-                            },
-                            "dataType": {
-                              "type": "string",
-                              "enum": [
-                                "text",
-                                "number",
-                                "password",
-                                "email",
-                                "color",
-                                "date",
-                                "time",
-                                "wysiwyg",
-                                "file",
-                                "array",
-                                "char",
-                                "nchar",
-                                "varchar",
-                                "varchar2",
-                                "nvarchar",
-                                "longtext",
-                                "clob",
-                                "nclob",
-                                "decimal",
-                                "numeric",
-                                "integer",
-                                "float",
-                                "double",
-                                "real",
-                                "timestamp",
-                                "datetime",
-                                "datetime2",
-                                "uniqueidentifier",
-                                "boolean"
-                              ]
-                            }
-                          }
-                        }
-                      }
+              "body": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "dataType": {
+                      "type": "string",
+                      "enum": [
+                        "text",
+                        "number",
+                        "password",
+                        "email",
+                        "color",
+                        "date",
+                        "time",
+                        "wysiwyg",
+                        "file",
+                        "array",
+                        "char",
+                        "nchar",
+                        "varchar",
+                        "varchar2",
+                        "nvarchar",
+                        "longtext",
+                        "clob",
+                        "nclob",
+                        "decimal",
+                        "numeric",
+                        "integer",
+                        "float",
+                        "double",
+                        "real",
+                        "timestamp",
+                        "datetime",
+                        "datetime2",
+                        "uniqueidentifier",
+                        "boolean"
+                      ]
                     }
                   }
                 }
               }
-            },
-            "required": ["endpoint", "method"]
+            }
           }
         },
-        "update": {
-          "type": "object",
-          "properties": {
-            "endpoint": {
-              "type": "string"
-            },
-            "method": {
-              "const": "PUT"
-            },
-            "propertiesAsPathParam": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "required": ["endpoint", "method", "propertiesAsPathParam"]
-        }
-      },
-      "required": ["create"]
+        "required": ["endpoint", "methods"]
+      }
     }
   },
-  "required": ["componentType", "id", "title", "elements", "apiConfig"]
+  "required": ["componentType", "id", "title", "elements", "contracts"]
 }
