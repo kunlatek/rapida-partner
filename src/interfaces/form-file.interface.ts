@@ -10,6 +10,36 @@ interface IStorageConfig {
 export interface IFormFile {
   type: "file";
   name: string;
+  dataType:
+    | "text"
+    | "number"
+    | "password"
+    | "email"
+    | "color"
+    | "date"
+    | "wysiwyg"
+    | "time"
+    | "file"
+    | "array"
+    | "char"
+    | "nchar"
+    | "varchar"
+    | "varchar2"
+    | "nvarchar"
+    | "longtext"
+    | "clob"
+    | "nclob"
+    | "decimal"
+    | "numeric"
+    | "integer"
+    | "float"
+    | "double"
+    | "real"
+    | "timestamp"
+    | "datetime"
+    | "datetime2"
+    | "uniqueidentifier"
+    | "boolean";
   label: string;
   placeholder?: string;
   tooltip?: string;

@@ -8,6 +8,7 @@ import type { IDashboard } from "./layout-dashboard.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
 import type { IBackend } from "./project-backend.interface";
+import type { IStyle } from "./project-style.interface";
 
 export interface IProject {
   id: string;
@@ -25,6 +26,7 @@ export interface IProject {
   frontend?: IFrontend;
   backend?: IBackend;
   modules?: IModule[];
+  styles?: IStyle[];
 }
 
 interface IFrontend {

@@ -9,6 +9,40 @@
     "name": {
       "type": "string"
     },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "password",
+        "email",
+        "color",
+        "date",
+        "wysiwyg",
+        "time",
+        "file",
+        "array",
+        "char",
+        "nchar",
+        "varchar",
+        "varchar2",
+        "nvarchar",
+        "longtext",
+        "clob",
+        "nclob",
+        "decimal",
+        "numeric",
+        "integer",
+        "float",
+        "double",
+        "real",
+        "timestamp",
+        "datetime",
+        "datetime2",
+        "uniqueidentifier",
+        "boolean"
+      ]
+    },
     "label": {
       "type": "string"
     },
