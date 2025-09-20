@@ -82,7 +82,7 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
-    "maxlength": {
+    "maxLength": {
       "type": "number"
     },
     "minLength": {

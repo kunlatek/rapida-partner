@@ -49,7 +49,7 @@ export interface IFormInput {
   conditions?: IFormCondition[];
   validators?: ("cep" | "cpf" | "cnpj" | "onlyNumbers" | "phone" | "email")[];
   todo?: string;
-  maxlength?: number;
+  maxLength?: number;
   minLength?: number;
   apiRequest?: IApiRequest;
   businessRules?: IBusinessRule[];

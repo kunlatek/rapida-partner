@@ -65,4 +65,46 @@ export const movieBackoffice: IProject = {
     movieModule,
     characterModule,
   ],
+  styles: [
+    {
+      themeName: "light",
+      main: {
+        headerHeight: "60px",
+        typography: {
+          fontFamily: "Arial, sans-serif",
+          fontSize: "16px",
+        },
+        colors: {
+          primary: "#4F46E5",
+          primaryContrast: "#FFFFFF",
+          secondary: "#6B7280",
+          secondaryContrast: "#FFFFFF",
+          background: "#FFFFFF",
+          error: "#DC2626",
+          success: "#16A34A",
+          warning: "#D97706",
+        },
+        shadows: {
+          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+        },
+        borders: {
+          radius: "4px",
+        },
+        components: {
+          input: {
+            text: "#111827",
+            background: "#F9FAFB",
+            border: "#D1D5DB",
+            borderRadius: "4px",
+            focusBorder: "#4F46E5",
+            placeholder: "#9CA3AF",
+            width: "248px",
+          }
+        },
+        spacing: "8px",
+        maxWidth: "1200px",
+        footerHeight: "60px",
+      }
+    }
+  ]
 };
