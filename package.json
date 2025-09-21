@@ -1,7 +1,15 @@
 {
   "name": "rapida-partner",
+  "version": "1.0.0",
+  "main": "dist/index.js",
   "module": "index.ts",
-  "type": "module",
+  "files": [
+    "dist/",
+    "src/",
+    "index.ts",
+    "rapidaObject.json",
+    "tsconfig.json"
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },
