@@ -1,3 +1,4 @@
+import { COUNTRIES_FROM_EARTH } from "../../../constants/options/countriesFromEarth";
 import type { IForm } from "../../../interfaces/form.interface";
 
 export const personForm: IForm = {
@@ -5,19 +6,53 @@ export const personForm: IForm = {
   userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de pessoa para inserir e editar informações de clientes, incluindo dados principais (como nome, nacionalidade, CPF, data de nascimento, gênero, foto, telefones e e-mails), contatos e redes sociais (como telefones secundários, e-mails e links de sites), e endereços, para que eu possa manter um registro completo e atualizado das pessoas no sistema.`,
   componentType: "form",
   id: "personForm",
-  apiConfig: {
-    create: [
-      {
-        endpoint: "/people",
-        method: "POST",
-      },
-    ],
-    update: {
-      endpoint: "/people",
-      method: "PUT",
-      propertiesAsPathParam: ["_id"],
-    },
-  },
+  contracts: [{
+    endpoint: "/people",
+    methods: [{ verb: "GET" }, { verb: "POST" }, { verb: "PUT" }, { verb: "DELETE" }],
+    request: {
+      body: [
+        { name: "country", dataType: "text" },
+        { name: "cpf", dataType: "text" },
+        { name: "passport", dataType: "text" },
+        { name: "passportIssueDate", dataType: "date" },
+        { name: "passportExpiryDate", dataType: "date" },
+        { name: "name", dataType: "text" },
+        { name: "gender", dataType: "text" },
+        { name: "birthday", dataType: "date" },
+        { name: "picture", dataType: "text" },
+        { name: "phoneOne", dataType: "text" },
+        { name: "emailOne", dataType: "email" },
+        { name: "addressOneZipCode", dataType: "text" },
+        { name: "addressOneStreet", dataType: "text" },
+        { name: "addressOneDistrict", dataType: "text" },
+        { name: "addressOneNumber", dataType: "text" },
+        { name: "addressOneComplement", dataType: "text" },
+        { name: "addressOneCity", dataType: "text" },
+        { name: "addressOneState", dataType: "text" },
+        { name: "addressOneLatitude", dataType: "text" },
+        { name: "addressOneLongitude", dataType: "text" },
+        { name: "addressTwoZipCode", dataType: "text" },
+        { name: "addressTwoStreet", dataType: "text" },
+        { name: "addressTwoDistrict", dataType: "text" },
+        { name: "addressTwoNumber", dataType: "text" },
+        { name: "addressTwoComplement", dataType: "text" },
+        { name: "addressTwoCity", dataType: "text" },
+        { name: "addressTwoState", dataType: "text" },
+        { name: "addressTwoLatitude", dataType: "text" },
+        { name: "addressTwoLongitude", dataType: "text" },
+        { name: "phoneTwo", dataType: "text" },
+        { name: "emailTwo", dataType: "email" },
+        { name: "siteOne", dataType: "text" },
+        { name: "siteTwo", dataType: "text" },
+        { name: "linkedin", dataType: "text" },
+        { name: "instagram", dataType: "text" },
+        { name: "facebook", dataType: "text" },
+        { name: "nickname", dataType: "text" },
+        { name: "personDescription", dataType: "wysiwyg" },
+        { name: "personMaritalStatus", dataType: "text" },
+      ]
+    }
+  }],
   guards: "isAuthorized",
   elements: [
     {
@@ -31,70 +66,9 @@ export const personForm: IForm = {
             {
               label: "Nacionalidade",
               type: "select",
-              name: "nationality",
+              name: "country",
               dataType: "text",
-              options: [
-                { label: "Brasileiro", value: "brazilian", isSelected: true },
-                { label: "Argentino", value: "argentinian" },
-                { label: "Chileno", value: "chilean" },
-                { label: "Colombiano", value: "colombian" },
-                { label: "Peruano", value: "peruvian" },
-                { label: "Uruguaio", value: "uruguayan" },
-                { label: "Paraguaio", value: "paraguayan" },
-                { label: "Boliviano", value: "bolivian" },
-                { label: "Venezuelano", value: "venezuelan" },
-                { label: "Equatoriano", value: "ecuadorian" },
-                { label: "Costarriquenho", value: "costarrican" },
-                { label: "Panamenho", value: "panamanian" },
-                { label: "Nicaraguense", value: "nicaraguan" },
-                { label: "Hondurenho", value: "honduran" },
-                { label: "Salvadorenho", value: "salvadoran" },
-                { label: "Estadunidense", value: "american" },
-                { label: "Mexicano", value: "mexican" },
-                { label: "Canadense", value: "canadian" },
-                { label: "Alemão", value: "german" },
-                { label: "Francês", value: "french" },
-                { label: "Britânico", value: "british" },
-                { label: "Italiano", value: "italian" },
-                { label: "Espanhol", value: "spanish" },
-                { label: "Português", value: "portuguese" },
-                { label: "Russo", value: "russian" },
-                { label: "Sueco", value: "swedish" },
-                { label: "Holandês", value: "dutch" },
-                { label: "Belga", value: "belgian" },
-                { label: "Suíço", value: "swiss" },
-                { label: "Chinês", value: "chinese" },
-                { label: "Japonês", value: "japanese" },
-                { label: "Coreano", value: "korean" },
-                { label: "Indiano", value: "indian" },
-                { label: "Indonésio", value: "indonesian" },
-                { label: "Filipino", value: "filipino" },
-                { label: "Vietnamita", value: "vietnamese" },
-                { label: "Tailandês", value: "thai" },
-                { label: "Malásio", value: "malaysian" },
-                { label: "Singapuriano", value: "singaporean" },
-                { label: "Sul-africano", value: "southAfrican" },
-                { label: "Nigeriano", value: "nigerian" },
-                { label: "Egípcio", value: "egyptian" },
-                { label: "Marroquino", value: "moroccan" },
-                { label: "Queniano", value: "kenyan" },
-                { label: "Tanzaniano", value: "tanzanian" },
-                { label: "Ugandense", value: "ugandan" },
-                { label: "Angolano", value: "angolan" },
-                { label: "Moçambicano", value: "mozambican" },
-                { label: "Ghanês", value: "ghanian" },
-                { label: "Australiano", value: "australian" },
-                { label: "Neozelandês", value: "newZealander" },
-                { label: "Fiji", value: "fijian" },
-                { label: "Samoano", value: "samoan" },
-                { label: "Tonganês", value: "tongan" },
-                { label: "Afegão", value: "afghan" },
-                { label: "Iraniano", value: "iranian" },
-                { label: "Iraquiano", value: "iraqi" },
-                { label: "Sírio", value: "syrian" },
-                { label: "Israelense", value: "israeli" },
-                { label: "Palestino", value: "palestinian" },
-              ],
+              options: COUNTRIES_FROM_EARTH.map(country => ({ label: country.brazilianPortugueseName, value: country.englishNameAsValue })),
               isRequired: true,
             },
             {
@@ -109,26 +83,75 @@ export const personForm: IForm = {
                   type: "form",
                   elements: [
                     {
-                      key: "nationality",
+                      key: "country",
                       value: "brazilian",
                       comparisonOperator: "===",
-                    },
-                  ],
+                    }
+                  ]
+                },
+              ]
+            },
+            {
+              label: "Passaporte",
+              type: "input",
+              dataType: "text",
+              name: "passport",
+              isUnique: true,
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "!==",
+                    }
+                  ]
+                },
+              ]
+            },
+            {
+              label: "Data de emissão do passaporte",
+              type: "input",
+              dataType: "date",
+              name: "passportIssueDate",
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "!==",
+                    }
+                  ]
                 },
               ],
             },
             {
-              label: "Nome da pessoa",
+              label: "Data de validade do passaporte",
+              type: "input",
+              dataType: "date",
+              name: "passportExpiryDate",
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "!==",
+                    }
+                  ]
+                },
+              ],
+            },
+            {
+              label: "Nome completo",
               type: "input",
               dataType: "text",
               name: "name",
               isRequired: true,
-            },
-            {
-              label: "Data de nascimento",
-              type: "input",
-              dataType: "date",
-              name: "birthday",
             },
             {
               label: "Gênero",
@@ -142,8 +165,15 @@ export const personForm: IForm = {
               ],
             },
             {
+              label: "Data de nascimento",
+              type: "input",
+              dataType: "date",
+              name: "birthday",
+            },
+            {
               label: "Foto da pessoa",
               type: "file",
+              dataType: "text",
               storageConfig: {
                 fileNameStrategy: "uuid",
                 path: "person/pictures",
@@ -166,23 +196,195 @@ export const personForm: IForm = {
               name: "emailOne",
               isRequired: true,
             },
+            // {
+            //   label: "Relacionamentos",
+            //   type: "select",
+            //   dataType: "text",
+            //   name: "relationships",
+            //   options: [
+            //     {
+            //       label: "Cliente",
+            //       value: "customer",
+            //     },
+            //     {
+            //       label: "Fornecedor",
+            //       value: "supplier",
+            //     },
+            //   ],
+            //   isMultiple: true,
+            // },
+          ],
+        },
+        {
+          id: "personAddressTab",
+          title: "Endereços",
+          elements: [
             {
-              label: "Relacionamentos",
-              type: "select",
-              dataType: "text",
-              name: "relationships",
-              options: [
+              type: "fieldset",
+              id: "addressOne",
+              title: "Endereço 1",
+              elements: [
                 {
-                  label: "Cliente",
-                  value: "customer",
-                },
+                  label: "CEP",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneZipCode",
+                  apiRequest: {
+                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    paramType: "path",
+                    formFieldsFilledByApiResponse: [
+                      {
+                        formFieldName: "addressOneStreet",
+                        propertiesFromApiToFillFormField: ["street"]
+                      },
+                      {
+                        formFieldName: "addressOneDistrict",
+                        propertiesFromApiToFillFormField: ["neighborhood"]
+                      },
+                      {
+                        formFieldName: "addressOneCity",
+                        propertiesFromApiToFillFormField: ["city"]
+                      },
+                      {
+                        formFieldName: "addressOneState",
+                        propertiesFromApiToFillFormField: ["state"]
+                      },
+                    ],
+                  },
+                  validators: ["cep"],
+                }, 
                 {
-                  label: "Fornecedor",
-                  value: "supplier",
-                },
+                  label: "Logradouro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneStreet",
+                }, 
+                {
+                  label: "Bairro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneDistrict",
+                }, 
+                {
+                  label: "Número",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneNumber",
+                }, 
+                {
+                  label: "Complemento",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneComplement",
+                }, {
+                  label: "Cidade",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneCity",
+                }, 
+                {
+                  label: "Estado",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneState",
+                }, 
+                {
+                  label: "Latitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneLatitude",
+                }, 
+                {
+                  label: "Longitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressOneLongitude",
+                }
               ],
-              isMultiple: true,
-            },
+            }, 
+            {
+              title: "Endereço 2",
+              type: "fieldset",
+              id: "addressTwo",
+              elements: [
+                {
+                  label: "CEP",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoZipCode",
+                  apiRequest: {
+                    endpoint: "https://brasilapi.com.br/api/cep/v1/",
+                    paramType: "path",
+                    formFieldsFilledByApiResponse: [
+                      {
+                        formFieldName: "addressTwoStreet",
+                        propertiesFromApiToFillFormField: ["street"]
+                      },
+                      {
+                        formFieldName: "addressTwoDistrict",
+                        propertiesFromApiToFillFormField: ["neighborhood"]
+                      },
+                      {
+                        formFieldName: "addressTwoCity",
+                        propertiesFromApiToFillFormField: ["city"]
+                      },
+                      {
+                        formFieldName: "addressTwoState",
+                        propertiesFromApiToFillFormField: ["state"]
+                      },
+                    ],
+                  },
+                  validators: ["cep"],
+                }, 
+                {
+                  label: "Logradouro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoStreet",
+                }, 
+                {
+                  label: "Bairro",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoDistrict",
+                }, 
+                {
+                  label: "Número",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoNumber",
+                }, 
+                {
+                  label: "Complemento",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoComplement",
+                }, {
+                  label: "Cidade",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoCity",
+                }, 
+                {
+                  label: "Estado",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoState",
+                }, 
+                {
+                  label: "Latitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoLatitude",
+                }, 
+                {
+                  label: "Longitude",
+                  type: "input",
+                  dataType: "text",
+                  name: "addressTwoLongitude",
+                }
+              ],
+            }, 
           ],
         },
         {
@@ -235,197 +437,21 @@ export const personForm: IForm = {
           ],
         },
         {
-          id: "personAddressTab",
-          title: "Endereços",
-          elements: [
-            {
-              type: "fieldset",
-              id: "addressOne",
-              title: "Endereço 1",
-              elements: [
-                {
-                  label: "CEP",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneZipCode",
-                  apiRequest: {
-                    endpoint:
-                      "https://viacep.com.br/ws/{{addressOneZipCode}}/json/",
-                    paramType: "path",
-                    formFieldsFilledByApiResponse: [
-                      {
-                        formFieldName: "addressOneStreet",
-                        propertiesFromApiToFillFormField: ["street"],
-                      },
-                      {
-                        formFieldName: "addressOneDistrict",
-                        propertiesFromApiToFillFormField: ["neighborhood"],
-                      },
-                      {
-                        formFieldName: "addressOneCity",
-                        propertiesFromApiToFillFormField: ["city"],
-                      },
-                      {
-                        formFieldName: "addressOneState",
-                        propertiesFromApiToFillFormField: ["state"],
-                      },
-                    ],
-                  },
-                  validators: ["cep"],
-                },
-                {
-                  label: "Logradouro",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneStreet",
-                },
-                {
-                  label: "Bairro",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneDistrict",
-                },
-                {
-                  label: "Número",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneNumber",
-                },
-                {
-                  label: "Complemento",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneComplement",
-                },
-                {
-                  label: "Cidade",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneCity",
-                },
-                {
-                  label: "Estado",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneState",
-                },
-                {
-                  label: "Latitude",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneLatitude",
-                },
-                {
-                  label: "Longitude",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressOneLongitude",
-                },
-              ],
-            },
-            {
-              title: "Endereço 2",
-              type: "fieldset",
-              id: "addressTwo",
-              elements: [
-                {
-                  label: "CEP",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoZipCode",
-                  apiRequest: {
-                    endpoint:
-                      "https://viacep.com.br/ws/{{addressTwoZipCode}}/json/",
-                    paramType: "path",
-                    formFieldsFilledByApiResponse: [
-                      {
-                        formFieldName: "addressTwoStreet",
-                        propertiesFromApiToFillFormField: ["street"],
-                      },
-                      {
-                        formFieldName: "addressTwoDistrict",
-                        propertiesFromApiToFillFormField: ["neighborhood"],
-                      },
-                      {
-                        formFieldName: "addressTwoCity",
-                        propertiesFromApiToFillFormField: ["city"],
-                      },
-                      {
-                        formFieldName: "addressTwoState",
-                        propertiesFromApiToFillFormField: ["state"],
-                      },
-                    ],
-                  },
-                  validators: ["cep"],
-                },
-                {
-                  label: "Logradouro",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoStreet",
-                },
-                {
-                  label: "Bairro",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoDistrict",
-                },
-                {
-                  label: "Número",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoNumber",
-                },
-                {
-                  label: "Complemento",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoComplement",
-                },
-                {
-                  label: "Cidade",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoCity",
-                },
-                {
-                  label: "Estado",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoState",
-                },
-                {
-                  label: "Latitude",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoLatitude",
-                },
-                {
-                  label: "Longitude",
-                  type: "input",
-                  dataType: "text",
-                  name: "addressTwoLongitude",
-                },
-              ],
-            },
-          ],
-        },
-        {
           id: "moreDetailsTab",
-          title: "Mais detalhes",
+          title: "Outros dados",
           elements: [
             {
               label: "Nome social",
               type: "input",
               dataType: "text",
               name: "nickname",
-            },
+            }, 
             {
               label: "Descrição da pessoa",
               type: "input",
               dataType: "wysiwyg",
               name: "personDescription",
-            },
+            }, 
             {
               label: "Estado civil",
               type: "select",
@@ -443,6 +469,6 @@ export const personForm: IForm = {
           ],
         },
       ],
-    },
+    }
   ],
 };

@@ -4,33 +4,56 @@ export const movieForm: IForm = {
   title: "Gerenciar filme",
   userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de filmes para cadastrar e editar filmes, incluindo a foto, o nome, a descrição, a data de lançamento, a pontuação no IMDb e os gêneros associados. Quero também ter a opção de adicionar e gerenciar episódios, incluindo seus títulos, descrições, datas de lançamento e personagens relacionados. Isso me permite manter um registro completo e detalhado do conteúdo audiovisual no sistema.`,
   componentType: "form",
-  apiConfig: {
-    create: [{
+  contracts: [
+    {
       endpoint: "/movies",
-      method: "POST",
-      contract: {
-        request: {
-          body: [
-            { key: "pictureFile", dataType: "file" },
-            { key: "name", dataType: "text" },
-            { key: "description", dataType: "text" },
-            { key: "releaseDate", dataType: "date" },
-            { key: "imdbRating", dataType: "number" },
-            { key: "movieGenres", dataType: "array" },
-            { key: "link1", dataType: "text" },
-            { key: "link2", dataType: "text" },
-            { key: "link3", dataType: "text" },
-            { key: "episodes", dataType: "array" },
-          ],
-        },
-      },
-    }],
-    update: {
-      endpoint: "/movies/:id",
-      method: "PUT",
-      propertiesAsPathParam: ["_id"],
-    },
-  },
+      methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+      request: {
+        body: [
+          {
+            name: "pictureFile",
+            dataType: "text",
+          },
+          {
+            name: "name",
+            dataType: "text",
+          },
+          {
+            name: "description",
+            dataType: "wysiwyg",
+          },
+          {
+            name: "releaseDate",
+            dataType: "date",
+          },
+          {
+            name: "imdbRating",
+            dataType: "number",
+          },
+          {
+            name: "movieGenres",
+            dataType: "array",
+          },
+          {
+            name: "link1",
+            dataType: "text",
+          },
+          {
+            name: "link2",
+            dataType: "text",
+          },
+          {
+            name: "link3",
+            dataType: "text",
+          },
+          {
+            name: "episodes",
+            dataType: "array",
+          },
+        ]
+      }
+    }
+  ],
   id: "movieForm",
   guards: "isAuthorized",
   elements: [
@@ -43,8 +66,9 @@ export const movieForm: IForm = {
           title: "Principal",
           elements: [
             {
-              type: "file",
               label: "Foto",
+              type: "file",
+              dataType: "text",
               name: "pictureFile",
               storageConfig: {
                 fileNameStrategy: "uuid",

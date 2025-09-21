@@ -5,6 +5,36 @@ export const characterForm: IForm = {
   userStory: `Como um usuário autorizado, quero usar o formulário de personagem para criar e editar personagens, fornecendo um nome, uma descrição, um tipo (como "protagonista" ou "antagonista") e um gênero para cada um. Isso me permite manter um registro detalhado e organizado dos personagens no sistema.`,
   componentType: "form",
   id: "characterForm",
+  contracts: [
+    {
+      endpoint: "/characters",
+      methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+      request: {
+        body: [
+          {
+            name: "characterName",
+            dataType: "text",
+          },
+          {
+            name: "characterImage",
+            dataType: "text",
+          },
+          {
+            name: "characterDescription",
+            dataType: "wysiwyg",
+          },
+          {
+            name: "characterType",
+            dataType: "text",
+          },
+          {
+            name: "characterGender",
+            dataType: "text",
+          },
+        ],
+      },
+    }
+  ],
   guards: "isAuthorized",
   elements: [
     {
@@ -16,8 +46,9 @@ export const characterForm: IForm = {
     },
     // file - Foto do personagem
     {
-      type: "file",
       label: "Foto do personagem",
+      type: "file",
+      dataType: "text",
       name: "characterImage",
       storageConfig: {
         fileNameStrategy: "uuid",
@@ -58,15 +89,4 @@ export const characterForm: IForm = {
       ],
     }
   ],
-  apiConfig: {
-    create: [{
-      endpoint: "/characters",
-      method: "POST",
-    }],
-    update: {
-      endpoint: "/characters/:id",
-      method: "PUT",
-      propertiesAsPathParam: ["_id"],
-    },
-  },
 };

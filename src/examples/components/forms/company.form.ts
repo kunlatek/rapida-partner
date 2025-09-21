@@ -1,3 +1,4 @@
+import { COUNTRIES_FROM_EARTH } from "../../../constants/options/countriesFromEarth";
 import type { IForm } from "../../../interfaces/form.interface";
 
 export const companyForm: IForm = {
@@ -5,26 +6,52 @@ export const companyForm: IForm = {
   userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de empresas para criar e editar registros de empresas, incluindo dados principais como razão social, nome fantasia, CNPJ, nacionalidade, data de abertura, natureza legal e descrição. Eu também quero gerenciar informações de contato e redes sociais, como telefones e e-mails, e até dois endereços completos, para que eu possa manter um cadastro detalhado e atualizado das empresas. Além disso, quero poder associar sócios cadastrados no gerenciamento de pessoas à empresa, para manter um registro de quem são os responsáveis.`,
   componentType: "form",
   id: "companyForm",
-  apiConfig: {
-    create: [
-      {
-        endpoint: "/companies",
-        method: "POST",
-        contract: {
-          request: { 
-            body: [
-              { key: "nationality", dataType: "text" },
-            ] 
-          },
-        },
-      },
-    ],
-    update: {
-      endpoint: "/companies",
-      method: "PUT",
-      propertiesAsPathParam: ["_id"],
-    },
-  },
+  contracts: [{
+    endpoint: "/companies",
+    methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+    request: {
+      body: [
+        {name: "country", dataType: "text"},
+        {name: "cnpj", dataType: "text"},
+        {name: "name", dataType: "text"},
+        {name: "businessName", dataType: "text"},
+        {name: "birthday", dataType: "date"},
+        {name: "legalNature", dataType: "text"},
+        {name: "stateRegistration", dataType: "text"},
+        {name: "municipalRegistration", dataType: "text"},
+        {name: "description", dataType: "text"},
+        {name: "logo", dataType: "text"},
+        {name: "partners", dataType: "array"},
+        {name: "phoneOne", dataType: "text"},
+        {name: "emailOne", dataType: "text"},
+        {name: "addressOneZipCode", dataType: "text"},
+        {name: "addressOneStreet", dataType: "text"},
+        {name: "addressOneDistrict", dataType: "text"},
+        {name: "addressOneNumber", dataType: "text"},
+        {name: "addressOneComplement", dataType: "text"},
+        {name: "addressOneCity", dataType: "text"},
+        {name: "addressOneState", dataType: "text"},
+        {name: "addressOneLatitude", dataType: "text"},
+        {name: "addressOneLongitude", dataType: "text"},
+        {name: "addressTwoZipCode", dataType: "text"},
+        {name: "addressTwoStreet", dataType: "text"},
+        {name: "addressTwoDistrict", dataType: "text"},
+        {name: "addressTwoNumber", dataType: "text"},
+        {name: "addressTwoComplement", dataType: "text"},
+        {name: "addressTwoCity", dataType: "text"},
+        {name: "addressTwoState", dataType: "text"},
+        {name: "addressTwoLatitude", dataType: "text"},
+        {name: "addressTwoLongitude", dataType: "text"},
+        {name: "phoneTwo", dataType: "text"},
+        {name: "emailTwo", dataType: "text"},
+        {name: "siteOne", dataType: "text"},
+        {name: "siteTwo", dataType: "text"},
+        {name: "linkedin", dataType: "text"},
+        {name: "instagram", dataType: "text"},
+        {name: "facebook", dataType: "text"},
+      ]
+    }
+  }],
   guards: "isAuthorized",
   elements: [
     {
@@ -38,78 +65,9 @@ export const companyForm: IForm = {
             {
               label: "Nacionalidade",
               type: "select",
-              name: "nationality",
+              name: "country",
               dataType: "text",
-              options: [
-                // Países da América do Sul
-                { label: "Brasileiro", value: "brazilian", isSelected: true },
-                { label: "Argentino", value: "argentinian" },
-                { label: "Chileno", value: "chilean" },
-                { label: "Colombiano", value: "colombian" },
-                { label: "Peruano", value: "peruvian" },
-                { label: "Uruguaio", value: "uruguayan" },
-                { label: "Paraguaio", value: "paraguayan" },
-                { label: "Boliviano", value: "bolivian" },
-                { label: "Venezuelano", value: "venezuelan" },
-                { label: "Equatoriano", value: "ecuadorian" },
-                //Países da América Central
-                { label: "Costarriquenho", value: "costarrican" },
-                { label: "Panamenho", value: "panamanian" },
-                { label: "Nicaraguense", value: "nicaraguan" },
-                { label: "Hondurenho", value: "honduran" },
-                { label: "Salvadorenho", value: "salvadoran" },
-                // Países da América do Norte
-                { label: "Estadunidense", value: "american" },
-                { label: "Mexicano", value: "mexican" },
-                { label: "Canadense", value: "canadian" },
-                // Países da Europa
-                { label: "Alemão", value: "german" },
-                { label: "Francês", value: "french" },
-                { label: "Britânico", value: "british" },
-                { label: "Italiano", value: "italian" },
-                { label: "Espanhol", value: "spanish" },
-                { label: "Português", value: "portuguese" },
-                { label: "Russo", value: "russian" },
-                { label: "Sueco", value: "swedish" },
-                { label: "Holandês", value: "dutch" },
-                { label: "Belga", value: "belgian" },
-                { label: "Suíço", value: "swiss" },
-                // Países da Ásia
-                { label: "Chinês", value: "chinese" },
-                { label: "Japonês", value: "japanese" },
-                { label: "Coreano", value: "korean" },
-                { label: "Indiano", value: "indian" },
-                { label: "Indonésio", value: "indonesian" },
-                { label: "Filipino", value: "filipino" },
-                { label: "Vietnamita", value: "vietnamese" },
-                { label: "Tailandês", value: "thai" },
-                { label: "Malásio", value: "malaysian" },
-                { label: "Singapuriano", value: "singaporean" },
-                // Países da África
-                { label: "Sul-africano", value: "southAfrican" },
-                { label: "Nigeriano", value: "nigerian" },
-                { label: "Egípcio", value: "egyptian" },
-                { label: "Marroquino", value: "moroccan" },
-                { label: "Queniano", value: "kenyan" },
-                { label: "Tanzaniano", value: "tanzanian" },
-                { label: "Ugandense", value: "ugandan" },
-                { label: "Angolano", value: "angolan" },
-                { label: "Moçambicano", value: "mozambican" },
-                { label: "Ghanês", value: "ghanian" },
-                // Países da Oceania
-                { label: "Australiano", value: "australian" },
-                { label: "Neozelandês", value: "newZealander" },
-                { label: "Fiji", value: "fijian" },
-                { label: "Samoano", value: "samoan" },
-                { label: "Tonganês", value: "tongan" },
-                // Outros países
-                { label: "Afegão", value: "afghan" },
-                { label: "Iraniano", value: "iranian" },
-                { label: "Iraquiano", value: "iraqi" },
-                { label: "Sírio", value: "syrian" },
-                { label: "Israelense", value: "israeli" },
-                { label: "Palestino", value: "palestinian" },
-              ],
+              options: COUNTRIES_FROM_EARTH.map(country => ({ label: country.brazilianPortugueseName, value: country.englishNameAsValue })),
               isRequired: true,
             },
             {
@@ -117,19 +75,19 @@ export const companyForm: IForm = {
               type: "input",
               dataType: "text",
               name: "cnpj",
-              validators: ["cnpj"],
+              maskRegex: "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$",
               isUnique: true,
               conditions: [
                 {
                   type: "form",
                   elements: [
                     {
-                      key: "nationality",
+                      key: "country",
                       value: "brazilian",
                       comparisonOperator: "===",
-                    },
-                  ],
-                },
+                    }
+                  ]
+                }
               ],
             },
             {
@@ -359,6 +317,57 @@ export const companyForm: IForm = {
                   value: "127-9",
                 },
               ],
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "===",
+                    }
+                  ]
+                }
+              ],
+            },
+            // input - Inscrição estadual
+            {
+              label: "Inscrição estadual",
+              type: "input",
+              dataType: "text",
+              name: "stateRegistration",
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "===",
+                    }
+                  ]
+                }
+              ],
+              validators: ["onlyNumbers"]
+            },
+            // input - Inscrição municipal
+            {
+              type: "input",
+              label: "Inscrição municipal",
+              dataType: "text",
+              name: "municipalRegistration",
+              conditions: [
+                {
+                  type: "form",
+                  elements: [
+                    {
+                      key: "country",
+                      value: "brazilian",
+                      comparisonOperator: "===",
+                    }
+                  ]
+                }
+              ],
             },
             {
               type: "input",
@@ -369,6 +378,7 @@ export const companyForm: IForm = {
             {
               label: "Logo da empresa",
               type: "file",
+              dataType: "text",
               name: "logo",
               storageConfig: {
                 fileNameStrategy: "uuid",
@@ -397,7 +407,7 @@ export const companyForm: IForm = {
               type: "input",
               dataType: "text",
               name: "phoneOne",
-              validators: ["phone"],
+              maskRegex: "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$",
               isRequired: true,
             },
             {
@@ -406,55 +416,6 @@ export const companyForm: IForm = {
               dataType: "email",
               name: "emailOne",
               isRequired: true,
-            },
-          ],
-        },
-        {
-          id: "companyContactTab",
-          title: "Contatos e redes",
-          elements: [
-            {
-              label: "Telefone secundário",
-              type: "input",
-              dataType: "text",
-              name: "phoneTwo",
-              validators: ["phone"],
-            },
-            {
-              label: "E-mail secundário",
-              type: "input",
-              dataType: "email",
-              name: "emailTwo",
-            },
-            {
-              label: "Site 1",
-              type: "input",
-              dataType: "text",
-              name: "siteOne",
-            },
-            {
-              label: "Site 2",
-              type: "input",
-              dataType: "text",
-              name: "siteTwo",
-            },
-            {
-              label: "Linkedin",
-              type: "input",
-              dataType: "text",
-              name: "linkedin",
-            },
-            {
-              label: "Instagram",
-              type: "input",
-              dataType: "text",
-              name: "instagram",
-            },
-            {
-              label: "Facebook",
-              type: "input",
-              dataType: "text",
-              name: "facebook",
             },
           ],
         },
@@ -629,6 +590,55 @@ export const companyForm: IForm = {
                   name: "addressTwoLongitude",
                 },
               ],
+            },
+          ],
+        },
+        {
+          id: "companyContactTab",
+          title: "Contatos e redes",
+          elements: [
+            {
+              label: "Telefone secundário",
+              type: "input",
+              dataType: "text",
+              name: "phoneTwo",
+              validators: ["phone"],
+            },
+            {
+              label: "E-mail secundário",
+              type: "input",
+              dataType: "email",
+              name: "emailTwo",
+            },
+            {
+              label: "Site 1",
+              type: "input",
+              dataType: "text",
+              name: "siteOne",
+            },
+            {
+              label: "Site 2",
+              type: "input",
+              dataType: "text",
+              name: "siteTwo",
+            },
+            {
+              label: "Linkedin",
+              type: "input",
+              dataType: "text",
+              name: "linkedin",
+            },
+            {
+              label: "Instagram",
+              type: "input",
+              dataType: "text",
+              name: "instagram",
+            },
+            {
+              label: "Facebook",
+              type: "input",
+              dataType: "text",
+              name: "facebook",
             },
           ],
         },
