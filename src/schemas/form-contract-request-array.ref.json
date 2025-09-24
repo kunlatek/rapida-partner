@@ -10,7 +10,7 @@
             "type": "string"
           },
           "dataType": "array",
-          "elements": { "$ref": "form-contract.ref.json" }
+          "elements": { "$ref": "form-contract-rquest.ref.json" }
         }
       }
     }

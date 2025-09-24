@@ -52,8 +52,8 @@
             "type": "array",
             "items": {
               "oneOf": [
-                { "$ref": "form-contract.ref.json" },
-                { "$ref": "form-contract-array.ref.json" }
+                { "$ref": "form-contract-request.ref.json" },
+                { "$ref": "form-contract-request-array.ref.json" }
               ]
             }
           }
