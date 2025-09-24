@@ -49,12 +49,17 @@
             }
           },
           "request": {
-            "type": "array",
-            "items": {
-              "oneOf": [
-                { "$ref": "form-contract-request.ref.json" },
-                { "$ref": "form-contract-request-array.ref.json" }
-              ]
+            "type": "object",
+            "properties": {
+              "body": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    { "$ref": "form-contract-request.ref.json" },
+                    { "$ref": "form-contract-request-array.ref.json" }
+                  ]
+                }
+              }
             }
           }
         },

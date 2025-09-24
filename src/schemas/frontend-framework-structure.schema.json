@@ -170,9 +170,5 @@
       }
     }
   },
-  "required": [
-    "projectFolderCase",
-    "componentFile",
-    "moduleFile"
-  ]
+  "required": ["projectFolderCase", "componentFile", "moduleFile"]
 }

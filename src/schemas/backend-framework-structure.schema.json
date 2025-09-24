@@ -4,8 +4,8 @@
   "type": "object",
   "properties": {
     "projectFolderCase": {
-        "type": "string",
-        "enum": ["kebab", "snake", "pascal", "camel"]
+      "type": "string",
+      "enum": ["kebab", "snake", "pascal", "camel"]
     },
     "controllerFileNomenclature": {
       "type": "object",

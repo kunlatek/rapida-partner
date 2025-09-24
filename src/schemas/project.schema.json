@@ -14,7 +14,14 @@
     },
     "flow": {
       "type": "string",
-      "enum": ["autentikigo", "invito", "permeson", "komerco", "labotablo", "reto"]
+      "enum": [
+        "autentikigo",
+        "invito",
+        "permeson",
+        "komerco",
+        "labotablo",
+        "reto"
+      ]
     },
     "businessPlan": {
       "$ref": "business-plan.ref.json"
@@ -27,9 +34,6 @@
     },
     "backend": {
       "$ref": "backend.ref.json"
-    },
-    "externalApplications": {
-      "$ref": "external-application.ref.json"
     },
     "modules": {
       "$ref": "module.ref.json"

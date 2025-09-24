@@ -1,17 +1,24 @@
 {
+  "$id": "form-contract-request-array.ref.json",
   "type": "object",
   "properties": {
-    "body": {
+    "name": {
+      "type": "string"
+    },
+    "dataType": {
+      "const": "array"
+    },
+    "elements": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+        "oneOf": [
+          {
+            "$ref": "form-contract-request.ref.json"
           },
-          "dataType": "array",
-          "elements": { "$ref": "form-contract-rquest.ref.json" }
-        }
+          {
+            "$ref": "form-contract-request-array.ref.json"
+          }
+        ]
       }
     }
   }
