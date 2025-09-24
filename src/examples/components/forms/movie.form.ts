@@ -1,3 +1,5 @@
+import { EFormContractDataType } from "../../../enums/form-contract.enum";
+import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
 export const movieForm: IForm = {
@@ -12,43 +14,73 @@ export const movieForm: IForm = {
         body: [
           {
             name: "pictureFile",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "name",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "description",
-            dataType: "wysiwyg",
+            dataType: EFormContractDataType.WYSIWYG,
           },
           {
             name: "releaseDate",
-            dataType: "date",
+            dataType: EFormContractDataType.DATE,
           },
           {
             name: "imdbRating",
-            dataType: "number",
+            dataType: EFormContractDataType.NUMBER,
           },
           {
             name: "movieGenres",
             dataType: "array",
+            elements: [
+              {
+                name: "movieGenreId",
+                dataType: EFormContractDataType.TEXT,
+              },
+            ],
           },
           {
             name: "link1",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "link2",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "link3",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "episodes",
             dataType: "array",
+            elements: [
+              {
+                name: "episodeTitle",
+                dataType: EFormContractDataType.TEXT,
+              },
+              {
+                name: "episodeDescription",
+                dataType: EFormContractDataType.WYSIWYG,
+              },
+              {
+                name: "episodeReleaseDate",
+                dataType: EFormContractDataType.DATE,
+              },
+              {
+                name: "charactersId",
+                dataType: "array",
+                elements: [
+                  {
+                    name: "characterId",
+                    dataType: EFormContractDataType.TEXT,
+                  },
+                ],
+              },
+            ],
           },
         ]
       }
@@ -68,7 +100,7 @@ export const movieForm: IForm = {
             {
               label: "Foto",
               type: "file",
-              dataType: "text",
+              dataType: EDataType.TEXT,
               name: "pictureFile",
               storageConfig: {
                 fileNameStrategy: "uuid",
@@ -78,21 +110,21 @@ export const movieForm: IForm = {
             },
             {
               type: "input",
-              dataType: "text",
+              dataType: EDataType.TEXT,
               label: "Nome",
               name: "name",
               isRequired: true,
             },
             {
               type: "input",
-              dataType: "wysiwyg",
+              dataType: EDataType.WYSIWYG,
               label: "Descrição",
               name: "description",
               isRequired: true,
             },
             {
               type: "input",
-              dataType: "date",
+              dataType: EDataType.DATE,
               label: "Data de lançamento",
               name: "releaseDate",
               isRequired: true,
@@ -101,12 +133,12 @@ export const movieForm: IForm = {
               type: "input",
               name: "imdbRating",
               label: "Pontuação do IMDb",
-              dataType: "number",
+              dataType: EDataType.NUMBER,
               isRequired: true,
             },
             {
               type: "autocomplete",
-              dataType: "text",
+              dataType: EDataType.TEXT,
               label: "Gêneros",
               name: "movieGenres",
               optionsApi: {
@@ -123,20 +155,20 @@ export const movieForm: IForm = {
               type: "input",
               name: "link1",
               label: "Link 1",
-              dataType: "text",
+              dataType: EDataType.TEXT,
               isRequired: true,
             },
             {
               type: "input",
               name: "link2",
               label: "Link 2",
-              dataType: "text",
+              dataType: EDataType.TEXT,
             },
             {
               type: "input",
               name: "link3",
               label: "Link 3",
-              dataType: "text",
+              dataType: EDataType.TEXT,
             },
           ],
         },
@@ -152,26 +184,26 @@ export const movieForm: IForm = {
               elements: [
                 {
                   type: "input",
-                  dataType: "text",
+                  dataType: EDataType.TEXT,
                   label: "Título do episódio",
                   name: "episodeTitle",
                   isRequired: true,
                 },
                 {
                   type: "input",
-                  dataType: "wysiwyg",
+                  dataType: EDataType.WYSIWYG,
                   label: "Descrição do episódio",
                   name: "episodeDescription",
                 },
                 {
                   type: "input",
-                  dataType: "date",
+                  dataType: EDataType.DATE,
                   label: "Data de lançamento do episódio",
                   name: "episodeReleaseDate",
                 },
                 {
                   type: "autocomplete",
-                  dataType: "text",
+                  dataType: EDataType.TEXT,
                   name: "charactersId",
                   label: "Personagens no episódio",
                   optionsApi: {

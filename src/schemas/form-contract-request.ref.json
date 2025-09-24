@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "text",
+              "number",
+              "password",
+              "email",
+              "color",
+              "date",
+              "time",
+              "wysiwyg",
+              "file",
+              "char",
+              "nchar",
+              "varchar",
+              "varchar2",
+              "nvarchar",
+              "longtext",
+              "clob",
+              "nclob",
+              "decimal",
+              "numeric",
+              "integer",
+              "float",
+              "double",
+              "real",
+              "timestamp",
+              "datetime",
+              "datetime2",
+              "uniqueidentifier",
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

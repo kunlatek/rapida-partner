@@ -120,37 +120,9 @@
                 "label": {
                   "type": "string"
                 },
-                "type": {
+                "dataType": {
                   "type": "string",
-                  "enum": [
-                    "text",
-                    "date",
-                    "currency",
-                    "number",
-                    "boolean",
-                    "image",
-                    "file",
-                    "link",
-                    "html",
-                    "char",
-                    "nchar",
-                    "varchar",
-                    "varchar2",
-                    "nvarchar",
-                    "longtext",
-                    "clob",
-                    "nclob",
-                    "decimal",
-                    "numeric",
-                    "integer",
-                    "float",
-                    "double",
-                    "real",
-                    "timestamp",
-                    "datetime",
-                    "datetime2",
-                    "uniqueidentifier"
-                  ]
+                  "$ref": "types-datatype.ref.json"
                 },
                 "format": {
                   "type": "string"

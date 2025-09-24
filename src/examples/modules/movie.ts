@@ -15,3 +15,4 @@ export const movieModule: IModule = {
     movieGenreList,
   ]
 }
+

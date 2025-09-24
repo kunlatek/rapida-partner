@@ -49,58 +49,57 @@
             }
           },
           "request": {
-            "type": "object",
-            "properties": {
-              "body": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "dataType": {
-                      "type": "string",
-                      "enum": [
-                        "text",
-                        "number",
-                        "password",
-                        "email",
-                        "color",
-                        "date",
-                        "time",
-                        "wysiwyg",
-                        "file",
-                        "array",
-                        "char",
-                        "nchar",
-                        "varchar",
-                        "varchar2",
-                        "nvarchar",
-                        "longtext",
-                        "clob",
-                        "nclob",
-                        "decimal",
-                        "numeric",
-                        "integer",
-                        "float",
-                        "double",
-                        "real",
-                        "timestamp",
-                        "datetime",
-                        "datetime2",
-                        "uniqueidentifier",
-                        "boolean"
-                      ]
-                    }
-                  }
-                }
-              }
+            "type": "array",
+            "items": {
+              "oneOf": [
+                { "$ref": "form-contract.ref.json" },
+                { "$ref": "form-contract-array.ref.json" }
+              ]
             }
           }
         },
         "required": ["endpoint", "methods"]
       }
+    },
+    "kanban": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["toDo", "inProgress", "done"]
+        },
+        "assignesIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validatorsIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "urgent"]
+        },
+        "storyPoints": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": ["status"]
     }
   },
   "required": ["componentType", "id", "title", "elements", "contracts"]

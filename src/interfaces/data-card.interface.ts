@@ -1,3 +1,4 @@
+import type { EDataType } from "../enums/form.enum";
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
 
@@ -42,36 +43,7 @@ export interface IDataCard {
 export interface IDataCardProperty {
   property: string;
   label: string;
-  type?:
-    | "text"
-    | "number"
-    | "password"
-    | "email"
-    | "color"
-    | "date"
-    | "wysiwyg"
-    | "time"
-    | "file"
-    | "array"
-    | "char"
-    | "nchar"
-    | "varchar"
-    | "varchar2"
-    | "nvarchar"
-    | "longtext"
-    | "clob"
-    | "nclob"
-    | "decimal"
-    | "numeric"
-    | "integer"
-    | "float"
-    | "double"
-    | "real"
-    | "timestamp"
-    | "datetime"
-    | "datetime2"
-    | "uniqueidentifier"
-    | "boolean";
+  dataType?: EDataType;
   format?: string;
   isHtml?: boolean;
 }

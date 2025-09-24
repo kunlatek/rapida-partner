@@ -1,3 +1,5 @@
+import { EFormContractDataType } from "../../../enums/form-contract.enum";
+import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
 export const characterForm: IForm = {
@@ -13,23 +15,23 @@ export const characterForm: IForm = {
         body: [
           {
             name: "characterName",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "characterImage",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "characterDescription",
-            dataType: "wysiwyg",
+            dataType: EFormContractDataType.WYSIWYG,
           },
           {
             name: "characterType",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "characterGender",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
         ],
       },
@@ -39,7 +41,7 @@ export const characterForm: IForm = {
   elements: [
     {
       type: "input",
-      dataType: "text",
+      dataType: EDataType.TEXT,
       label: "Nome do personagem",
       name: "characterName",
       isRequired: true,
@@ -48,7 +50,7 @@ export const characterForm: IForm = {
     {
       label: "Foto do personagem",
       type: "file",
-      dataType: "text",
+      dataType: EDataType.TEXT,
       name: "characterImage",
       storageConfig: {
         fileNameStrategy: "uuid",
@@ -58,7 +60,7 @@ export const characterForm: IForm = {
     },
     {
       type: "input",
-      dataType: "wysiwyg",
+      dataType: EDataType.WYSIWYG,
       label: "Descrição do personagem",
       name: "characterDescription",
     },
@@ -66,7 +68,7 @@ export const characterForm: IForm = {
       type: "select",
       label: "Tipo de personagem",
       name: "characterType",
-      dataType: "text",
+      dataType: EDataType.TEXT,
       options: [
         { value: "protagonist", label: "Protagonista" },
         { value: "antagonist", label: "Antagonista" },
@@ -80,7 +82,7 @@ export const characterForm: IForm = {
       type: "select",
       label: "Gênero do personagem",
       name: "characterGender",
-      dataType: "text",
+      dataType: EDataType.TEXT,
       options: [
         { value: "male", label: "Masculino" },
         { value: "female", label: "Feminino" },

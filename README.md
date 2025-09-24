@@ -83,3 +83,6 @@ A validação do objeto JSON é crucial para garantir a integridade do projeto. 
     
 
 Essa abordagem garante que a descrição do projeto é tecnicamente sólida e coerente, facilitando a próxima etapa do processo de desenvolvimento.
+
+### 4. Problemas Conhecidos
+- No atributo `contracts[n].request.body[n]`, se o `dataType` for `array`, é preciso inserir `elements` pra melhorar a descrição do contrato.

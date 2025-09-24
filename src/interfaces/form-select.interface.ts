@@ -1,40 +1,12 @@
 import type { IFormCondition } from "./form-condition.interface";
 import type { IOptionsApi } from "./form-autocomplete.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { EDataType } from "../enums/form.enum";
 
 export interface IFormSelect {
   type: "select";
   name: string;
-  dataType:
-    | "text"
-    | "number"
-    | "password"
-    | "email"
-    | "color"
-    | "date"
-    | "wysiwyg"
-    | "time"
-    | "file"
-    | "array"
-    | "char"
-    | "nchar"
-    | "varchar"
-    | "varchar2"
-    | "nvarchar"
-    | "longtext"
-    | "clob"
-    | "nclob"
-    | "decimal"
-    | "numeric"
-    | "integer"
-    | "float"
-    | "double"
-    | "real"
-    | "timestamp"
-    | "datetime"
-    | "datetime2"
-    | "uniqueidentifier"
-    | "boolean";
+  dataType: EDataType;
   label: string;
   placeholder?: string;
   tooltip?: string;

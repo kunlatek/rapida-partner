@@ -1,3 +1,4 @@
+import type { EFormContractDataType } from "../enums/form-contract.enum";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
@@ -23,42 +24,30 @@ export interface IForm {
     methods: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
     request?: IApiRequest;
   }[];
+  kanban?: {
+    status: "toDo" | "inProgress" | "done";
+    assigneesIds?: string[];
+    validatorsIds?: string[];
+    dueDate?: string;
+    tags?: string[];
+    priority?: "low" | "medium" | "high" | "urgent";
+    storyPoints?: number;
+  }
+}
+
+interface IFormContractGeneral {
+  name: string;
+  dataType: EFormContractDataType;
+}
+
+interface IFormContractArray {
+  name: string;
+  dataType: "array";
+  elements: (IFormContractGeneral | IFormContractArray)[];
 }
 
 export interface IApiRequest {
-  body: {
-    name: string;
-    dataType:
-      | "text"
-      | "number"
-      | "password"
-      | "email"
-      | "color"
-      | "date"
-      | "wysiwyg"
-      | "time"
-      | "file"
-      | "array"
-      | "char"
-      | "nchar"
-      | "varchar"
-      | "varchar2"
-      | "nvarchar"
-      | "longtext"
-      | "clob"
-      | "nclob"
-      | "decimal"
-      | "numeric"
-      | "integer"
-      | "float"
-      | "double"
-      | "real"
-      | "timestamp"
-      | "datetime"
-      | "datetime2"
-      | "uniqueidentifier"
-      | "boolean";
-  }[];
+  body?: (IFormContractGeneral | IFormContractArray)[];
 }
 
 export type IFormElement =

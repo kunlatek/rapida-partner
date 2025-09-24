@@ -1,3 +1,5 @@
+import { EFormContractDataType } from "../../../enums/form-contract.enum";
+import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
 export const movieGenreForm: IForm = {
@@ -12,11 +14,11 @@ export const movieGenreForm: IForm = {
         body: [
           {
             name: "name",
-            dataType: "text",
+            dataType: EFormContractDataType.TEXT,
           },
           {
             name: "description",
-            dataType: "wysiwyg",
+            dataType: EFormContractDataType.WYSIWYG,
           },
         ],
       },
@@ -27,14 +29,14 @@ export const movieGenreForm: IForm = {
   elements: [
     {
       type: "input",
-      dataType: "text",
+      dataType: EDataType.TEXT,
       label: "Nome",
       name: "name",
       isRequired: true,
     },
     {
       type: "input",
-      dataType: "wysiwyg",
+      dataType: EDataType.WYSIWYG,
       label: "Descrição",
       name: "description",
       isRequired: true,

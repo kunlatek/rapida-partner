@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "dataType": "array",
+          "elements": { "$ref": "form-contract.ref.json" }
+        }
+      }
+    }
+  }
+}
