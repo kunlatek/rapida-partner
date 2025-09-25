@@ -51,16 +51,88 @@
           "request": {
             "type": "object",
             "properties": {
-              "body": {
+              "entity": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "fields": {
                 "type": "array",
                 "items": {
-                  "oneOf": [
-                    { "$ref": "form-contract-request.ref.json" },
-                    { "$ref": "form-contract-request-array.ref.json" }
-                  ]
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "dataType": {
+                      "$ref": "types-datatype.ref.json"
+                    },
+                    "isRequired": {
+                      "type": "boolean"
+                    },
+                    "foreignKey": {
+                      "type": "object",
+                      "properties": {
+                        "entity": {
+                          "type": "string"
+                        },
+                        "connectionAttribute": {
+                          "type": "string"
+                        },
+                        "relationship": {
+                          "type": "string",
+                          "enum": ["one-to-one", "one-to-many", "many-to-many"]
+                        }
+                      },
+                      "required": [
+                        "entity",
+                        "connectionAttribute",
+                        "relationship"
+                      ]
+                    },
+                    "isPrimaryKey": {
+                      "type": "boolean"
+                    },
+                    "minSize": {
+                      "type": "number"
+                    },
+                    "maxSize": {
+                      "type": "number"
+                    },
+                    "enum": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "isUnique": {
+                      "type": "boolean"
+                    },
+                    "uniqueComposedFields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "methods": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "verb": {
+                            "type": "string",
+                            "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["name", "dataType"]
                 }
               }
-            }
+            },
+            "required": ["entity", "fields"]
           }
         },
         "required": ["endpoint", "methods"]

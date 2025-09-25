@@ -11,78 +11,24 @@ export const movieForm: IForm = {
       endpoint: "/movies",
       methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
       request: {
-        body: [
-          {
-            name: "pictureFile",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "name",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "description",
-            dataType: EFormContractDataType.WYSIWYG,
-          },
-          {
-            name: "releaseDate",
-            dataType: EFormContractDataType.DATE,
-          },
-          {
-            name: "imdbRating",
-            dataType: EFormContractDataType.NUMBER,
-          },
-          {
-            name: "movieGenres",
-            dataType: "array",
-            elements: [
-              {
-                name: "movieGenreId",
-                dataType: EFormContractDataType.TEXT,
-              },
-            ],
-          },
-          {
-            name: "link1",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "link2",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "link3",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "episodes",
-            dataType: "array",
-            elements: [
-              {
-                name: "episodeTitle",
-                dataType: EFormContractDataType.TEXT,
-              },
-              {
-                name: "episodeDescription",
-                dataType: EFormContractDataType.WYSIWYG,
-              },
-              {
-                name: "episodeReleaseDate",
-                dataType: EFormContractDataType.DATE,
-              },
-              {
-                name: "charactersId",
-                dataType: "array",
-                elements: [
-                  {
-                    name: "characterId",
-                    dataType: EFormContractDataType.TEXT,
-                  },
-                ],
-              },
-            ],
-          },
-        ]
+        entity: "Movie",
+        description: "Represents a movie or TV series in the system.",
+        fields: [
+          { name: "_id", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "pictureFile", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
+          { name: "name", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
+          { name: "description", dataType: EFormContractDataType.LONGTEXT, isRequired: true },
+          { name: "releaseDate", dataType: EFormContractDataType.DATE, isRequired: true },
+          { name: "imdbRating", dataType: EFormContractDataType.DECIMAL, isRequired: true },
+          { name: "movieGenres", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+            entity: "MovieGenre",
+            connectionAttribute: "_id",
+            relationship: "many-to-many"
+          } },
+          { name: "link1", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
+          { name: "link2", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
+          { name: "link3", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
+        ],
       }
     }
   ],
@@ -147,6 +93,7 @@ export const movieForm: IForm = {
                 valueField: "_id",
                 paramsToFilter: ["name"],
                 paramType: "query",
+                relatedEntity: "MovieGenres"
               },
               isMultiple: true,
               isRequired: true,
@@ -169,65 +116,6 @@ export const movieForm: IForm = {
               name: "link3",
               label: "Link 3",
               dataType: EDataType.TEXT,
-            },
-          ],
-        },
-        {
-          id: "episodesTab",
-          title: "Episódios",
-          elements: [
-            {
-              type: "array",
-              id: "episodes",
-              name: "episodes",
-              title: "Episódio",
-              elements: [
-                {
-                  type: "input",
-                  dataType: EDataType.TEXT,
-                  label: "Título do episódio",
-                  name: "episodeTitle",
-                  isRequired: true,
-                },
-                {
-                  type: "input",
-                  dataType: EDataType.WYSIWYG,
-                  label: "Descrição do episódio",
-                  name: "episodeDescription",
-                },
-                {
-                  type: "input",
-                  dataType: EDataType.DATE,
-                  label: "Data de lançamento do episódio",
-                  name: "episodeReleaseDate",
-                },
-                {
-                  type: "autocomplete",
-                  dataType: EDataType.TEXT,
-                  name: "charactersId",
-                  label: "Personagens no episódio",
-                  optionsApi: {
-                    endpoint: "/characters",
-                    labelField: ["characterName"],
-                    valueField: "_id",
-                    paramsToFilter: ["characterName"],
-                    paramType: "query",
-                    relatedEntity: "Character",
-                  },
-                },
-              ],
-            },
-          ],
-          conditions: [
-            {
-              type: "form",
-              elements: [
-                {
-                  key: "movieGenres",
-                  comparisonOperator: "===",
-                  value: "Série de TV",
-                },
-              ],
             },
           ],
         },

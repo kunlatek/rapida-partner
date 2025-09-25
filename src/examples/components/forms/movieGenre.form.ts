@@ -10,18 +10,24 @@ export const movieGenreForm: IForm = {
     {
       endpoint: "/movie-genres",
       methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
-      request: {
-        body: [
+      request : {
+        entity: "moviesGenres",
+        description: "",
+        fields: [
           {
             name: "name",
             dataType: EFormContractDataType.TEXT,
+            isRequired: true,
+            maxSize: 255,
           },
           {
             name: "description",
-            dataType: EFormContractDataType.WYSIWYG,
-          },
-        ],
-      },
+            dataType: EFormContractDataType.TEXT,
+            isRequired: true,
+            maxSize: 255,
+          }
+        ]
+      }
     }
   ],
   id: "movieGenreForm",

@@ -12,27 +12,15 @@ export const characterForm: IForm = {
       endpoint: "/characters",
       methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
       request: {
-        body: [
-          {
-            name: "characterName",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "characterImage",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "characterDescription",
-            dataType: EFormContractDataType.WYSIWYG,
-          },
-          {
-            name: "characterType",
-            dataType: EFormContractDataType.TEXT,
-          },
-          {
-            name: "characterGender",
-            dataType: EFormContractDataType.TEXT,
-          },
+        entity: "Character",
+        description: "Represents a character in a story or narrative.",
+        fields: [
+          { name: "_id", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "characterName", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
+          { name: "characterImage", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
+          { name: "characterDescription", dataType: EFormContractDataType.LONGTEXT, isRequired: false },
+          { name: "characterType", dataType: EFormContractDataType.NVARCHAR, enum: ["protagonist", "antagonist", "hero", "villain", "sidekick", "supporting"], isRequired: false },
+          { name: "characterGender", dataType: EFormContractDataType.NVARCHAR, enum: ["male", "female", "other"], isRequired: false },
         ],
       },
     }
@@ -86,7 +74,6 @@ export const characterForm: IForm = {
       options: [
         { value: "male", label: "Masculino" },
         { value: "female", label: "Feminino" },
-        { value: "non-binary", label: "Não-binário" },
         { value: "other", label: "Outro" },
       ],
     }

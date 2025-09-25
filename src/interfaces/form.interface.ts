@@ -1,4 +1,5 @@
 import type { EFormContractDataType } from "../enums/form-contract.enum";
+import type { EDataType } from "../enums/form.enum";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
@@ -22,7 +23,7 @@ export interface IForm {
   contracts: {
     endpoint: string;
     methods: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
-    request?: IApiRequest;
+    request?: IContractRequest;
   }[];
   kanban?: {
     status: "toDo" | "inProgress" | "done";
@@ -38,6 +39,32 @@ export interface IForm {
 interface IFormContractGeneral {
   name: string;
   dataType: EFormContractDataType;
+}
+
+interface IContractRequest {
+  entity: string,
+  description?: string,
+  fields: IContractRequestField[]
+}
+
+interface IContractRequestField {
+  name: string;
+  dataType: EFormContractDataType;
+  isRequired?: boolean;
+  foreignKey?: IContractRequestFieldForeignKey;
+  isPrimaryKey?: boolean;
+  minSize?: number;
+  maxSize?: number;
+  enum?: string[];
+  isUnique?: boolean;
+  uniqueComposedFields?: string[];
+  methodsExceptions?: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
+}
+
+interface IContractRequestFieldForeignKey {
+  entity: string;
+  connectionAttribute: string;
+  relationship: "many-to-many" | "one-to-many" | "one-to-one"
 }
 
 interface IFormContractArray {
