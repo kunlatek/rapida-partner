@@ -172,5 +172,5 @@
       "type": "string"
     }
   },
-  "required": ["type", "dataType", "name", "label"]
+  "required": ["type", "dataType", "name", "label", "relatedEntity"]
 }

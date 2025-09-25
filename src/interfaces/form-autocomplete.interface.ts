@@ -29,7 +29,7 @@ export interface IOptionsApi {
   valueField: string;
   paramsToFilter: string[];
   paramType: "query" | "path";
-  relatedEntity?: string;
+  relatedEntity: string;
   populate?: string[];
   formFieldsFilledByApiResponse?: IApiResponseField[];
   filtersFromOtherFormFields?: IApiResponseFieldFilter[];
