@@ -35,6 +35,9 @@
     "isDisabledOnUpdate": {
       "type": "boolean"
     },
+    "isHidden": {
+      "type": "boolean"
+    },
     "conditions": {
       "$ref": "form-condition.ref.json"
     },

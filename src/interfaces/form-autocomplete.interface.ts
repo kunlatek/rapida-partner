@@ -12,6 +12,7 @@ export interface IFormAutocomplete {
   isAutofocus?: boolean;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
   conditions?: IFormCondition[];

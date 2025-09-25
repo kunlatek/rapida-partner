@@ -47,6 +47,9 @@
     "isDisabledOnUpdate": {
       "type": "boolean"
     },
+    "isHidden": {
+      "type": "boolean"
+    },
     "isRequired": {
       "type": "boolean"
     },

@@ -16,6 +16,7 @@ export interface IFormInput {
   isAutofocus?: boolean;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
   conditions?: IFormCondition[];

@@ -20,6 +20,7 @@ export interface IFormFile {
   maxSize?: number;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   conditions?: IFormCondition[];
   todo?: string;

@@ -14,6 +14,7 @@ export interface IFormNumericInput {
   thousandSeparator?: boolean;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
   conditions?: IFormCondition[];

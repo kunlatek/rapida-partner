@@ -14,6 +14,7 @@ export interface IFormRadioGroup {
   tooltip?: string;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   conditions?: IFormCondition[];
   todo?: string;

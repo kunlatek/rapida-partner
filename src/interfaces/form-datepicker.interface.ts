@@ -11,6 +11,7 @@ export interface IFormDatePicker {
   maxDate?: string;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   isRequired?: boolean;
   conditions?: IFormCondition[];
   todo?: string;

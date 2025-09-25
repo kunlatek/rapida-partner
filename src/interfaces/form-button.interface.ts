@@ -13,6 +13,7 @@ export interface IFormButton {
   tooltip?: string;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
+  isHidden?: boolean;
   conditions?: IFormCondition[];
   apiRequest?: IApiRequest;
   modal?: {
