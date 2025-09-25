@@ -1,7 +1,7 @@
 import type { IBusinessRule } from "./project.interface";
 
 export interface IFormCondition {
-  type: "form" | "code" | "array";
+  type: "form" | "code" | "array" | "button";
   elements?: IConditionElement[];
   code?: IConditionCode;
   businessRules?: IBusinessRule[];
