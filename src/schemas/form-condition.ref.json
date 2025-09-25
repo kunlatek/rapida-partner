@@ -6,7 +6,7 @@
     "properties": {
       "type": {
         "type": "string",
-        "enum": ["form", "code", "array"]
+        "enum": ["form", "code", "array", "button"]
       },
       "elements": {
         "type": "array",
@@ -63,6 +63,9 @@
           },
           "required": ["fieldKey", "value"]
         }
+      },
+      "buttonId": {
+        "type": "string"
       }
     },
     "required": ["type"]

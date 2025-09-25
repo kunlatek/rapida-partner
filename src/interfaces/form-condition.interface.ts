@@ -10,6 +10,7 @@ export interface IFormCondition {
     fieldKey: string;
     value: any;
   }[];
+  buttonId?: string; // For button conditions
 }
 
 interface IConditionElement {
