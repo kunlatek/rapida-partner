@@ -404,9 +404,9 @@ export const companyForm: IForm = {
               name: "partners",
               optionsApi: {
                 endpoint: "/people",
-                labelField: ["personCpf", "personName"],
+                labelField: ["cpf", "name"],
                 valueField: "_id",
-                paramsToFilter: ["personCpf", "personName"],
+                paramsToFilter: ["cpf", "name"],
                 paramType: "query",
                 relatedEntity: "People",
               },
