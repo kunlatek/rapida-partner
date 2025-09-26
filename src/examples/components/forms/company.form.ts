@@ -10,7 +10,7 @@ export const companyForm: IForm = {
   id: "companyForm",
   contracts: [{
     endpoint: "/companies",
-    methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+    actions: ["create", "get", "getById", "update", "delete"],
     request: {
       entity: "Companies",
       description: "Represents a company or business entity.",

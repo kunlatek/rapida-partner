@@ -22,7 +22,7 @@ export interface IForm {
   userStory?: string;
   contracts: {
     endpoint: string;
-    methods: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
+    actions: ("create" | "get" | "getById" | "update" | "delete" | "clone")[];
     request?: IContractRequest;
   }[];
   kanban?: {
@@ -58,7 +58,7 @@ interface IContractRequestField {
   enum?: string[];
   isUnique?: boolean;
   uniqueComposedFields?: string[];
-  methodsExceptions?: { verb: "GET" | "POST" | "PUT" | "DELETE" }[];
+  actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "delete" | "clone")[];
 }
 
 interface IContractRequestFieldForeignKey {

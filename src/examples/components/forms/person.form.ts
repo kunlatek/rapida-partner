@@ -10,7 +10,7 @@ export const personForm: IForm = {
   id: "personForm",
   contracts: [{
     endpoint: "/people",
-    methods: [{ verb: "GET" }, { verb: "POST" }, { verb: "PUT" }, { verb: "DELETE" }],
+    actions: ["create", "get", "getById", "update", "delete"],
     request: {
       entity: "People",
       description: "Represents an individual person with personal details and contact information.",

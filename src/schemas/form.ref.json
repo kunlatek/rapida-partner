@@ -36,16 +36,11 @@
           "endpoint": {
             "type": "string"
           },
-          "methods": {
+          "actions": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "verb": {
-                  "type": "string",
-                  "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
-                }
-              }
+              "type": "string",
+              "enum": ["create", "get", "getById", "update", "delete", "clone"]
             }
           },
           "request": {
@@ -115,16 +110,11 @@
                         "type": "string"
                       }
                     },
-                    "methods": {
+                    "actionsExceptions": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "verb": {
-                            "type": "string",
-                            "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
-                          }
-                        }
+                        "type": "string",
+                        "enum": ["create", "get", "getById", "update", "delete", "clone"]
                       }
                     }
                   },
@@ -135,7 +125,7 @@
             "required": ["entity", "fields"]
           }
         },
-        "required": ["endpoint", "methods"]
+        "required": ["endpoint", "actions"]
       }
     },
     "kanban": {

@@ -10,7 +10,7 @@ export const characterForm: IForm = {
   contracts: [
     {
       endpoint: "/characters",
-      methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+      actions: ["create", "get", "getById", "update", "delete"],
       request: {
         entity: "Character",
         description: "Represents a character in a story or narrative.",

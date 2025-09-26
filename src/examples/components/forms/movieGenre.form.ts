@@ -9,7 +9,7 @@ export const movieGenreForm: IForm = {
   contracts: [
     {
       endpoint: "/movie-genres",
-      methods: [{ verb: "POST" }, { verb: "PUT" }, { verb: "GET" }, { verb: "DELETE" }],
+      actions: ["create", "get", "getById", "update", "delete"],
       request : {
         entity: "moviesGenres",
         description: "",
