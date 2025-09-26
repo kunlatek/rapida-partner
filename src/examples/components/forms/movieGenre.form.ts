@@ -1,4 +1,3 @@
-import { EFormContractDataType } from "../../../enums/form-contract.enum";
 import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
@@ -8,6 +7,7 @@ export const movieGenreForm: IForm = {
   componentType: "form",
   contracts: [
     {
+      id: "moviesGenres",
       endpoint: "/movie-genres",
       actions: ["create", "get", "getById", "update", "delete"],
       request : {
@@ -16,13 +16,13 @@ export const movieGenreForm: IForm = {
         fields: [
           {
             name: "name",
-            dataType: EFormContractDataType.TEXT,
+            dataType: EDataType.TEXT,
             isRequired: true,
             maxSize: 255,
           },
           {
             name: "description",
-            dataType: EFormContractDataType.TEXT,
+            dataType: EDataType.TEXT,
             isRequired: true,
             maxSize: 255,
           }

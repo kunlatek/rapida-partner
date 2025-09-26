@@ -33,6 +33,9 @@
       "items": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "endpoint": {
             "type": "string"
           },
@@ -120,6 +123,33 @@
                   },
                   "required": ["name", "dataType"]
                 }
+              },
+              "relatedEntity": {
+                "type": "object",
+                "properties": {
+                  "entity": {
+                    "type": "string"
+                  },
+                  "connectionAttribute": {
+                    "type": "string"
+                  },
+                  "fieldsFromEntity": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "$ref": "form.ref.json"
+                        },
+                        "contractId":{
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": ["fields", "contractId"]
+                  }
+                },
+                "required": ["entity", "connectionAttribute", "fieldsFromEntity"]
               }
             },
             "required": ["entity", "fields"]
@@ -128,7 +158,7 @@
             "$ref": "condition.ref.json"
           }
         },
-        "required": ["endpoint", "actions"]
+        "required": ["id", "endpoint", "actions"]
       }
     },
     "kanban": {

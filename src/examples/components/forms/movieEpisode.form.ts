@@ -1,4 +1,3 @@
-import { EFormContractDataType } from "../../../enums/form-contract.enum";
 import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
@@ -8,22 +7,23 @@ export const movieEpisodeForm: IForm = {
   id: "movieEpisodeForm",
   contracts: [
     {
+      id: "moviesEpisodes",
       endpoint: "/movies-episodes",
       actions: ["create", "get", "getById", "update", "delete"],
       request: {
         entity: "MovieEpisode",
         description: "Represents an episode of a TV series or show.",
         fields: [
-          { name: "_id", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
-          { name: "movieId", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "movieId", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
             entity: "Movie",
             connectionAttribute: "_id",
             relationship: "one-to-many"
           } },
-          { name: "title", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
-          { name: "description", dataType: EFormContractDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EFormContractDataType.DATETIME2, isRequired: true },
-          { name: "characters", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: false, foreignKey: {
+          { name: "title", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
+          { name: "releaseDate", dataType: EDataType.DATETIME2, isRequired: true },
+          { name: "characters", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: false, foreignKey: {
             entity: "Character",
             connectionAttribute: "_id",
             relationship: "many-to-many"

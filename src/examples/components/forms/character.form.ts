@@ -1,4 +1,3 @@
-import { EFormContractDataType } from "../../../enums/form-contract.enum";
 import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
@@ -9,18 +8,19 @@ export const characterForm: IForm = {
   id: "characterForm",
   contracts: [
     {
+      id: "characters",
       endpoint: "/characters",
       actions: ["create", "get", "getById", "update", "delete"],
       request: {
         entity: "Character",
         description: "Represents a character in a story or narrative.",
         fields: [
-          { name: "_id", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
-          { name: "characterName", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
-          { name: "characterImage", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
-          { name: "characterDescription", dataType: EFormContractDataType.LONGTEXT, isRequired: false },
-          { name: "characterType", dataType: EFormContractDataType.NVARCHAR, enum: ["protagonist", "antagonist", "hero", "villain", "sidekick", "supporting"], isRequired: false },
-          { name: "characterGender", dataType: EFormContractDataType.NVARCHAR, enum: ["male", "female", "other"], isRequired: false },
+          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "characterName", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "characterImage", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "characterDescription", dataType: EDataType.LONGTEXT, isRequired: false },
+          { name: "characterType", dataType: EDataType.NVARCHAR, enum: ["protagonist", "antagonist", "hero", "villain", "sidekick", "supporting"], isRequired: false },
+          { name: "characterGender", dataType: EDataType.NVARCHAR, enum: ["male", "female", "other"], isRequired: false },
         ],
       },
     }

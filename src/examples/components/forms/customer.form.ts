@@ -1,4 +1,3 @@
-import { EFormContractDataType } from "../../../enums/form-contract.enum";
 import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 import { companyForm } from "./company.form";
@@ -10,16 +9,20 @@ export const customerForm: IForm = {
   componentType: "form",
   contracts: [
     {
+      id: "customerPeople",
       endpoint: "/customers/people",
       actions: ["create", "update", "get", "getById", "delete"],
       request: {
         entity: "Customers",
-        relatedEntity: "People",
-        fields: [
-          ...(personForm.contracts[0].request?.fields || []), 
-          { name: "entityId", dataType: EFormContractDataType.UNIQUEIDENTIFIER },
-          { name: "entityRelated", dataType: EFormContractDataType.NVARCHAR }
-        ]
+        relatedEntity: {
+          entity: "People", // adiciona campo chamado relatedEntity amaarrado ao valor
+          connectionAttribute: "_id", // vai criar um campo chamado relatedEntityId
+          fieldsFromEntity: [{
+            fields: personForm,
+            contractId: "people",            
+          }]
+        },
+        fields: []
       },
       conditions: [
         {
@@ -35,15 +38,24 @@ export const customerForm: IForm = {
       ]
     },
     {
+      id: "customerCompanies",
       endpoint: "/customers/companies",
       actions: ["create", "update", "get", "getById", "delete"],
       request: {
         entity: "Customers",
-        relatedEntity: "Companies",
+        relatedEntity: {
+          entity: "Companies",
+          connectionAttribute: "_id",
+          fieldsFromEntity: [
+            {
+              fields: companyForm,
+              contractId: "companies"
+            }
+          ]
+        },
         fields: [
-          ...(companyForm.contracts[0].request?.fields || []), 
-          { name: "entityId", dataType: EFormContractDataType.UNIQUEIDENTIFIER },
-          { name: "entityRelated", dataType: EFormContractDataType.NVARCHAR }
+          { name: "entityId", dataType: EDataType.UNIQUEIDENTIFIER },
+          { name: "entityRelated", dataType: EDataType.NVARCHAR }
         ]
       },
       conditions: [

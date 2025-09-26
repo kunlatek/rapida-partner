@@ -1,4 +1,3 @@
-import { EFormContractDataType } from "../../../enums/form-contract.enum";
 import { EDataType } from "../../../enums/form.enum";
 import type { IForm } from "../../../interfaces/form.interface";
 
@@ -8,26 +7,27 @@ export const movieForm: IForm = {
   componentType: "form",
   contracts: [
     {
+      id: "movies",
       endpoint: "/movies",
       actions: ["create", "update", "getById", "get", "delete"],
       request: {
         entity: "Movie",
         description: "Represents a movie or TV series in the system.",
         fields: [
-          { name: "_id", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
-          { name: "pictureFile", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
-          { name: "name", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
-          { name: "description", dataType: EFormContractDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EFormContractDataType.DATE, isRequired: true },
-          { name: "imdbRating", dataType: EFormContractDataType.DECIMAL, isRequired: true },
-          { name: "movieGenres", dataType: EFormContractDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
+          { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
+          { name: "imdbRating", dataType: EDataType.DECIMAL, isRequired: true },
+          { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
             entity: "MovieGenre",
             connectionAttribute: "_id",
             relationship: "many-to-many"
           } },
-          { name: "link1", dataType: EFormContractDataType.NVARCHAR, isRequired: true },
-          { name: "link2", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
-          { name: "link3", dataType: EFormContractDataType.NVARCHAR, isRequired: false },
+          { name: "link1", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "link2", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "link3", dataType: EDataType.NVARCHAR, isRequired: false },
         ],
       }
     }

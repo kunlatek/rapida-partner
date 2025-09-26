@@ -23,6 +23,7 @@ export interface IForm {
   businessRules?: IBusinessRule[];
   userStory?: string;
   contracts: {
+    id: string;
     endpoint: string;
     actions: ("create" | "get" | "getById" | "update" | "delete" | "clone")[];
     request?: IContractRequest;
@@ -39,21 +40,28 @@ export interface IForm {
   }
 }
 
-interface IFormContractGeneral {
-  name: string;
-  dataType: EFormContractDataType;
-}
+// interface IFormContractGeneral {
+//   name: string;
+//   dataType: EFormContractDataType;
+// }
 
 interface IContractRequest {
   entity: string,
-  relatedEntity?: string,
+  relatedEntity?: {
+    entity: string;
+    connectionAttribute: string;
+    fieldsFromEntity: {
+      fields: IForm;
+      contractId: string;
+    }[]
+  },
   description?: string,
   fields: IContractRequestField[]
 }
 
 interface IContractRequestField {
   name: string;
-  dataType: EFormContractDataType;
+  dataType: EDataType;
   isRequired?: boolean;
   foreignKey?: IContractRequestFieldForeignKey;
   isPrimaryKey?: boolean;
@@ -71,15 +79,15 @@ interface IContractRequestFieldForeignKey {
   relationship: "many-to-many" | "one-to-many" | "one-to-one"
 }
 
-interface IFormContractArray {
-  name: string;
-  dataType: "array";
-  elements: (IFormContractGeneral | IFormContractArray)[];
-}
+// interface IFormContractArray {
+//   name: string;
+//   dataType: "array";
+//   elements: (IFormContractGeneral | IFormContractArray)[];
+// }
 
-export interface IApiRequest {
-  body?: (IFormContractGeneral | IFormContractArray)[];
-}
+// export interface IApiRequest {
+//   body?: (IFormContractGeneral | IFormContractArray)[];
+// }
 
 export type IFormElement =
   | IFormInput

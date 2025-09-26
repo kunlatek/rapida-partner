@@ -27,4 +27,5 @@ export enum EFormContractDataType {
   DATETIME2 = "datetime2",
   UNIQUEIDENTIFIER = "uniqueidentifier",
   BOOLEAN = "boolean",
+  ARRAY = "array",
 }
