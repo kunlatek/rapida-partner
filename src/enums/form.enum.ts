@@ -1,4 +1,5 @@
 export enum EDataType {
+  NODATA = "nodata",
   TEXT = "text",
   NUMBER = "number",
   PASSWORD = "password",

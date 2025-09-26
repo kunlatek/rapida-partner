@@ -1,6 +1,7 @@
 {
   "$id": "types-datatype.ref.json",
   "enum": [
+    "nodata",
     "text",
     "number",
     "password",

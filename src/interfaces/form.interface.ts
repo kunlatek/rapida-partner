@@ -3,9 +3,11 @@ import type { EDataType } from "../enums/form.enum";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
+import type { IFormCondition } from "./form-condition.interface";
 import type { IFormDatePicker } from "./form-datepicker.interface";
 import type { IFormFieldset } from "./form-fieldset.interface";
 import type { IFormFile } from "./form-file.interface";
+import type { IFormInheritance } from "./form-inheritance.interface";
 import type { IFormInput } from "./form-input.interface";
 import type { IFormSelect } from "./form-select.interface";
 import type { IFormTab } from "./form-tab.interface";
@@ -24,6 +26,7 @@ export interface IForm {
     endpoint: string;
     actions: ("create" | "get" | "getById" | "update" | "delete" | "clone")[];
     request?: IContractRequest;
+    conditions?: IFormCondition[];
   }[];
   kanban?: {
     status: "toDo" | "inProgress" | "done";
@@ -43,6 +46,7 @@ interface IFormContractGeneral {
 
 interface IContractRequest {
   entity: string,
+  relatedEntity?: string,
   description?: string,
   fields: IContractRequestField[]
 }
@@ -86,4 +90,5 @@ export type IFormElement =
   | IFormFieldset
   | IFormButton
   | IFormFile
-  | IFormDatePicker;
+  | IFormDatePicker
+  | IFormInheritance;
