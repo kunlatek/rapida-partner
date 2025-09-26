@@ -156,6 +156,12 @@
           },
           "conditions": {
             "$ref": "condition.ref.json"
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "userStory": {
+            "type": "string"
           }
         },
         "required": ["id", "endpoint", "actions"]

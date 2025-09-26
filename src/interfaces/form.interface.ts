@@ -28,6 +28,8 @@ export interface IForm {
     actions: ("create" | "get" | "getById" | "update" | "delete" | "clone")[];
     request?: IContractRequest;
     conditions?: IFormCondition[];
+    businessRules?: IBusinessRule[];
+    userStory?: string;
   }[];
   kanban?: {
     status: "toDo" | "inProgress" | "done";
