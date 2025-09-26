@@ -29,7 +29,7 @@
       "type": "boolean"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "businessRules": {
       "$ref": "business-rules.ref.json"

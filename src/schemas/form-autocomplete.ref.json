@@ -40,7 +40,7 @@
       "type": "boolean"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "validators": {
       "type": "array",
@@ -96,7 +96,7 @@
           "type": "boolean"
         },
         "conditions": {
-          "$ref": "form-condition.ref.json"
+          "$ref": "condition.ref.json"
         },
         "rawQuery": {
           "type": "string"
@@ -157,7 +157,7 @@
             "type": "boolean"
           },
           "conditions": {
-            "$ref": "form-condition.ref.json"
+            "$ref": "condition.ref.json"
           },
           "rawQuery": {
             "type": "string"

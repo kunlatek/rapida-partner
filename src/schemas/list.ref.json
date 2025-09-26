@@ -75,6 +75,9 @@
               }
             },
             "required": ["link"]
+          },
+          "conditions": {
+            "$ref": "condition.ref.json"            
           }
         },
         "required": ["property"]

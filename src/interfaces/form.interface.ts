@@ -3,7 +3,7 @@ import type { EDataType } from "../enums/form.enum";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
-import type { IFormCondition } from "./form-condition.interface";
+import type { IFormCondition } from "./condition.interface";
 import type { IFormDatePicker } from "./form-datepicker.interface";
 import type { IFormFieldset } from "./form-fieldset.interface";
 import type { IFormFile } from "./form-file.interface";

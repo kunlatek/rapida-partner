@@ -50,7 +50,7 @@
       "type": "boolean"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "todo": {
       "type": "string"

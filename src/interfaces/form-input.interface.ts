@@ -3,7 +3,7 @@ import type {
   IApiResponseField,
   IApiResponseFieldFilter,
 } from "./form-autocomplete.interface";
-import type { IFormCondition } from "./form-condition.interface";
+import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IFormInput {

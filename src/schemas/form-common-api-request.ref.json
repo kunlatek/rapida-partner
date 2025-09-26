@@ -19,7 +19,7 @@
       "$ref": "form-common-form-fields-filled-by-api-response.ref.json"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "hasAuthentication": {
       "type": "boolean"

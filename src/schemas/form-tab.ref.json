@@ -29,7 +29,7 @@
             "$ref": "form-one-of.ref.json"
           },
           "conditions": {
-            "$ref": "form-condition.ref.json"
+            "$ref": "condition.ref.json"
           }
         },
         "required": [
@@ -40,7 +40,7 @@
       }
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     }
   },
   "required": [

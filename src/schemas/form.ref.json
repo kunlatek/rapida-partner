@@ -125,7 +125,7 @@
             "required": ["entity", "fields"]
           },
           "conditions": {
-            "$ref": "form-condition.ref.json"
+            "$ref": "condition.ref.json"
           }
         },
         "required": ["endpoint", "actions"]

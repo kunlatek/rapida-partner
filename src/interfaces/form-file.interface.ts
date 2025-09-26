@@ -1,5 +1,5 @@
 import type { EDataType } from "../enums/form.enum";
-import type { IFormCondition } from "./form-condition.interface";
+import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
 interface IStorageConfig {

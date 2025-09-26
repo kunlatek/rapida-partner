@@ -39,7 +39,7 @@
       "type": "boolean"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "apiRequest": {
       "$ref": "form-common-api-request.ref.json"

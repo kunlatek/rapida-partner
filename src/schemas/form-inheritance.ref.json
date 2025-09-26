@@ -11,7 +11,7 @@
       "$ref": "form.ref.json"
     },
     "conditions": {
-      "$ref": "form-condition.ref.json"
+      "$ref": "condition.ref.json"
     },
     "todo": {
       "type": "string"

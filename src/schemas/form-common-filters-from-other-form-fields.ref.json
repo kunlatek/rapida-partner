@@ -11,7 +11,7 @@
                 "type": "string"
             },
             "conditions": {
-              "$ref": "form-condition.ref.json"
+              "$ref": "condition.ref.json"
             }
         },
         "required": [

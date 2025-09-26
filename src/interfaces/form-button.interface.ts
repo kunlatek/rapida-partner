@@ -1,4 +1,4 @@
-import type { IFormCondition } from "./form-condition.interface";
+import type { IFormCondition } from "./condition.interface";
 import type { IApiRequest } from "./form-input.interface";
 import type { IForm } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";

@@ -16,7 +16,8 @@
       { "$ref": "form-pattern.ref.json" },
       { "$ref": "form-datepicker.ref.json" },
       { "$ref": "form-radiogroup.ref.json" },
-      { "$ref": "form-switch.ref.json" }
+      { "$ref": "form-switch.ref.json" },
+      { "$ref": "form-inheritance.ref.json" }
     ]
   }
 }

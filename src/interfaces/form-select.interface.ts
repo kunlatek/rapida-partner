@@ -1,4 +1,4 @@
-import type { IFormCondition } from "./form-condition.interface";
+import type { IFormCondition } from "./condition.interface";
 import type { IOptionsApi } from "./form-autocomplete.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { EDataType } from "../enums/form.enum";
