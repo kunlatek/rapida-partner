@@ -79,6 +79,7 @@ interface IContractRequestFieldForeignKey {
   entity: string;
   connectionAttribute: string;
   relationship: "many-to-many" | "one-to-many" | "one-to-one"
+  fields?: IContractRequestField[];
 }
 
 // interface IFormContractArray {
