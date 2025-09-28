@@ -81,6 +81,21 @@
                         "relationship": {
                           "type": "string",
                           "enum": ["one-to-one", "one-to-many", "many-to-many"]
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "dataType": {
+                                "$ref": "types-datatype.ref.json"
+                              }
+                            },
+                            "required": ["name", "dataType"]
+                          }
                         }
                       },
                       "required": [
@@ -117,7 +132,14 @@
                       "type": "array",
                       "items": {
                         "type": "string",
-                        "enum": ["create", "get", "getById", "update", "delete", "clone"]
+                        "enum": [
+                          "create",
+                          "get",
+                          "getById",
+                          "update",
+                          "delete",
+                          "clone"
+                        ]
                       }
                     }
                   },
@@ -143,7 +165,7 @@
                         "fields": {
                           "$ref": "form.ref.json"
                         },
-                        "contractId":{
+                        "contractId": {
                           "type": "string"
                         }
                       }
@@ -151,7 +173,11 @@
                     "required": ["fields", "contractId"]
                   }
                 },
-                "required": ["entity", "connectionAttribute", "fieldsFromEntity"]
+                "required": [
+                  "entity",
+                  "connectionAttribute",
+                  "fieldsFromEntity"
+                ]
               }
             },
             "required": ["entity", "fields"]
