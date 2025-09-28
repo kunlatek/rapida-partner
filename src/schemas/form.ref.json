@@ -128,10 +128,12 @@
                 "type": "object",
                 "properties": {
                   "entity": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An attribute called 'relatedEntity' will be created in the main entity to refer to an entity that will be related to the main one."
                   },
                   "connectionAttribute": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An attribute called 'relatedEntityId' will be created in the main entity to set the value of the id over 'relatedEntity' to make the connection."
                   },
                   "fieldsFromEntity": {
                     "type": "array",

@@ -1,9 +1,6 @@
 import type { IProject } from "../../interfaces/project.interface";
 import { characterModule } from "../modules/character";
-import { companyModule } from "../modules/company";
-import { customerModule } from "../modules/customer";
 import { movieModule } from "../modules/movie";
-import { personModule } from "../modules/person";
 
 export const movieBackoffice: IProject = {
   id: "movieBackoffice",
@@ -61,9 +58,6 @@ export const movieBackoffice: IProject = {
     baseUrl: "http://localhost:5173",
   },
   modules: [
-    customerModule,
-    personModule,
-    companyModule,
     movieModule,
     characterModule,
   ],
