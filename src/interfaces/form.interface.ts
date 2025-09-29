@@ -1,4 +1,3 @@
-import type { EFormContractDataType } from "../enums/form-contract.enum";
 import type { EDataType } from "../enums/form.enum";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
