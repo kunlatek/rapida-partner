@@ -59,6 +59,10 @@ interface IContractRequest {
   },
   description?: string,
   fields: IContractRequestField[]
+  uniqueConstraints?: {
+    identificator: string;
+    fields: string[];
+  }[];
 }
 
 interface IContractRequestField {

@@ -178,6 +178,23 @@
                   "connectionAttribute",
                   "fieldsFromEntity"
                 ]
+              },
+              "uniqueConstraints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "identificator": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
               }
             },
             "required": ["entity", "fields"]
