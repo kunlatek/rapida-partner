@@ -62,7 +62,7 @@ interface IContractRequest {
 interface IContractRequestField {
   name: string;
   dataType: EDataType;
-  requiredOneOf: string[];
+  requiredOneOf?: string[];
   isRequired?: boolean;
   foreignKey?: IContractRequestFieldForeignKey;
   isPrimaryKey?: boolean;
