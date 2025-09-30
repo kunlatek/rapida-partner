@@ -69,6 +69,12 @@
                     "isRequired": {
                       "type": "boolean"
                     },
+                    "requiredOneOf": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "foreignKey": {
                       "type": "object",
                       "properties": {

@@ -41,11 +41,6 @@ export interface IForm {
   }
 }
 
-// interface IFormContractGeneral {
-//   name: string;
-//   dataType: EFormContractDataType;
-// }
-
 interface IContractRequest {
   entity: string,
   relatedEntity?: {
@@ -67,6 +62,7 @@ interface IContractRequest {
 interface IContractRequestField {
   name: string;
   dataType: EDataType;
+  requiredOneOf: string[];
   isRequired?: boolean;
   foreignKey?: IContractRequestFieldForeignKey;
   isPrimaryKey?: boolean;
@@ -85,16 +81,6 @@ interface IContractRequestFieldForeignKey {
   relationship: "many-to-many" | "one-to-many" | "one-to-one"
   fields?: IContractRequestField[];
 }
-
-// interface IFormContractArray {
-//   name: string;
-//   dataType: "array";
-//   elements: (IFormContractGeneral | IFormContractArray)[];
-// }
-
-// export interface IApiRequest {
-//   body?: (IFormContractGeneral | IFormContractArray)[];
-// }
 
 export type IFormElement =
   | IFormInput
