@@ -116,7 +116,14 @@
                     "enum": {
                       "type": "array",
                       "items": {
-                        "type": "string"
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
                       }
                     },
                     "isUnique": {
@@ -184,7 +191,7 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "identificator": {
+                    "name": {
                       "type": "string"
                     },
                     "fields": {

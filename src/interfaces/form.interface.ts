@@ -72,9 +72,10 @@ interface IContractRequestField {
   isPrimaryKey?: boolean;
   minSize?: number;
   maxSize?: number;
-  enum?: string[];
+  enum?: (string | number)[];
   isUnique?: boolean;
   uniqueComposedFields?: string[];
+  defaultValue?: string | number | boolean;
   actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "delete" | "clone")[];
 }
 
