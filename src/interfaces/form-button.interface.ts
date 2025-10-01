@@ -16,6 +16,14 @@ export interface IFormButton {
   isHidden?: boolean;
   conditions?: IFormCondition[];
   apiRequest?: IApiRequest;
+  onSuccessRedirect?: {
+    url: string;
+    openIn: "sameTab" | "newTab" | "newWindow";
+  };
+  onFailRedirect?: {
+    url: string;
+    openIn: "sameTab" | "newTab" | "newWindow";
+  };
   modal?: {
     id: string;
     title: string;

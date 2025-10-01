@@ -14,9 +14,6 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
-    "id": {
-      "type": "string"
-    },
     "name": {
       "type": "string"
     },

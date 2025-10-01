@@ -44,6 +44,26 @@
     "apiRequest": {
       "$ref": "form-common-api-request.ref.json"
     },
+    "onSuccessRedirect": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "openIn": { 
+          "type": "string",
+          "enum": ["sameTab", "newTab", "newWindow"]
+        }
+      }
+    },
+    "onFailRedirect": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "openIn": { 
+          "type": "string",
+          "enum": ["sameTab", "newTab", "newWindow"]
+        }
+      }
+    },
     "modal": {
       "type": "object",
       "properties": {
