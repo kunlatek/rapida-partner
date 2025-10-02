@@ -23,6 +23,9 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
+    "elementDescription": {
+      "type": "string"
+    },
     "icon": {
       "type": "string"
     },

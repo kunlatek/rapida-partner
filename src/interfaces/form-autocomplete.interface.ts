@@ -22,6 +22,7 @@ export interface IFormAutocomplete {
   optionsApiWithConditions?: IOptionsApi[];
   isMultiple?: boolean;
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }
 
 export interface IOptionsApi {

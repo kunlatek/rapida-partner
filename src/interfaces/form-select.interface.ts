@@ -23,6 +23,7 @@ export interface IFormSelect {
   options?: ISelectOption[];
   optionsApi?: IOptionsApi;
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }
 
 interface ISelectOption {

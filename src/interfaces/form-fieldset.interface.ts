@@ -10,4 +10,5 @@ export interface IFormFieldset {
   title: string;
   elements: IFormElement[];
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }

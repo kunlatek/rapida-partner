@@ -72,6 +72,9 @@
     },
     "prefix": {
       "type": "string"
+    },
+    "elementDescription": {
+      "type": "string"
     }
   },
   "required": ["type", "dataType", "name", "label"]

@@ -14,4 +14,5 @@ export interface IFormTab {
   }[];
   conditions?: IFormCondition[];
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }

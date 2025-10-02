@@ -55,6 +55,9 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
+    "elementDescription": {
+      "type": "string"
+    },
     "optionsApi": {
       "type": "object",
       "properties": {

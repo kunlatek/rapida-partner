@@ -58,6 +58,9 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
+    "elementDescription": {
+      "type": "string"
+    },
     "validators": {
       "type": "array",
       "items": {

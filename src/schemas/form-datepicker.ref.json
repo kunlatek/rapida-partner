@@ -47,6 +47,9 @@
     },
     "businessRules": {
       "$ref": "business-rules.ref.json"
+    },
+    "elementDescription": {
+      "type": "string"
     }
   },
   "required": ["type", "name", "label"]

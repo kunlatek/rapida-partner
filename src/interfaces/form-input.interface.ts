@@ -29,6 +29,7 @@ export interface IFormInput {
   maskRegex?: string;
   suffix?: string;
   prefix?: string;
+  elementDescription?: string;
 }
 
 export interface IApiRequest {

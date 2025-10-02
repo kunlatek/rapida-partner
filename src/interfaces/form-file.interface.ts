@@ -27,4 +27,5 @@ export interface IFormFile {
   validators?: ("onlyImages" | "png" | "jpg" | "pdf")[];
   storageConfig: IStorageConfig;
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }

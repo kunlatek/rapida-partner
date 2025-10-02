@@ -10,4 +10,5 @@ export interface IFormArray {
   conditions?: IFormCondition[];
   todo?: string;
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }

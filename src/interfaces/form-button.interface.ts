@@ -40,4 +40,5 @@ export interface IFormButton {
     openInNewTab?: boolean;
   };
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }

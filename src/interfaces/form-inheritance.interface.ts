@@ -8,4 +8,5 @@ export interface IFormInheritance {
   conditions?: IFormCondition[];
   todo?: string;
   businessRules?: IBusinessRule[];
+  elementDescription?: string;
 }
