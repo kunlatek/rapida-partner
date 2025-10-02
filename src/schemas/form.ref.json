@@ -75,6 +75,10 @@
                         "type": "string"
                       }
                     },
+                    "isHidden": {
+                      "type": "boolean",
+                      "description": "If true, the attribute will not be exposed in the API."
+                    },
                     "foreignKey": {
                       "type": "object",
                       "properties": {

@@ -64,6 +64,7 @@ export interface IContractRequestField {
   dataType: EDataType;
   requiredOneOf?: string[];
   isRequired?: boolean;
+  isHidden?: boolean;
   foreignKey?: IContractRequestFieldForeignKey;
   isPrimaryKey?: boolean;
   minSize?: number;
