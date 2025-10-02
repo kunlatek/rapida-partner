@@ -102,6 +102,10 @@
                             },
                             "required": ["name", "dataType"]
                           }
+                        },
+                        "isHidden": {
+                          "type": "boolean",
+                          "description": "If true, the connection attribute will not be exposed in the API."
                         }
                       },
                       "required": [

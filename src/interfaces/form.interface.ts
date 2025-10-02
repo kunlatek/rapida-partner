@@ -59,7 +59,7 @@ interface IContractRequest {
   }[];
 }
 
-interface IContractRequestField {
+export interface IContractRequestField {
   name: string;
   dataType: EDataType;
   requiredOneOf?: string[];
@@ -80,6 +80,7 @@ interface IContractRequestFieldForeignKey {
   connectionAttribute: string;
   relationship: "many-to-many" | "one-to-many" | "one-to-one"
   fields?: IContractRequestField[];
+  isHidden?: boolean;
 }
 
 export type IFormElement =
