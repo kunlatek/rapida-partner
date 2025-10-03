@@ -4,7 +4,7 @@ import { characterList } from "../components/lists/character.list";
 
 export const characterModule: IModule = {
   id: "characterModule",
-  title: "Peronsagem",
+  title: "Personagem",
   icon: "character",
   components: [
     characterForm,
