@@ -17,12 +17,13 @@ export interface IProject {
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
   flow:
-    | "autentikigo"
-    | "invito"
-    | "permeson"
-    | "komerco"
-    | "labotablo"
-    | "reto";
+  | "backofficeByInvitationWithoutPermissions"
+  | "backofficeByInvitationAndPermissionsByComponent"
+  | "backofficeOpenedWithoutPermissions"
+    | "backofficeOpenedAndPermissionsByComponent"
+    | "marketplace"
+    | "landingPage"
+    | "socialNetwork";
   frontend?: IFrontend;
   backend?: IBackend;
   modules?: IModule[];

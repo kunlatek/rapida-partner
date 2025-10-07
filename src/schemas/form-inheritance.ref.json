@@ -7,6 +7,10 @@
       "type": "string",
       "const": "inheritance"
     },
+    "name": {
+      "type": "string",
+      "description": "IF no name is provided, the form's id will be used"
+    },
     "form": {
       "$ref": "form.ref.json"
     },

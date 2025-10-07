@@ -15,12 +15,13 @@
     "flow": {
       "type": "string",
       "enum": [
-        "autentikigo",
-        "invito",
-        "permeson",
-        "komerco",
-        "labotablo",
-        "reto"
+        "backofficeByInvitationWithoutPermissions",
+        "backofficeByInvitationAndPermissionsByComponent",
+        "backofficeOpenedWithoutPermissions",
+        "backofficeOpenedAndPermissionsByComponent",
+        "marketplace",
+        "landingPage",
+        "socialNetwork"
       ]
     },
     "businessPlan": {

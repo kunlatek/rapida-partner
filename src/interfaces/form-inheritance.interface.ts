@@ -4,6 +4,7 @@ import type { IBusinessRule } from "./project.interface";
 
 export interface IFormInheritance {
   type: "inheritance";
+  name?: string;
   form: IForm;
   conditions?: IFormCondition[];
   todo?: string;
