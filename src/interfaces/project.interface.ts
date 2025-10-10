@@ -17,9 +17,9 @@ export interface IProject {
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
   flow:
-  | "backofficeByInvitationWithoutPermissions"
-  | "backofficeByInvitationAndPermissionsByComponent"
-  | "backofficeOpenedWithoutPermissions"
+    | "backofficeByInvitationWithoutPermissions"
+    | "backofficeByInvitationAndPermissionsByComponent"
+    | "backofficeOpenedWithoutPermissions"
     | "backofficeOpenedAndPermissionsByComponent"
     | "marketplace"
     | "landingPage"

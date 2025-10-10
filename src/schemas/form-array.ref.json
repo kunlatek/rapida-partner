@@ -25,6 +25,9 @@
     },
     "elements": {
       "$ref": "form-one-of.ref.json"
+    },
+    "isRequired": {
+      "type": "boolean"
     }
   },
   "required": [

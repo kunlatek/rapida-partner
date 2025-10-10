@@ -11,4 +11,5 @@ export interface IFormArray {
   todo?: string;
   businessRules?: IBusinessRule[];
   elementDescription?: string;
+  isRequired?: boolean;
 }

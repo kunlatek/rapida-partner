@@ -41,7 +41,7 @@ export interface IForm {
   }
 }
 
-interface IContractRequest {
+export interface IContractRequest {
   entity: string,
   relatedEntity?: {
     entity: string;

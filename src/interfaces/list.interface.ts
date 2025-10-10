@@ -1,5 +1,7 @@
+import type { EDataType } from "../enums/form.enum";
 import type { IFormCondition } from "./condition.interface";
 import type { IApiRequest } from "./form-input.interface";
+import type { IContractRequest } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IList {
@@ -21,6 +23,7 @@ export interface IList {
             link: string; // e.g.: "/user"
             usePropertyAsQuery?: boolean; // if true then "/user/<email>"
         };
+        dataType: EDataType;
         conditions?: IFormCondition[];
     }[]; // properties taken from dataSource
     cardAsALink?: {
@@ -48,5 +51,14 @@ export interface IList {
                 };
             };
         };
+    }[];
+    contracts: {
+        id: string;
+        endpoint: string;
+        actions: ("create" | "get" | "getById" | "update" | "delete" | "clone" | "sendEmail")[];
+        request?: IContractRequest;
+        conditions?: IFormCondition[];
+        businessRules?: IBusinessRule[];
+        userStory?: string;
     }[];
 }
