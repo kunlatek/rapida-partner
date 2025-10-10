@@ -12,10 +12,10 @@ export const characterForm: IForm = {
       endpoint: "/characters",
       actions: ["create", "get", "getById", "update", "delete"],
       request: {
-        entity: "Character",
+        entity: "characters",
         description: "Represents a character in a story or narrative.",
         fields: [
-          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           { name: "characterName", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "characterImage", dataType: EDataType.NVARCHAR, isRequired: false },
           { name: "characterDescription", dataType: EDataType.LONGTEXT, isRequired: false },

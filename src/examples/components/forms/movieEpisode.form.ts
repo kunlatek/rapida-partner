@@ -5,6 +5,48 @@ export const movieEpisodeForm: IForm = {
   title: "Gerenciar episódio",
   componentType: "form",
   id: "movieEpisodeForm",
+  elements: [
+    {
+      title: "Episódio",
+      name: "episodes",
+      type: "array",
+      elements: [
+        {
+          label: "Título do episódio",
+          name: "episodeTitle",
+          type: "input",
+          dataType: EDataType.TEXT,
+          isRequired: true,
+        },
+        {
+          label: "Descrição do episódio",
+          name: "episodeDescription",
+          type: "input",
+          dataType: EDataType.WYSIWYG,
+        },
+        {
+          label: "Data de lançamento do episódio",
+          name: "episodeReleaseDate",
+          type: "input",
+          dataType: EDataType.DATE,
+        },
+        {
+          name: "charactersId",
+          label: "Personagens no episódio",
+          type: "autocomplete",
+          dataType: EDataType.TEXT,
+          optionsApi: {
+            endpoint: "/characters",
+            labelField: ["characterName"],
+            valueField: "_id",
+            paramsToFilter: ["characterName"],
+            paramType: "query",
+            relatedEntity: "Character",
+          },
+        },
+      ],
+    },
+  ],
   contracts: [
     {
       id: "moviesEpisodes",
@@ -30,49 +72,6 @@ export const movieEpisodeForm: IForm = {
           } },
         ],
       }
-    },
-  ],
-  elements: [
-    {
-      type: "array",
-      id: "episodes",
-      name: "episodes",
-      title: "Episódio",
-      elements: [
-        {
-          type: "input",
-          dataType: EDataType.TEXT,
-          label: "Título do episódio",
-          name: "episodeTitle",
-          isRequired: true,
-        },
-        {
-          type: "input",
-          dataType: EDataType.WYSIWYG,
-          label: "Descrição do episódio",
-          name: "episodeDescription",
-        },
-        {
-          type: "input",
-          dataType: EDataType.DATE,
-          label: "Data de lançamento do episódio",
-          name: "episodeReleaseDate",
-        },
-        {
-          type: "autocomplete",
-          dataType: EDataType.TEXT,
-          name: "charactersId",
-          label: "Personagens no episódio",
-          optionsApi: {
-            endpoint: "/characters",
-            labelField: ["characterName"],
-            valueField: "_id",
-            paramsToFilter: ["characterName"],
-            paramType: "query",
-            relatedEntity: "Character",
-          },
-        },
-      ],
     },
   ],
 }

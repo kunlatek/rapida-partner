@@ -14,7 +14,7 @@ export const movieForm: IForm = {
         entity: "Movie",
         description: "Represents a movie or TV series in the system.",
         fields: [
-          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
           { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },

@@ -1,3 +1,4 @@
+import { EDataType } from "../../../enums/form.enum";
 import type { IList } from "../../../interfaces/list.interface";
 
 export const movieGenreList: IList = {
@@ -12,10 +13,10 @@ export const movieGenreList: IList = {
   },
   properties: [
     {
-      property: "name", type: "title", label: "Nome",
+      property: "name", type: "title", label: "Nome", dataType: EDataType.NVARCHAR,
     },
     {
-      property: "description", type: "description", label: "Descrição",
+      property: "description", type: "description", label: "Descrição", isHtml: true, dataType: EDataType.LONGTEXT,
     },
   ],
   callsToActionMenu: [
@@ -47,5 +48,30 @@ export const movieGenreList: IList = {
         }
       },
     }
-  ]
+  ],
+  contracts: [
+    {
+      id: "moviesGenres",
+      endpoint: "/movie-genres",
+      actions: ["create", "get", "getById", "update", "delete"],
+      request : {
+        entity: "moviesGenres",
+        description: "",
+        fields: [
+          {
+            name: "name",
+            dataType: EDataType.TEXT,
+            isRequired: true,
+            maxSize: 255,
+          },
+          {
+            name: "description",
+            dataType: EDataType.TEXT,
+            isRequired: true,
+            maxSize: 255,
+          }
+        ]
+      }
+    }
+  ],
 };
