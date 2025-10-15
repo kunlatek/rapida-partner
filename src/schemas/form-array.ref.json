@@ -20,7 +20,7 @@
     "name": {
       "type": "string"
     },
-    "title": {
+    "label": {
       "type": "string"
     },
     "elements": {
@@ -32,6 +32,6 @@
   },
   "required": [
     "type",
-    "title"
+    "label"
   ]
 }

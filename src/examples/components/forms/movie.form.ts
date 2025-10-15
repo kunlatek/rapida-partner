@@ -5,33 +5,6 @@ export const movieForm: IForm = {
   title: "Gerenciar filme",
   userStory: `Como um usuário autorizado, eu quero usar o formulário de gerenciamento de filmes para cadastrar e editar filmes, incluindo a foto, o nome, a descrição, a data de lançamento, a pontuação no IMDb e os gêneros associados. Quero também ter a opção de adicionar e gerenciar episódios, incluindo seus títulos, descrições, datas de lançamento e personagens relacionados. Isso me permite manter um registro completo e detalhado do conteúdo audiovisual no sistema.`,
   componentType: "form",
-  contracts: [
-    {
-      id: "movies",
-      endpoint: "/movies",
-      actions: ["create", "update", "getById", "get", "delete"],
-      request: {
-        entity: "Movie",
-        description: "Represents a movie or TV series in the system.",
-        fields: [
-          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
-          { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
-          { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
-          { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
-          { name: "imdbRating", dataType: EDataType.DECIMAL, isRequired: true },
-          { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
-            entity: "MovieGenre",
-            connectionAttribute: "_id",
-            relationship: "many-to-many"
-          } },
-          { name: "link1", dataType: EDataType.NVARCHAR, isRequired: true },
-          { name: "link2", dataType: EDataType.NVARCHAR, isRequired: false },
-          { name: "link3", dataType: EDataType.NVARCHAR, isRequired: false },
-        ],
-      }
-    }
-  ],
   id: "movieForm",
   guards: "isAuthorized",
   elements: [
@@ -122,4 +95,55 @@ export const movieForm: IForm = {
       ],
     },
   ],
+  contracts: [
+    {
+      id: "movies",
+      endpoint: "/movies",
+      actions: ["create", "update", "getById", "get", "delete"],
+      request: {
+        entity: "Movie",
+        description: "Represents a movie or TV series in the system.",
+        fields: [
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
+          { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
+          { name: "imdbRating", dataType: EDataType.DECIMAL, isRequired: true },
+          { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+            entity: "MovieGenre",
+            connectionAttribute: "_id",
+            relationship: "many-to-many"
+          } },
+          { name: "link1", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "link2", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "link3", dataType: EDataType.NVARCHAR, isRequired: false },
+        ],
+      }
+    }
+  ],
+  flowChart: {
+    actors: [
+      {
+        name: "Usuário",
+        actionsWithElements: [
+          {
+            verb: "create",
+          },
+          {
+            verb: "update",
+          },
+          {
+            verb: "get",
+          },
+          {
+            verb: "getById",
+          },
+          {
+            verb: "delete",
+          }
+        ],
+      }
+    ]
+  }
 };

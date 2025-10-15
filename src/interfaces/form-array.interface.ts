@@ -5,7 +5,7 @@ import type { IBusinessRule } from "./project.interface";
 export interface IFormArray {
   type: "array";
   name: string;
-  title: string;
+  label: string;
   elements: IFormElement[];
   conditions?: IFormCondition[];
   todo?: string;

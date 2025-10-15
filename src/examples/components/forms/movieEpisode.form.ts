@@ -7,9 +7,9 @@ export const movieEpisodeForm: IForm = {
   id: "movieEpisodeForm",
   elements: [
     {
-      title: "Episódio",
+      label: "Episódio",
       name: "episodes",
-      type: "array",
+      type: EDataType.ARRAY,
       elements: [
         {
           label: "Título do episódio",

@@ -11,6 +11,7 @@ import type { IFormInput } from "./form-input.interface";
 import type { IFormSelect } from "./form-select.interface";
 import type { IFormTab } from "./form-tab.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { IActor, IFlowChart } from "./form-flowchart.interface";
 
 export interface IForm {
   componentType: "form";
@@ -30,6 +31,11 @@ export interface IForm {
     businessRules?: IBusinessRule[];
     userStory?: string;
   }[];
+  flowChart?: IFlowChart;
+}
+
+export interface IContract {
+  id: string;
   kanban?: {
     status: "toDo" | "inProgress" | "done";
     assigneesIds?: string[];

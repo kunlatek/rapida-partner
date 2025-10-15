@@ -234,6 +234,9 @@
         "required": ["id", "endpoint", "actions"]
       }
     },
+    "flowChart": {
+      "$ref": "form-flowchart.ref.json"
+    },
     "kanban": {
       "type": "object",
       "properties": {

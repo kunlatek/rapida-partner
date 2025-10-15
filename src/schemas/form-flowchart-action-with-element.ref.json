@@ -1,0 +1,29 @@
+{
+  "$id": "form-flowchart-action-with-element.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "verb": {
+      "type": "string",
+      "enum": [
+        "create",
+        "get",
+        "getById",
+        "update",
+        "delete",
+        "clone",
+        "sendEmail"
+      ]
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "$ref": "form-flowchart-element.ref.json"
+      }
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    }
+  },
+  "required": ["verb"]
+}

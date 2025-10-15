@@ -1,0 +1,14 @@
+{
+  "$id": "form-flowchart.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "actors": {
+      "type": "array",
+      "items": {
+        "$ref": "form-flowchart-actor.ref.json"
+      }
+    }
+  },
+  "required": ["actors"]
+}
