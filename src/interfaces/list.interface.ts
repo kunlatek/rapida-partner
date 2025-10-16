@@ -25,6 +25,8 @@ export interface IList {
         };
         dataType: EDataType;
         conditions?: IFormCondition[];
+        businessRules?: IBusinessRule[];
+        todo?: string;
     }[]; // properties taken from dataSource
     cardAsALink?: {
         link: string; // e.g.: "/user"

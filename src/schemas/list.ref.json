@@ -82,6 +82,12 @@
           },
           "conditions": {
             "$ref": "condition.ref.json"
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "todo": {
+            "type": "string"
           }
         },
         "required": ["property"]
