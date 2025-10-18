@@ -28,7 +28,7 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
-    "properties": {
+    "listItems": {
       "type": "array",
       "items": {
         "type": "object",
@@ -89,8 +89,7 @@
           "todo": {
             "type": "string"
           }
-        },
-        "required": ["property"]
+        }
       }
     },
     "cardAsALink": {

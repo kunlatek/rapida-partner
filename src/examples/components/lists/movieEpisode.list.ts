@@ -11,7 +11,7 @@ export const movieEpisodeList: IList = {
     paramType: "query",
     hasAuthentication: true,
   },
-  properties: [
+  listItems: [
     {
       property: "episodeTitle", type: "title", label: "Título", dataType: EDataType.NVARCHAR,
     },

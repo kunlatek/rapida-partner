@@ -11,7 +11,7 @@ export const characterList: IList = {
     paramType: "query",
     hasAuthentication: true,
   },
-  properties: [
+  listItems: [
     { label: "Nome", property: "characterName", type: "title", dataType: EDataType.NVARCHAR },
     { label: "Descrição", property: "characterDescription", type: "description", isHtml: true, dataType: EDataType.LONGTEXT },
   ],

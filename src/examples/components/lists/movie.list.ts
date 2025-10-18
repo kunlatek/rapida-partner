@@ -11,7 +11,7 @@ export const movieList: IList = {
     paramType: "query",
     hasAuthentication: true,
   },
-  properties: [
+  listItems: [
     {
       property: "pictureFile", type: "image", label: "Cartaz", dataType: EDataType.NVARCHAR,
     },

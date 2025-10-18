@@ -50,7 +50,15 @@ export interface IBusinessRule {
     description: string;
     subrules?: {
       description: string;
+      implementation?: {
+        type: "frontend" | "backend" | "both";
+        details: string;
+      };
     }[];
+    implementation?: {
+      type: "frontend" | "backend" | "both";
+      details: string;
+    };
   };
 }
 

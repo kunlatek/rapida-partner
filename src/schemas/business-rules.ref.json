@@ -11,6 +11,19 @@
           "description": {
             "type": "string"
           },
+          "implementation": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["frontend", "backend", "both"]
+              },
+              "details": {
+                "type": "string"
+              }
+            },
+            "required": ["type", "details"]
+          },
           "subrules": {
             "type": "array",
             "items": {
@@ -21,6 +34,19 @@
                   "properties": {
                     "description": {
                       "type": "string"
+                    },
+                    "implementation": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": ["frontend", "backend", "both"]
+                        },
+                        "details": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["type", "details"]
                     }
                   }
                 }
