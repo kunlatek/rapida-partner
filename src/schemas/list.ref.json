@@ -28,7 +28,7 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
-    "properties": {
+    "listItems": {
       "type": "array",
       "items": {
         "type": "object",
@@ -313,11 +313,14 @@
                     "enum": {
                       "type": "array",
                       "items": {
-                        "oneOf": [{
-                          "type": "string"
-                        }, {
-                          "type": "number"
-                        }]
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
                       }
                     },
                     "isUnique": {
@@ -415,12 +418,5 @@
       }
     }
   },
-  "required": [
-    "componentType",
-    "id",
-    "title",
-    "dataSource",
-    "properties",
-    "contracts"
-  ]
+  "required": ["componentType", "id", "title", "dataSource", "contracts"]
 }
