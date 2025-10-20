@@ -7,7 +7,7 @@ export const movieGenreList: IList = {
   title: "Lista de gêneros de filmes",
   guards: ["isAuthorized"],
   dataSource: {
-    endpoint: "/movies-genres",
+    endpoint: "/movie-genres",
     paramType: "query",
     hasAuthentication: true,
   },
@@ -38,7 +38,7 @@ export const movieGenreList: IList = {
           endpoint: "/movie-genre-list",
         },
         request: {
-          endpoint: "/movies-genres",
+          endpoint: "/movie-genres",
           verb: "delete",
           propertiesAsPathParam: ["_id"],
           dialog: {
@@ -51,11 +51,11 @@ export const movieGenreList: IList = {
   ],
   contracts: [
     {
-      id: "moviesGenres",
+      id: "movieGenres",
       endpoint: "/movie-genres",
       actions: ["create", "get", "getById", "update", "delete"],
       request : {
-        entity: "moviesGenres",
+        entity: "movieGenres",
         description: "",
         fields: [
           {

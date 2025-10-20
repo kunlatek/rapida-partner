@@ -25,11 +25,11 @@ export const movieGenreForm: IForm = {
   ],
   contracts: [
     {
-      id: "moviesGenres",
+      id: "movieGenres",
       endpoint: "/movie-genres",
       actions: ["create", "get", "getById", "update", "delete"],
       request : {
-        entity: "moviesGenres",
+        entity: "movieGenres",
         description: "",
         fields: [
           {

@@ -61,7 +61,7 @@ export const movieForm: IForm = {
               label: "Gêneros",
               name: "movieGenres",
               optionsApi: {
-                endpoint: "/api/movies-genres",
+                endpoint: "/api/movie-genres",
                 labelField: ["name"],
                 valueField: "_id",
                 paramsToFilter: ["name"],
