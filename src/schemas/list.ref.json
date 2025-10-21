@@ -179,7 +179,7 @@
                   },
                   "verb": {
                     "type": "string",
-                    "enum": ["get", "post", "put", "delete"]
+                    "enum": ["get", "post", "put", "softDelete"]
                   },
                   "dialog": {
                     "type": "object",
@@ -223,7 +223,8 @@
                 "get",
                 "getById",
                 "update",
-                "delete",
+                "softDelete",
+                "hardDelete",
                 "clone",
                 "sendEmail"
               ]
@@ -341,7 +342,8 @@
                           "get",
                           "getById",
                           "update",
-                          "delete",
+                          "softDelete",
+                          "hardDelete",
                           "clone",
                           "sendEmail"
                         ]

@@ -25,7 +25,7 @@ export interface IForm {
   contracts: {
     id: string;
     endpoint: string;
-    actions: ("create" | "get" | "getById" | "update" | "delete" | "clone" | "sendEmail")[];
+    actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
     request?: IContractRequest;
     conditions?: IFormCondition[];
     businessRules?: IBusinessRule[];
@@ -79,7 +79,7 @@ export interface IContractRequestField {
   isUnique?: boolean;
   uniqueComposedFields?: string[];
   defaultValue?: string | number | boolean;
-  actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "delete" | "clone")[];
+  actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "softDelete" | "hardDelete" | "clone")[];
 }
 
 interface IContractRequestFieldForeignKey {

@@ -48,7 +48,7 @@ export const movieList: IList = {
         },
         request: {
           endpoint: "/movies",
-          verb: "delete",
+          verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
             title: "Excluir conteúdo",
@@ -62,7 +62,7 @@ export const movieList: IList = {
     {
       id: "movies",
       endpoint: "/movies",
-      actions: ["create", "update", "getById", "get", "delete"],
+      actions: ["create", "update", "getById", "get", "softDelete"],
       request: {
         entity: "Movie",
         description: "Represents a movie or TV series in the system.",

@@ -51,7 +51,7 @@ export const movieEpisodeForm: IForm = {
     {
       id: "moviesEpisodes",
       endpoint: "/movies-episodes",
-      actions: ["create", "get", "getById", "update", "delete"],
+      actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
         entity: "MovieEpisode",
         description: "Represents an episode of a TV series or show.",

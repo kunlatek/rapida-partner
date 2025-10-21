@@ -10,7 +10,7 @@ export const characterForm: IForm = {
     {
       id: "characters",
       endpoint: "/characters",
-      actions: ["create", "get", "getById", "update", "delete"],
+      actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
         entity: "characters",
         description: "Represents a character in a story or narrative.",

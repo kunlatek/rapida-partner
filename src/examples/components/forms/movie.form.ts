@@ -99,7 +99,7 @@ export const movieForm: IForm = {
     {
       id: "movies",
       endpoint: "/movies",
-      actions: ["create", "update", "getById", "get", "delete"],
+      actions: ["create", "update", "getById", "get", "softDelete"],
       request: {
         entity: "Movie",
         description: "Represents a movie or TV series in the system.",
@@ -140,7 +140,7 @@ export const movieForm: IForm = {
             verb: "getById",
           },
           {
-            verb: "delete",
+            verb: "softDelete",
           }
         ],
       }

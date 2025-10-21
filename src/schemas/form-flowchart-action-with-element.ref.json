@@ -10,7 +10,8 @@
         "get",
         "getById",
         "update",
-        "delete",
+        "softDelete",
+        "hardDelete",
         "clone",
         "sendEmail"
       ]

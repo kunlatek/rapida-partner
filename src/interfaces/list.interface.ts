@@ -55,7 +55,7 @@ export interface IList {
         endpoint: string; // e.g.: "/user"
         propertiesAsQueryParam?: string[]; // if, for example, ["_id", "email"], then "/user?_id=value&email=value"
         propertiesAsPathParam?: string[]; // if, for example, ["_id", "email"], then "/user/<_id>/<email>"
-        verb: "get" | "post" | "put" | "delete";
+        verb: "get" | "post" | "put" | "softDelete" | "hardDelete";
         dialog?: {
           title: string;
           message: string;
@@ -71,7 +71,8 @@ export interface IList {
       | "get"
       | "getById"
       | "update"
-      | "delete"
+      | "softDelete"
+      | "hardDelete"
       | "clone"
       | "sendEmail"
     )[];

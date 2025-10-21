@@ -43,7 +43,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["create", "get", "getById", "update", "delete", "clone", "sendEmail"]
+              "enum": ["create", "get", "getById", "update", "softDelete", "hardDelete", "clone", "sendEmail"]
             }
           },
           "request": {
@@ -158,7 +158,8 @@
                           "get",
                           "getById",
                           "update",
-                          "delete",
+                          "softDelete",
+                          "hardDelete",
                           "clone",
                           "sendEmail"
                         ]

@@ -39,7 +39,7 @@ export const movieGenreList: IList = {
         },
         request: {
           endpoint: "/movie-genres",
-          verb: "delete",
+          verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
             title: "Excluir conteúdo",
@@ -53,7 +53,7 @@ export const movieGenreList: IList = {
     {
       id: "movieGenres",
       endpoint: "/movie-genres",
-      actions: ["create", "get", "getById", "update", "delete"],
+      actions: ["create", "get", "getById", "update", "softDelete"],
       request : {
         entity: "movieGenres",
         description: "",

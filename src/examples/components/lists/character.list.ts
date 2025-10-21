@@ -35,7 +35,7 @@ export const characterList: IList = {
         },
         request: {
           endpoint: "/characters",
-          verb: "delete",
+          verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
             title: "Excluir projeto",
