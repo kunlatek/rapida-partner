@@ -36,6 +36,7 @@ export interface IList {
     todo?: string;
   }[]; // properties taken from dataSource
   listFilters?: IFormElement[]; // filters to be applied on dataSource
+  listActions?: IFormElement[]; // actions that can be performed on the list
   cardAsALink?: {
     link: string; // e.g.: "/user"
     propertiesAsQueryParam?: string[]; // if, for example, ["_id", "email"], then "/user?_id=value&email=value"

@@ -203,6 +203,12 @@
         "required": ["icon", "label", "action"]
       }
     },
+    "listActions": {
+      "$ref": "form-one-of.ref.json"
+    },
+    "listFilters": {
+      "$ref": "form-one-of.ref.json"
+    },
     "contracts": {
       "type": "array",
       "items": {
@@ -418,9 +424,6 @@
         },
         "required": ["id", "endpoint", "actions"]
       }
-    },
-    "listFilters": {
-      "$ref": "form-one-of.ref.json"
     }
   },
   "required": ["componentType", "id", "title", "dataSource", "contracts"]
