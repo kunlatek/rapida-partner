@@ -80,6 +80,7 @@ export interface IContractRequestField {
   uniqueComposedFields?: string[];
   defaultValue?: string | number | boolean;
   actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "softDelete" | "hardDelete" | "clone")[];
+  businessRules?: IBusinessRule[];
 }
 
 interface IContractRequestFieldForeignKey {

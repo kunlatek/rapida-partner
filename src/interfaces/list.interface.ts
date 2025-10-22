@@ -1,7 +1,7 @@
 import type { EDataType } from "../enums/form.enum";
 import type { IFormCondition } from "./condition.interface";
 import type { IApiRequest } from "./form-input.interface";
-import type { IContractRequest } from "./form.interface";
+import type { IContractRequest, IFormElement } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IList {
@@ -35,6 +35,7 @@ export interface IList {
     businessRules?: IBusinessRule[];
     todo?: string;
   }[]; // properties taken from dataSource
+  listFilters?: IFormElement[]; // filters to be applied on dataSource
   cardAsALink?: {
     link: string; // e.g.: "/user"
     propertiesAsQueryParam?: string[]; // if, for example, ["_id", "email"], then "/user?_id=value&email=value"

@@ -6,25 +6,6 @@ export const characterForm: IForm = {
   userStory: `Como um usuário autorizado, quero usar o formulário de personagem para criar e editar personagens, fornecendo um nome, uma descrição, um tipo (como "protagonista" ou "antagonista") e um gênero para cada um. Isso me permite manter um registro detalhado e organizado dos personagens no sistema.`,
   componentType: "form",
   id: "characterForm",
-  contracts: [
-    {
-      id: "characters",
-      endpoint: "/characters",
-      actions: ["create", "get", "getById", "update", "softDelete"],
-      request: {
-        entity: "characters",
-        description: "Represents a character in a story or narrative.",
-        fields: [
-          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
-          { name: "characterName", dataType: EDataType.NVARCHAR, isRequired: true },
-          { name: "characterImage", dataType: EDataType.NVARCHAR, isRequired: false },
-          { name: "characterDescription", dataType: EDataType.LONGTEXT, isRequired: false },
-          { name: "characterType", dataType: EDataType.NVARCHAR, enum: ["protagonist", "antagonist", "hero", "villain", "sidekick", "supporting"], isRequired: false },
-          { name: "characterGender", dataType: EDataType.NVARCHAR, enum: ["male", "female", "other"], isRequired: false },
-        ],
-      },
-    }
-  ],
   guards: "isAuthorized",
   elements: [
     {
@@ -76,6 +57,25 @@ export const characterForm: IForm = {
         { value: "female", label: "Feminino" },
         { value: "other", label: "Outro" },
       ],
+    }
+  ],
+  contracts: [
+    {
+      id: "characters",
+      endpoint: "/characters",
+      actions: ["create", "get", "getById", "update", "softDelete"],
+      request: {
+        entity: "characters",
+        description: "Represents a character in a story or narrative.",
+        fields: [
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "characterName", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "characterImage", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "characterDescription", dataType: EDataType.LONGTEXT, isRequired: false },
+          { name: "characterType", dataType: EDataType.NVARCHAR, enum: ["protagonist", "antagonist", "hero", "villain", "sidekick", "supporting"], isRequired: false },
+          { name: "characterGender", dataType: EDataType.NVARCHAR, enum: ["male", "female", "other"], isRequired: false },
+        ],
+      },
     }
   ],
 };

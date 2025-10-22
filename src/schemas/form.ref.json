@@ -164,6 +164,9 @@
                           "sendEmail"
                         ]
                       }
+                    },
+                    "businessRules": {
+                      "$ref": "business-rules.ref.json"
                     }
                   },
                   "required": ["name", "dataType"]

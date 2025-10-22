@@ -66,7 +66,7 @@ export const movieForm: IForm = {
                 valueField: "_id",
                 paramsToFilter: ["name"],
                 paramType: "query",
-                relatedEntity: "MovieGenres"
+                relatedEntity: "MovieGenre"
               },
               isMultiple: true,
               isRequired: true,
@@ -91,6 +91,50 @@ export const movieForm: IForm = {
               dataType: EDataType.TEXT,
             },
           ],
+        },
+        {
+          id: "castTab",
+          title: "Elenco",
+          elements: [
+            {
+              label: "Ator / Atriz",
+              type: "array",
+              name: "actors",
+              elements: [
+                {
+                  label: "Ator",
+                  type: "autocomplete",
+                  dataType: EDataType.UNIQUEIDENTIFIER,
+                  name: "actorId",
+                  optionsApi: {
+                    endpoint: "/actors",
+                    labelField: ["name"],
+                    valueField: "_id",
+                    paramsToFilter: ["name"],
+                    paramType: "query",
+                    relatedEntity: "Actor"
+                  },
+                  isRequired: true,
+                },
+                {
+                  label: "Personagem",
+                  type: "autocomplete",
+                  dataType: EDataType.UNIQUEIDENTIFIER,
+                  name: "charactersId",
+                  isMultiple: true,
+                  optionsApi: {
+                    endpoint: "/characters",
+                    labelField: ["characterName"],
+                    valueField: "_id",
+                    paramsToFilter: ["characterName"],
+                    paramType: "query",
+                    relatedEntity: "Character"
+                  },
+                  isRequired: true,
+                },
+              ]
+            },
+          ]
         },
       ],
     },

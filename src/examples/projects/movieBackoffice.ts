@@ -2,6 +2,7 @@ import { DATABASE_PASSWORD } from "../../constants/secrets/database";
 import { DISCORD_WEBHOOK_URL, JWT_SECRET, SMTP_PASSWORD } from "../../constants/secrets/others";
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
 import type { IProject } from "../../interfaces/project.interface";
+import { actorModule } from "../modules/actor";
 import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
 
@@ -60,6 +61,7 @@ export const movieBackoffice: IProject = {
   },
   modules: [
     movieModule,
+    actorModule,
     characterModule,
   ],
   styles: [

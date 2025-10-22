@@ -37,9 +37,9 @@ export const movieEpisodeForm: IForm = {
           dataType: EDataType.TEXT,
           optionsApi: {
             endpoint: "/characters",
-            labelField: ["characterName"],
+            labelField: ["name"],
             valueField: "_id",
-            paramsToFilter: ["characterName"],
+            paramsToFilter: ["name"],
             paramType: "query",
             relatedEntity: "Character",
           },

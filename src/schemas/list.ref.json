@@ -418,6 +418,9 @@
         },
         "required": ["id", "endpoint", "actions"]
       }
+    },
+    "listFilters": {
+      "$ref": "form-one-of.ref.json"
     }
   },
   "required": ["componentType", "id", "title", "dataSource", "contracts"]
