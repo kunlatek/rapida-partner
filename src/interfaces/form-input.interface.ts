@@ -29,6 +29,7 @@ export interface IFormInput {
   maskRegex?: string;
   suffix?: string;
   prefix?: string;
+  defaultValue?: string | number | boolean;
   elementDescription?: string;
 }
 

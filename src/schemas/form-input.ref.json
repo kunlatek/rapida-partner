@@ -73,6 +73,9 @@
     "prefix": {
       "type": "string"
     },
+    "defaultValue": {
+      "type": ["string", "number", "null"]
+    },
     "elementDescription": {
       "type": "string"
     }
