@@ -1,0 +1,98 @@
+{
+  "$id": "project-style-theme.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string" },
+        "primaryContrast": { "type": "string" },
+        "secondary": { "type": "string" },
+        "secondaryContrast": { "type": "string" },
+        "tertiary": { "type": "string" },
+        "tertiaryContrast": { "type": "string" },
+        "quaternary": { "type": "string" },
+        "quaternaryContrast": { "type": "string" },
+        "background": { "type": "string" },
+        "error": { "type": "string" },
+        "success": { "type": "string" },
+        "warning": { "type": "string" },
+        "info": { "type": "string" }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fontFamily": { "type": "string" },
+        "fontSize": { "type": "string" }
+      }
+    },
+    "borders": {
+      "type": "object",
+      "properties": {
+        "radius": { "type": "string" }
+      }
+    },
+    "shadows": {
+      "type": "object",
+      "properties": {
+        "boxShadow": { "type": "string" }
+      }
+    },
+    "spacing": { "type": "string" },
+    "maxWidth": { "type": "string" },
+    "headerHeight": { "type": "string" },
+    "footerHeight": { "type": "string" },
+    "components": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "background": { "type": "string" },
+            "text": { "type": "string" },
+            "border": { "type": "string" },
+            "borderRadius": { "type": "string" },
+            "focusBorder": { "type": "string" },
+            "placeholder": { "type": "string" },
+            "width": { "type": "string" }
+          }
+        },
+        "button": {
+          "type": "object",
+          "properties": {
+            "background": { "type": "string" },
+            "text": { "type": "string" },
+            "border": { "type": "string" },
+            "borderRadius": { "type": "string" },
+            "hoverBackground": { "type": "string" },
+            "hoverText": { "type": "string" },
+            "hoverBorder": { "type": "string" },
+            "disabledBackground": { "type": "string" },
+            "disabledText": { "type": "string" },
+            "disabledBorder": { "type": "string" }
+          }
+        },
+        "label": {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string" },
+            "fontSize": { "type": "string" },
+            "fontWeight": { "type": "string" }
+          }
+        },
+        "fieldset": {
+          "type": "object",
+          "properties": {
+            "border": { "type": "string" },
+            "borderRadius": { "type": "string" },
+            "legendText": { "type": "string" },
+            "legendFontSize": { "type": "string" },
+            "legendFontWeight": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

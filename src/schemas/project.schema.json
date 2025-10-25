@@ -38,6 +38,9 @@
     },
     "modules": {
       "$ref": "module.ref.json"
+    },
+    "flowChart": {
+      "$ref": "form-flowchart.ref.json"
     }
   },
   "required": ["id", "title", "description"]
