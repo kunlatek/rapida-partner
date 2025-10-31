@@ -29,7 +29,7 @@ export interface IProject {
   backend?: IBackend;
   modules?: IModule[];
   styles?: IStyle[];
-  flowChart: IFlowChart;
+  flowChart?: IFlowChart;
 }
 
 interface IFrontend {
