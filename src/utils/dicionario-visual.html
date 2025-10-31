@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Componentes Visuais (Versão 5 - Com Exemplos)</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        padding: 24px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3 {
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+      h2 {
+        margin-top: 40px;
+        text-align: left;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin-top: 0;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+        font-size: 1.1em;
+        text-align: left;
+      }
+
+      /* --- Contêineres de Grid (Para o Dicionário) --- */
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .container.containers {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
+      .container.logic,
+      .container.list-logic {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      .container.list-props {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      /* --- Card Genérico (Para o Dicionário) --- */
+      .element-card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        /* Garante que todos os cards no dicionário tenham a mesma altura */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* --- [INÍCIO] Seção: Estilos de Componentes (Dicionário) --- */
+
+      .label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #555;
+      }
+      .box {
+        border: 2px solid #333;
+        background: #fff;
+        padding: 0 12px;
+        height: 44px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+      }
+      .placeholder {
+        color: #a0a0a0;
+        font-style: italic;
+      }
+      .icon-symbol {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #333;
+      }
+      .label-input {
+        color: #2a8a2a;
+      }
+      .label-input-data {
+        color: #0d6efd;
+      }
+      .label-input-arquivo {
+        color: #2a8a2a;
+      }
+      .label-select {
+        color: #d9534f;
+      }
+      .label-select-multi {
+        color: #f0ad4e;
+      }
+      .label-autocomplete {
+        color: #d63384;
+      }
+      .label-autocomplete-multi {
+        color: #0d6efd;
+      }
+      .label-array {
+        color: #d63384;
+      }
+      .icon-data {
+        color: #0d6efd;
+      }
+      .icon-arquivo {
+        color: #2a8a2a;
+      }
+      .icon-senha {
+        letter-spacing: 2px;
+      }
+      .icon-select {
+        color: #d9534f;
+        font-size: 1.5em;
+      }
+      .icon-select-multi {
+        color: #f0ad4e;
+        font-size: 1.5em;
+        line-height: 1;
+      }
+      .icon-autocomplete {
+        color: #d63384;
+        font-size: 1.5em;
+      }
+      .icon-autocomplete-multi {
+        color: #0d6efd;
+        font-size: 1.5em;
+      }
+      .box-button {
+        background-color: #555;
+        color: #ffffff;
+        font-weight: bold;
+        justify-content: center;
+        border-color: #555;
+      }
+      .box-button .placeholder {
+        color: #fff;
+        font-style: normal;
+      }
+
+      .box-container {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        justify-content: center;
+        height: 40px;
+        padding: 10px 12px;
+        border-style: dashed;
+      }
+      .box-array {
+        background-color: #333;
+        color: white;
+        border-color: #888;
+      }
+      .box-fieldset {
+        background-color: #eaf0e6;
+        color: #5a6352;
+        border-color: #9eac8e;
+      }
+      .box-tab {
+        background-color: #fffaf0;
+        color: #c58d2a;
+        border-color: #f0ad4e;
+      }
+      .box-tab-title {
+        background-color: #f7f3d6;
+        border: 2px solid #f0ad4e;
+        color: #c58d2a;
+      }
+      .icon-tab-star {
+        color: #d9534f;
+        font-size: 1.4em;
+      }
+
+      .box-meta {
+        padding: 12px;
+        border-radius: 8px;
+        border-width: 3px;
+        border-style: dashed;
+        background-color: #fff;
+      }
+      .box-meta pre {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.1em;
+        margin: 0;
+        line-height: 1.6;
+        font-weight: 600;
+      }
+      .box-form-wrapper {
+        border-color: #777;
+        color: #333;
+      }
+      .box-business-rules {
+        border-color: #d9534f;
+        color: #a94442;
+      }
+      .box-conditions {
+        border-color: #0d6efd;
+        color: #0a58ca;
+      }
+
+      /* --- Estilos de Lista (Dicionário) --- */
+      .box-list-wrapper {
+        border-color: #198754;
+        color: #146c43;
+      }
+      .box-datasource {
+        border-color: #6f42c1;
+        color: #58359a;
+      }
+      .box-list-action {
+        border-color: #fd7e14;
+        color: #c5620f;
+      }
+
+      .list-item-image {
+        width: 100%;
+        height: 80px;
+        background-color: #eee;
+        border: 2px dashed #aaa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: #888;
+        border-radius: 4px;
+      }
+      .list-item-prop {
+        border: 2px dashed #ddd;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: #fcfcfc;
+        text-align: center;
+      }
+      .list-item-prop.type-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+        border-color: #aaa;
+      }
+      .list-item-prop.type-subtitle {
+        font-size: 0.9em;
+        color: #666;
+        border-color: #ccc;
+      }
+      .list-item-prop.type-description {
+        font-size: 1em;
+        color: #444;
+        border-color: #ddd;
+        border-style: dotted;
+      }
+      .list-item-menu {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #555;
+        padding: 10px;
+        text-align: center;
+        border: 2px dashed #aaa;
+        border-radius: 4px;
+      }
+
+      /* --- [FIM] Seção: Estilos de Componentes (Dicionário) --- */
+
+      /* --- [NOVO] Estilos para Exemplos de Documentação --- */
+      .documentation-example {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 24px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Espaçamento entre todos os elementos */
+      }
+
+      /* Estilo para um item de formulário dentro do exemplo */
+      .example-item {
+        background-color: #f9f9f9;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 16px;
+      }
+
+      /* Estilo para containers (fieldset, array, tab) para mostrar aninhamento */
+      .example-container-content {
+        padding-left: 24px;
+        border-left: 3px solid #f0ad4e; /* Amarelo/Laranja */
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Espaçamento entre itens dentro de um container */
+      }
+
+      /* Cor da borda específica para cada container */
+      .container-fieldset .example-container-content {
+        border-color: #9eac8e; /* Verde Oliva */
+      }
+      .container-array .example-container-content {
+        border-color: #d63384; /* Rosa */
+      }
+
+      /* Estilo para um item de lista no exemplo */
+      .example-list-item-card {
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        background-color: #fdfdfd;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .note {
+        font-size: 0.95em;
+        color: #555;
+        background-color: #fef9e7;
+        padding: 12px;
+        border: 1px solid #f1c40f;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dicionário Visual de Componentes</h1>
+    <p style="text-align: center; max-width: 800px; margin: auto">
+      Use os blocos abaixo como uma "paleta de ferramentas" para construir seus
+      exemplos de documentação. Os exemplos reais devem seguir o padrão linear
+      "de cima para baixo", como mostrado no final desta página.
+    </p>
+
+    <h2>Campos de Formulário (IForm)</h2>
+    <div class="container">
+      <div class="element-card">
+        <h3>Input (Texto Padrão)</h3>
+        <label class="label label-input">Rótulo do input</label>
+        <div class="box">
+          <span class="placeholder">Placeholder para apresentar</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Input (Data)</h3>
+        <label class="label label-input-data">Rótulo do input de data*</label>
+        <div class="box">
+          <span class="placeholder"></span>
+          <span class="icon-symbol icon-data">[CAL]</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Input (Arquivo)</h3>
+        <label class="label label-input-arquivo"
+          >Rótulo de input de arquivo</label
+        >
+        <div class="box">
+          <span class="placeholder"></span>
+          <span class="icon-symbol icon-arquivo">[ ⇪ ]</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Input (Senha)</h3>
+        <label class="label">Rótulo de input de senha</label>
+        <div class="box">
+          <span class="placeholder"></span>
+          <span class="icon-symbol icon-senha">[***]</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Input (Número)</h3>
+        <label class="label">Rótulo de input de número</label>
+        <div class="box">
+          <span class="placeholder"></span>
+          <span class="icon-symbol icon-numero">[123]</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Button</h3>
+        <label class="label">Rótulo do button</label>
+        <div class="box box-button">
+          <span class="placeholder">Placeholder para apresentar</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Select (Simples)</h3>
+        <label class="label label-select">Rótulo do select*</label>
+        <div class="box">
+          <span class="placeholder">Placeholder para apresentar</span>
+          <span class="icon-symbol icon-select">▼</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Select (Múltiplo)</h3>
+        <label class="label label-select-multi"
+          >Rótulo do select múltiplo*</label
+        >
+        <div class="box">
+          <span class="placeholder">Placeholder para apresentar</span>
+          <span class="icon-symbol icon-select-multi">≡</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Autocomplete (Simples)</h3>
+        <label class="label label-autocomplete">Rótulo do autocomplete*</label>
+        <div class="box">
+          <span class="placeholder">Placeholder para apresentar</span>
+          <span class="icon-symbol icon-autocomplete">⌕</span>
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Autocomplete (Múltiplo)</h3>
+        <label class="label label-autocomplete-multi"
+          >Rótulo do autocomplete múltiplo</label
+        >
+        <div class="box">
+          <span class="placeholder">Placeholder para apresentar</span>
+          <span class="icon-symbol icon-autocomplete-multi">⌕+</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Elementos de Container (IForm)</h2>
+    <div class="container containers">
+      <div class="element-card">
+        <h3>Fieldset (Agrupador)</h3>
+        <label class="label">Título do fieldset</label>
+        <div class="box box-container box-fieldset">[ → FIELDSET BEGIN ]</div>
+        <div class="box box-container box-fieldset" style="margin-top: 10px">
+          [ ← FIELDSET END ]
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Array (Itens Repetidos)</h3>
+        <label class="label label-array">Adicionar item</label>
+        <div class="box box-container box-array">[ ↓ ARRAY BEGIN ]</div>
+        <div class="box box-container box-array" style="margin-top: 10px">
+          [ ↑ ARRAY END ]
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Tab (Container Pai)</h3>
+        <label class="label">(Wrapper de Abas)</label>
+        <div class="box box-container box-tab">[ ✦ TAB BEGIN ]</div>
+        <div class="box box-container box-tab" style="margin-top: 10px">
+          [ TAB END ✦ ]
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Tab (Aba Individual)</h3>
+        <label class="label">(Botão da Aba)</label>
+        <div class="box box-tab-title">
+          <span class="icon-symbol icon-tab-star">★</span>
+          <span>Título da tab</span>
+          <span class="icon-symbol icon-tab-star"></span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Elementos de Lógica e Metadados (Comuns)</h2>
+    <div class="container logic">
+      <div class="element-card">
+        <h3>Componente (Form)</h3>
+        <div class="box-meta box-form-wrapper">
+          <pre>
+componentType: form
+title: Exemplo de formulário</pre
+          >
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Regras de Negócio (IBusinessRule[])</h3>
+        <div class="box-meta box-business-rules">
+          <pre>
+rule: Regra 1,
+rule: Regra 2,
+subrule: Subregra 2.1
+rule: Regra 3</pre
+          >
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Condições (IFormCondition[])</h3>
+        <div class="box-meta box-conditions">
+          <pre>
+conditionType: form
+key: CampoDoFormulario
+value: valor esperado
+comparisonOperator: !==</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <h2>Componentes de Lista (IList)</h2>
+    <div class="container list-logic">
+      <div class="element-card">
+        <h3>Componente (List)</h3>
+        <div class="box-meta box-list-wrapper">
+          <pre>
+componentType: list
+title: Exemplo de Lista</pre
+          >
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Fonte de Dados (dataSource)</h3>
+        <div class="box-meta box-datasource">
+          <pre>
+dataSource: {
+  endpoint: "/api/items",
+  paramType: "query"
+}</pre
+          >
+        </div>
+      </div>
+      <div class="element-card">
+        <h3>Ação: Card Clicável (cardAsALink)</h3>
+        <div class="box-meta box-list-action">
+          <pre>
+cardAsALink: {
+  link: "/items/detalhe",
+  propertiesAsPathParam: ["_id"]
+}</pre
+          >
+        </div>
+      </div>
+    </div>
+
+    <h3>Propriedades e Ações do Template (IList)</h3>
+    <div class="container list-props">
+      <div class="element-card">
+        <h4>Propriedade: Imagem</h4>
+        <div class="list-item-image">[IMG]</div>
+        <pre style="font-size: 0.8em; margin-top: 10px">
+type: "image"
+property: "urlDaImagem"</pre
+        >
+      </div>
+      <div class="element-card">
+        <h4>Propriedade: Título</h4>
+        <div class="list-item-prop type-title">Título do Item</div>
+        <pre style="font-size: 0.8em; margin-top: 10px">
+type: "title"
+property: "nome"</pre
+        >
+      </div>
+      <div class="element-card">
+        <h4>Propriedade: Subtítulo</h4>
+        <div class="list-item-prop type-subtitle">Subtítulo do Item</div>
+        <pre style="font-size: 0.8em; margin-top: 10px">
+type: "subtitle"
+property: "email"</pre
+        >
+      </div>
+      <div class="element-card">
+        <h4>Propriedade: Descrição</h4>
+        <div class="list-item-prop type-description">
+          Este é um texto de descrição...
+        </div>
+        <pre style="font-size: 0.8em; margin-top: 10px">
+type: "description"
+property: "detalhes"</pre
+        >
+      </div>
+      <div class="element-card">
+        <h4>Ação: Menu (callsToActionMenu)</h4>
+        <div class="list-item-menu">[ ⋮ ]</div>
+        <pre style="font-size: 0.8em; margin-top: 10px">
+label: "Editar"
+icon: "pencil"
+action: { ... }
+
+label: "Excluir"
+icon: "delete"
+action: { ... }</pre
+        >
+      </div>
+    </div>
+
+    <h2 style="margin-top: 60px; border-color: #d9534f; color: #d9534f">
+      Exemplo de Documentação: Formulário (IForm)
+    </h2>
+
+    <div class="documentation-example">
+      <div class="note">
+        <strong>Instrução:</strong> Monte seu formulário assim. A ordem "de cima
+        para baixo" e o recuo (aninhamento) deixam a hierarquia dos elementos
+        perfeitamente clara.
+      </div>
+
+      <div class="box-meta box-form-wrapper">
+        <pre>
+componentType: form
+title: Formulário de Personagem</pre
+        >
+      </div>
+
+      <div class="box-meta box-business-rules">
+        <pre>
+rule: O nome do personagem é obrigatório.
+rule: O personagem deve pertencer a um gênero.</pre
+        >
+      </div>
+
+      <div class="box box-container box-tab">[ ✦ TAB BEGIN ]</div>
+
+      <div class="example-container-content container-tab">
+        <div class="box box-tab-title">
+          <span class="icon-symbol icon-tab-star">★</span>
+          <span>Dados Principais</span>
+          <span class="icon-symbol icon-tab-star"></span>
+        </div>
+
+        <div class="example-container-content">
+          <div class="example-item">
+            <label class="label label-input">Nome do Personagem*</label>
+            <div class="box">
+              <span class="placeholder">Ex: Aragorn</span>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <label class="label label-autocomplete">Gênero*</label>
+            <div class="box">
+              <span class="placeholder">Buscar gênero...</span>
+              <span class="icon-symbol icon-autocomplete">⌕</span>
+            </div>
+          </div>
+
+          <div class="example-item container-fieldset">
+            <label class="label">Atributos</label>
+            <div class="box box-container box-fieldset">
+              [ → FIELDSET BEGIN ]
+            </div>
+
+            <div class="example-container-content">
+              <div class="example-item">
+                <label class="label">Força</label>
+                <div class="box">
+                  <span class="placeholder"></span>
+                  <span class="icon-symbol icon-numero">[123]</span>
+                </div>
+              </div>
+              <div class="example-item">
+                <label class="label">Destreza</label>
+                <div class="box">
+                  <span class="placeholder"></span>
+                  <span class="icon-symbol icon-numero">[123]</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="box box-container box-fieldset">[ ← FIELDSET END ]</div>
+          </div>
+        </div>
+
+        <div class="box box-tab-title">
+          <span class="icon-symbol icon-tab-star">★</span>
+          <span>Inventário</span>
+          <span class="icon-symbol icon-tab-star"></span>
+        </div>
+
+        <div class="example-container-content">
+          <div class="example-item container-array">
+            <label class="label label-array">Adicionar Item</label>
+            <div class="box box-container box-array">[ ↓ ARRAY BEGIN ]</div>
+
+            <div class="example-container-content">
+              <div class="example-item">
+                <label class="label label-input">Nome do Item</label>
+                <div class="box">
+                  <span class="placeholder">Ex: Espada</span>
+                </div>
+              </div>
+              <div class="example-item">
+                <label class="label label-input-arquivo">Ícone do Item</label>
+                <div class="box">
+                  <span class="placeholder"></span>
+                  <span class="icon-symbol icon-arquivo">[ ⇪ ]</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="box box-container box-array">[ ↑ ARRAY END ]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-container box-tab">[ TAB END ✦ ]</div>
+    </div>
+
+    <h2 style="margin-top: 60px; border-color: #198754; color: #198754">
+      Exemplo de Documentação: Lista (IList)
+    </h2>
+
+    <div class="documentation-example">
+      <div class="note">
+        <strong>Instrução:</strong> Monte sua lista assim. Comece com os
+        metadados (wrapper, datasource, etc.) e depois defina o "Template do
+        Item" empilhando as propriedades na ordem em que devem aparecer.
+      </div>
+
+      <div class="box-meta box-list-wrapper">
+        <pre>
+componentType: list
+title: Lista de Personagens</pre
+        >
+      </div>
+
+      <div class="box-meta box-datasource">
+        <pre>
+dataSource: {
+  endpoint: "/api/characters",
+  paramType: "query"
+}</pre
+        >
+      </div>
+
+      <div class="box-meta box-list-action">
+        <pre>
+cardAsALink: {
+  link: "/personagem-detalhe",
+  propertiesAsPathParam: ["_id"]
+}</pre
+        >
+      </div>
+
+      <div class_="example-item">
+        <h3>Template do Item (properties)</h3>
+        <div class="example-list-item-card">
+          <div class="element-card" style="padding: 10px">
+            <h4 style="margin: 0 0 10px 0; font-size: 1em; text-align: left">
+              Propriedade: Imagem
+            </h4>
+            <div class="list-item-image">[IMG]</div>
+            <pre style="font-size: 0.8em; margin-top: 10px">
+type: "image"
+property: "avatarUrl"</pre
+            >
+          </div>
+
+          <div class="element-card" style="padding: 10px">
+            <h4 style="margin: 0 0 10px 0; font-size: 1em; text-align: left">
+              Propriedade: Título
+            </h4>
+            <div class="list-item-prop type-title">Nome do Personagem</div>
+            <pre style="font-size: 0.8em; margin-top: 10px">
+type: "title"
+property: "name"</pre
+            >
+          </div>
+
+          <div class="element-card" style="padding: 10px">
+            <h4 style="margin: 0 0 10px 0; font-size: 1em; text-align: left">
+              Propriedade: Subtítulo
+            </h4>
+            <div class="list-item-prop type-subtitle">Classe do Personagem</div>
+            <pre style="font-size: 0.8em; margin-top: 10px">
+type: "subtitle"
+property: "class"</pre
+            >
+          </div>
+
+          <div class="element-card" style="padding: 10px">
+            <h4 style="margin: 0 0 10px 0; font-size: 1em; text-align: left">
+              Ação: Menu (callsToActionMenu)
+            </h4>
+            <div class="list-item-menu">[ ⋮ ]</div>
+            <pre style="font-size: 0.8em; margin-top: 10px">
+label: "Editar"
+icon: "pencil"
+action: { ... }
+
+label: "Excluir"
+icon: "delete"
+action: { ... }</pre
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

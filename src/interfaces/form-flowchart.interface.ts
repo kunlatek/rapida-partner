@@ -11,7 +11,7 @@ export interface IActor {
 }
 
 export interface IActionWithElement {
-  verb: "create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail";
+  verb: "create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail" | "use" | "generate" | "calculate" | "validate" | "approve" | "reject" | "test" | "deploy";
   elements?: IFlowChartElement[];
   businessRules?: IBusinessRule[];
 }

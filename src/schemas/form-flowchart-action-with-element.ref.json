@@ -13,7 +13,15 @@
         "softDelete",
         "hardDelete",
         "clone",
-        "sendEmail"
+        "sendEmail",
+        "use",
+        "generate",
+        "calculate",
+        "validate",
+        "approve",
+        "reject",
+        "test",
+        "deploy"
       ]
     },
     "elements": {
