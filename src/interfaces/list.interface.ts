@@ -12,6 +12,7 @@ export interface IList {
   guards?: string[];
   dataSource: IApiRequest;
   businessRules?: IBusinessRule[];
+  isListItemSelectable?: boolean;
   listItems: {
     property?: string; // property taken from dataSource response. e.g.: "email"
     label?: string; // label to property. e.g.: "E-mail"

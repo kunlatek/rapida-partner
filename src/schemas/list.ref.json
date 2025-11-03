@@ -28,6 +28,9 @@
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
+    "isListItemSelectable": {
+      "type": "boolean"
+    },
     "listItems": {
       "type": "array",
       "items": {

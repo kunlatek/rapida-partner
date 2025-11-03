@@ -34,6 +34,7 @@ export interface IFormButton {
     actionButtonType?: "submit" | "reset" | "link" | "apiRequest" | "modal";
     actionButtonApiRequest?: IApiRequest;
     actionButtonBusinessRules?: IBusinessRule[];
+    conditions: IFormCondition[];
   },
   link?: {
     url: string;

@@ -51,7 +51,7 @@
       "type": "object",
       "properties": {
         "url": { "type": "string" },
-        "openIn": { 
+        "openIn": {
           "type": "string",
           "enum": ["sameTab", "newTab", "newWindow"]
         }
@@ -61,7 +61,7 @@
       "type": "object",
       "properties": {
         "url": { "type": "string" },
-        "openIn": { 
+        "openIn": {
           "type": "string",
           "enum": ["sameTab", "newTab", "newWindow"]
         }
@@ -97,7 +97,8 @@
         "actionButtonApiRequest": {
           "$ref": "form-common-api-request.ref.json"
         },
-        "actionButtonBusinessRules": { "$ref": "business-rules.ref.json" }
+        "actionButtonBusinessRules": { "$ref": "business-rules.ref.json" },
+        "conditions": { "$ref": "condition.ref.json" }
       },
       "required": ["id", "title", "modal"]
     },
