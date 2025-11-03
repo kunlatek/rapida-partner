@@ -22,7 +22,8 @@ export interface IList {
       | "video"
       | "image"
       | "images"
-      | "icon";
+      | "icon"
+      | "badge";
     isHtml?: boolean;
     isLink?: boolean;
     isTimestamp?: boolean;
