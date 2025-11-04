@@ -67,6 +67,36 @@
         }
       }
     },
+    "toast": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "icon": { "type": "string" },
+        "size": {
+          "type": "string",
+          "enum": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl",
+            "6xl",
+            "7xl"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["success", "error", "warning", "info"]
+        },
+        "businessRules": { "$ref": "business-rules.ref.json" },
+        "conditions": { "$ref": "condition.ref.json" }
+      }
+    },
     "modal": {
       "type": "object",
       "properties": {

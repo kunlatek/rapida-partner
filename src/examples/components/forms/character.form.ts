@@ -15,7 +15,6 @@ export const characterForm: IForm = {
       name: "characterName",
       isRequired: true,
     },
-    // file - Foto do personagem
     {
       label: "Foto do personagem",
       type: "file",
@@ -46,6 +45,35 @@ export const characterForm: IForm = {
         { value: "sidekick", label: "Ajudante" },
         { value: "supporting", label: "Secundário" },
       ],
+    },
+    {
+      type: "select",
+      label: "Raça",
+      name: "characterBreed",
+      dataType: EDataType.TEXT,
+      options: [
+        { value: "human", label: "Humana", isSelected: true, },
+        { value: "other", label: "Outra" },
+      ],
+    },
+    {
+      label: "Outra raça",
+      name: "characterOtherBreed",
+      type: "input",
+      dataType: EDataType.NVARCHAR,
+      isRequired: true,
+      conditions: [
+        {
+          type: "form",
+          elements: [
+            {
+              key: "characterBreed",
+              value: "other",
+              comparisonOperator: "==="
+            }
+          ]
+        }
+      ]
     },
     {
       type: "select",
