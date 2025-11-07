@@ -61,6 +61,12 @@
             "type": "string",
             "$ref": "types-datatype.ref.json"
           },
+          "isMultiple": {
+            "type": "boolean"
+          },
+          "isExpansible": {
+            "type": "boolean"
+          },
           "isHtml": {
             "type": "boolean"
           },
@@ -202,6 +208,15 @@
               }
             },
             "required": ["link"]
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "conditions": {
+            "$ref": "condition.ref.json"
+          },
+          "todo": {
+            "type": "string"
           }
         },
         "required": ["icon", "label", "action"]

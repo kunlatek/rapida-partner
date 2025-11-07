@@ -98,7 +98,7 @@ export const movieForm: IForm = {
           elements: [
             {
               label: "Ator / Atriz",
-              type: "array",
+              type: EDataType.ARRAY,
               name: "actors",
               elements: [
                 {

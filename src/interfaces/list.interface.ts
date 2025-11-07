@@ -33,6 +33,8 @@ export interface IList {
       usePropertyAsQuery?: boolean; // if true then "/user/<email>"
     };
     dataType: EDataType;
+    isMultiple?: boolean;
+    isExpansible?: boolean;
     conditions?: IFormCondition[];
     businessRules?: IBusinessRule[];
     todo?: string;
@@ -66,6 +68,9 @@ export interface IList {
         };
       };
     };
+    businessRules?: IBusinessRule[];
+    conditions?: IFormCondition[];
+    todo?: string;
   }[];
   contracts: {
     id: string;
