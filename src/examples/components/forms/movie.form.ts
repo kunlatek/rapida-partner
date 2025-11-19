@@ -59,7 +59,7 @@ export const movieForm: IForm = {
               type: "autocomplete",
               dataType: EDataType.TEXT,
               label: "Gêneros",
-              name: "movieGenres",
+              name: "movieGenresId",
               optionsApi: {
                 endpoint: "/api/movie-genres",
                 labelField: ["name"],
