@@ -5,6 +5,7 @@ import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IForm } from "./form.interface";
+import type { IInfrastructure } from "./infrastructure.interface";
 import type { IDashboard } from "./layout-dashboard.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
@@ -18,15 +19,16 @@ export interface IProject {
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
   flow:
-    | "backofficeByInvitationWithoutPermissions"
-    | "backofficeByInvitationAndPermissionsByComponent"
-    | "backofficeOpenedWithoutPermissions"
-    | "backofficeOpenedAndPermissionsByComponent"
-    | "marketplace"
-    | "landingPage"
-    | "socialNetwork";
+  | "backofficeByInvitationWithoutPermissions"
+  | "backofficeByInvitationAndPermissionsByComponent"
+  | "backofficeOpenedWithoutPermissions"
+  | "backofficeOpenedAndPermissionsByComponent"
+  | "marketplace"
+  | "landingPage"
+  | "socialNetwork";
   frontend?: IFrontend;
   backend?: IBackend;
+  infrastructure?: IInfrastructure;
   modules?: IModule[];
   styles?: IStyle[];
   flowChart?: IFlowChart;

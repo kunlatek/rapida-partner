@@ -36,6 +36,9 @@
     "backend": {
       "$ref": "backend.ref.json"
     },
+    "infrastructure": {
+      "$ref": "infrastructure.ref.json"
+    },
     "modules": {
       "$ref": "module.ref.json"
     },

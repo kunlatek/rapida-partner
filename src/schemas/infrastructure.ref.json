@@ -1,0 +1,121 @@
+{
+  "$id": "infrastructure.ref.json",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "enum": ["aws", "gcp", "azure", "hostinger", "custom"]
+    },
+    "region": { "type": "string" },
+    "resourcePrefix": { "type": "string" },
+    "stateManagement": {
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["local", "remote"] },
+        "bucketName": { "type": "string" }
+      },
+      "required": ["strategy"]
+    },
+    "dns": {
+      "type": "object",
+      "properties": {
+        "rootDomain": { "type": "string" },
+        "subdomain": { "type": "string" },
+        "manageZone": { "type": "boolean" }
+      },
+      "required": ["rootDomain"]
+    },
+    "compute": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["serverless", "container", "vm"]
+        },
+        "size": {
+          "type": "string",
+          "enum": ["nano", "micro", "small", "medium", "large", "xlarge"]
+        },
+        "scaling": {
+          "type": "object",
+          "properties": {
+            "minInstances": { "type": "number" },
+            "maxInstances": { "type": "number" }
+          }
+        }
+      },
+      "storage": {
+        "type": "object",
+        "properties": {
+          "frontendStrategy": {
+            "type": "string",
+            "enum": ["bucket_static", "container"]
+          },
+          "assetStorage": { "type": "boolean" }
+        }
+      },
+      "database": {
+        "type": "object",
+        "properties": {
+          "provision": { "type": "boolean" },
+          "tier": {
+            "type": "string",
+            "enum": ["development", "production"]
+          }
+        },
+        "required": ["provision"]
+      },
+      "credentials": {
+        "type": "object",
+        "properties": {
+          "aws": {
+            "type": "object",
+            "properties": {
+              "accessKeyId": { "type": "string" },
+              "secretAccessKey": { "type": "string" }
+            },
+            "required": ["accessKeyId", "secretAccessKey"]
+          },
+          "gcp": {
+            "type": "object",
+            "properties": {
+              "projectId": { "type": "string" },
+              "clientEmail": { "type": "string" },
+              "privateKey": { "type": "string" }
+            },
+            "required": ["projectId", "clientEmail", "privateKey"]
+          },
+          "azure": {
+            "type": "object",
+            "properties": {
+              "subscriptionId": { "type": "string" },
+              "tenantId": { "type": "string" },
+              "clientId": { "type": "string" },
+              "clientSecret": { "type": "string" }
+            },
+            "required": [
+              "subscriptionId",
+              "tenantId",
+              "clientId",
+              "clientSecret"
+            ]
+          },
+          "hostinger": {
+            "type": "object",
+            "properties": {
+              "apiToken": { "type": "string" }
+            },
+            "required": ["apiToken"]
+          }
+        }
+      }
+    },
+    "required": [
+      "provider",
+      "region",
+      "resourcePrefix",
+      "compute",
+      "credentials"
+    ]
+  }
+}
