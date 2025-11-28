@@ -59,36 +59,40 @@ export const movieBackoffice: IProject = {
     },
     baseUrl: "http://localhost:5173",
   },
-  // infrastructure: {
-  //   provider: "gcp",
-  //   region: "us-east1",
-  //   resourcePrefix: "movie-backoffice",
-  //   stateManagement: {
-  //     strategy: "remote",
-  //     bucketName: "rapida-terraform-state-store"
-  //   },
-  //   dns: {
-  //     rootDomain: "kunlatek.com",
-  //     subdomain: "backoffice",
-  //     manageZone: false
-  //   },
-  //   compute: {
-  //     strategy: "container",
-  //     size: "small",
-  //     scaling: {
-  //       minInstances: 1,
-  //       maxInstances: 2
-  //     }
-  //   },
-  //   credentials: {
-  //     gcp: {
-  //       projectId: "rapida-personal-projects",
-  //       clientEmail:
-  //         "rapida-personal@rapida-personal-projects.iam.gserviceaccount.com",
-  //       privateKey: STORAGE_PRIVATE_KEY,
-  //     },
-  //   },
-  // },
+  infrastructure: {
+    provider: "gcp",
+    region: "us-east1",
+    resourcePrefix: "movie-backoffice",
+    stateManagement: {
+      strategy: "remote",
+      bucketName: "rapida-terraform-state-store"
+    },
+    dns: {
+      rootDomain: "kunlatek.com",
+      subdomain: "backoffice",
+      manageZone: false
+    },
+    compute: {
+      strategy: "container",
+      size: "small",
+      scaling: {
+        minInstances: 1,
+        maxInstances: 2
+      }
+    },
+    credentials: {
+      gcp: {
+        projectId: "rapida-personal-projects",
+        clientEmail:
+          "rapida-personal@rapida-personal-projects.iam.gserviceaccount.com",
+        privateKey: STORAGE_PRIVATE_KEY,
+      },
+    },
+  },
+  "cicd": {
+    "provider": "github",
+    "strategy": "standard"
+  },
   modules: [
     movieModule,
     actorModule,

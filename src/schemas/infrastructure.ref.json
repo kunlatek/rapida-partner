@@ -43,79 +43,68 @@
             "maxInstances": { "type": "number" }
           }
         }
-      },
-      "storage": {
-        "type": "object",
-        "properties": {
-          "frontendStrategy": {
-            "type": "string",
-            "enum": ["bucket_static", "container"]
-          },
-          "assetStorage": { "type": "boolean" }
-        }
-      },
-      "database": {
-        "type": "object",
-        "properties": {
-          "provision": { "type": "boolean" },
-          "tier": {
-            "type": "string",
-            "enum": ["development", "production"]
-          }
-        },
-        "required": ["provision"]
-      },
-      "credentials": {
-        "type": "object",
-        "properties": {
-          "aws": {
-            "type": "object",
-            "properties": {
-              "accessKeyId": { "type": "string" },
-              "secretAccessKey": { "type": "string" }
-            },
-            "required": ["accessKeyId", "secretAccessKey"]
-          },
-          "gcp": {
-            "type": "object",
-            "properties": {
-              "projectId": { "type": "string" },
-              "clientEmail": { "type": "string" },
-              "privateKey": { "type": "string" }
-            },
-            "required": ["projectId", "clientEmail", "privateKey"]
-          },
-          "azure": {
-            "type": "object",
-            "properties": {
-              "subscriptionId": { "type": "string" },
-              "tenantId": { "type": "string" },
-              "clientId": { "type": "string" },
-              "clientSecret": { "type": "string" }
-            },
-            "required": [
-              "subscriptionId",
-              "tenantId",
-              "clientId",
-              "clientSecret"
-            ]
-          },
-          "hostinger": {
-            "type": "object",
-            "properties": {
-              "apiToken": { "type": "string" }
-            },
-            "required": ["apiToken"]
-          }
-        }
       }
     },
-    "required": [
-      "provider",
-      "region",
-      "resourcePrefix",
-      "compute",
-      "credentials"
-    ]
-  }
+    "storage": {
+      "type": "object",
+      "properties": {
+        "frontendStrategy": {
+          "type": "string",
+          "enum": ["bucket_static", "container"]
+        },
+        "assetStorage": { "type": "boolean" }
+      }
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "provision": { "type": "boolean" },
+        "tier": {
+          "type": "string",
+          "enum": ["development", "production"]
+        }
+      },
+      "required": ["provision"]
+    },
+    "credentials": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "type": "object",
+          "properties": {
+            "accessKeyId": { "type": "string" },
+            "secretAccessKey": { "type": "string" }
+          },
+          "required": ["accessKeyId", "secretAccessKey"]
+        },
+        "gcp": {
+          "type": "object",
+          "properties": {
+            "projectId": { "type": "string" },
+            "clientEmail": { "type": "string" },
+            "privateKey": { "type": "string" }
+          },
+          "required": ["projectId", "clientEmail", "privateKey"]
+        },
+        "azure": {
+          "type": "object",
+          "properties": {
+            "subscriptionId": { "type": "string" },
+            "tenantId": { "type": "string" },
+            "clientId": { "type": "string" },
+            "clientSecret": { "type": "string" }
+          },
+          "required": ["subscriptionId", "tenantId", "clientId", "clientSecret"]
+        },
+        "hostinger": {
+          "type": "object",
+          "properties": {
+            "apiToken": { "type": "string" }
+          },
+          "required": ["apiToken"]
+        }
+      }
+    }
+  },
+  "required": ["provider", "region", "resourcePrefix", "compute", "credentials"]
 }

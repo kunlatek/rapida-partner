@@ -12,6 +12,11 @@ import type { IList } from "./list.interface";
 import type { IBackend } from "./project-backend.interface";
 import type { IStyle } from "./project-style.interface";
 
+export interface ICicd {
+  provider: 'github' | 'gitlab' | 'bitbucket';
+  strategy?: 'standard' | 'manual_approval';
+}
+
 export interface IProject {
   id: string;
   title: string;
@@ -29,6 +34,7 @@ export interface IProject {
   frontend?: IFrontend;
   backend?: IBackend;
   infrastructure?: IInfrastructure;
+  cicd?: ICicd;
   modules?: IModule[];
   styles?: IStyle[];
   flowChart?: IFlowChart;

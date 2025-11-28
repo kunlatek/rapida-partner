@@ -39,6 +39,24 @@
     "infrastructure": {
       "$ref": "infrastructure.ref.json"
     },
+    "cicd": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["github", "gitlab", "bitbucket"],
+          "description": "Provider do repositório Git e pipeline de CI"
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["standard", "manual_approval"],
+          "default": "standard",
+          "description": "Estratégia de deployment (ex: deploy direto ou com aprovação)"
+        }
+      },
+      "required": ["provider"],
+      "additionalProperties": false
+    },
     "modules": {
       "$ref": "module.ref.json"
     },
