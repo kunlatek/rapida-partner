@@ -6,7 +6,7 @@ export interface IFormInheritance {
   type: "inheritance";
   name?: string;
   form: IForm;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];
   elementDescription?: string;

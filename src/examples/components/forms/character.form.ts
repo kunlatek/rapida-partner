@@ -62,9 +62,9 @@ export const characterForm: IForm = {
       type: "input",
       dataType: EDataType.NVARCHAR,
       isRequired: true,
-      conditions: [
-        {
-          type: "form",
+      conditions:
+      {
+        form: {
           elements: [
             {
               key: "characterBreed",
@@ -72,8 +72,8 @@ export const characterForm: IForm = {
               comparisonOperator: "==="
             }
           ]
-        }
-      ]
+        },
+      }
     },
     {
       type: "select",

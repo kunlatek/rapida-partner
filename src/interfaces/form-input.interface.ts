@@ -1,9 +1,9 @@
 import type { EDataType } from "../enums/form.enum";
+import type { IFormCondition } from "./condition.interface";
 import type {
   IApiResponseField,
   IApiResponseFieldFilter,
 } from "./form-autocomplete.interface";
-import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IFormInput {
@@ -19,7 +19,7 @@ export interface IFormInput {
   isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   validators?: ("cep" | "cpf" | "cnpj" | "onlyNumbers" | "phone" | "email")[];
   todo?: string;
   maxLength?: number;
@@ -40,5 +40,5 @@ export interface IApiRequest {
   filtersFromOtherFormFields?: IApiResponseFieldFilter[];
   formFieldsFilledByApiResponse?: IApiResponseField[];
   hasAuthentication?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
 }

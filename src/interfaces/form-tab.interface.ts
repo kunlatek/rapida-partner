@@ -10,9 +10,9 @@ export interface IFormTab {
     id: string;
     title: string;
     elements: IFormElement[];
-    conditions?: IFormCondition[];
+    conditions?: IFormCondition;
   }[];
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   businessRules?: IBusinessRule[];
   elementDescription?: string;
 }

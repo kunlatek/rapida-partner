@@ -16,7 +16,7 @@ export interface IFormSelect {
   isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   validators?: ("cpf" | "cnpj")[];
   todo?: string;
   isMultiple?: boolean;

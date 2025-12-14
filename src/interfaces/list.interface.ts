@@ -17,14 +17,14 @@ export interface IList {
     property?: string; // property taken from dataSource response. e.g.: "email"
     label?: string; // label to property. e.g.: "E-mail"
     type?:
-      | "title"
-      | "subtitle"
-      | "description"
-      | "video"
-      | "image"
-      | "images"
-      | "icon"
-      | "badge";
+    | "title"
+    | "subtitle"
+    | "description"
+    | "video"
+    | "image"
+    | "images"
+    | "icon"
+    | "badge";
     isHtml?: boolean;
     isLink?: boolean;
     isTimestamp?: boolean;
@@ -35,7 +35,7 @@ export interface IList {
     dataType: EDataType;
     isMultiple?: boolean;
     isExpansible?: boolean;
-    conditions?: IFormCondition[];
+    conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
     todo?: string;
   }[]; // properties taken from dataSource
@@ -69,7 +69,7 @@ export interface IList {
       };
     };
     businessRules?: IBusinessRule[];
-    conditions?: IFormCondition[];
+    conditions?: IFormCondition;
     todo?: string;
   }[];
   contracts: {
@@ -86,7 +86,7 @@ export interface IList {
       | "sendEmail"
     )[];
     request?: IContractRequest;
-    conditions?: IFormCondition[];
+    conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
     userStory?: string;
   }[];

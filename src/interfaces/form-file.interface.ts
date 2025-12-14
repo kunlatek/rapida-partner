@@ -22,7 +22,7 @@ export interface IFormFile {
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
   isRequired?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   validators?: ("onlyImages" | "png" | "jpg" | "pdf")[];
   storageConfig: IStorageConfig;

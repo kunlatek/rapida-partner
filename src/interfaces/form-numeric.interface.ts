@@ -17,7 +17,7 @@ export interface IFormNumericInput {
   isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];
 }

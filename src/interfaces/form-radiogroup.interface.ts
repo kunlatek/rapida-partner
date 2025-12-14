@@ -16,7 +16,7 @@ export interface IFormRadioGroup {
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
   isRequired?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];
 }

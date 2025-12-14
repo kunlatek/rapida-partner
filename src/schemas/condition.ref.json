@@ -1,73 +1,25 @@
 {
   "$id": "condition.ref.json",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "type": {
-        "type": "string",
-        "enum": ["property", "enum", "form", "code", "array", "button"]
-      },
-      "elements": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "key": {
-              "type": "string"
-            },
-            "value": {},
-            "array": {
-              "type": "string"
-            },
-            "comparisonOperator": {
-              "type": "string",
-              "enum": ["===", ">", ">=", "in", "<", "<=", "!==", "nin"]
-            },
-            "logicalOperator": {
-              "type": "string",
-              "enum": ["&&", "!", "nor", "||"]
-            }
-          },
-          "required": ["key", "comparisonOperator"]
-        }
-      },
-      "code": {
-        "type": "object",
-        "properties": {
-          "triggerField": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          }
-        },
-        "required": ["triggerField", "code"]
-      },
-      "businessRules": {
-        "$ref": "business-rules.ref.json"
-      },
-      "conditionResponse": {
-        "type": "string",
-        "enum": ["show", "hide", "enable", "disable", "fillFields"]
-      },
-      "fillFields": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "fieldKey": {
-              "type": "string"
-            },
-            "value": {}
-          },
-          "required": ["fieldKey", "value"]
-        }
-      },
-      "buttonId": {
-        "type": "string"
-      }
+  "type": "object",
+  "properties": {
+    "property": {
+      "$ref": "condition-body.ref.json"
     },
-    "required": ["type"]
-  }
+    "enum": {
+      "$ref": "condition-body.ref.json"
+    },
+    "form": {
+      "$ref": "condition-body.ref.json"
+    },
+    "code": {
+      "$ref": "condition-body.ref.json"
+    },
+    "array": {
+      "$ref": "condition-body.ref.json"
+    },
+    "button": {
+      "$ref": "condition-body.ref.json"
+    }
+  },
+  "additionalProperties": false
 }

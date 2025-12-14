@@ -13,7 +13,7 @@ export interface IFormDatePicker {
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
   isRequired?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];
   elementDescription?: string;

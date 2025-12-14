@@ -15,7 +15,7 @@ export interface IFormAutocomplete {
   isHidden?: boolean;
   isRequired?: boolean;
   isUnique?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   validators?: ("cpf" | "cnpj")[];
   todo?: string;
   optionsApi?: IOptionsApi;
@@ -37,7 +37,7 @@ export interface IOptionsApi {
   filtersFromOtherFormFields?: IApiResponseFieldFilter[];
   isNotKunlatekResponse?: boolean;
   rawQuery?: string;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
 }
 
 export interface IApiResponseField {
@@ -49,5 +49,5 @@ export interface IApiResponseField {
 export interface IApiResponseFieldFilter {
   formFieldName: string;
   filterPropertyName: string;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
 }

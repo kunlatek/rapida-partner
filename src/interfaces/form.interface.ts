@@ -27,7 +27,7 @@ export interface IForm {
     endpoint: string;
     actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
     request?: IContractRequest;
-    conditions?: IFormCondition[];
+    conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
     userStory?: string;
   }[];

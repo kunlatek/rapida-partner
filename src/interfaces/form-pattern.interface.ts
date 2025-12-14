@@ -10,7 +10,7 @@ export interface IFormPatternInput {
   tooltip?: string;
   isDisabled?: boolean;
   isRequired?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];
 }

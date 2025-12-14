@@ -4,7 +4,7 @@ import type { IBusinessRule } from "./project.interface";
 
 export interface IFormFieldset {
   type: "fieldset";
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   todo?: string;
   id: string;
   title: string;

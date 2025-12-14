@@ -1,0 +1,72 @@
+{
+  "$id": "condition-body.ref.json",
+  "type": "object",
+  "properties": {
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {},
+          "comparisonOperator": {
+            "enum": [
+              "===",
+              ">",
+              ">=",
+              "in",
+              "<",
+              "<=",
+              "!==",
+              "nin"
+            ]
+          },
+          "logicalOperator": {
+            "enum": [
+              "&&",
+              "!",
+              "nor",
+              "||"
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "comparisonOperator"
+        ]
+      }
+    },
+    "code": {
+      "type": "object",
+      "required": [
+        "triggerField",
+        "code"
+      ],
+      "properties": {
+        "triggerField": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "conditionResponse": {
+      "enum": [
+        "show",
+        "hide",
+        "enable",
+        "disable",
+        "fillFields"
+      ]
+    },
+    "fillFields": {
+      "type": "array"
+    },
+    "buttonId": {
+      "type": "string"
+    }
+  }
+}

@@ -14,7 +14,7 @@ export interface IFormButton {
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
-  conditions?: IFormCondition[];
+  conditions?: IFormCondition;
   apiRequest?: IApiRequest;
   onSuccessRedirect?: {
     url: string;
@@ -34,7 +34,7 @@ export interface IFormButton {
     actionButtonType?: "submit" | "reset" | "link" | "apiRequest" | "modal";
     actionButtonApiRequest?: IApiRequest;
     actionButtonBusinessRules?: IBusinessRule[];
-    conditions: IFormCondition[];
+    conditions: IFormCondition;
   },
   toast?: {
     id: string;
@@ -44,7 +44,7 @@ export interface IFormButton {
     size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
     type: "success" | "error" | "warning" | "info";
     businessRules?: IBusinessRule[];
-    conditions: IFormCondition[];
+    conditions: IFormCondition;
   },
   link?: {
     url: string;
