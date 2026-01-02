@@ -1,7 +1,6 @@
 import type { IFormCondition } from "./condition.interface";
 import type { IApiRequest } from "./form-input.interface";
-import type { IForm } from "./form.interface";
-import type { IBusinessRule } from "./project.interface";
+import type { IBusinessRule, IComponent } from "./project.interface";
 
 export interface IFormButton {
   type: "button";
@@ -27,14 +26,14 @@ export interface IFormButton {
   modal?: {
     id: string;
     title: string;
-    modal: IForm;
+    modal: IComponent;
     size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
     closeButtonLabel?: string;
     actionButtonLabel?: string;
     actionButtonType?: "submit" | "reset" | "link" | "apiRequest" | "modal";
     actionButtonApiRequest?: IApiRequest;
     actionButtonBusinessRules?: IBusinessRule[];
-    conditions: IFormCondition;
+    conditions?: IFormCondition;
   },
   toast?: {
     id: string;
