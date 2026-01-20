@@ -16,13 +16,26 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["frontend", "backend", "both"]
+                "enum": [
+                  "frontend",
+                  "backend",
+                  "both"
+                ]
               },
               "details": {
                 "type": "string"
               }
             },
-            "required": ["type", "details"]
+            "required": [
+              "type",
+              "details"
+            ]
+          },
+          "backendComplementaryCode": {
+            "type": "string"
+          },
+          "frontendComplementaryCode": {
+            "type": "string"
           },
           "subrules": {
             "type": "array",
@@ -40,13 +53,26 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "enum": ["frontend", "backend", "both"]
+                          "enum": [
+                            "frontend",
+                            "backend",
+                            "both"
+                          ]
                         },
                         "details": {
                           "type": "string"
                         }
                       },
-                      "required": ["type", "details"]
+                      "required": [
+                        "type",
+                        "details"
+                      ]
+                    },
+                    "backendComplementaryCode": {
+                      "type": "string"
+                    },
+                    "frontendComplementaryCode": {
+                      "type": "string"
                     }
                   }
                 }

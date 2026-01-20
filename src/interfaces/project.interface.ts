@@ -18,13 +18,13 @@ export interface IProject {
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
   flow:
-    | "backofficeByInvitationWithoutPermissions"
-    | "backofficeByInvitationAndPermissionsByComponent"
-    | "backofficeOpenedWithoutPermissions"
-    | "backofficeOpenedAndPermissionsByComponent"
-    | "marketplace"
-    | "landingPage"
-    | "socialNetwork";
+  | "backofficeByInvitationWithoutPermissions"
+  | "backofficeByInvitationAndPermissionsByComponent"
+  | "backofficeOpenedWithoutPermissions"
+  | "backofficeOpenedAndPermissionsByComponent"
+  | "marketplace"
+  | "landingPage"
+  | "socialNetwork";
   frontend?: IFrontend;
   backend?: IBackend;
   modules?: IModule[];
@@ -56,11 +56,15 @@ export interface IBusinessRule {
         type: "frontend" | "backend" | "both";
         details: string;
       };
+      backendComplementaryCode?: string;
+      frontendComplementaryCode?: string;
     }[];
     implementation?: {
       type: "frontend" | "backend" | "both";
       details: string;
     };
+    backendComplementaryCode?: string;
+    frontendComplementaryCode?: string;
   };
 }
 
