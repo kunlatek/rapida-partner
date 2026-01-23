@@ -23,6 +23,7 @@ export interface IFormAutocomplete {
   isMultiple?: boolean;
   businessRules?: IBusinessRule[];
   elementDescription?: string;
+  elementsToClearOnValueChange?: string[];
 }
 
 export interface IOptionsApi {

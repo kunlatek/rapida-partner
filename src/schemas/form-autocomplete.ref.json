@@ -46,7 +46,10 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["cpf", "cnpj"]
+        "enum": [
+          "cpf",
+          "cnpj"
+        ]
       }
     },
     "todo": {
@@ -81,7 +84,10 @@
         },
         "paramType": {
           "type": "string",
-          "enum": ["query", "path"]
+          "enum": [
+            "query",
+            "path"
+          ]
         },
         "populate": {
           "type": "array",
@@ -142,7 +148,10 @@
           },
           "paramType": {
             "type": "string",
-            "enum": ["query", "path"]
+            "enum": [
+              "query",
+              "path"
+            ]
           },
           "populate": {
             "type": "array",
@@ -181,7 +190,18 @@
     },
     "isMultiple": {
       "type": "boolean"
+    },
+    "elementsToClearOnValueChange": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
-  "required": ["type", "dataType", "name", "label"]
+  "required": [
+    "type",
+    "dataType",
+    "name",
+    "label"
+  ]
 }
