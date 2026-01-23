@@ -731,6 +731,33 @@
           "actions"
         ]
       }
+    },
+    "archive": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "logicalOperator": {
+            "type": "string",
+            "enum": [
+              "&&",
+              "!",
+              "nor",
+              "||"
+            ]
+          }
+        },
+        "required": [
+          "property",
+          "value"
+        ]
+      }
     }
   },
   "required": [

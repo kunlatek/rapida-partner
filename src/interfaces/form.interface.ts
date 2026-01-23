@@ -11,7 +11,8 @@ import type { IFormInput } from "./form-input.interface";
 import type { IFormSelect } from "./form-select.interface";
 import type { IFormTab } from "./form-tab.interface";
 import type { IBusinessRule } from "./project.interface";
-import type { IActor, IFlowChart } from "./form-flowchart.interface";
+import type { IFlowChart } from "./form-flowchart.interface";
+import type { IContract, IPublicContract } from "./form-contract.interface";
 
 export interface IForm {
   componentType: "form";
@@ -22,83 +23,19 @@ export interface IForm {
   guards?: "isAuthenticated" | "isAuthorized";
   businessRules?: IBusinessRule[];
   userStory?: string;
-  contracts: {
-    id: string;
-    endpoint: string;
-    actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
-    request?: IContractRequest;
-    conditions?: IFormCondition;
-    businessRules?: IBusinessRule[];
-    userStory?: string;
-  }[];
-  publicContracts?: {
-    id: string;
-    endpoint: string;
-    actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
-    permissionedUrls: string[];
-    request?: IContractRequest;
-    conditions?: IFormCondition;
-    businessRules?: IBusinessRule[];
-    userStory?: string;
-  }[];
+  contracts: IContract[];
+  publicContracts?: IPublicContract[];
   flowChart?: IFlowChart;
-}
-
-export interface IContract {
-  id: string;
-  kanban?: {
-    status: "toDo" | "inProgress" | "done";
-    assigneesIds?: string[];
-    validatorsIds?: string[];
-    dueDate?: string;
-    tags?: string[];
-    priority?: "low" | "medium" | "high" | "urgent";
-    storyPoints?: number;
-  }
-}
-
-export interface IContractRequest {
-  entity: string,
-  relatedEntity?: {
-    entity: string;
-    connectionAttribute: string;
-    fieldsFromEntity: {
-      fields: IForm;
-      contractId: string;
-    }[]
-  },
-  description?: string,
-  fields: IContractRequestField[]
-  uniqueConstraints?: {
-    identificator: string;
-    fields: string[];
+  sendMessage?: {
+    type: "email" | "whatsapp" | "sms" | "discord" | "teams" | "push";
+    actions: "create" | "update" | "delete";
+    to: {
+      field: string;
+      property?: string; // if field is a property of a related object else take the value of the field. e.g.: field.property
+    };
+    subject?: string; // use mustache syntax to insert values. e.g.: {{field}}
+    message: string; // use mustache syntax to insert values. e.g.: {{field}}
   }[];
-}
-
-export interface IContractRequestField {
-  name: string;
-  dataType: EDataType;
-  requiredOneOf?: string[];
-  isRequired?: boolean;
-  isHidden?: boolean;
-  foreignKey?: IContractRequestFieldForeignKey;
-  isPrimaryKey?: boolean;
-  minSize?: number;
-  maxSize?: number;
-  enum?: (string | number)[];
-  isUnique?: boolean;
-  uniqueComposedFields?: string[];
-  defaultValue?: string | number | boolean;
-  actionsExceptions?: ("create" | "getOne" | "getAll" | "update" | "softDelete" | "hardDelete" | "clone")[];
-  businessRules?: IBusinessRule[];
-}
-
-interface IContractRequestFieldForeignKey {
-  entity: string;
-  connectionAttribute: string;
-  relationship: "many-to-many" | "one-to-many" | "one-to-one"
-  fields?: IContractRequestField[];
-  isHidden?: boolean;
 }
 
 export type IFormElement =

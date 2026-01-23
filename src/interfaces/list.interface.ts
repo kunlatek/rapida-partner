@@ -1,7 +1,8 @@
 import type { EDataType } from "../enums/form.enum";
 import type { IFormCondition } from "./condition.interface";
+import type { IContract, IPublicContract } from "./form-contract.interface";
 import type { IApiRequest } from "./form-input.interface";
-import type { IContractRequest, IFormElement } from "./form.interface";
+import type { IFormElement } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IList {
@@ -72,32 +73,11 @@ export interface IList {
     conditions?: IFormCondition;
     todo?: string;
   }[];
-  contracts: {
-    id: string;
-    endpoint: string;
-    actions: (
-      | "create"
-      | "get"
-      | "getById"
-      | "update"
-      | "softDelete"
-      | "hardDelete"
-      | "clone"
-      | "sendEmail"
-    )[];
-    request?: IContractRequest;
-    conditions?: IFormCondition;
-    businessRules?: IBusinessRule[];
-    userStory?: string;
-  }[];
-  publicContracts?: {
-    id: string;
-    endpoint: string;
-    actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
-    permissionedUrls: string[];
-    request?: IContractRequest;
-    conditions?: IFormCondition;
-    businessRules?: IBusinessRule[];
-    userStory?: string;
+  contracts: IContract[];
+  publicContracts?: IPublicContract[];
+  archive?: {
+    property: string; // e.g.: "status"
+    value: string; // e.g.: "finished"
+    logicalOperator?: "&&" | "!" | "nor" | "||"; // && as default
   }[];
 }
