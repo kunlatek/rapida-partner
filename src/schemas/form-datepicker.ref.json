@@ -50,7 +50,20 @@
     },
     "elementDescription": {
       "type": "string"
+    },
+    "space": {
+      "type": "number",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     }
   },
-  "required": ["type", "name", "label"]
+  "required": [
+    "type",
+    "name",
+    "label"
+  ]
 }

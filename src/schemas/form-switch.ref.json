@@ -36,7 +36,23 @@
     },
     "todo": {
       "type": "string"
+    },
+    "space": {
+      "type": "number",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "elementDescription": {
+      "type": "string"
     }
   },
-  "required": ["type", "name", "label"]
+  "required": [
+    "type",
+    "name",
+    "label"
+  ]
 }

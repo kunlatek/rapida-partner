@@ -46,7 +46,14 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["cep", "cpf", "cnpj", "onlyNumbers", "phone", "email"]
+        "enum": [
+          "cep",
+          "cpf",
+          "cnpj",
+          "onlyNumbers",
+          "phone",
+          "email"
+        ]
       }
     },
     "todo": {
@@ -74,11 +81,29 @@
       "type": "string"
     },
     "defaultValue": {
-      "type": ["string", "number", "null"]
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
     },
     "elementDescription": {
       "type": "string"
+    },
+    "space": {
+      "type": "number",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     }
   },
-  "required": ["type", "dataType", "name", "label"]
+  "required": [
+    "type",
+    "dataType",
+    "name",
+    "label"
+  ]
 }

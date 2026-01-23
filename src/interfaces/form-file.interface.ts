@@ -28,4 +28,5 @@ export interface IFormFile {
   storageConfig: IStorageConfig;
   businessRules?: IBusinessRule[];
   elementDescription?: string;
+  space?: 1 | 2 | 3 | 4;
 }

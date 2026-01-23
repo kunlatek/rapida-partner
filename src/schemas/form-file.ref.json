@@ -61,11 +61,25 @@
     "elementDescription": {
       "type": "string"
     },
+    "space": {
+      "type": "number",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
     "validators": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["onlyImages", "png", "jpg", "pdf"]
+        "enum": [
+          "onlyImages",
+          "png",
+          "jpg",
+          "pdf"
+        ]
       }
     },
     "storageConfig": {
@@ -77,15 +91,30 @@
         },
         "fileNameStrategy": {
           "type": "string",
-          "enum": ["uuid", "original", "timestamp"]
+          "enum": [
+            "uuid",
+            "original",
+            "timestamp"
+          ]
         },
         "visibility": {
           "type": "string",
-          "enum": ["public", "private"]
+          "enum": [
+            "public",
+            "private"
+          ]
         }
       },
-      "required": ["path", "fileNameStrategy"]
+      "required": [
+        "path",
+        "fileNameStrategy"
+      ]
     }
   },
-  "required": ["type", "name", "label", "storageConfig"]
+  "required": [
+    "type",
+    "name",
+    "label",
+    "storageConfig"
+  ]
 }

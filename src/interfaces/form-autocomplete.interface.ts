@@ -24,6 +24,7 @@ export interface IFormAutocomplete {
   businessRules?: IBusinessRule[];
   elementDescription?: string;
   elementsToClearOnValueChange?: string[];
+  space?: 1 | 2 | 3 | 4;
 }
 
 export interface IOptionsApi {

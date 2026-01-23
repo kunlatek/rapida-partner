@@ -17,4 +17,5 @@ export interface IFormDatePicker {
   todo?: string;
   businessRules?: IBusinessRule[];
   elementDescription?: string;
+  space?: 1 | 2 | 3 | 4;
 }

@@ -46,7 +46,10 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["cpf", "cnpj"]
+        "enum": [
+          "cpf",
+          "cnpj"
+        ]
       }
     },
     "todo": {
@@ -57,6 +60,15 @@
     },
     "elementDescription": {
       "type": "string"
+    },
+    "space": {
+      "type": "number",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "isMultiple": {
       "type": "boolean"
@@ -89,13 +101,32 @@
             "type": "boolean"
           }
         },
-        "required": ["label", "value"]
+        "required": [
+          "label",
+          "value"
+        ]
       }
     },
     "optionsApi": {
       "$ref": "form-autocomplete-options-api.ref.json"
     }
   },
-  "required": ["type", "dataType", "name", "label"],
-  "oneOf": [{ "required": ["options"] }, { "required": ["optionsApi"] }]
+  "required": [
+    "type",
+    "dataType",
+    "name",
+    "label"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "options"
+      ]
+    },
+    {
+      "required": [
+        "optionsApi"
+      ]
+    }
+  ]
 }

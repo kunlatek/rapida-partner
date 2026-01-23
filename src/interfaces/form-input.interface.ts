@@ -31,6 +31,7 @@ export interface IFormInput {
   prefix?: string;
   defaultValue?: string | number | boolean;
   elementDescription?: string;
+  space?: 1 | 2 | 3 | 4;
 }
 
 export interface IApiRequest {
