@@ -31,6 +31,15 @@ export interface IForm {
     businessRules?: IBusinessRule[];
     userStory?: string;
   }[];
+  publicContracts: {
+    id: string;
+    endpoint: string;
+    actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
+    request?: IContractRequest;
+    conditions?: IFormCondition;
+    businessRules?: IBusinessRule[];
+    userStory?: string;
+  }[];
   flowChart?: IFlowChart;
 }
 

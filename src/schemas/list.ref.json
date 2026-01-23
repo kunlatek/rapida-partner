@@ -53,7 +53,7 @@
               "video",
               "image",
               "images",
-              "icon", 
+              "icon",
               "badge"
             ]
           },
@@ -88,7 +88,9 @@
                 "description": "if true then '/user/<email>'"
               }
             },
-            "required": ["link"]
+            "required": [
+              "link"
+            ]
           },
           "conditions": {
             "$ref": "condition.ref.json"
@@ -124,7 +126,9 @@
           "description": "if, for example, ['_id', 'email'], then '/user/<_id>/<email>'"
         }
       },
-      "required": ["link"]
+      "required": [
+        "link"
+      ]
     },
     "callsToActionMenu": {
       "type": "array",
@@ -164,7 +168,9 @@
                     "description": "if, for example, ['_id', 'email'], then '/user/<_id>/<email>'"
                   }
                 },
-                "required": ["endpoint"]
+                "required": [
+                  "endpoint"
+                ]
               },
               "request": {
                 "type": "object",
@@ -189,7 +195,12 @@
                   },
                   "verb": {
                     "type": "string",
-                    "enum": ["get", "post", "put", "softDelete"]
+                    "enum": [
+                      "get",
+                      "post",
+                      "put",
+                      "softDelete"
+                    ]
                   },
                   "dialog": {
                     "type": "object",
@@ -201,13 +212,21 @@
                         "type": "string"
                       }
                     },
-                    "required": ["title", "message"]
+                    "required": [
+                      "title",
+                      "message"
+                    ]
                   }
                 },
-                "required": ["endpoint", "verb"]
+                "required": [
+                  "endpoint",
+                  "verb"
+                ]
               }
             },
-            "required": ["link"]
+            "required": [
+              "link"
+            ]
           },
           "businessRules": {
             "$ref": "business-rules.ref.json"
@@ -219,7 +238,11 @@
             "type": "string"
           }
         },
-        "required": ["icon", "label", "action"]
+        "required": [
+          "icon",
+          "label",
+          "action"
+        ]
       }
     },
     "listActions": {
@@ -299,7 +322,11 @@
                         },
                         "relationship": {
                           "type": "string",
-                          "enum": ["one-to-one", "one-to-many", "many-to-many"]
+                          "enum": [
+                            "one-to-one",
+                            "one-to-many",
+                            "many-to-many"
+                          ]
                         },
                         "fields": {
                           "type": "array",
@@ -313,7 +340,10 @@
                                 "$ref": "types-datatype.ref.json"
                               }
                             },
-                            "required": ["name", "dataType"]
+                            "required": [
+                              "name",
+                              "dataType"
+                            ]
                           }
                         },
                         "isHidden": {
@@ -375,7 +405,10 @@
                       }
                     }
                   },
-                  "required": ["name", "dataType"]
+                  "required": [
+                    "name",
+                    "dataType"
+                  ]
                 }
               },
               "relatedEntity": {
@@ -401,7 +434,10 @@
                           "type": "string"
                         }
                       },
-                      "required": ["fields", "contractId"]
+                      "required": [
+                        "fields",
+                        "contractId"
+                      ]
                     }
                   }
                 },
@@ -429,7 +465,10 @@
                 }
               }
             },
-            "required": ["entity", "fields"]
+            "required": [
+              "entity",
+              "fields"
+            ]
           },
           "conditions": {
             "$ref": "condition.ref.json"
@@ -441,9 +480,258 @@
             "type": "string"
           }
         },
-        "required": ["id", "endpoint", "actions"]
+        "required": [
+          "id",
+          "endpoint",
+          "actions"
+        ]
+      }
+    },
+    "publicContracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "create",
+                "get",
+                "getById",
+                "update",
+                "softDelete",
+                "hardDelete",
+                "clone",
+                "sendEmail"
+              ]
+            }
+          },
+          "request": {
+            "type": "object",
+            "properties": {
+              "entity": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "dataType": {
+                      "$ref": "types-datatype.ref.json"
+                    },
+                    "isRequired": {
+                      "type": "boolean"
+                    },
+                    "requiredOneOf": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "isHidden": {
+                      "type": "boolean",
+                      "description": "If true, the attribute will not be exposed in the API."
+                    },
+                    "foreignKey": {
+                      "type": "object",
+                      "properties": {
+                        "entity": {
+                          "type": "string"
+                        },
+                        "connectionAttribute": {
+                          "type": "string"
+                        },
+                        "relationship": {
+                          "type": "string",
+                          "enum": [
+                            "one-to-one",
+                            "one-to-many",
+                            "many-to-many"
+                          ]
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "dataType": {
+                                "$ref": "types-datatype.ref.json"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "dataType"
+                            ]
+                          }
+                        },
+                        "isHidden": {
+                          "type": "boolean",
+                          "description": "If true, the connection attribute will not be exposed in the API."
+                        }
+                      },
+                      "required": [
+                        "entity",
+                        "connectionAttribute",
+                        "relationship"
+                      ]
+                    },
+                    "isPrimaryKey": {
+                      "type": "boolean"
+                    },
+                    "minSize": {
+                      "type": "number"
+                    },
+                    "maxSize": {
+                      "type": "number"
+                    },
+                    "enum": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      }
+                    },
+                    "isUnique": {
+                      "type": "boolean"
+                    },
+                    "uniqueComposedFields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "actionsExceptions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "create",
+                          "get",
+                          "getById",
+                          "update",
+                          "softDelete",
+                          "hardDelete",
+                          "clone",
+                          "sendEmail"
+                        ]
+                      }
+                    },
+                    "businessRules": {
+                      "$ref": "business-rules.ref.json"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "dataType"
+                  ]
+                }
+              },
+              "relatedEntity": {
+                "type": "object",
+                "properties": {
+                  "entity": {
+                    "type": "string",
+                    "description": "An attribute called 'relatedEntity' will be created in the main entity to refer to an entity that will be related to the main one."
+                  },
+                  "connectionAttribute": {
+                    "type": "string",
+                    "description": "An attribute called 'relatedEntityId' will be created in the main entity to set the value of the id over 'relatedEntity' to make the connection."
+                  },
+                  "fieldsFromEntity": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "$ref": "form.ref.json"
+                        },
+                        "contractId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "fields",
+                      "contractId"
+                    ]
+                  }
+                },
+                "required": [
+                  "entity",
+                  "connectionAttribute",
+                  "fieldsFromEntity"
+                ]
+              },
+              "uniqueConstraints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "entity",
+              "fields"
+            ]
+          },
+          "conditions": {
+            "$ref": "condition.ref.json"
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "userStory": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "endpoint",
+          "actions"
+        ]
       }
     }
   },
-  "required": ["componentType", "id", "title", "dataSource", "contracts"]
+  "required": [
+    "componentType",
+    "id",
+    "title",
+    "dataSource",
+    "contracts"
+  ]
 }
