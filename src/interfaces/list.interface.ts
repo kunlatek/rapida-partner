@@ -90,7 +90,7 @@ export interface IList {
     businessRules?: IBusinessRule[];
     userStory?: string;
   }[];
-  publicContracts: {
+  publicContracts?: {
     id: string;
     endpoint: string;
     actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
