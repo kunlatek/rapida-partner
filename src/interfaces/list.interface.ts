@@ -94,6 +94,7 @@ export interface IList {
     id: string;
     endpoint: string;
     actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
+    permissionedUrls: string[];
     request?: IContractRequest;
     conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
