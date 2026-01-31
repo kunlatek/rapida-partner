@@ -10,7 +10,7 @@ export const movieBackoffice: IProject = {
   id: "movieBackoffice",
   title: "Movie Backoffice",
   description: "Sistema de gerenciamento para filmes e personagens.",
-  flow: "backofficeOpenedWithoutPermissions",
+  flow: "backofficeOpenedAndPermissionsByComponent",
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",
     targetMarket: "Empresas que utilizam o Movie para gerenciar sugestões e feedbacks.",
@@ -103,6 +103,40 @@ export const movieBackoffice: IProject = {
         spacing: "8px",
         maxWidth: "1200px",
         footerHeight: "60px",
+      }
+    }
+  ],
+  dashboard: [
+    {
+      title: "Rating de Filmes",
+      id: "movieRatingChart",
+      componentType: "dataChart",
+      icon: "movie",
+      guards: "isAuthenticated",
+      chartType: "bar",
+      dataSource: {
+        endpoint: "http://localhost:3000/api/movies",
+        paramType: "query",
+      },
+      dimensions: {
+        width: "100%",
+        height: "400px",
+      },
+      data: {
+        labels: {
+          property: "movieGenre.name",
+        },
+        datasets: [
+          {
+            property: "movieGenresId",
+            label: "Gêneros de filmes",
+            backgroundColor: "#4F46E5",
+            borderColor: "#4F46E5",
+            borderWidth: 1,
+            fill: true,
+            aggregator: "count",
+          },
+        ],
       }
     }
   ]

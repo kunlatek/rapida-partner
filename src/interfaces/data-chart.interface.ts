@@ -11,24 +11,27 @@ export interface IDataChart {
   businessRules?: IBusinessRule[];
   dataSource: IApiRequest;
   chartType:
-    | "line"
-    | "bar"
-    | "pie"
-    | "doughnut"
-    | "radar"
-    | "scatter"
-    | "bubble"
-    | "area"
-    | "polarArea";
+  | "line"
+  | "bar"
+  | "pie"
+  | "doughnut"
+  | "radar"
+  | "scatter"
+  | "bubble"
+  | "area"
+  | "polarArea";
   dimensions: {
     width?: string;
     height?: string;
     aspectRatio?: number;
   };
   data: {
-    labels: {
+    labels: { // normally refers to description of "x" in cartesian plan charts or area of non-cartesian plan charts
       property: string;
-      formatter?: string;
+      formatter?: {
+        code?: string;
+        regex?: RegExp;
+      }
     };
     datasets: IChartDataset[];
   };
@@ -79,6 +82,6 @@ export interface IChartDataset {
   borderColor?: string | string[];
   borderWidth?: number;
   fill?: boolean;
-  tension?: number; // Para linhas curvas
+  tension?: number; // curved lines
   aggregator?: "sum" | "avg" | "min" | "max" | "count";
 }

@@ -5,7 +5,6 @@ import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IForm } from "./form.interface";
-import type { IDashboard } from "./layout-dashboard.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
 import type { IBackend } from "./project-backend.interface";
@@ -30,6 +29,7 @@ export interface IProject {
   modules?: IModule[];
   styles?: IStyle[];
   flowChart?: IFlowChart;
+  dashboard?: IComponent[];
 }
 
 interface IFrontend {
@@ -90,5 +90,4 @@ export type IComponent =
   | IDataGrid
   | IDataDetail
   | IDataChart
-  | IDashboard
   | IPanel;

@@ -5,22 +5,43 @@
   "items": {
     "type": "object",
     "properties": {
-      "id": { "type": "string" },
-      "title": { "type": "string" },
-      "icon": { "type": "string" },
+      "id": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string"
+      },
       "components": {
         "type": "array",
         "items": {
           "oneOf": [
-            { "$ref": "form.ref.json" },
-            { "$ref": "list.ref.json" },
-            { "$ref": "data-table.ref.json" },
-            { "$ref": "data-card.ref.json" },
-            { "$ref": "data-grid.ref.json" },
-            { "$ref": "data-detail.ref.json" },
-            { "$ref": "data-chart.ref.json" },
-            { "$ref": "dashboard.ref.json" },
-            { "$ref": "panel.ref.json" }
+            {
+              "$ref": "form.ref.json"
+            },
+            {
+              "$ref": "list.ref.json"
+            },
+            {
+              "$ref": "data-table.ref.json"
+            },
+            {
+              "$ref": "data-card.ref.json"
+            },
+            {
+              "$ref": "data-grid.ref.json"
+            },
+            {
+              "$ref": "data-detail.ref.json"
+            },
+            {
+              "$ref": "data-chart.ref.json"
+            },
+            {
+              "$ref": "panel.ref.json"
+            }
           ]
         }
       },
@@ -34,6 +55,11 @@
         }
       }
     },
-    "required": ["id", "title", "icon", "components"]
+    "required": [
+      "id",
+      "title",
+      "icon",
+      "components"
+    ]
   }
 }
