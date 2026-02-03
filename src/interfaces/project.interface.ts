@@ -56,15 +56,43 @@ export interface IBusinessRule {
         type: "frontend" | "backend" | "both";
         details: string;
       };
-      backendComplementaryCode?: string;
-      frontendComplementaryCode?: string;
+      backendComplementaryCode?: {
+        framework: "functions" | "lambda" | "laravel" | "nest" | "dotnet";
+        code: {
+          codeStartLocationReference: "before" | "after" | "replace";
+          codeStartLocation: string;
+          code: string;
+        }[];
+      };
+      frontendComplementaryCode?: {
+        framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
+        code: {
+          codeStartLocationReference: "before" | "after" | "replace";
+          codeStartLocation: string;
+          code: string;
+        }[];
+      };
     }[];
     implementation?: {
       type: "frontend" | "backend" | "both";
       details: string;
     };
-    backendComplementaryCode?: string;
-    frontendComplementaryCode?: string;
+    backendComplementaryCode?: {
+      framework: "functions" | "lambda" | "laravel" | "nest" | "dotnet";
+      code: {
+        codeStartLocationReference: "before" | "after" | "replace";
+        codeStartLocation: string;
+        code: string;
+      }[];
+    };
+    frontendComplementaryCode?: {
+      framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
+      code: {
+        codeStartLocationReference: "before" | "after" | "replace";
+        codeStartLocation: string;
+        code: string;
+      }[];
+    };
   };
 }
 

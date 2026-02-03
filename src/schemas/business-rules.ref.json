@@ -32,10 +32,95 @@
             ]
           },
           "backendComplementaryCode": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "framework": {
+                "type": "string",
+                "enum": [
+                  "functions",
+                  "lambda",
+                  "laravel",
+                  "nest",
+                  "dotnet"
+                ]
+              },
+              "code": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "codeStartLocationReference": {
+                      "type": "string",
+                      "enum": [
+                        "before",
+                        "after",
+                        "replace"
+                      ]
+                    },
+                    "codeStartLocation": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "codeStartLocationReference",
+                    "code"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "framework",
+              "code"
+            ]
           },
           "frontendComplementaryCode": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "framework": {
+                "type": "string",
+                "enum": [
+                  "angular",
+                  "flutter",
+                  "react",
+                  "reactnative",
+                  "svelte",
+                  "vue"
+                ]
+              },
+              "code": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "codeStartLocationReference": {
+                      "type": "string",
+                      "enum": [
+                        "before",
+                        "after",
+                        "replace"
+                      ]
+                    },
+                    "codeStartLocation": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "codeStartLocationReference",
+                    "code"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "framework",
+              "code"
+            ]
           },
           "subrules": {
             "type": "array",
@@ -69,10 +154,96 @@
                       ]
                     },
                     "backendComplementaryCode": {
-                      "type": "string"
+                      "type": "object",
+                      "properties": {
+                        "framework": {
+                          "type": "string",
+                          "enum": [
+                            "functions",
+                            "lambda",
+                            "laravel",
+                            "nest",
+                            "dotnet"
+                          ]
+                        },
+                        "code": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "codeStartLocationReference": {
+                                "type": "string",
+                                "enum": [
+                                  "before",
+                                  "after",
+                                  "replace"
+                                ]
+                              },
+                              "codeStartLocation": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codeStartLocationReference",
+                              "code"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "framework",
+                        "code"
+                      ]
                     },
                     "frontendComplementaryCode": {
-                      "type": "string"
+                      "type": "object",
+                      "properties": {
+                        "framework": {
+                          "type": "string",
+                          "enum": [
+                            "angular",
+                            "flutter",
+                            "react",
+                            "reactnative",
+                            "svelte",
+                            "vue"
+                          ]
+                        },
+                        "code": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "codeStartLocationReference": {
+                                "type": "string",
+                                "enum": [
+                                  "before",
+                                  "after",
+                                  "replace"
+                                ]
+                              },
+                              "codeStartLocation": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codeStartLocationReference",
+                              "codeStartLocation",
+                              "code"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "framework",
+                        "code"
+                      ]
                     }
                   }
                 }

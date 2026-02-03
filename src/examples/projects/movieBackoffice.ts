@@ -2,6 +2,7 @@ import { DATABASE_PASSWORD } from "../../constants/secrets/database";
 import { DISCORD_WEBHOOK_URL, JWT_SECRET, SMTP_PASSWORD } from "../../constants/secrets/others";
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
 import type { IProject } from "../../interfaces/project.interface";
+import { movieGenreChart } from "../components/charts/movieGenre.chart";
 import { actorModule } from "../modules/actor";
 import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
@@ -107,37 +108,6 @@ export const movieBackoffice: IProject = {
     }
   ],
   dashboard: [
-    {
-      title: "Rating de Filmes",
-      id: "movieRatingChart",
-      componentType: "dataChart",
-      icon: "movie",
-      guards: "isAuthenticated",
-      chartType: "bar",
-      dataSource: {
-        endpoint: "http://localhost:3000/api/movies",
-        paramType: "query",
-      },
-      dimensions: {
-        width: "100%",
-        height: "400px",
-      },
-      data: {
-        labels: {
-          property: "movieGenre.name",
-        },
-        datasets: [
-          {
-            property: "movieGenresId",
-            label: "Gêneros de filmes",
-            backgroundColor: "#4F46E5",
-            borderColor: "#4F46E5",
-            borderWidth: 1,
-            fill: true,
-            aggregator: "count",
-          },
-        ],
-      }
-    }
+    movieGenreChart,
   ]
 };
