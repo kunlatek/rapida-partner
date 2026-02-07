@@ -132,6 +132,17 @@ export const movieForm: IForm = {
                   },
                   isRequired: true,
                 },
+                {
+                  label: "Foto do ator como personagem",
+                  type: "file",
+                  dataType: EDataType.NVARCHAR,
+                  name: "actorAsCharacterFile",
+                  storageConfig: {
+                    fileNameStrategy: "uuid",
+                    path: "actors-as-characters",
+                    visibility: "public",
+                  },
+                },
               ]
             },
           ]
@@ -150,15 +161,18 @@ export const movieForm: IForm = {
         fields: [
           { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
+          { name: "actorAsCharacterFile", dataType: EDataType.NVARCHAR, isRequired: false },
           { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
           { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
           { name: "imdbRating", dataType: EDataType.DECIMAL, isRequired: true },
-          { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
-            entity: "MovieGenre",
-            connectionAttribute: "_id",
-            relationship: "many-to-many"
-          } },
+          {
+            name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+              entity: "MovieGenre",
+              connectionAttribute: "_id",
+              relationship: "many-to-many"
+            }
+          },
           { name: "link1", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "link2", dataType: EDataType.NVARCHAR, isRequired: false },
           { name: "link3", dataType: EDataType.NVARCHAR, isRequired: false },

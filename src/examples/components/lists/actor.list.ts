@@ -46,5 +46,22 @@ export const actorList: IList = {
     }
   ],
   contracts: [
+    {
+      id: "actors",
+      endpoint: "/actors",
+      actions: ["create", "get", "getById", "update", "softDelete"],
+      request: {
+        entity: "Actor",
+        description: "Represents an actor or actress in the system.",
+        fields: [
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "socialName", dataType: EDataType.NVARCHAR, isRequired: true },
+          { name: "birthDate", dataType: EDataType.DATETIME2, isRequired: true },
+          { name: "pictureFile", dataType: EDataType.NVARCHAR },
+          { name: "biography", dataType: EDataType.LONGTEXT },
+        ]
+      }
+    }
   ],
 };
