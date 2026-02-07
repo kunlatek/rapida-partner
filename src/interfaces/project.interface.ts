@@ -16,14 +16,19 @@ export interface IProject {
   description: string;
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
-  flow:
-  | "backofficeByInvitationWithoutPermissions"
-  | "backofficeByInvitationAndPermissionsByComponent"
-  | "backofficeOpenedWithoutPermissions"
-  | "backofficeOpenedAndPermissionsByComponent"
+  skeleton:
+  | "backoffice"
   | "marketplace"
   | "landingPage"
   | "socialNetwork";
+
+  // não quero que seja preciso pôr todas as opções dos flows, só as que eu quiser
+  flows?: {
+    authentication?: boolean;
+    permission?: boolean;
+    invitation?: boolean;
+    registration?: boolean;
+  };
   frontend?: IFrontend;
   backend?: IBackend;
   modules?: IModule[];

@@ -12,17 +12,31 @@
     "description": {
       "type": "string"
     },
-    "flow": {
+    "skeleton": {
       "type": "string",
       "enum": [
-        "backofficeByInvitationWithoutPermissions",
-        "backofficeByInvitationAndPermissionsByComponent",
-        "backofficeOpenedWithoutPermissions",
-        "backofficeOpenedAndPermissionsByComponent",
+        "backoffice",
         "marketplace",
         "landingPage",
         "socialNetwork"
       ]
+    },
+    "flows": {
+      "type": "object",
+      "properties": {
+        "authentication": {
+          "type": "boolean"
+        },
+        "permission": {
+          "type": "boolean"
+        },
+        "invitation": {
+          "type": "boolean"
+        },
+        "registration": {
+          "type": "boolean"
+        }
+      }
     },
     "businessPlan": {
       "$ref": "business-plan.ref.json"
@@ -43,5 +57,10 @@
       "$ref": "form-flowchart.ref.json"
     }
   },
-  "required": ["id", "title", "description"]
+  "required": [
+    "id",
+    "title",
+    "description",
+    "skeleton"
+  ]
 }

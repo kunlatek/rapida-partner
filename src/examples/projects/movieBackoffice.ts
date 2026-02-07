@@ -11,7 +11,12 @@ export const movieBackoffice: IProject = {
   id: "movieBackoffice",
   title: "Movie Backoffice",
   description: "Sistema de gerenciamento para filmes e personagens.",
-  flow: "backofficeOpenedAndPermissionsByComponent",
+  skeleton: "backoffice",
+  flows: {
+    authentication: true,
+    permission: true,
+    invitation: true,
+  },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",
     targetMarket: "Empresas que utilizam o Movie para gerenciar sugestões e feedbacks.",
