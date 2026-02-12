@@ -57,7 +57,7 @@ export const movieForm: IForm = {
             },
             {
               type: "autocomplete",
-              dataType: EDataType.TEXT,
+              dataType: EDataType.UNIQUEIDENTIFIER,
               label: "Gêneros",
               name: "movieGenresId",
               optionsApi: {

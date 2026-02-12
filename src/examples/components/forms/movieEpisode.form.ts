@@ -34,7 +34,7 @@ export const movieEpisodeForm: IForm = {
           name: "charactersId",
           label: "Personagens no episódio",
           type: "autocomplete",
-          dataType: EDataType.TEXT,
+          dataType: EDataType.UNIQUEIDENTIFIER,
           optionsApi: {
             endpoint: "/characters",
             labelField: ["name"],

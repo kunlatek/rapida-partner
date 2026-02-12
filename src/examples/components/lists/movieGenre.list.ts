@@ -54,8 +54,8 @@ export const movieGenreList: IList = {
       id: "movieGenres",
       endpoint: "/movie-genres",
       actions: ["create", "get", "getById", "update", "softDelete"],
-      request : {
-        entity: "movieGenres",
+      request: {
+        entity: "MovieGenre",
         description: "",
         fields: [
           {

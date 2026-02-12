@@ -21,8 +21,6 @@ export interface IProject {
   | "marketplace"
   | "landingPage"
   | "socialNetwork";
-
-  // não quero que seja preciso pôr todas as opções dos flows, só as que eu quiser
   flows?: {
     authentication?: boolean;
     permission?: boolean;

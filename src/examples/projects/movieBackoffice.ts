@@ -16,6 +16,7 @@ export const movieBackoffice: IProject = {
     authentication: true,
     permission: true,
     invitation: true,
+    registration: true,
   },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",
