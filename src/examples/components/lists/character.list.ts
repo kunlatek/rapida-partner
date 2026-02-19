@@ -49,7 +49,7 @@ export const characterList: IList = {
     {
       id: "characters",
       endpoint: "/characters",
-      actions: ["get", "getById"],
+      actions: ["get", "getById", "softDelete", "create", "update"],
       request: {
         entity: "characters",
         description: "Represents a character in a story or narrative.",

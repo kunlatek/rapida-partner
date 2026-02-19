@@ -50,6 +50,9 @@
     "backend": {
       "$ref": "backend.ref.json"
     },
+    "e2e": {
+      "$ref": "e2e.ref.json"
+    },
     "modules": {
       "$ref": "module.ref.json"
     },

@@ -31,18 +31,20 @@ export const movieEpisodeForm: IForm = {
           dataType: EDataType.DATE,
         },
         {
-          name: "charactersId",
-          label: "Personagens no episódio",
+          label: "Personagem",
           type: "autocomplete",
           dataType: EDataType.UNIQUEIDENTIFIER,
+          name: "charactersId",
+          isMultiple: true,
           optionsApi: {
             endpoint: "/characters",
-            labelField: ["name"],
+            labelField: ["characterName"],
             valueField: "_id",
-            paramsToFilter: ["name"],
+            paramsToFilter: ["characterName"],
             paramType: "query",
             relatedEntity: "Character",
           },
+          isRequired: true,
         },
       ],
     },
@@ -56,26 +58,45 @@ export const movieEpisodeForm: IForm = {
         entity: "MovieEpisode",
         description: "Represents an episode of a TV series or show.",
         fields: [
-          { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           {
-            name: "movieId", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
+            name: "_id",
+            dataType: EDataType.UNIQUEIDENTIFIER,
+            isRequired: true,
+            isPrimaryKey: true,
+          },
+          {
+            name: "movieId",
+            dataType: EDataType.UNIQUEIDENTIFIER,
+            isRequired: true,
+            foreignKey: {
               entity: "Movie",
               connectionAttribute: "_id",
-              relationship: "one-to-many"
-            }
+              relationship: "one-to-many",
+            },
           },
           { name: "title", dataType: EDataType.NVARCHAR, isRequired: true },
-          { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EDataType.DATETIME2, isRequired: true },
           {
-            name: "characters", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: false, foreignKey: {
+            name: "description",
+            dataType: EDataType.LONGTEXT,
+            isRequired: true,
+          },
+          {
+            name: "releaseDate",
+            dataType: EDataType.DATETIME2,
+            isRequired: true,
+          },
+          {
+            name: "characters",
+            dataType: EDataType.UNIQUEIDENTIFIER,
+            isRequired: false,
+            foreignKey: {
               entity: "Character",
               connectionAttribute: "_id",
-              relationship: "many-to-many"
-            }
+              relationship: "many-to-many",
+            },
           },
         ],
-      }
+      },
     },
   ],
-}
+};

@@ -3,6 +3,7 @@ import type { IDataChart } from "./data-chart.interface";
 import type { IDataDetail } from "./data-detail.interface";
 import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
+import type { IE2e } from "./e2e.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IForm } from "./form.interface";
 import type { IPanel } from "./layout-panel.interface";
@@ -29,6 +30,7 @@ export interface IProject {
   };
   frontend?: IFrontend;
   backend?: IBackend;
+  e2e?: IE2e;
   modules?: IModule[];
   styles?: IStyle[];
   flowChart?: IFlowChart;

@@ -66,6 +66,10 @@ export const movieBackoffice: IProject = {
     },
     baseUrl: "http://localhost:5173",
   },
+  e2e: {
+    framework: "playwright",
+    moduleId: movieModule.id,
+  },
   modules: [
     movieModule,
     actorModule,

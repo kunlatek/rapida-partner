@@ -52,7 +52,7 @@ export const movieForm: IForm = {
               type: "input",
               name: "imdbRating",
               label: "Pontuação do IMDb",
-              dataType: EDataType.NUMBER,
+              dataType: EDataType.DECIMAL,
               isRequired: true,
             },
             {

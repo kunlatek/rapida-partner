@@ -11,10 +11,10 @@ export const movieModule: IModule = {
   title: "Filme",
   icon: "movie",
   components: [
-    movieForm,
-    movieList,
     movieGenreForm,
     movieGenreList,
+    movieForm,
+    movieList,
     movieEpisodeForm,
     movieEpisodeList
   ]

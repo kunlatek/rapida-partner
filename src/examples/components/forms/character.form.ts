@@ -10,7 +10,7 @@ export const characterForm: IForm = {
   elements: [
     {
       type: "input",
-      dataType: EDataType.TEXT,
+      dataType: EDataType.NVARCHAR,
       label: "Nome do personagem",
       name: "characterName",
       isRequired: true,
@@ -18,7 +18,7 @@ export const characterForm: IForm = {
     {
       label: "Foto do personagem",
       type: "file",
-      dataType: EDataType.TEXT,
+      dataType: EDataType.NVARCHAR,
       name: "characterImage",
       storageConfig: {
         fileNameStrategy: "uuid",
@@ -36,7 +36,7 @@ export const characterForm: IForm = {
       type: "select",
       label: "Tipo de personagem",
       name: "characterType",
-      dataType: EDataType.TEXT,
+      dataType: EDataType.NVARCHAR,
       options: [
         { value: "protagonist", label: "Protagonista" },
         { value: "antagonist", label: "Antagonista" },
@@ -79,7 +79,7 @@ export const characterForm: IForm = {
       type: "select",
       label: "Gênero do personagem",
       name: "characterGender",
-      dataType: EDataType.TEXT,
+      dataType: EDataType.NVARCHAR,
       options: [
         { value: "male", label: "Masculino" },
         { value: "female", label: "Feminino" },

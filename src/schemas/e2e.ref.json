@@ -1,0 +1,21 @@
+{
+  "$id": "e2e.ref.json",
+  "type": "object",
+  "properties": {
+    "framework": {
+      "type": "string",
+      "enum": [
+        "cypress",
+        "playwright",
+        "webdriverio"
+      ]
+    },
+    "moduleId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "framework",
+    "moduleId"
+  ]
+}
