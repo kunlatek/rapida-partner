@@ -14,12 +14,7 @@
     },
     "skeleton": {
       "type": "string",
-      "enum": [
-        "backoffice",
-        "marketplace",
-        "landingPage",
-        "socialNetwork"
-      ]
+      "enum": ["backoffice", "marketplace", "landingPage", "socialNetwork"]
     },
     "flows": {
       "type": "object",
@@ -35,6 +30,17 @@
         },
         "registration": {
           "type": "boolean"
+        },
+        "profiles": {
+          "type": "object",
+          "properties": {
+            "personProfile": {
+              "$ref": "form.ref.json"
+            },
+            "companyProfile": {
+              "$ref": "form.ref.json"
+            }
+          }
         }
       }
     },
@@ -60,10 +66,5 @@
       "$ref": "form-flowchart.ref.json"
     }
   },
-  "required": [
-    "id",
-    "title",
-    "description",
-    "skeleton"
-  ]
+  "required": ["id", "title", "description", "skeleton"]
 }

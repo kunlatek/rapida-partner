@@ -3,6 +3,8 @@ import { DISCORD_WEBHOOK_URL, JWT_SECRET, SMTP_PASSWORD } from "../../constants/
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
 import type { IProject } from "../../interfaces/project.interface";
 import { movieGenreChart } from "../components/charts/movieGenre.chart";
+import { companyForm } from "../components/forms/company.form";
+import { personForm } from "../components/forms/person.form";
 import { actorModule } from "../modules/actor";
 import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
@@ -17,6 +19,10 @@ export const movieBackoffice: IProject = {
     permission: true,
     invitation: true,
     registration: true,
+    profiles: {
+      personProfile: personForm,
+      companyProfile: companyForm,
+    }
   },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",

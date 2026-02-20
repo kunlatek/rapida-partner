@@ -17,16 +17,16 @@ export interface IProject {
   description: string;
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
-  skeleton:
-  | "backoffice"
-  | "marketplace"
-  | "landingPage"
-  | "socialNetwork";
+  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork";
   flows?: {
     authentication?: boolean;
     permission?: boolean;
     invitation?: boolean;
     registration?: boolean;
+    profiles?: {
+      personProfile?: IForm;
+      companyProfile?: IForm;
+    };
   };
   frontend?: IFrontend;
   backend?: IBackend;
@@ -70,7 +70,13 @@ export interface IBusinessRule {
         }[];
       };
       frontendComplementaryCode?: {
-        framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
+        framework:
+          | "angular"
+          | "flutter"
+          | "react"
+          | "reactnative"
+          | "svelte"
+          | "vue";
         code: {
           codeStartLocationReference: "before" | "after" | "replace";
           codeStartLocation: string;
@@ -91,7 +97,13 @@ export interface IBusinessRule {
       }[];
     };
     frontendComplementaryCode?: {
-      framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
+      framework:
+        | "angular"
+        | "flutter"
+        | "react"
+        | "reactnative"
+        | "svelte"
+        | "vue";
       code: {
         codeStartLocationReference: "before" | "after" | "replace";
         codeStartLocation: string;
