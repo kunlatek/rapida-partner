@@ -22,7 +22,7 @@ export const movieList: IList = {
       property: "releaseDate", type: "subtitle", label: "Data de lançamento", dataType: EDataType.DATETIME2,
     },
     {
-      property: "movieGenres.name", type: "subtitle", label: "Gênero", dataType: EDataType.NVARCHAR,
+      property: "movieGenresId.name", type: "subtitle", label: "Gênero", dataType: EDataType.NVARCHAR,
     },
     {
       property: "description", type: "description", label: "Descrição", isHtml: true, dataType: EDataType.LONGTEXT

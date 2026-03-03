@@ -34,7 +34,7 @@ export const movieBackoffice: IProject = {
     monetization: "Assinaturas mensais para acesso ao sistema.",
   },
   frontend: {
-    framework: "react",
+    framework: "angular",
     uiKit: "flowbite",
   },
   backend: {
