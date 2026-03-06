@@ -9,7 +9,7 @@ import { movieGenreList } from "../components/lists/movieGenre.list";
 export const movieModule: IModule = {
   id: "movieModule",
   title: "Filme",
-  icon: "movie",
+  icon: "video",
   components: [
     movieGenreForm,
     movieGenreList,
