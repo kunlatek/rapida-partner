@@ -19,7 +19,7 @@ export type IFormCondition = {
   [K in ConditionType]?: IConditionBody;
 };
 
-interface IConditionElement {
+export interface IConditionElement {
   key: string;
   value?: any;
   array?: string;
@@ -27,7 +27,7 @@ interface IConditionElement {
   logicalOperator?: "&&" | "!" | "nor" | "||";
 }
 
-interface IConditionCode {
+export interface IConditionCode {
   triggerField: string;
   code: string;
 }
