@@ -18,7 +18,7 @@ export const characterForm: IForm = {
     {
       label: "Foto do personagem",
       type: "file",
-      dataType: EDataType.NVARCHAR,
+      dataType: EDataType.TEXT,
       name: "characterImage",
       storageConfig: {
         fileNameStrategy: "uuid",

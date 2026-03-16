@@ -13,10 +13,10 @@ export const movieEpisodeList: IList = {
   },
   listItems: [
     {
-      property: "episodeTitle", type: "title", label: "Título", dataType: EDataType.NVARCHAR,
+      property: "episodes.episodeTitle", type: "title", label: "Título", dataType: EDataType.NVARCHAR,
     },
     {
-      property: "episodeDescription", type: "description", label: "Descrição", isHtml: true, dataType: EDataType.LONGTEXT,
+      property: "episodes.episodeDescription", type: "description", label: "Descrição", isHtml: true, dataType: EDataType.LONGTEXT,
     },
   ],
   callsToActionMenu: [

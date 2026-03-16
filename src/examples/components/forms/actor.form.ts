@@ -43,7 +43,7 @@ export const actorForm: IForm = {
       label: "Biografia",
       name: "biography",
       type: "input",
-      dataType: EDataType.LONGTEXT,
+      dataType: EDataType.WYSIWYG,
     }
   ],
   contracts: [
