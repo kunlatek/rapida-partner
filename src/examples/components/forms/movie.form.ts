@@ -66,7 +66,7 @@ export const movieForm: IForm = {
                 valueField: "_id",
                 paramsToFilter: ["name"],
                 paramType: "query",
-                relatedEntity: "MovieGenre"
+                relatedEntity: "movieGenres"
               },
               isMultiple: true,
               isRequired: true,
@@ -112,7 +112,7 @@ export const movieForm: IForm = {
                     valueField: "_id",
                     paramsToFilter: ["name"],
                     paramType: "query",
-                    relatedEntity: "Actor"
+                    relatedEntity: "actors"
                   },
                   isRequired: true,
                 },
@@ -128,7 +128,7 @@ export const movieForm: IForm = {
                     valueField: "_id",
                     paramsToFilter: ["characterName"],
                     paramType: "query",
-                    relatedEntity: "Character"
+                    relatedEntity: "characters"
                   },
                   isRequired: true,
                 },

@@ -42,7 +42,7 @@ export const movieEpisodeForm: IForm = {
             valueField: "_id",
             paramsToFilter: ["characterName"],
             paramType: "query",
-            relatedEntity: "Character",
+            relatedEntity: "characters",
           },
           isRequired: true,
         },
