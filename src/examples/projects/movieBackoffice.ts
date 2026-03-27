@@ -70,7 +70,7 @@ export const movieBackoffice: IProject = {
       smtpPass: SMTP_PASSWORD,
       smtpFrom: "noreply@kunlatek.com",
     },
-    baseUrl: "http://localhost:5173",
+    baseUrl: "http://localhost:4200",
   },
   e2e: {
     framework: "playwright",
