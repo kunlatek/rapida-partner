@@ -68,7 +68,7 @@ export const movieEpisodeList: IList = {
           },
           { name: "title", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EDataType.DATETIME2, isRequired: true },
+          { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
           {
             name: "characters", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: false, foreignKey: {
               entity: "Character",

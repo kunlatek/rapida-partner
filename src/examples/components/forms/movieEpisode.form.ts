@@ -82,7 +82,7 @@ export const movieEpisodeForm: IForm = {
           },
           {
             name: "releaseDate",
-            dataType: EDataType.DATETIME2,
+            dataType: EDataType.DATE,
             isRequired: true,
           },
           {

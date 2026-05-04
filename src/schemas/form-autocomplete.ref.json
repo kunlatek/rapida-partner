@@ -112,6 +112,9 @@
         },
         "relatedEntity": {
           "type": "string"
+        },
+        "isExternal": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -176,6 +179,9 @@
           },
           "relatedEntity": {
             "type": "string"
+          },
+          "isExternal": {
+            "type": "boolean"
           }
         }
       },

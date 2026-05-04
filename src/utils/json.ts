@@ -18,37 +18,29 @@ const getJsonFile = (filePath: string): any => {
 };
 
 const validateProjectJson = (
-  jsonProjectInstance: any,
+  jsonProjectInstance: any,   // agora espera-se um objeto JS
   jsonSchemaName: string
 ): boolean => {
   try {
-    const jsonSchemaInstance = getJsonFile(
-      `${schemasPath}/${jsonSchemaName}.schema.json`
-    );
-
+    const jsonSchemaInstance = getJsonFile(`${schemasPath}/${jsonSchemaName}.schema.json`);
     if (!jsonSchemaInstance) {
       throw new Error(`Schema ${jsonSchemaName} not found`);
     }
 
     const refs: string[] = [];
-    const jsonProjectObject = JSON.parse(jsonProjectInstance);
-
     groupJsonSchemaRefs(jsonSchemaInstance, refs);
-
     if (refs.length > 0) {
       addRefsToSchema(refs);
     }
 
     const validate = ajv.compile(jsonSchemaInstance);
-    const valid = validate(jsonProjectObject);
+    const valid = validate(jsonProjectInstance);   // valida o objeto recebido
 
     if (!valid) {
       console.info(validate.errors);
       return false;
     }
-
     console.info("Project JSON is valid");
-
     return true;
   } catch (error: any) {
     console.error(error);

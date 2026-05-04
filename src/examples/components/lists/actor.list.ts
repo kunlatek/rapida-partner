@@ -57,7 +57,7 @@ export const actorList: IList = {
           { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "socialName", dataType: EDataType.NVARCHAR, isRequired: true },
-          { name: "birthDate", dataType: EDataType.DATETIME2, isRequired: true },
+          { name: "birthDate", dataType: EDataType.DATE, isRequired: true },
           { name: "pictureFile", dataType: EDataType.NVARCHAR },
           { name: "biography", dataType: EDataType.LONGTEXT },
         ]

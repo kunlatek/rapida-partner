@@ -10,4 +10,4 @@ const tsToJson = tsProjectToJsonProject(movieBackoffice);
 /**
  * validate project json schema 
  **/
-validateProjectJson(tsToJson, 'project');
+validateProjectJson(JSON.parse(tsToJson), 'project');

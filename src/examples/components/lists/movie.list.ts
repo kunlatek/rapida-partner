@@ -19,10 +19,10 @@ export const movieList: IList = {
       property: "name", type: "title", label: "Nome", dataType: EDataType.NVARCHAR,
     },
     {
-      property: "releaseDate", type: "subtitle", label: "Data de lançamento", dataType: EDataType.DATETIME2,
+      property: "releaseDate", type: "subtitle", label: "Data de lançamento", dataType: EDataType.DATE,
     },
     {
-      property: "movieGenresId.name", type: "subtitle", label: "Gênero", dataType: EDataType.NVARCHAR,
+      property: "movieGenresId.name", type: "subtitle", label: "Gênero", dataType: EDataType.NVARCHAR, isMultiple: true,
     },
     {
       property: "description", type: "description", label: "Descrição", isHtml: true, dataType: EDataType.LONGTEXT
@@ -71,7 +71,7 @@ export const movieList: IList = {
           { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
           { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "description", dataType: EDataType.LONGTEXT, isRequired: true },
-          { name: "releaseDate", dataType: EDataType.DATETIME2, isRequired: true },
+          { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
           { name: "imdbRating", dataType: EDataType.FLOAT, isRequired: true },
           { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
             entity: "MovieGenre",

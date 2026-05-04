@@ -1,11 +1,13 @@
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
+import type { IFormCheckbox } from "./form-checkbox.interface";
 import type { IFormDatePicker } from "./form-datepicker.interface";
 import type { IFormFieldset } from "./form-fieldset.interface";
 import type { IFormFile } from "./form-file.interface";
 import type { IFormInheritance } from "./form-inheritance.interface";
 import type { IFormInput } from "./form-input.interface";
+import type { IFormRadio } from "./form-radio.interface";
 import type { IFormSelect } from "./form-select.interface";
 import type { IFormTab } from "./form-tab.interface";
 import type { IBusinessRule } from "./project.interface";
@@ -29,10 +31,10 @@ export interface IForm {
     actions: "create" | "update" | "delete";
     to: {
       field: string;
-      property?: string; // if field is a property of a related object else take the value of the field. e.g.: field.property
+      property?: string;
     };
-    subject?: string; // use mustache syntax to insert values. e.g.: {{field}}
-    message: string; // use mustache syntax to insert values. e.g.: {{field}}
+    subject?: string;
+    message: string;
   }[];
 }
 
@@ -46,4 +48,6 @@ export type IFormElement =
   | IFormButton
   | IFormFile
   | IFormDatePicker
-  | IFormInheritance;
+  | IFormInheritance
+  | IFormCheckbox
+  | IFormRadio;

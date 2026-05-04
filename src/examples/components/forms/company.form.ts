@@ -66,7 +66,7 @@ export const companyForm: IForm = {
               label: "Data de abertura",
               name: "birthday",
               type: "input",
-              dataType: EDataType.DATETIME2,
+              dataType: EDataType.DATE,
             },
             {
               label: "Natureza legal",

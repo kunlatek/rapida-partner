@@ -143,6 +143,17 @@ export const movieForm: IForm = {
                     visibility: "public",
                   },
                 },
+                {
+                  label: "Tipo de foto",
+                  type: "select",
+                  dataType: EDataType.NVARCHAR,
+                  name: "photoType",
+                  options: [
+                    { label: "Ator", value: "actor" },
+                    { label: "Personagem", value: "character" },
+                  ],
+                  isRequired: true,
+                },
               ]
             },
           ]

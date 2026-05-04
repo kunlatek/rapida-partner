@@ -96,7 +96,7 @@ export const personForm: IForm = {
             {
               label: "Data de nascimento",
               type: "input",
-              dataType: EDataType.DATETIME2,
+              dataType: EDataType.DATE,
               name: "birthday",
               space: 1,
             },
@@ -449,14 +449,14 @@ export const personForm: IForm = {
                   label: "Data de emissão do RG",
                   name: "rgIssueDate",
                   type: "input",
-                  dataType: EDataType.DATETIME2,
+                  dataType: EDataType.DATE,
                   space: 1,
                 },
                 {
                   label: "Data de validade do RG",
                   name: "rgExpiryDate",
                   type: "input",
-                  dataType: EDataType.DATETIME2,
+                  dataType: EDataType.DATE,
                   space: 1,
                 },
                 {
@@ -489,14 +489,14 @@ export const personForm: IForm = {
                 {
                   label: "Data de emissão do passaporte",
                   type: "input",
-                  dataType: EDataType.DATETIME2,
+                  dataType: EDataType.DATE,
                   name: "passportIssueDate",
                   space: 1,
                 },
                 {
                   label: "Data de validade do passaporte",
                   type: "input",
-                  dataType: EDataType.DATETIME2,
+                  dataType: EDataType.DATE,
                   name: "passportExpiryDate",
                   space: 1,
                 },

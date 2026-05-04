@@ -1,0 +1,73 @@
+{
+  "$id": "form-checkbox.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "checkbox"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "boolean" }
+            ]
+          },
+          "isDisabled": {
+            "type": "boolean"
+          },
+          "isSelected": {
+            "type": "boolean"
+          }
+        },
+        "required": ["label", "value"]
+      }
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "isDisabled": {
+      "type": "boolean"
+    },
+    "isDisabledOnUpdate": {
+      "type": "boolean"
+    },
+    "isHidden": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "conditions": {
+      "$ref": "condition.ref.json"
+    },
+    "todo": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "elementDescription": {
+      "type": "string"
+    },
+    "space": {
+      "type": "number",
+      "enum": [1, 2, 3, 4]
+    }
+  },
+  "required": ["type", "name", "label", "options"]
+}

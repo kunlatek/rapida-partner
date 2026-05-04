@@ -40,6 +40,7 @@ export interface IOptionsApi {
   isNotKunlatekResponse?: boolean;
   rawQuery?: string;
   conditions?: IFormCondition;
+  isExternal?: boolean;
 }
 
 export interface IApiResponseField {

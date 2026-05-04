@@ -17,7 +17,9 @@
       { "$ref": "form-datepicker.ref.json" },
       { "$ref": "form-radiogroup.ref.json" },
       { "$ref": "form-switch.ref.json" },
-      { "$ref": "form-inheritance.ref.json" }
+      { "$ref": "form-inheritance.ref.json" },
+      { "$ref": "form-checkbox.ref.json" },
+      { "$ref": "form-radio.ref.json" }
     ]
   }
 }
