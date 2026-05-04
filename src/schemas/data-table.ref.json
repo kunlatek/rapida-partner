@@ -21,6 +21,30 @@
         "properties": {
           "property": { "type": "string" },
           "label": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "title",
+              "subtitle",
+              "description",
+              "video",
+              "image",
+              "images",
+              "icon",
+              "badge"
+            ]
+          },
+          "isHtml": { "type": "boolean" },
+          "isTimestamp": { "type": "boolean" },
+          "callToAction": {
+            "type": "object",
+            "properties": {
+              "link": { "type": "string" },
+              "usePropertyAsQuery": { "type": "boolean" }
+            },
+            "required": ["link"]
+          },
+          "dataType": { "$ref": "types-datatype.ref.json" },
           "sortable": { "type": "boolean" },
           "filterable": { "type": "boolean" },
           "hidden": { "type": "boolean" },

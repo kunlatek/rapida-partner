@@ -1,3 +1,4 @@
+import type { EDataType } from "../enums/form.enum";
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
 
@@ -24,17 +25,59 @@ export interface IDataTable {
 export interface IDataTableColumn {
   property: string;
   label: string;
+
+  /**
+   * Display type aligned with list component styles.
+   * When provided, it overrides renderAs behavior.
+   */
+  type?:
+    | "title"
+    | "subtitle"
+    | "description"
+    | "video"
+    | "image"
+    | "images"
+    | "icon"
+    | "badge";
+
+  /**
+   * Mark column content as HTML to be rendered directly.
+   */
+  isHtml?: boolean;
+
+  /**
+   * Treat the value as a timestamp for automatic formatting.
+   */
+  isTimestamp?: boolean;
+
+  /**
+   * Optional call-to-action configuration for the column content.
+   * When present, the cell becomes clickable using the defined link.
+   */
+  callToAction?: {
+    link: string;
+    usePropertyAsQuery?: boolean;
+  };
+
+  /**
+   * Data type of the property, useful for automatic formatting or validation.
+   */
+  dataType?: EDataType;
+
   sortable?: boolean;
   filterable?: boolean;
   hidden?: boolean;
   width?: string;
   align?: "left" | "center" | "right";
+
   formatter?: {
     type: "date" | "currency" | "number" | "boolean" | "custom";
     format?: string;
     customFunction?: string;
   };
+
   renderAs?: "text" | "link" | "badge" | "image" | "icon";
+
   linkConfig?: {
     route: string;
     paramProperty?: string;
