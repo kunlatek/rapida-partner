@@ -63,7 +63,7 @@ export interface IContractRequestField {
 interface IContractRequestFieldForeignKey {
   entity: string;
   connectionAttribute: string;
-  relationship: "many-to-many" | "one-to-many" | "one-to-one"
+  relationship: "many-to-many" | "one-to-many" | "one-to-one" | "many-to-one";
   fields?: IContractRequestField[];
   isHidden?: boolean;
 }

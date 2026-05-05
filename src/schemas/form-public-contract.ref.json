@@ -78,7 +78,8 @@
                     "enum": [
                       "one-to-one",
                       "one-to-many",
-                      "many-to-many"
+                      "many-to-many",
+                      "many-to-one"
                     ]
                   },
                   "fields": {
