@@ -9,6 +9,7 @@ import type { IFormInheritance } from "./form-inheritance.interface";
 import type { IFormInput } from "./form-input.interface";
 import type { IFormRadio } from "./form-radio.interface";
 import type { IFormSelect } from "./form-select.interface";
+import type { IFormSwitch } from "./form-switch.interface";
 import type { IFormTab } from "./form-tab.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
@@ -50,4 +51,5 @@ export type IFormElement =
   | IFormDatePicker
   | IFormInheritance
   | IFormCheckbox
-  | IFormRadio;
+  | IFormRadio
+  | IFormSwitch;
