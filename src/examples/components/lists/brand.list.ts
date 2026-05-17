@@ -1,17 +1,20 @@
 import { EDataType } from "../../../enums/form.enum";
 import type { IList } from "../../../interfaces/list.interface";
 
-export const movieGenreList: IList = {
+export const brandList: IList = {
   componentType: "list",
-  id: "movieGenreList",
-  title: "Lista de gêneros de filmes",
+  id: "brandList",
+  title: "Lista de marcas",
   guards: ["isAuthorized"],
   dataSource: {
-    endpoint: "/movie-genres",
+    endpoint: "/brands",
     paramType: "query",
     hasAuthentication: true,
   },
   listItems: [
+    {
+      property: "pictureFile", type: "image", label: "Logo", dataType: EDataType.NVARCHAR,
+    },
     {
       property: "name", type: "title", label: "Nome", dataType: EDataType.NVARCHAR,
     },
@@ -25,7 +28,7 @@ export const movieGenreList: IList = {
       icon: "pencil",
       action: {
         link: {
-          endpoint: "/movie-genres",
+          endpoint: "/brands",
           propertiesAsPathParam: ["_id"],
         },
       },
@@ -35,10 +38,10 @@ export const movieGenreList: IList = {
       icon: "delete",
       action: {
         linkAfterAction: {
-          endpoint: "/movie-genres",
+          endpoint: "/brands",
         },
         request: {
-          endpoint: "/movie-genres",
+          endpoint: "/brands",
           verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
@@ -51,13 +54,15 @@ export const movieGenreList: IList = {
   ],
   contracts: [
     {
-      id: "movieGenres",
-      endpoint: "/movie-genres",
+      id: "brands",
+      endpoint: "/brands",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "movieGenres",
+        entity: "brands",
         description: "",
         fields: [
+          { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
+          { name: "pictureFile", dataType: EDataType.NVARCHAR, isRequired: false },
           {
             name: "name",
             dataType: EDataType.TEXT,

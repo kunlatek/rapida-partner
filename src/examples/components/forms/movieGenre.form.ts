@@ -29,7 +29,7 @@ export const movieGenreForm: IForm = {
       endpoint: "/movie-genres",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "MovieGenre",
+        entity: "movieGenres",
         description: "",
         fields: [
           {

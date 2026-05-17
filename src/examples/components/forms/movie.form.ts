@@ -167,7 +167,7 @@ export const movieForm: IForm = {
       endpoint: "/movies",
       actions: ["create", "update", "getById", "get", "softDelete"],
       request: {
-        entity: "Movie",
+        entity: "movies",
         description: "Represents a movie or TV series in the system.",
         fields: [
           { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
@@ -179,7 +179,7 @@ export const movieForm: IForm = {
           { name: "imdbRating", dataType: EDataType.DECIMAL, isRequired: true },
           {
             name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
-              entity: "MovieGenre",
+              entity: "movieGenres",
               connectionAttribute: "_id",
               relationship: "many-to-many"
             }

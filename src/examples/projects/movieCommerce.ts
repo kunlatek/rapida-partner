@@ -1,6 +1,7 @@
 import { DATABASE_PASSWORD } from "../../constants/secrets/database";
 import { DISCORD_WEBHOOK_URL, JWT_SECRET, SMTP_PASSWORD } from "../../constants/secrets/others";
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
+import { EDataType } from "../../enums/form.enum";
 import type { IProject } from "../../interfaces/project.interface";
 import { movieGenreChart } from "../components/charts/movieGenre.chart";
 import { companyForm } from "../components/forms/company.form";
@@ -10,11 +11,11 @@ import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
 import { productModule } from "../modules/product";
 
-export const movieBackoffice: IProject = {
-  id: "movieBackoffice",
-  title: "Movie Backoffice",
-  description: "Sistema de gerenciamento para filmes e personagens.",
-  skeleton: "backoffice",
+export const movieCommerce: IProject = {
+  id: "movieCommerce",
+  title: "Movie Commerce",
+  description: "Sistema de gerenciamento de comercio para merchandising de filmes e personagens.",
+  skeleton: "marketplace",
   flows: {
     authentication: true,
     permission: true,
@@ -25,8 +26,8 @@ export const movieBackoffice: IProject = {
     }
   },
   businessPlan: {
-    businessValue: "Gerenciar e otimizar as operações do Movie.",
-    targetMarket: "Empresas que utilizam o Movie para gerenciar sugestões e feedbacks.",
+    businessValue: "Gerenciar e otimizar as operações do Movie Commerce.",
+    targetMarket: "Empresas que utilizam o Movie Commerce para gerenciar sugestões e feedbacks.",
     benchmarkings: "Análise de sistemas de gerenciamento de feedbacks.",
     legalIssues: "Conformidade com leis de proteção de dados.",
     ethicalIssues: "Garantir a privacidade dos usuários.",
@@ -43,9 +44,9 @@ export const movieBackoffice: IProject = {
     database: {
       provider: "mongodb",
       connectionString:
-        `mongodb+srv://kunlatek:${DATABASE_PASSWORD}@cluster0.b0pfr.mongodb.net/movie-v1`,
+        `mongodb+srv://kunlatek:${DATABASE_PASSWORD}@cluster0.b0pfr.mongodb.net/movie-commerce-v1`,
       credentials: {
-        databaseName: "movie-v1",
+        databaseName: "movie-commerce-v1",
         username: "kunlatek",
         password: DATABASE_PASSWORD,
         host: "cluster0.b0pfr.mongodb.net",
@@ -70,6 +71,29 @@ export const movieBackoffice: IProject = {
       smtpPass: SMTP_PASSWORD,
       smtpFrom: "noreply@kunlatek.com",
     },
+    marketplace: {
+      paymentGateways: [
+        {
+          provider: "mercadoPago",
+          apiKey: "sk-1234567890abcdef1234567890abcdef",
+        },
+      ],
+      productsAutocomplete: {
+        type: "autocomplete",
+        name: "productId",
+        dataType: EDataType.UNIQUEIDENTIFIER,
+        label: "Produto",
+        optionsApi: {
+          endpoint: "http://localhost:3001/products",
+          labelField: ["name", "ean13", "ean14"],
+          valueField: "_id",
+          paramsToFilter: ["name", "ean13", "ean14"],
+          paramType: "query",
+          relatedEntity: "products",
+          isExternal: true,
+        },
+      },
+    },
     baseUrl: "http://localhost:4200",
   },
   // e2e: {
@@ -77,9 +101,6 @@ export const movieBackoffice: IProject = {
   //   moduleId: movieModule.id,
   // },
   modules: [
-    movieModule,
-    actorModule,
-    characterModule,
     productModule,
   ],
   styles: [

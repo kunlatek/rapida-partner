@@ -29,6 +29,16 @@ export const actorForm: IForm = {
       isRequired: true,
     },
     {
+      label: "Sexo",
+      name: "gender",
+      type: "radio",
+      options: [
+        { label: "Masculino", value: "male" },
+        { label: "Feminino", value: "female" },
+      ],
+      isRequired: true,
+    },
+    {
       label: "Foto",
       name: "pictureFile",
       type: "file",
@@ -44,7 +54,42 @@ export const actorForm: IForm = {
       name: "biography",
       type: "input",
       dataType: EDataType.WYSIWYG,
-    }
+    },
+    {
+      label: "Hobbies",
+      name: "hobbies",
+      type: "checkbox",
+      options: [
+        { label: "Esportes", value: "sports" },
+        { label: "Ler", value: "reading" },
+        { label: "Trabalhar", value: "working" },
+        { label: "Outros", value: "other" },
+      ],
+      isRequired: true,
+    },
+    {
+      label: "Outros hobbies",
+      name: "otherHobbies",
+      type: "input",
+      dataType: EDataType.NVARCHAR,
+      isRequired: true,
+      conditions: {
+        form: {
+          elements: [
+            {
+              key: "hobbies",
+              value: "other",
+              comparisonOperator: "==="
+            }
+          ]
+        },
+      },
+    },
+    {
+      label: "Dados verificados",
+      name: "verifiedData",
+      type: "switch",
+    },
   ],
   contracts: [
     {
@@ -52,15 +97,17 @@ export const actorForm: IForm = {
       endpoint: "/actors",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "Actor",
+        entity: "actors",
         description: "Represents an actor or actress in the system.",
         fields: [
           { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           { name: "name", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "socialName", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "birthDate", dataType: EDataType.DATE, isRequired: true },
+          { name: "gender", dataType: EDataType.NVARCHAR, isRequired: true },
           { name: "pictureFile", dataType: EDataType.NVARCHAR },
           { name: "biography", dataType: EDataType.LONGTEXT },
+          { name: "verifiedData", dataType: EDataType.BOOLEAN, isRequired: true },
         ]
       }
     }

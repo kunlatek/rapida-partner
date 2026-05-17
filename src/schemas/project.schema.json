@@ -26,7 +26,13 @@
           "type": "boolean"
         },
         "invitation": {
-          "type": "boolean"
+          "type": "object",
+          "properties": {
+            "mainUserEmail": {
+              "type": "string"
+            }
+          },
+          "required": ["mainUserEmail"]
         },
         "registration": {
           "type": "boolean"

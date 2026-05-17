@@ -55,7 +55,7 @@ export const movieEpisodeForm: IForm = {
       endpoint: "/movie-episodes",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "MovieEpisode",
+        entity: "movieEpisodes",
         description: "Represents an episode of a TV series or show.",
         fields: [
           {
@@ -69,7 +69,7 @@ export const movieEpisodeForm: IForm = {
             dataType: EDataType.UNIQUEIDENTIFIER,
             isRequired: true,
             foreignKey: {
-              entity: "Movie",
+              entity: "movies",
               connectionAttribute: "_id",
               relationship: "one-to-many",
             },
@@ -90,7 +90,7 @@ export const movieEpisodeForm: IForm = {
             dataType: EDataType.UNIQUEIDENTIFIER,
             isRequired: false,
             foreignKey: {
-              entity: "Character",
+              entity: "characters",
               connectionAttribute: "_id",
               relationship: "many-to-many",
             },

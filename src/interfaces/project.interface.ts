@@ -21,7 +21,9 @@ export interface IProject {
   flows?: {
     authentication?: boolean;
     permission?: boolean;
-    invitation?: boolean;
+    invitation?: {
+      mainUserEmail: string; // First user email to own the system and be the first invited
+    };
     registration?: boolean;
     profiles?: {
       personProfile?: IForm;

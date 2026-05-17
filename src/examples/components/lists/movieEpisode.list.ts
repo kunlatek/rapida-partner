@@ -25,8 +25,8 @@ export const movieEpisodeList: IList = {
       icon: "pencil",
       action: {
         link: {
-          endpoint: "/movie-episode-form",
-          propertiesAsQueryParam: ["_id"],
+          endpoint: "/movies-episodes",
+          propertiesAsPathParam: ["_id"],
         },
       },
     },
@@ -34,8 +34,8 @@ export const movieEpisodeList: IList = {
       label: "Excluir",
       icon: "delete",
       action: {
-        link: {
-          endpoint: "/movie-episode-list",
+        linkAfterAction: {
+          endpoint: "/movies-episodes",
         },
         request: {
           endpoint: "/movies-episodes",
@@ -55,13 +55,13 @@ export const movieEpisodeList: IList = {
       endpoint: "/movies-episodes",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "MovieEpisode",
+        entity: "movieEpisodes",
         description: "Represents an episode of a TV series or show.",
         fields: [
           { name: "_id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
           {
             name: "movieId", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
-              entity: "Movie",
+              entity: "movies",
               connectionAttribute: "_id",
               relationship: "one-to-many"
             }
@@ -71,7 +71,7 @@ export const movieEpisodeList: IList = {
           { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
           {
             name: "characters", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: false, foreignKey: {
-              entity: "Character",
+              entity: "characters",
               connectionAttribute: "_id",
               relationship: "many-to-many"
             }

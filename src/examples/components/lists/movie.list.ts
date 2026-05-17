@@ -34,8 +34,8 @@ export const movieList: IList = {
       icon: "pencil",
       action: {
         link: {
-          endpoint: "/movie-form",
-          propertiesAsQueryParam: ["_id"],
+          endpoint: "/movies",
+          propertiesAsPathParam: ["_id"],
         },
       },
     },
@@ -43,8 +43,8 @@ export const movieList: IList = {
       label: "Excluir",
       icon: "delete",
       action: {
-        link: {
-          endpoint: "/movie-list",
+        linkAfterAction: {
+          endpoint: "/movies",
         },
         request: {
           endpoint: "/movies",
@@ -74,7 +74,7 @@ export const movieList: IList = {
           { name: "releaseDate", dataType: EDataType.DATE, isRequired: true },
           { name: "imdbRating", dataType: EDataType.FLOAT, isRequired: true },
           { name: "movieGenres", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, foreignKey: {
-            entity: "MovieGenre",
+            entity: "movieGenres",
             connectionAttribute: "_id",
             relationship: "many-to-many"
           } },

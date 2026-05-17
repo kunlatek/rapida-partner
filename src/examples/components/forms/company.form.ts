@@ -147,7 +147,7 @@ export const companyForm: IForm = {
               label: "Sócios",
               name: "companyPartnersId",
               type: "autocomplete",
-              dataType: EDataType.NVARCHAR,
+              dataType: EDataType.UNIQUEIDENTIFIER,
               tooltip:
                 "O(s) sócio(s) deve(m) estar cadastrado(s) no gerenciamento de pessoas.",
               optionsApi: {

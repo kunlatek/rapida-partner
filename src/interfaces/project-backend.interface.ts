@@ -1,3 +1,5 @@
+import type { IFormAutocomplete } from "./form-autocomplete.interface";
+
 interface IDatabase {
   provider:
     | "mariadb"
@@ -37,6 +39,16 @@ interface IEmail {
   smtpFrom?: string;
 }
 
+interface IMarketplace {
+  paymentGateways?: IPaymentGateway[];
+   productsAutocomplete?: IFormAutocomplete;
+}
+
+interface IPaymentGateway {
+  provider: "mercadoPago" | "pagSeguro" | "unionPay";
+  apiKey: string;
+}
+
 export interface IBackend {
   framework: "functions" | "lambda" | "laravel" | "nest" | "dotnet";
   database: IDatabase;
@@ -45,4 +57,5 @@ export interface IBackend {
   storage?: IStorage;
   logging?: ILogging;
   email?: IEmail;
+  marketplace?: IMarketplace;
 }

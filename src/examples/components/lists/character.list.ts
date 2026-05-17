@@ -21,8 +21,8 @@ export const characterList: IList = {
       icon: "pencil",
       action: {
         link: {
-          endpoint: "/character-form",
-          propertiesAsQueryParam: ["_id"],
+          endpoint: "/characters",
+          propertiesAsPathParam: ["_id"],
         },
       },
     },
@@ -30,16 +30,16 @@ export const characterList: IList = {
       label: "Excluir",
       icon: "delete",
       action: {
-        link: {
-          endpoint: "/character-list",
+        linkAfterAction: {
+          endpoint: "/characters",
         },
         request: {
           endpoint: "/characters",
           verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
-            title: "Excluir projeto",
-            message: "Deseja realmente excluir essa projeto?",
+            title: "Excluir conteúdo",
+            message: "Deseja realmente excluir esse conteúdo?",
           }
         }
       },

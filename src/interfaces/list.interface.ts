@@ -51,12 +51,18 @@ export interface IList {
     icon: string; // Material icons e.g: "pencil"
     label: string; // e.g: "Editar"
     action: {
-      link: {
+      linkAfterAction?: {
         // frontend url to be redirected on action completition
         endpoint: string; // e.g.: "/user"
         propertiesAsQueryParam?: string[]; // if, for example, ["_id", "email"], then "/user?_id=value&email=value"
         propertiesAsPathParam?: string[]; // if, for example, ["_id", "email"], then "/user/<_id>/<email>"
       };
+      link?: {
+        // frontend url to be redirected on action completition
+        endpoint: string; // e.g.: "/user"
+        propertiesAsQueryParam?: string[]; // if, for example, ["_id", "email"], then "/user?_id=value&email=value"
+        propertiesAsPathParam?: string[]; // if, for example, ["_id", "email"], then "/user/<_id>/<email>"
+      },
       request?: {
         // backend request endpoint that must be processed before link redirection
         endpoint: string; // e.g.: "/user"

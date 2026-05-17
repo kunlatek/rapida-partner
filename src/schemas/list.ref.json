@@ -88,9 +88,7 @@
                 "description": "if true then '/user/<email>'"
               }
             },
-            "required": [
-              "link"
-            ]
+            "required": ["link"]
           },
           "conditions": {
             "$ref": "condition.ref.json"
@@ -126,9 +124,7 @@
           "description": "if, for example, ['_id', 'email'], then '/user/<_id>/<email>'"
         }
       },
-      "required": [
-        "link"
-      ]
+      "required": ["link"]
     },
     "callsToActionMenu": {
       "type": "array",
@@ -168,9 +164,30 @@
                     "description": "if, for example, ['_id', 'email'], then '/user/<_id>/<email>'"
                   }
                 },
-                "required": [
-                  "endpoint"
-                ]
+                "required": ["endpoint"]
+              },
+              "linkAfterAction": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string",
+                    "description": "e.g.: '/user'"
+                  },
+                  "propertiesAsQueryParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "if, for example, ['_id', 'email'], then '/user?_id=value&email=value'"
+                  },
+                  "propertiesAsPathParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "if, for example, ['_id', 'email'], then '/user/<_id>/<email>'"
+                  }
+                }
               },
               "request": {
                 "type": "object",
@@ -195,12 +212,7 @@
                   },
                   "verb": {
                     "type": "string",
-                    "enum": [
-                      "get",
-                      "post",
-                      "put",
-                      "softDelete"
-                    ]
+                    "enum": ["get", "post", "put", "softDelete"]
                   },
                   "dialog": {
                     "type": "object",
@@ -212,21 +224,12 @@
                         "type": "string"
                       }
                     },
-                    "required": [
-                      "title",
-                      "message"
-                    ]
+                    "required": ["title", "message"]
                   }
                 },
-                "required": [
-                  "endpoint",
-                  "verb"
-                ]
+                "required": ["endpoint", "verb"]
               }
-            },
-            "required": [
-              "link"
-            ]
+            }
           },
           "businessRules": {
             "$ref": "business-rules.ref.json"
@@ -238,11 +241,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "icon",
-          "label",
-          "action"
-        ]
+        "required": ["icon", "label", "action"]
       }
     },
     "listActions": {
@@ -341,10 +340,7 @@
                                 "$ref": "types-datatype.ref.json"
                               }
                             },
-                            "required": [
-                              "name",
-                              "dataType"
-                            ]
+                            "required": ["name", "dataType"]
                           }
                         },
                         "isHidden": {
@@ -406,10 +402,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "name",
-                    "dataType"
-                  ]
+                  "required": ["name", "dataType"]
                 }
               },
               "relatedEntity": {
@@ -435,10 +428,7 @@
                           "type": "string"
                         }
                       },
-                      "required": [
-                        "fields",
-                        "contractId"
-                      ]
+                      "required": ["fields", "contractId"]
                     }
                   }
                 },
@@ -466,10 +456,7 @@
                 }
               }
             },
-            "required": [
-              "entity",
-              "fields"
-            ]
+            "required": ["entity", "fields"]
           },
           "conditions": {
             "$ref": "condition.ref.json"
@@ -481,11 +468,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "endpoint",
-          "actions"
-        ]
+        "required": ["id", "endpoint", "actions"]
       }
     },
     "publicContracts?": {
@@ -584,10 +567,7 @@
                                 "$ref": "types-datatype.ref.json"
                               }
                             },
-                            "required": [
-                              "name",
-                              "dataType"
-                            ]
+                            "required": ["name", "dataType"]
                           }
                         },
                         "isHidden": {
@@ -652,10 +632,7 @@
                       "$ref": "business-rules.ref.json"
                     }
                   },
-                  "required": [
-                    "name",
-                    "dataType"
-                  ]
+                  "required": ["name", "dataType"]
                 }
               },
               "relatedEntity": {
@@ -682,10 +659,7 @@
                         }
                       }
                     },
-                    "required": [
-                      "fields",
-                      "contractId"
-                    ]
+                    "required": ["fields", "contractId"]
                   }
                 },
                 "required": [
@@ -712,10 +686,7 @@
                 }
               }
             },
-            "required": [
-              "entity",
-              "fields"
-            ]
+            "required": ["entity", "fields"]
           },
           "conditions": {
             "$ref": "condition.ref.json"
@@ -727,11 +698,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "endpoint",
-          "actions"
-        ]
+        "required": ["id", "endpoint", "actions"]
       }
     },
     "archive": {
@@ -747,26 +714,12 @@
           },
           "logicalOperator": {
             "type": "string",
-            "enum": [
-              "&&",
-              "!",
-              "nor",
-              "||"
-            ]
+            "enum": ["&&", "!", "nor", "||"]
           }
         },
-        "required": [
-          "property",
-          "value"
-        ]
+        "required": ["property", "value"]
       }
     }
   },
-  "required": [
-    "componentType",
-    "id",
-    "title",
-    "dataSource",
-    "contracts"
-  ]
+  "required": ["componentType", "id", "title", "dataSource", "contracts"]
 }

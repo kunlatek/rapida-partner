@@ -21,8 +21,8 @@ export const actorList: IList = {
       icon: "pencil",
       action: {
         link: {
-          endpoint: "/actor-form",
-          propertiesAsQueryParam: ["_id"],
+          endpoint: "/actors",
+          propertiesAsPathParam: ["_id"],
         },
       },
     },
@@ -30,16 +30,16 @@ export const actorList: IList = {
       label: "Excluir",
       icon: "delete",
       action: {
-        link: {
-          endpoint: "/actor-list",
+        linkAfterAction: {
+          endpoint: "/actors",
         },
         request: {
           endpoint: "/actors",
           verb: "softDelete",
           propertiesAsPathParam: ["_id"],
           dialog: {
-            title: "Excluir projeto",
-            message: "Deseja realmente excluir essa projeto?",
+            title: "Excluir conteúdo",
+            message: "Deseja realmente excluir esse conteúdo?",
           }
         }
       },
@@ -51,7 +51,7 @@ export const actorList: IList = {
       endpoint: "/actors",
       actions: ["create", "get", "getById", "update", "softDelete"],
       request: {
-        entity: "Actor",
+        entity: "actors",
         description: "Represents an actor or actress in the system.",
         fields: [
           { name: "id", dataType: EDataType.UNIQUEIDENTIFIER, isRequired: true, isPrimaryKey: true },
