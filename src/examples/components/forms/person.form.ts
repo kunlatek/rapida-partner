@@ -22,9 +22,8 @@ export const personForm: IForm = {
               name: "country",
               dataType: EDataType.NVARCHAR,
               options: COUNTRIES_FROM_EARTH.map((country) => ({
-                label: country.originalName,
+                label: country.originalName + " (" + country.countryCode + ")",
                 value: country.englishNameAsValue,
-                isSelected: country.englishNameAsValue === "brazil",
               })),
               isRequired: true,
               space: 2,
@@ -126,9 +125,8 @@ export const personForm: IForm = {
                   dataType: EDataType.NVARCHAR,
                   name: "phoneOneDdi",
                   options: COUNTRIES_FROM_EARTH.map((country) => ({
-                    label: country.countryCode,
+                    label: country.originalName + " (" + country.countryCode + ")",
                     value: country.countryCode,
-                    isSelected: country.countryCode === "+55",
                   })),
                   space: 1,
                 },
@@ -369,9 +367,8 @@ export const personForm: IForm = {
                   dataType: EDataType.NVARCHAR,
                   name: "phoneTwoDdi",
                   options: COUNTRIES_FROM_EARTH.map((country) => ({
-                    label: country.countryCode,
+                    label: country.originalName + " (" + country.countryCode + ")",
                     value: country.countryCode,
-                    isSelected: country.countryCode === "+55",
                   })),
                   space: 2,
                 },

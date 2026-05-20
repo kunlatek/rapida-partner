@@ -17,7 +17,8 @@
             "oracle",
             "postgresql",
             "mysql",
-            "sqlserver"
+            "sqlserver",
+            "sqlite"
           ]
         },
         "connectionString": { "type": "string" },
@@ -62,6 +63,14 @@
       "type": "object",
       "properties": {
         "discordWebhookUrl": { "type": "string" }
+      }
+    },
+    "whatsapp": {
+      "type": "object",
+      "properties": {
+        "whatsappToken": { "type": "string" },
+        "whatsappPhoneNumberId": { "type": "string" },
+        "whatsappVerifyToken": { "type": "string" }
       }
     },
     "email": {

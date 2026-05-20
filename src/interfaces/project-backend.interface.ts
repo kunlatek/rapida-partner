@@ -7,6 +7,7 @@ interface IDatabase {
     | "oracle"
     | "postgresql"
     | "mysql"
+    | "sqlite"
     | "sqlserver";
   connectionString: string;
   credentials: {
@@ -33,6 +34,12 @@ interface ILogging {
   discordWebhookUrl?: string;
 }
 
+interface IWhatsapp {
+  whatsappToken: string;
+  whatsappPhoneNumberId: string;
+  whatsappVerifyToken: string;
+}
+
 interface IEmail {
   smtpUser?: string;
   smtpPass?: string;
@@ -56,6 +63,7 @@ export interface IBackend {
   baseUrl?: string;
   storage?: IStorage;
   logging?: ILogging;
+  whatsapp?: IWhatsapp;
   email?: IEmail;
   marketplace?: IMarketplace;
 }
