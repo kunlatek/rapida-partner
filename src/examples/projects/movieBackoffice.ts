@@ -1,5 +1,9 @@
 import { DATABASE_PASSWORD } from "../../constants/secrets/database";
-import { DISCORD_WEBHOOK_URL, JWT_SECRET, SMTP_PASSWORD } from "../../constants/secrets/others";
+import {
+  DISCORD_WEBHOOK_URL,
+  JWT_SECRET,
+  SMTP_PASSWORD,
+} from "../../constants/secrets/others";
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
 import type { IProject } from "../../interfaces/project.interface";
 import { movieGenreChart } from "../components/charts/movieGenre.chart";
@@ -22,11 +26,12 @@ export const movieBackoffice: IProject = {
     profiles: {
       personProfile: personForm,
       companyProfile: companyForm,
-    }
+    },
   },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",
-    targetMarket: "Empresas que utilizam o Movie para gerenciar sugestões e feedbacks.",
+    targetMarket:
+      "Empresas que utilizam o Movie para gerenciar sugestões e feedbacks.",
     benchmarkings: "Análise de sistemas de gerenciamento de feedbacks.",
     legalIssues: "Conformidade com leis de proteção de dados.",
     ethicalIssues: "Garantir a privacidade dos usuários.",
@@ -42,8 +47,7 @@ export const movieBackoffice: IProject = {
     jwtSecret: JWT_SECRET,
     database: {
       provider: "mongodb",
-      connectionString:
-        `mongodb+srv://kunlatek:${DATABASE_PASSWORD}@cluster0.b0pfr.mongodb.net/movie-v1`,
+      connectionString: `mongodb+srv://kunlatek:${DATABASE_PASSWORD}@cluster0.b0pfr.mongodb.net/movie-v1`,
       credentials: {
         databaseName: "movie-v1",
         username: "kunlatek",
@@ -76,12 +80,7 @@ export const movieBackoffice: IProject = {
   //   framework: "playwright",
   //   moduleId: movieModule.id,
   // },
-  modules: [
-    movieModule,
-    actorModule,
-    characterModule,
-    productModule,
-  ],
+  modules: [movieModule, actorModule, characterModule, productModule],
   styles: [
     {
       themeName: "light",
@@ -116,15 +115,13 @@ export const movieBackoffice: IProject = {
             focusBorder: "#4F46E5",
             placeholder: "#9CA3AF",
             width: "248px",
-          }
+          },
         },
         spacing: "8px",
         maxWidth: "1200px",
         footerHeight: "60px",
-      }
-    }
+      },
+    },
   ],
-  dashboard: [
-    movieGenreChart,
-  ]
+  dashboard: [movieGenreChart],
 };

@@ -1,6 +1,6 @@
 # Projeto Rapida Partner
 
-Este repositório não é um sistema de gerenciamento de filmes e personagens por si só, mas sim a ferramenta `rapida-partner`, que atua como uma ponte entre a idealização de um projeto de software e sua implementação técnica. Seu objetivo principal é traduzir a lógica de negócio e os requisitos de engenharia em um objeto JSON unificado, servindo como um "mapa" detalhado para a criação de qualquer projeto.
+Este repositório contém a ferramenta `rapida-partner`, que atua como uma ponte entre a idealização de um projeto de software e sua implementação técnica. Seu objetivo principal é traduzir a lógica de negócio e os requisitos de engenharia em um objeto JSON unificado, servindo como um "mapa" detalhado para a criação de qualquer projeto.
 
 O "Movie Backoffice" é apenas um exemplo prático, mostrando como as interfaces do `rapida-partner` podem ser utilizadas para descrever um sistema completo. Ele detalha desde o plano de negócios e as regras de negócio até a estrutura do frontend e backend, além de definir módulos e componentes como formulários e listas.
 
@@ -10,79 +10,109 @@ O projeto `Movie Backoffice` demonstra o uso do `rapida-partner` para um sistema
 
 A arquitetura técnica é definida da seguinte forma:
 
-- **Frontend**: Svelte com Flowbite UI Kit.
-    
+- **Frontend**: Angular com Flowbite UI Kit.
 - **Backend**: NestJS com banco de dados MongoDB.
-    
-- **Fluxo de Autenticação**: `permeson`.
-    
-- **Módulos**: `personModule`, `companyModule`, `movieModule`, e `characterModule`.
-    
+- **Fluxos**: Autenticação, permissão, registro e perfis (pessoa/empresa).
+- **Módulos**: `movieModule`, `actorModule`, `characterModule` e `productModule`.
 
 ## Como Usar o `rapida-partner`
 
-### 1. Instalação e Configuração
+### 1. Instalação
 
 Este projeto utiliza **Bun** como runtime e gerenciador de pacotes.
 
-1. **Clone o repositório:**
-   
 ```bash
 git clone [URL_DO_REPOSITORIO]
 cd rapida-partner
-```
-    
-1. **Instale as dependências:**
-```bash
 bun install
 ```
 
-3. **Variáveis de Ambiente:** Crie um arquivo `.env` a partir do `env.example` para configurar variáveis sensíveis.
-```
-ROOT_PATH=/path/to/rapida-partner
-TERMINAL_PASSWORD=t3rm1n4lP455w0rd
-```
-    
-    As configurações de backend, como `database`, `storage`, `logging` e `email`, são definidas diretamente no objeto do projeto TypeScript (`movieBackoffice.ts`).
-    
+### 2. Geração do Mapa do Projeto (JSON)
 
-### 2. Gerando o Mapa do Projeto (JSON)
+O `rapida-partner` agora funciona como uma **CLI (Interface de Linha de Comando)**. Você informa o caminho do arquivo TypeScript que descreve o projeto, e a ferramenta gera o JSON correspondente.
 
-O coração do `rapida-partner` é a capacidade de converter uma representação de projeto em TypeScript para um arquivo JSON. Isso é feito pelo script `index.ts`.
-
-Para gerar o `rapidaObject.json` a partir do `movieBackoffice.ts`, execute:
+**Sintaxe:**
 
 ```bash
-bun run index.ts
+
+bun index.ts <caminho-para-arquivo-do-projeto> [caminho-para-json-de-saída]
 ```
 
-Este comando executa a função `tsProjectToJsonProject`, que serializa o objeto `movieBackoffice` para JSON e salva o resultado no arquivo `rapidaObject.json`. Em seguida, o arquivo JSON é validado contra o esquema `project.schema.json` para garantir que a estrutura está correta.
+**Exemplo com o projeto de exemplo:**
 
-### 3. Entendendo as Interfaces
+```bash
 
-Para criar seu próprio "mapa" de projeto, você deve se basear nas interfaces TypeScript disponíveis na pasta `src/interfaces/`. Elas definem a estrutura de cada componente e regra de negócio que você pode descrever.
+bun index.ts ./src/examples/projects/movieBackoffice.ts ./rapidaObject.json
+```
 
-- `project.interface.ts`: Define a estrutura de um projeto, incluindo plano de negócios, regras de negócio e módulos.
+- O primeiro argumento é **obrigatório** e deve apontar para um arquivo TypeScript que exporte (`export default` ou `export const`) um objeto que implemente a interface `IProject`.
     
-- `project-backend.interface.ts`: Detalha as configurações de backend (framework, banco de dados, armazenamento, etc.).
-    
-- `form.interface.ts`, `list.interface.ts`, `data-table.interface.ts`, etc.: Definem os tipos de componentes de UI e suas propriedades, como campos de formulário, listas de dados e tabelas.
-    
-
-Ao criar um novo objeto de projeto, importe e utilize essas interfaces para garantir a conformidade com a estrutura esperada pelo sistema de validação.
-
-### 4. Como o "Mapa" é Validado
-
-A validação do objeto JSON é crucial para garantir a integridade do projeto. O script `index.ts` usa o utilitário `validateProjectJson` para isso.
-
-- Ele carrega o esquema JSON (`project.schema.json`) e todos os esquemas de referência (`.ref.json`).
-    
-- Em seguida, ele compila e valida o `rapidaObject.json` em relação a esse esquema.
-    
-- Se a validação falhar, os erros são exibidos no console, permitindo que você identifique e corrija rapidamente as inconsistências.
+- O segundo argumento é **opcional** e define onde o JSON gerado será salvo. Se omitido, o arquivo será criado como `./rapidaObject.json`.
     
 
-Essa abordagem garante que a descrição do projeto é tecnicamente sólida e coerente, facilitando a próxima etapa do processo de desenvolvimento.
+### 3. Validação Automática
 
-### 4. Problemas Conhecidos
-- No atributo `contracts[n].request.body[n]`, se o `dataType` for `array`, é preciso inserir `elements` pra melhorar a descrição do contrato.
+Após gerar o JSON, o script automaticamente valida o conteúdo contra o esquema `project.schema.json` e todas as suas referências (arquivos `.ref.json`). Se a validação falhar, os erros são exibidos no console, permitindo que você corrija as inconsistências.
+
+### 4. Estrutura do Projeto (Interfaces)
+
+Para criar seu próprio "mapa", utilize as interfaces TypeScript disponíveis na pasta `src/interfaces/`. Elas definem cada componente e regra de negócio que você pode descrever.
+
+- `project.interface.ts`: Define a estrutura de um projeto, incluindo plano de negócios, regras de negócio, módulos e dashboard.
+    
+- `project-backend.interface.ts`: Detalha as configurações de backend (framework, banco de dados, armazenamento, logging, email, marketplace, etc.).
+    
+- `form.interface.ts`, `list.interface.ts`, `data-table.interface.ts`, `data-chart.interface.ts`, etc.: Definem os tipos de componentes de UI e suas propriedades (campos de formulário, listas, tabelas, gráficos, etc.).
+    
+
+### 5. Como Funciona a Validação
+
+A validação é feita através do módulo `src/utils/json.ts`, que utiliza as bibliotecas `ajv` e `ajv-formats`. O processo:
+
+1. Carrega o esquema principal (`project.schema.json`).
+    
+2. Coleta recursivamente todas as referências (`$ref`) e adiciona os esquemas correspondentes.
+    
+3. Compila o validador e verifica o JSON gerado.
+    
+4. Exibe os erros de validação caso o projeto não esteja em conformidade.
+    
+
+## Problemas Conhecidos
+
+- No atributo `contracts[n].request.fields[n]`, se o `dataType` for `"array"`, é necessário inserir um campo `elements` para descrever melhor a estrutura do array no contrato.
+    
+
+## Remoção da Dependência do `.env`
+
+Diferentemente de versões anteriores, o `rapida-partner` **não requer mais** um arquivo `.env` para funcionar. As variáveis de ambiente (como `ROOT_PATH`) foram substituídas por caminhos calculados dinamicamente a partir do diretório do pacote. Portanto, não há necessidade de configurar nenhuma variável externa.
+
+## Licença
+Este projeto está licenciado sob os termos da licença MIT.
+```text
+MIT License
+
+Copyright (c) [ano] [seu nome]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Contribuição
+
+Contribuições são bem-vindas. Abra uma issue ou pull request para sugestões e melhorias.

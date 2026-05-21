@@ -1,17 +1,18 @@
 import type { IProject } from "../interfaces/project.interface";
 import { writeFile } from "../utils/file";
-import { rootPath } from "../utils/env";
 
-const tsProjectToJsonProject = (project: IProject) => {console.log(project);
-    const json = JSON.stringify(project);
+const tsProjectToJsonProject = (
+  project: IProject,
+  outputPath?: string,
+): string => {
+  console.log(project);
+  const json = JSON.stringify(project, null, 2); // Pretty print for readability
+  const finalOutputPath = outputPath || "./rapidaObject.json";
 
-    writeFile(json, `${rootPath}/rapidaObject.json`);
+  writeFile(json, finalOutputPath);
+  console.info(`Project written to file: ${finalOutputPath}`);
 
-    console.info("Project written to file.");
-    
-    return json;
-}
+  return json;
+};
 
-export {
-    tsProjectToJsonProject
-}
+export { tsProjectToJsonProject };
