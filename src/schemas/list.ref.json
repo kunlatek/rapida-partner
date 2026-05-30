@@ -719,6 +719,27 @@
         },
         "required": ["property", "value"]
       }
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "pageSize": {
+          "type": "number"
+        },
+        "pageSizeOptions": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "position": {
+          "type": "string",
+          "enum": ["top", "bottom", "both"]
+        }
+      }
     }
   },
   "required": ["componentType", "id", "title", "dataSource", "contracts"]

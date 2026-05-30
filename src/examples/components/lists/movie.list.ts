@@ -58,7 +58,13 @@ export const movieList: IList = {
       },
     }
   ],
-  contracts: [
+  "pagination": {
+    "enabled": true,
+    "pageSize": 15,
+    "pageSizeOptions": [10, 15, 25, 50],
+    "position": "bottom"
+  },
+contracts: [
     {
       id: "movies",
       endpoint: "/movies",

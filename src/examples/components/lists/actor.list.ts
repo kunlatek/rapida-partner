@@ -45,7 +45,13 @@ export const actorList: IList = {
       },
     }
   ],
-  contracts: [
+  "pagination": {
+    "enabled": true,
+    "pageSize": 15,
+    "pageSizeOptions": [10, 15, 25, 50],
+    "position": "bottom"
+  },
+contracts: [
     {
       id: "actors",
       endpoint: "/actors",

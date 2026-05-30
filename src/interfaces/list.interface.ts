@@ -86,4 +86,12 @@ export interface IList {
     value: string; // e.g.: "finished"
     logicalOperator?: "&&" | "!" | "nor" | "||"; // && as default
   }[];
+  pagination?: IListPagination;
+}
+
+export interface IListPagination {
+  enabled: boolean;
+  pageSize: number;
+  pageSizeOptions?: number[];
+  position?: "top" | "bottom" | "both";
 }
