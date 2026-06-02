@@ -12,7 +12,6 @@ import { personForm } from "../components/forms/person.form";
 import { actorModule } from "../modules/actor";
 import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
-import { productModule } from "../modules/product";
 
 export const movieBackoffice: IProject = {
   id: "movieBackoffice",
@@ -80,7 +79,7 @@ export const movieBackoffice: IProject = {
   //   framework: "playwright",
   //   moduleId: movieModule.id,
   // },
-  modules: [movieModule, actorModule, characterModule, productModule],
+  modules: [movieModule, actorModule, characterModule],
   styles: [
     {
       themeName: "light",
