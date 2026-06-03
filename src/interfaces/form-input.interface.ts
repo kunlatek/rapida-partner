@@ -26,7 +26,7 @@ export interface IFormInput {
   minLength?: number;
   apiRequest?: IApiRequest;
   businessRules?: IBusinessRule[];
-  maskRegex?: string;
+  mask?: string | string[];
   suffix?: string;
   prefix?: string;
   defaultValue?: string | number | boolean;

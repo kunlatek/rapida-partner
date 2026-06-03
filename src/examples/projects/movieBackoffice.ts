@@ -1,10 +1,12 @@
-import { DATABASE_PASSWORD } from "../../constants/secrets/database";
+import { DEEPSEEK_API_KEY } from "../../constants/secrets/ai";
+import { DATABASE_PASSWORD, MONGODB_ACCOUNT_PRIVATE_KEY, MONGODB_ACCOUNT_PUBLIC_KEY, MONGODB_GROUP_ID, MONGODB_ORGANIZATION_ID, MONGODB_PROCESS_ID } from "../../constants/secrets/database";
 import {
   DISCORD_WEBHOOK_URL,
   JWT_SECRET,
   SMTP_PASSWORD,
 } from "../../constants/secrets/others";
 import { STORAGE_PRIVATE_KEY } from "../../constants/secrets/storage";
+import { WHATSAPP_BUSINESS_ACCOUNT_ID, WHATSAPP_PHONE_NUMBER_ID, WHATSAPP_TOKEN, WHATSAPP_VERIFY_TOKEN } from "../../constants/secrets/whatsapp";
 import type { IProject } from "../../interfaces/project.interface";
 import { movieGenreChart } from "../components/charts/movieGenre.chart";
 import { companyForm } from "../components/forms/company.form";
@@ -37,6 +39,18 @@ export const movieBackoffice: IProject = {
     afterSales: "Suporte contínuo e atualizações regulares.",
     monetization: "Assinaturas mensais para acesso ao sistema.",
   },
+  deepseekIntegration: [{
+    apiKey: DEEPSEEK_API_KEY,
+    service: "cost"
+  }],
+  mongodbIntegration: [{
+    accountPublicKey: MONGODB_ACCOUNT_PUBLIC_KEY,
+    accountPrivateKey: MONGODB_ACCOUNT_PRIVATE_KEY,
+    organizationId: MONGODB_ORGANIZATION_ID,
+    groupId: MONGODB_GROUP_ID,
+    processId: MONGODB_PROCESS_ID,
+    service: "cost",
+  }],
   frontend: {
     framework: "angular",
     uiKit: "flowbite",
@@ -64,6 +78,12 @@ export const movieBackoffice: IProject = {
       },
       publicBucketName: "rapida-public-files",
       privateBucketName: "rapida-private-files",
+    },
+    whatsapp: {
+      whatsappToken: WHATSAPP_TOKEN,
+      whatsappPhoneNumberId: WHATSAPP_PHONE_NUMBER_ID,
+      whatsappVerifyToken: WHATSAPP_VERIFY_TOKEN,
+      whatsappBusinessAccountId: WHATSAPP_BUSINESS_ACCOUNT_ID,
     },
     logging: {
       discordWebhookUrl: DISCORD_WEBHOOK_URL,

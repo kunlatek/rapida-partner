@@ -34,7 +34,8 @@ export const companyForm: IForm = {
               name: "cnpj",
               type: "input",
               dataType: EDataType.NVARCHAR,
-              maskRegex: "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$",
+              mask: "00.000.000/0000-00",
+              validators: ["cnpj"],
               isUnique: true,
               conditions:
               {
@@ -181,7 +182,6 @@ export const companyForm: IForm = {
                   type: "input",
                   dataType: EDataType.NVARCHAR,
                   name: "phoneOne",
-                  maskRegex: "^\\d{15}$",
                 },
               ]
             },
@@ -393,7 +393,6 @@ export const companyForm: IForm = {
                   type: "input",
                   dataType: EDataType.NVARCHAR,
                   name: "phoneTwo",
-                  maskRegex: "^\\d{15}$",
                 },
               ]
             },

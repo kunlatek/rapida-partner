@@ -38,6 +38,7 @@ interface IWhatsapp {
   whatsappToken: string;
   whatsappPhoneNumberId: string;
   whatsappVerifyToken: string;
+  whatsappBusinessAccountId: string;
 }
 
 interface IEmail {

@@ -71,8 +71,14 @@
     "apiRequest": {
       "$ref": "form-common-api-request.ref.json"
     },
-    "maskRegex": {
-      "type": "string"
+    "mask": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "items": {
+        "type": "string"
+      }
     },
     "suffix": {
       "type": "string"

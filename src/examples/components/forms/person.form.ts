@@ -33,9 +33,9 @@ export const personForm: IForm = {
               type: "input",
               dataType: EDataType.NVARCHAR,
               name: "cpf",
+              mask: "000.000.000-00",
               validators: ["cpf"],
               isUnique: true,
-              maskRegex: "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$",
               space: 2,
               conditions: {
                 form: {
@@ -135,7 +135,6 @@ export const personForm: IForm = {
                   type: "input",
                   dataType: EDataType.NVARCHAR,
                   name: "phoneOne",
-                  maskRegex: "^\\d{15}$",
                   space: 3,
                 },
               ],
@@ -377,7 +376,6 @@ export const personForm: IForm = {
                   type: "input",
                   dataType: EDataType.NVARCHAR,
                   name: "phoneTwo",
-                  maskRegex: "^\\d{15}$",
                   space: 2,
                 },
               ],

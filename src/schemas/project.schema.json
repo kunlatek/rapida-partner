@@ -62,6 +62,50 @@
     "backend": {
       "$ref": "backend.ref.json"
     },
+    "deepseekIntegration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string",
+            "enum": ["embedding", "chat", "custom", "cost"]
+          }
+        },
+        "required": ["apiKey", "service"]
+      }
+    },
+    "mongodbIntegration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "accountPublicKey": {
+            "type": "string"
+          },
+          "accountPrivateKey": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "groupId": {
+            "type": "string"
+          },
+          "processId": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string",
+            "enum": ["embedding", "chat", "custom", "cost"]
+          }
+        },
+        "required": ["service"]
+      }
+    },
     "e2e": {
       "$ref": "e2e.ref.json"
     },

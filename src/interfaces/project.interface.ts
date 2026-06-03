@@ -32,6 +32,18 @@ export interface IProject {
   };
   frontend?: IFrontend;
   backend?: IBackend;
+  deepseekIntegration?: {
+    apiKey: string;
+    service: "embedding" | "chat" | "custom" | "cost";
+  }[];
+  mongodbIntegration?: {
+    accountPublicKey?: string;
+    accountPrivateKey?: string;
+    organizationId?: string;
+    groupId?: string;
+    processId?: string;
+    service: "embedding" | "chat" | "custom" | "cost";
+  }[];
   e2e?: IE2e;
   modules?: IModule[];
   styles?: IStyle[];
