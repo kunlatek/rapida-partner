@@ -21,6 +21,12 @@
         "material",
         "flowbite"
       ]
+    },
+    "logoPath": {
+      "type": "string"
+    },
+    "faviconPath": {
+      "type": "string"
     }
   },
   "required": [

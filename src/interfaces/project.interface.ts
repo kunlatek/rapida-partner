@@ -54,6 +54,8 @@ export interface IProject {
 interface IFrontend {
   framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
   uiKit: "antdesign" | "bootstrap" | "material" | "flowbite";
+  logoPath?: string;
+  faviconPath?: string;
 }
 
 interface IBusinessPLan {
