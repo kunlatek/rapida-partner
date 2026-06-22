@@ -80,6 +80,75 @@
         "smtpPass": { "type": "string" },
         "smtpFrom": { "type": "string" }
       }
+    },
+    "marketplace": {
+      "type": "object",
+      "properties": {
+        "paymentGateways": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": { "type": "string" }
+            }
+          }
+        },
+        "productsAutocomplete": { "$ref": "form-autocomplete.ref.json" },
+        "stockInEndpoint": { "type": "string" },
+        "stockOutEndpoint": { "type": "string" },
+        "productBaseUrl": { "type": "string" }
+      },
+      "required": ["paymentGateways", "productsAutocomplete", "stockInEndpoint", "stockOutEndpoint", "productBaseUrl"]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "paymentGateways": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": { "type": "string" }
+            }
+          }
+        },
+        "appointmentList": { "$ref": "list.ref.json" },
+        "availabilityScheduleList": { "$ref": "list.ref.json" },
+        "appointmentByAiList": { "$ref": "list.ref.json" }
+      },
+      "required": ["paymentGateways", "appointmentList", "availabilityScheduleList"]
+    },
+    "mercadoPagoIntegration": {
+      "type": "object",
+      "properties": {
+        "publicKey": { "type": "string" },
+        "accessToken": { "type": "string" },
+        "appId": { "type": "string" },
+        "userId": { "type": "string" },
+        "testUserId": { "type": "string" },
+        "password": { "type": "string" },
+        "verificationCode": { "type": "string" },
+        "testSellerSettings": {
+          "type": "object",
+          "properties": {
+            "userId": { "type": "string" },
+            "user": { "type": "string" },
+            "password": { "type": "string" },
+            "verificationCode": { "type": "string" }
+          },
+          "required": ["userId", "user", "password", "verificationCode"]
+        },
+        "testBuyerSettings": {
+          "type": "object",
+          "properties": {
+            "userId": { "type": "string" },
+            "user": { "type": "string" },
+            "password": { "type": "string" },
+            "verificationCode": { "type": "string" }
+          },
+          "required": ["userId", "user", "password", "verificationCode"]
+        }
+      }
     }
   },
   "required": ["framework", "database", "jwtSecret"]

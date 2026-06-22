@@ -14,7 +14,7 @@
     },
     "skeleton": {
       "type": "string",
-      "enum": ["backoffice", "marketplace", "landingPage", "socialNetwork"]
+      "enum": ["backoffice", "marketplace", "landingPage", "socialNetwork", "service"]
     },
     "flows": {
       "type": "object",
@@ -57,10 +57,16 @@
       "$ref": "business-rules.ref.json"
     },
     "frontend": {
-      "$ref": "frontend.ref.json"
+      "type": "array",
+      "items": {
+        "$ref": "frontend.ref.json"
+      }
     },
     "backend": {
-      "$ref": "backend.ref.json"
+      "type": "array",
+      "items": {
+        "$ref": "backend.ref.json"
+      }
     },
     "deepseekIntegration": {
       "type": "array",

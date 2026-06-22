@@ -51,11 +51,18 @@ export const movieBackoffice: IProject = {
     processId: MONGODB_PROCESS_ID,
     service: "cost",
   }],
-  frontend: {
+  frontend: [{
+    environment: "dev",
+    baseUrl: "http://localhost:4200",
+    apiBaseUrl: "http://localhost:3000",
+    isActiveEnvironment: true,
     framework: "angular",
     uiKit: "flowbite",
-  },
-  backend: {
+  }],
+  backend: [{
+    environment: "dev",
+    baseUrl: "http://localhost:3000",
+    isActiveEnvironment: true,
     framework: "nest",
     jwtSecret: JWT_SECRET,
     database: {
@@ -93,8 +100,7 @@ export const movieBackoffice: IProject = {
       smtpPass: SMTP_PASSWORD,
       smtpFrom: "noreply@kunlatek.com",
     },
-    baseUrl: "http://localhost:4200",
-  },
+  }],
   // e2e: {
   //   framework: "playwright",
   //   moduleId: movieModule.id,

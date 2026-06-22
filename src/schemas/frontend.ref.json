@@ -2,6 +2,18 @@
   "$id": "frontend.ref.json",
   "type": "object",
   "properties": {
+    "environment": {
+      "type": "string"
+    },
+    "baseUrl": {
+      "type": "string"
+    },
+    "apiBaseUrl": {
+      "type": "string"
+    },
+    "isActiveEnvironment": {
+      "type": "boolean"
+    },
     "framework": {
       "type": "string",
       "enum": [
@@ -31,6 +43,10 @@
   },
   "required": [
     "framework",
-    "uiKit"
+    "uiKit",
+    "isActiveEnvironment",
+    "environment",
+    "baseUrl",
+    "apiBaseUrl"
   ]
 }

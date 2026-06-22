@@ -1,4 +1,6 @@
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
+import type { IForm } from "./form.interface";
+import type { IList } from "./list.interface";
 
 interface IDatabase {
   provider:
@@ -48,23 +50,56 @@ interface IEmail {
 }
 
 interface IMarketplace {
-  paymentGateways?: IPaymentGateway[];
-   productsAutocomplete?: IFormAutocomplete;
+  paymentGateways: IPaymentGateway[];
+  productsAutocomplete: IFormAutocomplete;
+  stockInEndpoint: string;
+  stockOutEndpoint: string;
+  productBaseUrl: string;
+}
+
+interface IService {
+  paymentGateways: IPaymentGateway[];
+  appointmentList: IList;
+  availabilityScheduleList: IList;
+  appointmentByAiList?: IList;
 }
 
 interface IPaymentGateway {
   provider: "mercadoPago" | "pagSeguro" | "unionPay";
-  apiKey: string;
 }
 
 export interface IBackend {
+  environment: string;
+  baseUrl: string;
+  isActiveEnvironment: boolean;
   framework: "functions" | "lambda" | "laravel" | "nest" | "dotnet";
   database: IDatabase;
   jwtSecret: string;
-  baseUrl?: string;
   storage?: IStorage;
   logging?: ILogging;
   whatsapp?: IWhatsapp;
   email?: IEmail;
   marketplace?: IMarketplace;
+  service?: IService;
+  mercadoPagoIntegration?: {
+    publicKey?: string;
+    accessToken?: string;
+    appId?: string;
+    userId?: string;
+    testUserId?: string;
+    password?: string;
+    verificationCode?: string;
+    testSellerSettings?: {
+      userId: string;
+      user: string;
+      password: string;
+      verificationCode: string;
+    };
+    testBuyerSettings?: {
+      userId: string;
+      user: string;
+      password: string;
+      verificationCode: string;
+    };
+  };
 }

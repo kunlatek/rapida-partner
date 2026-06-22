@@ -17,7 +17,7 @@ export interface IProject {
   description: string;
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
-  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork";
+  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service";
   flows?: {
     authentication?: boolean;
     permission?: boolean;
@@ -30,8 +30,8 @@ export interface IProject {
       companyProfile?: IForm;
     };
   };
-  frontend?: IFrontend;
-  backend?: IBackend;
+  frontend?: IFrontend[];
+  backend?: IBackend[];
   deepseekIntegration?: {
     apiKey: string;
     service: "embedding" | "chat" | "custom" | "cost";
@@ -51,7 +51,11 @@ export interface IProject {
   dashboard?: IComponent[];
 }
 
-interface IFrontend {
+export interface IFrontend {
+  environment: string;
+  baseUrl: string;
+  apiBaseUrl: string;
+  isActiveEnvironment: boolean;
   framework: "angular" | "flutter" | "react" | "reactnative" | "svelte" | "vue";
   uiKit: "antdesign" | "bootstrap" | "material" | "flowbite";
   logoPath?: string;
