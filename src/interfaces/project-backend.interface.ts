@@ -64,7 +64,7 @@ interface IService {
   appointmentByAiList?: IList;
 }
 
-interface IPaymentGateway {
+export interface IPaymentGateway {
   provider: "mercadoPago" | "pagSeguro" | "unionPay";
 }
 
