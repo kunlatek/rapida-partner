@@ -20,6 +20,8 @@ export interface IProject {
   skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service";
   flows?: {
     authentication?: boolean;
+    registrationMethod?: 'link' | 'code';
+    resetPasswordMethod?: 'link' | 'code';
     permission?: boolean;
     invitation?: {
       mainUserEmail: string; // First user email to own the system and be the first invited
@@ -29,6 +31,7 @@ export interface IProject {
       personProfile?: IForm;
       companyProfile?: IForm;
     };
+    kanban?: IForm;
   };
   frontend?: IFrontend[];
   backend?: IBackend[];

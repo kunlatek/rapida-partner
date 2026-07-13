@@ -11,6 +11,8 @@ import type { IProject } from "../../interfaces/project.interface";
 import { movieGenreChart } from "../components/charts/movieGenre.chart";
 import { companyForm } from "../components/forms/company.form";
 import { personForm } from "../components/forms/person.form";
+import { projectForm } from "../components/forms/project.form";
+import { taskWithProjectForm } from "../components/forms/taskWithProject.form";
 import { actorModule } from "../modules/actor";
 import { characterModule } from "../modules/character";
 import { movieModule } from "../modules/movie";
@@ -28,6 +30,7 @@ export const movieBackoffice: IProject = {
       personProfile: personForm,
       companyProfile: companyForm,
     },
+    kanban: taskWithProjectForm,
   },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",

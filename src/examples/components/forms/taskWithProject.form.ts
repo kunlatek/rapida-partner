@@ -1,0 +1,290 @@
+import { EDataType } from "../../../enums/form.enum";
+import type { IForm } from "../../../interfaces/form.interface";
+
+export const taskWithProjectForm: IForm = {
+  title: "Gerenciar tarefa",
+  id: "taskWithProjectForm",
+  componentType: "form",
+  icon: "check-square",
+  elements: [
+    {
+      label: "Título",
+      type: "input",
+      dataType: EDataType.NVARCHAR,
+      name: "title",
+      placeholder: "Digite o título da tarefa",
+      tooltip: "Título descritivo da tarefa",
+      isRequired: true,
+      space: 2,
+    },
+    {
+      type: "autocomplete",
+      dataType: EDataType.UNIQUEIDENTIFIER,
+      label: "Projeto",
+      name: "projectId",
+      isRequired: true,
+      optionsApi: {
+        endpoint: "/projects",
+        labelField: ["title", "identifier"],
+        valueField: "_id",
+        paramType: "query",
+        relatedEntity: "projects",
+        paramsToFilter: ["title", "identifier"],
+      },
+      space: 2,
+    },
+    {
+      label: "Descrição",
+      type: "input",
+      dataType: EDataType.WYSIWYG,
+      name: "description",
+      placeholder: "Descreva a tarefa",
+      tooltip: "Detalhes adicionais sobre a tarefa",
+    },
+    {
+      label: "Arquivo relacionado",
+      type: "file",
+      name: "fileUrl",
+      dataType: EDataType.NVARCHAR,
+      storageConfig: {
+        path: "tasks/files",
+        fileNameStrategy: "uuid",
+        visibility: "private",
+      },
+    },
+    {
+      label: "Prioridade",
+      type: "select",
+      dataType: EDataType.INTEGER,
+      name: "priority",
+      placeholder: "Selecione a prioridade da tarefa",
+      tooltip: "Nível de urgência da tarefa",
+      isRequired: true,
+      options: [
+        { label: "Baixa", value: 3 },
+        { label: "Média", value: 2 },
+        { label: "Alta", value: 1 },
+        { label: "Urgente", value: 0 },
+      ],
+      space: 1,
+    },
+    {
+      label: "Complexidade",
+      type: "select",
+      dataType: EDataType.INTEGER,
+      name: "complexity",
+      placeholder: "Selecione a complexidade da tarefa",
+      tooltip: "Nível de complexidade da tarefa",
+      isRequired: true,
+      options: [
+        { label: "Baixa", value: 1 },
+        { label: "Média", value: 2 },
+        { label: "Alta", value: 3 },
+        { label: "Muito alta", value: 4 },
+        { label: "Precisa de estudo", value: 0 },
+      ],
+      space: 1,
+    },
+    {
+      label: "Status",
+      type: "select",
+      dataType: EDataType.NVARCHAR,
+      name: "status",
+      options: [
+        { label: "Pendente", value: "pending", isSelected: true },
+        { label: "Em andamento", value: "inProgress" },
+        { label: "Aguardando validação técnica", value: "awaitingValidation" },
+        { label: "Aguardando homologação", value: "awaitingApproval" },
+        { label: "Pendência pós-validação", value: "postValidationPending" },
+        { label: "Pendência pós-homologação", value: "postApprovalPending" },
+        { label: "Finalizado", value: "completed" },
+      ],
+      isRequired: true,
+      space: 1,
+    },
+    {
+      label: "Data desejada para a entrega",
+      name: "expectedDeliveryDate",
+      type: "input",
+      dataType: EDataType.DATE,
+      space: 1,
+    },
+    {
+      label: "Data de início",
+      type: "input",
+      dataType: EDataType.DATE,
+      name: "startDate",
+      space: 1,
+    },
+    {
+      label: "Desenvolvedor",
+      name: "developerId",
+      type: "autocomplete",
+      dataType: EDataType.UNIQUEIDENTIFIER,
+      optionsApi: {
+        relatedEntity: "profiles",
+        endpoint: "/profiles",
+        labelField: ["name", "userName"],
+        valueField: "_id",
+        paramsToFilter: ["name", "userName"],
+        paramType: "query",
+      },
+      space: 1,
+    },
+    {
+      label: "Validador",
+      type: "autocomplete",
+      dataType: EDataType.UNIQUEIDENTIFIER,
+      name: "validatorId",
+      optionsApi: {
+        relatedEntity: "profiles",
+        endpoint: "/profiles",
+        labelField: ["name", "userName"],
+        valueField: "_id",
+        paramsToFilter: ["name", "userName"],
+        paramType: "query",
+      },
+      space: 1,
+    },
+    {
+      label: "Homologador",
+      type: "autocomplete",
+      dataType: EDataType.UNIQUEIDENTIFIER,
+      name: "approverId",
+      optionsApi: {
+        relatedEntity: "profiles",
+        endpoint: "/profiles",
+        labelField: ["name", "userName"],
+        valueField: "_id",
+        paramsToFilter: ["name", "userName"],
+        paramType: "query",
+      },
+      space: 1,
+    },
+    {
+      label: "Adicionar entrega",
+      type: "array",
+      name: "deliveries",
+      elements: [
+        {
+          label: "Data de entrega",
+          type: "input",
+          dataType: EDataType.DATE,
+          name: "dueDate",
+          placeholder: "Selecione a data de vencimento",
+          tooltip: "Data limite para conclusão da tarefa",
+          isRequired: true,
+          businessRules: [
+            // todo
+            {
+              rule: {
+                description: "defaultvalue: " + new Date().toISOString(),
+              },
+            },
+          ],
+        },
+        {
+          label: "Comentário",
+          type: "input",
+          dataType: EDataType.WYSIWYG,
+          name: "deliveryComment",
+          placeholder: "Digite o comentário",
+          tooltip: "Comentário sobre a entrega",
+        },
+      ],
+    },
+    {
+      label: "Adicionar validação",
+      type: "array",
+      name: "validations",
+      elements: [
+        {
+          label: "Data de validação",
+          type: "input",
+          dataType: EDataType.DATE,
+          name: "validationDate",
+          isRequired: true,
+          businessRules: [
+            // todo
+            {
+              rule: {
+                description: "defaultvalue: " + new Date().toISOString(),
+              },
+            },
+          ],
+        },
+        {
+          label: "Comentário",
+          type: "input",
+          dataType: EDataType.WYSIWYG,
+          name: "validationComment",
+          placeholder: "Digite o comentário",
+          tooltip: "Comentário sobre a validação",
+        },
+        {
+          label: "Arquivo relacionado",
+          type: "file",
+          name: "fileUrlValidation",
+          dataType: EDataType.NVARCHAR,
+          storageConfig: {
+            path: "tasks/files",
+            fileNameStrategy: "uuid",
+            visibility: "private",
+          },
+        },
+      ],
+    },
+    {
+      label: "Adicionar homologação",
+      type: "array",
+      name: "approvals",
+      elements: [
+        {
+          label: "Data de homologação",
+          type: "input",
+          dataType: EDataType.DATE,
+          name: "approvalDate",
+          isRequired: true,
+          businessRules: [
+            // todo
+            {
+              rule: {
+                description: "defaultvalue: " + new Date().toISOString(),
+              },
+            },
+          ],
+        },
+        {
+          label: "Comentário",
+          type: "input",
+          dataType: EDataType.WYSIWYG,
+          name: "approvalComment",
+          placeholder: "Digite o comentário",
+          tooltip: "Comentário sobre a homologação",
+        },
+        {
+          label: "Arquivo relacionado",
+          type: "file",
+          name: "fileUrlApproval",
+          dataType: EDataType.NVARCHAR,
+          storageConfig: {
+            path: "tasks/files",
+            fileNameStrategy: "uuid",
+            visibility: "private",
+          },
+        },
+      ],
+    },
+  ],
+  contracts: [
+    {
+      id: "tasks",
+      endpoint: "/tasks",
+      actions: ["create", "update", "get", "softDelete", "getById"],
+      request: {
+        entity: "tasks",
+        fields: [],
+      },
+    },
+  ],
+};
