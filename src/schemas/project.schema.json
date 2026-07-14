@@ -47,9 +47,6 @@
               "$ref": "form.ref.json"
             }
           }
-        },
-        "kanban": {
-          "$ref": "form.ref.json"
         }
       }
     },

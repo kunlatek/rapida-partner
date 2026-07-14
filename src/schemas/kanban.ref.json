@@ -1,0 +1,248 @@
+{
+  "$id": "kanban.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "componentType": {
+      "const": "kanban"
+    },
+    "id": {
+      "type": "string"
+    },
+    "boardsProperty": {
+      "$ref": "form-autocomplete.ref.json",
+      "description": "Element autocomplete que associa o card a um board e rpecisa estar presente no form de taks relacionados ao kanban"
+    },
+    "userStory": {
+      "type": "string"
+    },
+    "guards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dataSource": {
+      "$ref": "form-common-api-request.ref.json"
+    },
+    "kanbanColumnsProperty": {
+      "type": "string"
+    },
+    "businessRules": {
+      "$ref": "business-rules.ref.json"
+    },
+    "kanbanCardItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "title",
+              "subtitle",
+              "description",
+              "video",
+              "image",
+              "images",
+              "icon",
+              "badge",
+              "editable"
+            ]
+          },
+          "isHtml": {
+            "type": "boolean"
+          },
+          "isTimestamp": {
+            "type": "boolean"
+          },
+          "callToAction": {
+            "type": "object",
+            "properties": {
+              "link": {
+                "type": "string"
+              },
+              "usePropertyAsQuery": {
+                "type": "boolean"
+              }
+            },
+            "required": ["link"]
+          },
+          "dataType": {
+            "$ref": "types-datatype.ref.json"
+          },
+          "isExpansible": {
+            "type": "boolean"
+          },
+          "conditions": {
+            "$ref": "condition.ref.json"
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "todo": {
+            "type": "string"
+          }
+        },
+        "required": ["dataType"]
+      }
+    },
+    "kanbanFilters": {
+      "$ref": "form-one-of.ref.json"
+    },
+    "callsToActionMenu": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "linkAfterAction": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "propertiesAsQueryParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "propertiesAsPathParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["endpoint"]
+              },
+              "link": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "propertiesAsQueryParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "propertiesAsPathParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["endpoint"]
+              },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "endpoint": {
+                    "type": "string"
+                  },
+                  "propertiesAsQueryParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "propertiesAsPathParam": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "verb": {
+                    "type": "string",
+                    "enum": ["get", "post", "put", "softDelete", "hardDelete"]
+                  },
+                  "dialog": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["title", "message"]
+                  }
+                },
+                "required": ["endpoint", "verb"]
+              }
+            }
+          },
+          "businessRules": {
+            "$ref": "business-rules.ref.json"
+          },
+          "conditions": {
+            "$ref": "condition.ref.json"
+          },
+          "todo": {
+            "type": "string"
+          }
+        },
+        "required": ["icon", "label", "action"]
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "$ref": "form-contract.ref.json"
+      }
+    },
+    "publicContracts?": {
+      "type": "array",
+      "items": {
+        "$ref": "form-public-contract.ref.json"
+      }
+    },
+    "archive": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "logicalOperator": {
+            "type": "string",
+            "enum": ["&&", "!", "nor", "||"]
+          }
+        },
+        "required": ["property", "value"]
+      }
+    }
+  },
+  "required": [
+    "componentType",
+    "id",
+    "boardsProperty",
+    "dataSource",
+    "kanbanColumnsProperty",
+    "kanbanCardItems",
+    "contracts"
+  ]
+}

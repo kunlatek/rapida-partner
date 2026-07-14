@@ -25,6 +25,9 @@
     },
     {
       "$ref": "panel.ref.json"
+    },
+    { 
+      "$ref": "kanban.ref.json" 
     }
   ]
 }

@@ -6,6 +6,7 @@ import type { IDataTable } from "./data-table.interface";
 import type { IE2e } from "./e2e.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IForm } from "./form.interface";
+import type { IKanban } from "./kanban.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
 import type { IBackend } from "./project-backend.interface";
@@ -31,7 +32,6 @@ export interface IProject {
       personProfile?: IForm;
       companyProfile?: IForm;
     };
-    kanban?: IForm;
   };
   frontend?: IFrontend[];
   backend?: IBackend[];
@@ -153,6 +153,7 @@ export interface ITodo {
 export type IComponent =
   | IForm
   | IList
+  | IKanban
   | IDataTable
   | IDataCard
   | IDataGrid

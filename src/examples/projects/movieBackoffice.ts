@@ -30,7 +30,6 @@ export const movieBackoffice: IProject = {
       personProfile: personForm,
       companyProfile: companyForm,
     },
-    kanban: taskWithProjectForm,
   },
   businessPlan: {
     businessValue: "Gerenciar e otimizar as operações do Movie.",
