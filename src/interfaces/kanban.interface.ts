@@ -3,17 +3,19 @@ import type { IFormCondition } from "./condition.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IContract, IPublicContract } from "./form-contract.interface";
 import type { IApiRequest } from "./form-input.interface";
+import type { IFormSelect } from "./form-select.interface";
 import type { IFormElement } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IKanban {
   componentType: "kanban";
   id: string;
-  boardsProperty: IFormAutocomplete; // propriedade que liga o card a um board (ex: 'boardId')
+  relatedFormId?: string; // <-- NOVO: ID do formulário relacionado para criar/editar cards
+  boardsProperty: IFormAutocomplete;
   userStory?: string;
   guards?: string[];
-  dataSource: IApiRequest; // endpoint que retorna os cards (tasks) com a propriedade boardsProperty
-  kanbanColumnsProperty: string; // campo que define as colunas (ex: 'status')
+  dataSource: IApiRequest;
+  kanbanColumnsProperty: IFormAutocomplete | IFormSelect;
   businessRules?: IBusinessRule[];
   kanbanCardItems: {
     property?: string;

@@ -9,9 +9,13 @@
     "id": {
       "type": "string"
     },
+    "relatedFormId": {
+      "type": "string",
+      "description": "ID do formulário relacionado para criação/edição de cards (opcional)"
+    },
     "boardsProperty": {
       "$ref": "form-autocomplete.ref.json",
-      "description": "Element autocomplete que associa o card a um board e rpecisa estar presente no form de taks relacionados ao kanban"
+      "description": "Element autocomplete que associa o card a um board e precisa estar presente no form de tasks relacionados ao kanban"
     },
     "userStory": {
       "type": "string"
@@ -26,7 +30,14 @@
       "$ref": "form-common-api-request.ref.json"
     },
     "kanbanColumnsProperty": {
-      "type": "string"
+      "oneOf": [
+        {
+          "$ref": "form-autocomplete.ref.json"
+        },
+        {
+          "$ref": "form-select.ref.json"
+        }
+      ]
     },
     "businessRules": {
       "$ref": "business-rules.ref.json"
@@ -190,19 +201,19 @@
                 "required": ["endpoint", "verb"]
               }
             }
-          },
-          "businessRules": {
-            "$ref": "business-rules.ref.json"
-          },
-          "conditions": {
-            "$ref": "condition.ref.json"
-          },
-          "todo": {
-            "type": "string"
           }
         },
-        "required": ["icon", "label", "action"]
-      }
+        "businessRules": {
+          "$ref": "business-rules.ref.json"
+        },
+        "conditions": {
+          "$ref": "condition.ref.json"
+        },
+        "todo": {
+          "type": "string"
+        }
+      },
+      "required": ["icon", "label", "action"]
     },
     "contracts": {
       "type": "array",
