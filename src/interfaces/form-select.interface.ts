@@ -27,7 +27,7 @@ export interface IFormSelect {
   space?: 1 | 2 | 3 | 4;
 }
 
-interface ISelectOption {
+export interface ISelectOption {
   label: string;
   value: string | number | boolean;
   isDisabled?: boolean;

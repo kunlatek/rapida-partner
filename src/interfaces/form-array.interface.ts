@@ -7,6 +7,7 @@ export interface IFormArray {
   name: string;
   label: string;
   elements: IFormElement[];
+  tooltip?: string;
   conditions?: IFormCondition;
   todo?: string;
   businessRules?: IBusinessRule[];

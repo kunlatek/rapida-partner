@@ -8,6 +8,9 @@
     "conditions": {
       "$ref": "condition.ref.json"
     },
+    "tooltip": {
+      "type": "string"
+    },
     "todo": {
       "type": "string"
     },
