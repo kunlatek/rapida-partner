@@ -14,7 +14,14 @@
     },
     "skeleton": {
       "type": "string",
-      "enum": ["backoffice", "marketplace", "landingPage", "socialNetwork", "service"]
+      "enum": [
+        "backoffice",
+        "marketplace",
+        "landingPage",
+        "socialNetwork",
+        "service",
+        "aiAgent"
+      ]
     },
     "flows": {
       "type": "object",
@@ -120,6 +127,9 @@
     },
     "flowChart": {
       "$ref": "form-flowchart.ref.json"
+    },
+    "aiAgentConfig": {
+      "$ref": "ai-agent-config.ref.json"
     }
   },
   "required": ["id", "title", "description", "skeleton"]

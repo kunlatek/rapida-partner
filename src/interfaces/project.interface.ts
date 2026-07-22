@@ -1,3 +1,4 @@
+import type { IAiAgentConfig } from "./ai-agent.interface";
 import type { IDataCard } from "./data-card.interface";
 import type { IDataChart } from "./data-chart.interface";
 import type { IDataDetail } from "./data-detail.interface";
@@ -18,7 +19,7 @@ export interface IProject {
   description: string;
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
-  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service";
+  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service" | "aiAgent";
   flows?: {
     authentication?: boolean;
     registrationMethod?: 'link' | 'code';
@@ -52,6 +53,7 @@ export interface IProject {
   styles?: IStyle[];
   flowChart?: IFlowChart;
   dashboard?: IComponent[];
+  aiAgentConfig?: IAiAgentConfig;
 }
 
 export interface IFrontend {

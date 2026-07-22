@@ -1,0 +1,175 @@
+{
+  "$id": "ai-agent-config.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "agentIdentity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "systemPromptTemplate": {
+          "type": "string"
+        },
+        "knowledgeBaseFile": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "mission": {
+          "type": "string"
+        },
+        "knowledgeBaseContent": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "systemPromptTemplate", "knowledgeBaseFile"],
+      "additionalProperties": false
+    },
+    "infrastructure": {
+      "type": "object",
+      "properties": {
+        "messengers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["whatsapp", "instagram", "telegram"]
+          }
+        },
+        "aiProvider": {
+          "type": "string",
+          "enum": ["deepseek", "gemini", "openai"]
+        },
+        "model": {
+          "type": "string"
+        }
+      },
+      "required": ["messengers", "aiProvider", "model"],
+      "additionalProperties": false
+    },
+    "businessContext": {
+      "type": "object",
+      "properties": {
+        "targetBackendProjectId": {
+          "type": "string"
+        },
+        "targetBackendDefinitionFile": {
+          "type": "string"
+        },
+        "exposedContracts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "contractId": {
+                "type": "string"
+              },
+              "toolName": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "create",
+                  "get",
+                  "getById",
+                  "update",
+                  "softDelete",
+                  "hardDelete"
+                ]
+              },
+              "intentMapping": {
+                "type": "object",
+                "properties": {
+                  "formFields": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fieldId": {
+                          "type": "string"
+                        },
+                        "naturalLanguagePrompt": {
+                          "type": "string"
+                        },
+                        "validationHint": {
+                          "type": "string"
+                        },
+                        "schemaType": {
+                          "type": "string",
+                          "enum": [
+                            "string",
+                            "number",
+                            "integer",
+                            "boolean",
+                            "array",
+                            "object"
+                          ]
+                        }
+                      },
+                      "required": ["fieldId", "naturalLanguagePrompt"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "triggerKeywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": ["formFields", "triggerKeywords"],
+                "additionalProperties": false
+              },
+              "responseTemplate": {
+                "type": "object",
+                "properties": {
+                  "successMessage": {
+                    "type": "string"
+                  },
+                  "errorMessage": {
+                    "type": "string"
+                  }
+                },
+                "required": ["successMessage", "errorMessage"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["contractId", "toolName", "action", "intentMapping"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["targetBackendProjectId", "exposedContracts"],
+      "additionalProperties": false
+    },
+    "jobs": {
+      "type": "object",
+      "properties": {
+        "reminder": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "cronInterval": {
+              "type": "string"
+            },
+            "minutesAhead": {
+              "type": "number"
+            },
+            "timezone": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["agentIdentity", "infrastructure", "businessContext"],
+  "additionalProperties": false
+}
