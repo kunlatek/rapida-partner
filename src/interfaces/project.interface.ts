@@ -65,6 +65,7 @@ export interface IFrontend {
   uiKit: "antdesign" | "bootstrap" | "material" | "flowbite";
   logoPath?: string;
   faviconPath?: string;
+  isSsr?: boolean;
 }
 
 interface IBusinessPLan {

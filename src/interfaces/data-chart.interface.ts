@@ -72,6 +72,7 @@ export interface IDataChart {
   businessRules?: IBusinessRule[];
   dataSource: IApiRequest;
   chartType: IChartType;
+  limit?: number;
   dimensions?: {
     width?: string;
     height?: string;

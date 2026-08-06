@@ -45,6 +45,9 @@
         "polarArea"
       ]
     },
+    "limit": {
+      "type": "number"
+    },
     "dimensions": {
       "type": "object",
       "properties": {

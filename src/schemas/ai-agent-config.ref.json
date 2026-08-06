@@ -10,7 +10,8 @@
           "type": "string"
         },
         "systemPromptTemplate": {
-          "type": "string"
+          "type": "string",
+          "description": "Literal markdown content of the system prompt (NOT a file path). Empty string triggers the generator's default prompt scaffold."
         },
         "knowledgeBaseFile": {
           "type": "string"
@@ -33,6 +34,7 @@
       "properties": {
         "messengers": {
           "type": "array",
+          "description": "\"instagram\" is a stub today (webhook does not process incoming messages yet).",
           "items": {
             "type": "string",
             "enum": ["whatsapp", "instagram", "telegram"]
@@ -56,7 +58,8 @@
           "type": "string"
         },
         "targetBackendDefinitionFile": {
-          "type": "string"
+          "type": "string",
+          "description": "Path to an ALREADY COMPILED rapidaObject.json of the target backend (not the .ts source), resolved relative to the directory of this agent's own rapidaObject.json."
         },
         "exposedContracts": {
           "type": "array",

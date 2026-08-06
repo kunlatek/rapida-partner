@@ -1,5 +1,4 @@
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
-import type { IForm } from "./form.interface";
 import type { IList } from "./list.interface";
 
 interface IDatabase {
@@ -41,6 +40,7 @@ interface IWhatsapp {
   whatsappPhoneNumberId: string;
   whatsappVerifyToken: string;
   whatsappBusinessAccountId: string;
+  whatsappAppSecret?: string;
 }
 
 interface IEmail {

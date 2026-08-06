@@ -39,6 +39,9 @@
     },
     "faviconPath": {
       "type": "string"
+    },
+    "isSsr": {
+      "type": "boolean"
     }
   },
   "required": [
