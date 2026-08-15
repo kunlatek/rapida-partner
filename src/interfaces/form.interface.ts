@@ -14,6 +14,7 @@ import type { IFormTab } from "./form-tab.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IContract, IPublicContract } from "./form-contract.interface";
+import type { IRecordReminder } from "./record-reminder.interface";
 
 export interface IForm {
   componentType: "form";
@@ -37,6 +38,7 @@ export interface IForm {
     subject?: string;
     message: string;
   }[];
+  reminders?: IRecordReminder[];
 }
 
 export type IFormElement =
