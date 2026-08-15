@@ -7,7 +7,6 @@ type ConditionType = "property" | "enum" | "form" | "code" | "array" | "button";
 interface IConditionBody {
   elements?: IConditionElement[];
   code?: IConditionCode;
-  businessRules?: IBusinessRule[];
   conditionResponse?: "show" | "hide" | "enable" | "disable" | "fillFields";
   fillFields?:Array<{ fieldKey: string; value: any }>;
   buttonId?: string;

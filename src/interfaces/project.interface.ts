@@ -10,6 +10,7 @@ import type { IForm } from "./form.interface";
 import type { IKanban } from "./kanban.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
+import type { INotification } from "./notification.interface";
 import type { IBackend } from "./project-backend.interface";
 import type { IStyle } from "./project-style.interface";
 
@@ -54,6 +55,7 @@ export interface IProject {
   flowChart?: IFlowChart;
   dashboard?: IComponent[];
   aiAgentConfig?: IAiAgentConfig;
+  notifications?: INotification[];
 }
 
 export interface IFrontend {
@@ -78,6 +80,16 @@ interface IBusinessPLan {
   monetization?: string;
 }
 
+/**
+ * Para `codeStartLocationReference` em qualquer `backendComplementaryCode`/`frontendComplementaryCode`
+ * (rule ou subrule): "before"/"after" inserem `code` como linha(s) inteira(s) imediatamente antes/depois
+ * da PRIMEIRA LINHA onde `codeStartLocation` foi encontrado — não depois da última linha do match, mesmo
+ * quando `codeStartLocation` tem várias linhas. Um `codeStartLocation` multi-linha serve só para garantir
+ * que o trecho seja único na árvore gerada; ele não pula o conteúdo casado até o fim antes de inserir.
+ * Para ancorar a inserção num ponto específico, a primeira linha de `codeStartLocation` precisa já ser
+ * essa linha (estendendo o texto para frente, se necessário, só para ganhar unicidade).
+ * "replace" substitui exatamente o trecho casado (substring, não a linha inteira) pelo `code`.
+ */
 export interface IBusinessRule {
   rule: {
     description: string;
