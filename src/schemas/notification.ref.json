@@ -1,0 +1,56 @@
+{
+  "$id": "notification.ref.json",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": ["internal", "external"]
+        },
+        "internal": {
+          "type": "object",
+          "properties": {
+            "contractId": {
+              "type": "string"
+            }
+          },
+          "required": ["contractId"],
+          "additionalProperties": false
+        },
+        "external": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string"
+            }
+          },
+          "required": ["endpoint"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "array",
+      "items": {
+        "$ref": "notification-condition.ref.json"
+      }
+    },
+    "recipients": {
+      "$ref": "notification-recipients.ref.json"
+    },
+    "removeAfterWatch": {
+      "type": "boolean"
+    },
+    "isFromUser": {
+      "type": "boolean"
+    },
+    "isWebhook": {
+      "type": "boolean"
+    }
+  },
+  "required": ["source", "condition", "recipients"],
+  "additionalProperties": false
+}

@@ -1,0 +1,31 @@
+{
+  "$id": "notification-recipients.ref.json",
+  "oneOf": [
+    {
+      "const": "allUsers"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "property": {
+          "type": "string"
+        }
+      },
+      "required": ["field"],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        }
+      },
+      "required": ["role"],
+      "additionalProperties": false
+    }
+  ]
+}

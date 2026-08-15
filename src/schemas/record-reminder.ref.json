@@ -1,0 +1,32 @@
+{
+  "$id": "record-reminder.ref.json",
+  "type": "object",
+  "properties": {
+    "contractId": {
+      "type": "string"
+    },
+    "dateField": {
+      "type": "string"
+    },
+    "timeField": {
+      "type": "string"
+    },
+    "offsetDays": {
+      "type": "number"
+    },
+    "condition": {
+      "type": "array",
+      "items": {
+        "$ref": "notification-condition.ref.json"
+      }
+    },
+    "recipients": {
+      "$ref": "notification-recipients.ref.json"
+    },
+    "removeAfterNotify": {
+      "type": "boolean"
+    }
+  },
+  "required": ["contractId", "dateField", "recipients"],
+  "additionalProperties": false
+}

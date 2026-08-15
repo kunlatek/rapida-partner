@@ -1,0 +1,20 @@
+{
+  "$id": "notification-condition.ref.json",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "comparisonOperator": {
+      "enum": ["===", ">", ">=", "in", "<", "<=", "!==", "nin"]
+    },
+    "logicalOperator": {
+      "enum": ["&&", "!", "nor", "||"]
+    }
+  },
+  "required": ["field", "value", "comparisonOperator"],
+  "additionalProperties": false
+}

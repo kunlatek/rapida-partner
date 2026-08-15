@@ -1,0 +1,33 @@
+{
+  "$id": "send-message.ref.json",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": ["email", "whatsapp", "sms", "discord", "teams", "push"]
+    },
+    "actions": {
+      "enum": ["create", "update", "delete"]
+    },
+    "to": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "property": {
+          "type": "string"
+        }
+      },
+      "required": ["field"],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": ["type", "actions", "to", "message"],
+  "additionalProperties": false
+}

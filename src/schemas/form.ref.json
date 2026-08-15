@@ -45,6 +45,18 @@
     },
     "flowChart": {
       "$ref": "form-flowchart.ref.json"
+    },
+    "sendMessage": {
+      "type": "array",
+      "items": {
+        "$ref": "send-message.ref.json"
+      }
+    },
+    "reminders": {
+      "type": "array",
+      "items": {
+        "$ref": "record-reminder.ref.json"
+      }
     }
   },
   "required": [

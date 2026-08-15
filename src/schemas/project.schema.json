@@ -130,6 +130,24 @@
     },
     "aiAgentConfig": {
       "$ref": "ai-agent-config.ref.json"
+    },
+    "notifications": {
+      "type": "array",
+      "items": {
+        "$ref": "notification.ref.json"
+      }
+    },
+    "styles": {
+      "type": "array",
+      "items": {
+        "$ref": "project-style.ref.json"
+      }
+    },
+    "dashboard": {
+      "type": "array",
+      "items": {
+        "$ref": "component-one-of.ref.json"
+      }
     }
   },
   "required": ["id", "title", "description", "skeleton"]
