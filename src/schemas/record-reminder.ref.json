@@ -2,6 +2,15 @@
   "$id": "record-reminder.ref.json",
   "type": "object",
   "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
     "contractId": {
       "type": "string"
     },
@@ -27,6 +36,6 @@
       "type": "boolean"
     }
   },
-  "required": ["contractId", "dateField", "recipients"],
+  "required": ["id", "title", "message", "contractId", "dateField", "recipients"],
   "additionalProperties": false
 }

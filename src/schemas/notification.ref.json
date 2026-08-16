@@ -2,6 +2,15 @@
   "$id": "notification.ref.json",
   "type": "object",
   "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
     "source": {
       "type": "object",
       "properties": {
@@ -51,6 +60,6 @@
       "type": "boolean"
     }
   },
-  "required": ["source", "condition", "recipients"],
+  "required": ["id", "title", "message", "source", "condition", "recipients"],
   "additionalProperties": false
 }
