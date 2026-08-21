@@ -23,6 +23,19 @@
       "properties": {
         "borderRadius": { "type": "string" }
       }
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fontFamily": { "type": "string" },
+        "fontSize": { "type": "string" }
+      }
+    },
+    "shadows": {
+      "type": "object",
+      "properties": {
+        "boxShadow": { "type": "string" }
+      }
     }
   },
   "required": [

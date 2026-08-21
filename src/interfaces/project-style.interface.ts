@@ -22,10 +22,27 @@ export interface IBorders {
 }
 
 /**
+ * Defines typography for a theme.
+ */
+export interface ITypography {
+  fontFamily?: string;
+  fontSize?: string;
+}
+
+/**
+ * Defines shadow styles for a theme.
+ */
+export interface IShadows {
+  boxShadow?: string;
+}
+
+/**
  * Defines the style structure for the entire project.
  */
 export interface IStyle {
   themeName: string;
   colors?: IColorPalette;
   borders?: IBorders;
+  typography?: ITypography;
+  shadows?: IShadows;
 }
