@@ -6,20 +6,23 @@
     "themeName": {
       "type": "string"
     },
-    "overall": {
-      "$ref": "project-style-theme.ref.json"      
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string" },
+        "primaryContrast": { "type": "string" },
+        "secondary": { "type": "string" },
+        "secondaryContrast": { "type": "string" },
+        "background": { "type": "string" },
+        "error": { "type": "string" },
+        "success": { "type": "string" }
+      }
     },
-    "main": {
-      "$ref": "project-style-theme.ref.json"
-    },
-    "navBar": {
-      "$ref": "project-style-theme.ref.json"
-    },
-    "sideBar": {
-      "$ref": "project-style-theme.ref.json"
-    },
-    "footer": {
-      "$ref": "project-style-theme.ref.json"
+    "borders": {
+      "type": "object",
+      "properties": {
+        "borderRadius": { "type": "string" }
+      }
     }
   },
   "required": [
