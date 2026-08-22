@@ -31,6 +31,11 @@ export const characterForm: IForm = {
       dataType: EDataType.WYSIWYG,
       label: "Descrição do personagem",
       name: "characterDescription",
+      storageConfig: {
+        fileNameStrategy: "uuid",
+        path: "characters/description-images",
+        visibility: "public",
+      },
     },
     {
       type: "select",

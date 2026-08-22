@@ -5,11 +5,11 @@ import type {
   IApiResponseFieldFilter,
 } from "./form-autocomplete.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { IStorageConfig } from "./form-file.interface";
 
-export interface IFormInput {
+interface IFormInputBase {
   type: "input";
   name: string;
-  dataType: EDataType;
   label: string;
   placeholder?: string;
   tooltip?: string;
@@ -33,6 +33,21 @@ export interface IFormInput {
   elementDescription?: string;
   space?: 1 | 2 | 3 | 4;
 }
+
+// dataType: "wysiwyg" sobe imagens embutidas no editor via upload real (não
+// base64): storageConfig é obrigatório aqui para o gerador saber path/
+// fileNameStrategy/visibility do endpoint de upload inline usado pelo editor.
+export interface IFormInputWysiwyg extends IFormInputBase {
+  dataType: EDataType.WYSIWYG;
+  storageConfig: IStorageConfig;
+}
+
+export interface IFormInputOther extends IFormInputBase {
+  dataType: Exclude<EDataType, EDataType.WYSIWYG>;
+  storageConfig?: undefined;
+}
+
+export type IFormInput = IFormInputWysiwyg | IFormInputOther;
 
 export interface IApiRequest {
   endpoint: string;

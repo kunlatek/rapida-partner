@@ -54,6 +54,11 @@ export const actorForm: IForm = {
       name: "biography",
       type: "input",
       dataType: EDataType.WYSIWYG,
+      storageConfig: {
+        fileNameStrategy: "uuid",
+        path: "actors/biography-images",
+        visibility: "public",
+      },
     },
     {
       label: "Hobbies",

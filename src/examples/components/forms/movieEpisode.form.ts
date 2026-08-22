@@ -23,6 +23,11 @@ export const movieEpisodeForm: IForm = {
           name: "episodeDescription",
           type: "input",
           dataType: EDataType.WYSIWYG,
+          storageConfig: {
+            fileNameStrategy: "uuid",
+            path: "movie-episodes/description-images",
+            visibility: "public",
+          },
         },
         {
           label: "Data de lançamento do episódio",

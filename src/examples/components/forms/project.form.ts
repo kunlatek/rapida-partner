@@ -34,6 +34,11 @@ export const projectForm: IForm = {
               name: "description",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/description-images",
+                visibility: "public",
+              },
             },
             {
               label: "Adicionar pessoa relacionada ao projeto",
@@ -126,42 +131,77 @@ export const projectForm: IForm = {
               name: "businessValue",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/business-value-images",
+                visibility: "public",
+              },
             },
             {
               label: "Público-alvo",
               name: "targetMarket",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/target-market-images",
+                visibility: "public",
+              },
             },
             {
               label: "Benchmarkings",
               name: "benchmarkings",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/benchmarkings-images",
+                visibility: "public",
+              },
             },
             {
               label: "Legalidades",
               name: "legalIssues",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/legal-issues-images",
+                visibility: "public",
+              },
             },
             {
               label: "Questões éticas",
               name: "ethicalIssues",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/ethical-issues-images",
+                visibility: "public",
+              },
             },
             {
               label: "Pós-venda",
               name: "afterSales",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/after-sales-images",
+                visibility: "public",
+              },
             },
             {
               label: "Monetização",
               name: "monetization",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "projects/monetization-images",
+                visibility: "public",
+              },
             },
           ],
         },
@@ -186,6 +226,11 @@ export const projectForm: IForm = {
                   name: "fileDescription",
                   type: "input",
                   dataType: EDataType.WYSIWYG,
+                  storageConfig: {
+                    fileNameStrategy: "uuid",
+                    path: "projects/file-description-images",
+                    visibility: "public",
+                  },
                 },
                 {
                   label: "Arquivo do projeto",
@@ -223,6 +268,11 @@ export const projectForm: IForm = {
                   name: "relatedLinkDescription",
                   type: "input",
                   dataType: EDataType.WYSIWYG,
+                  storageConfig: {
+                    fileNameStrategy: "uuid",
+                    path: "projects/related-link-description-images",
+                    visibility: "public",
+                  },
                 },
               ],
             }

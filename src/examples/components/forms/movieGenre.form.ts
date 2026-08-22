@@ -20,6 +20,11 @@ export const movieGenreForm: IForm = {
       dataType: EDataType.WYSIWYG,
       label: "Descrição",
       name: "description",
+      storageConfig: {
+        fileNameStrategy: "uuid",
+        path: "movie-genres/description-images",
+        visibility: "public",
+      },
       isRequired: true,
     },
   ],

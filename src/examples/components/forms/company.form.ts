@@ -132,6 +132,11 @@ export const companyForm: IForm = {
               name: "description",
               type: "input",
               dataType: EDataType.WYSIWYG,
+              storageConfig: {
+                fileNameStrategy: "uuid",
+                path: "companies/description-images",
+                visibility: "public",
+              },
             },
             {
               label: "Logo da empresa",

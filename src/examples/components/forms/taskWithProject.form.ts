@@ -40,6 +40,11 @@ export const taskWithProjectForm: IForm = {
       name: "description",
       placeholder: "Descreva a tarefa",
       tooltip: "Detalhes adicionais sobre a tarefa",
+      storageConfig: {
+        fileNameStrategy: "uuid",
+        path: "tasks/description-images",
+        visibility: "public",
+      },
     },
     {
       label: "Arquivo relacionado",
@@ -190,6 +195,11 @@ export const taskWithProjectForm: IForm = {
           name: "deliveryComment",
           placeholder: "Digite o comentário",
           tooltip: "Comentário sobre a entrega",
+          storageConfig: {
+            fileNameStrategy: "uuid",
+            path: "tasks/delivery-comment-images",
+            visibility: "public",
+          },
         },
       ],
     },
@@ -220,6 +230,11 @@ export const taskWithProjectForm: IForm = {
           name: "validationComment",
           placeholder: "Digite o comentário",
           tooltip: "Comentário sobre a validação",
+          storageConfig: {
+            fileNameStrategy: "uuid",
+            path: "tasks/validation-comment-images",
+            visibility: "public",
+          },
         },
         {
           label: "Arquivo relacionado",
@@ -261,6 +276,11 @@ export const taskWithProjectForm: IForm = {
           name: "approvalComment",
           placeholder: "Digite o comentário",
           tooltip: "Comentário sobre a homologação",
+          storageConfig: {
+            fileNameStrategy: "uuid",
+            path: "tasks/approval-comment-images",
+            visibility: "public",
+          },
         },
         {
           label: "Arquivo relacionado",
