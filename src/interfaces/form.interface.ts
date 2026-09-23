@@ -21,6 +21,7 @@ export interface IForm {
   id: string;
   title: string;
   elements: IFormElement[];
+  subtitle?: string;
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
   businessRules?: IBusinessRule[];

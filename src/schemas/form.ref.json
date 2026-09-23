@@ -12,6 +12,9 @@
     "title": {
       "type": "string"
     },
+    "subtitle": {
+      "type": "string"
+    },
     "icon": {
       "type": "string"
     },
