@@ -221,7 +221,7 @@
         "$ref": "form-contract.ref.json"
       }
     },
-    "publicContracts?": {
+    "publicContracts": {
       "type": "array",
       "items": {
         "$ref": "form-public-contract.ref.json"

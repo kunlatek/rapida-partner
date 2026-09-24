@@ -25,11 +25,20 @@
         ]
       }
     },
-    "permissionedUrls": {
+    "access": {
+      "type": "string",
+      "enum": [
+        "anonymous",
+        "trustedCallers"
+      ],
+      "description": "'trustedCallers' requires a service JWT signed by one of the active backend's trustedCallers (RFC 7523)."
+    },
+    "allowedOrigins": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "Browser origins allowed via CORS. Does not protect against server-to-server calls."
     },
     "request": {
       "type": "object",
@@ -240,6 +249,7 @@
   "required": [
     "id",
     "endpoint",
-    "actions"
+    "actions",
+    "access"
   ]
 }

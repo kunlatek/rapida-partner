@@ -17,7 +17,17 @@ export interface IPublicContract {
   id: string;
   endpoint: string;
   actions: ("create" | "get" | "getById" | "update" | "softDelete" | "hardDelete" | "clone" | "sendEmail")[];
-  permissionedUrls: string[];
+  /**
+   * - `"anonymous"`: sem autenticação.
+   * - `"trustedCallers"`: exige JWT de serviço assinado por um dos `IBackend.trustedCallers`
+   *   do ambiente ativo (RFC 7523). Sem chamadores declarados, ninguém tem acesso.
+   */
+  access: "anonymous" | "trustedCallers";
+  /**
+   * Origens de browser/app liberadas via CORS. Só restringe browsers — não protege
+   * contra chamadas servidor-a-servidor (use `access: "trustedCallers"` para isso).
+   */
+  allowedOrigins?: string[];
   request?: IContractRequest;
   conditions?: IFormCondition;
   businessRules?: IBusinessRule[];

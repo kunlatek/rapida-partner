@@ -1,5 +1,6 @@
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IList } from "./list.interface";
+import type { ITrustedCaller } from "./trusted-caller.interface";
 
 interface IDatabase {
   provider:
@@ -75,6 +76,7 @@ export interface IBackend {
   framework: "functions" | "lambda" | "laravel" | "nest" | "dotnet";
   database: IDatabase;
   jwtSecret: string;
+  trustedCallers?: ITrustedCaller[];
   storage?: IStorage;
   logging?: ILogging;
   whatsapp?: IWhatsapp;

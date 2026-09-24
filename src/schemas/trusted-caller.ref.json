@@ -1,0 +1,28 @@
+{
+  "$id": "trusted-caller.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "issuer": {
+      "type": "string",
+      "description": "Expected value of the JWT 'iss' claim."
+    },
+    "jwksUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "JWKS URL where the caller publishes its public key(s)."
+    },
+    "audience": {
+      "type": "string",
+      "description": "Expected value of the JWT 'aud' claim, identifying this backend."
+    },
+    "algorithms": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["RS256", "ES256"] },
+      "minItems": 1
+    }
+  },
+  "required": ["id", "issuer", "jwksUri", "audience"],
+  "additionalProperties": false
+}

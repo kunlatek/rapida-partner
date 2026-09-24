@@ -2,6 +2,9 @@
   "$id": "backend.ref.json",
   "type": "object",
   "properties": {
+    "environment": { "type": "string" },
+    "baseUrl": { "type": "string" },
+    "isActiveEnvironment": { "type": "boolean" },
     "framework": {
       "type": "string",
       "enum": ["functions", "lambda", "laravel", "nest", "dotnet"]
@@ -35,6 +38,11 @@
         }
       },
       "required": ["provider", "connectionString", "credentials"]
+    },
+    "jwtSecret": { "type": "string" },
+    "trustedCallers": {
+      "type": "array",
+      "items": { "$ref": "trusted-caller.ref.json" }
     },
     "storage": {
       "type": "object",
