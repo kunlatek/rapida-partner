@@ -143,9 +143,37 @@
             "required": ["contractId", "toolName", "action", "intentMapping"],
             "additionalProperties": false
           }
+        },
+        "botCredentials": {
+          "type": "object",
+          "description": "Credentials of the dedicated bot user on the target backend (BOT_API_EMAIL/BOT_API_PASSWORD in the generated agent .env).",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": ["email", "password"],
+          "additionalProperties": false
         }
       },
       "required": ["targetBackendProjectId", "exposedContracts"],
+      "additionalProperties": false
+    },
+    "audio": {
+      "type": "object",
+      "properties": {
+        "maxDurationSeconds": {
+          "type": "number",
+          "minimum": 1
+        },
+        "rateLimitIntervalSeconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
       "additionalProperties": false
     },
     "jobs": {

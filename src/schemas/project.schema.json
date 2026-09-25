@@ -91,6 +91,22 @@
         "required": ["apiKey", "service"]
       }
     },
+    "openaiIntegration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string",
+            "enum": ["embedding", "chat", "custom", "cost", "transcription"]
+          }
+        },
+        "required": ["apiKey", "service"]
+      }
+    },
     "mongodbIntegration": {
       "type": "array",
       "items": {

@@ -41,6 +41,12 @@ export interface IProject {
     apiKey: string;
     service: "embedding" | "chat" | "custom" | "cost";
   }[];
+  openaiIntegration?: {
+    apiKey: string;
+    // "transcription": speech-to-text (Whisper) used by aiAgent projects to
+    // transcribe incoming audio messages.
+    service: "embedding" | "chat" | "custom" | "cost" | "transcription";
+  }[];
   mongodbIntegration?: {
     accountPublicKey?: string;
     accountPrivateKey?: string;

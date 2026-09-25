@@ -71,10 +71,30 @@ export interface IAiAgentConfig {
     // entry to formFields, it will create a duplicate, unused parameter.
     //
     // The target backend also needs a dedicated user account for the bot to
-    // authenticate against (BOT_API_EMAIL/BOT_API_PASSWORD in the generated
-    // .env) — this is separate from flows.invitation.mainUserEmail and must
-    // be provisioned manually on the target backend.
+    // authenticate against (see botCredentials below) — this is separate from
+    // flows.invitation.mainUserEmail and must be provisioned manually on the
+    // target backend.
     exposedContracts: IAgentContractBinding[];
+
+    // Credentials of the dedicated bot user on the target backend (written to
+    // BOT_API_EMAIL/BOT_API_PASSWORD in the generated agent .env). The account
+    // itself still has to be provisioned on the target backend. Import the
+    // values from constants/secrets — never write them literally in a project.
+    botCredentials?: {
+      email: string;
+      password: string;
+    };
+  };
+
+  // Optional limits for incoming audio messages (transcribed through the
+  // project's openaiIntegration with service "transcription").
+  audio?: {
+    // Longer audios are rejected before download/transcription.
+    // Defaults to 300.
+    maxDurationSeconds?: number;
+    // Minimum interval between two audios from the same user.
+    // Defaults to 10.
+    rateLimitIntervalSeconds?: number;
   };
 
   // Optional background jobs configuration. Values become the generated
