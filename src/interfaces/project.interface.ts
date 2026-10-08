@@ -12,6 +12,7 @@ import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
 import type { INotification } from "./notification.interface";
 import type { IBackend } from "./project-backend.interface";
+import type { IProjectRepositories } from "./project-repositories.interface";
 import type { IStyle } from "./project-style.interface";
 
 export interface IProject {
@@ -62,6 +63,7 @@ export interface IProject {
   dashboard?: IComponent[];
   aiAgentConfig?: IAiAgentConfig;
   notifications?: INotification[];
+  repositories?: IProjectRepositories;
 }
 
 export interface IFrontend {

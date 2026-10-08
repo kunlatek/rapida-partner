@@ -54,6 +54,14 @@
               "$ref": "form.ref.json"
             }
           }
+        },
+        "registrationMethod": {
+          "type": "string",
+          "enum": ["link", "code"]
+        },
+        "resetPasswordMethod": {
+          "type": "string",
+          "enum": ["link", "code"]
         }
       }
     },
@@ -164,6 +172,9 @@
       "items": {
         "$ref": "component-one-of.ref.json"
       }
+    },
+    "repositories": {
+      "$ref": "project-repositories.ref.json"
     }
   },
   "required": ["id", "title", "description", "skeleton"]
