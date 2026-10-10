@@ -162,6 +162,32 @@
       "required": ["targetBackendProjectId", "exposedContracts"],
       "additionalProperties": false
     },
+    "humanHandoff": {
+      "type": "object",
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "useCase": {
+                "type": "string"
+              },
+              "whatsappPhoneNumber": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "useCase", "whatsappPhoneNumber"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["contacts"],
+      "additionalProperties": false
+    },
     "audio": {
       "type": "object",
       "properties": {
