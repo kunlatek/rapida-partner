@@ -21,6 +21,7 @@
     "clob",
     "nclob",
     "decimal",
+    "currency",
     "numeric",
     "integer",
     "float",

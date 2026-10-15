@@ -19,6 +19,9 @@ export enum EDataType {
   CLOB = "clob",
   NCLOB = "nclob",
   DECIMAL = "decimal",
+  // Valor monetário: armazenado como número decimal (2 casas), exibido/mascarado
+  // como moeda (BRL por padrão) no form, list, detail, card e kanban.
+  CURRENCY = "currency",
   NUMERIC = "numeric",
   INTEGER = "integer",
   FLOAT = "float",
