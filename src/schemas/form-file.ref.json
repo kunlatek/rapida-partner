@@ -34,6 +34,10 @@
     "isMultiple": {
       "type": "boolean"
     },
+    "isProfilePicture": {
+      "type": "boolean",
+      "description": "Marks this file element as the user's profile picture. Only meaningful in flows.profiles.personProfile/companyProfile forms, at most one per form and never inside an array element."
+    },
     "maxSize": {
       "type": "number"
     },

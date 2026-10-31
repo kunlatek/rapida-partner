@@ -17,6 +17,7 @@ export interface IFormFile {
   tooltip?: string;
   accept?: Record<string, string[]>;
   isMultiple?: boolean;
+  isProfilePicture?: boolean;
   maxSize?: number;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
