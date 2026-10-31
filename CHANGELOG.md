@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0
+
+### ✨ Novidades
+
+- `IFormFile.isProfilePicture` (opcional): marca qual elemento `file` de um form de perfil (`flows.profiles.personProfile`/`companyProfile`) é a foto do usuário. Faz sentido no máximo um por form, e nunca dentro de um `array`. O `rapida-code-generator` usa a flag para exibir a foto no menu do usuário da barra superior. Schema `form-file.ref.json` atualizado.
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
 ## 2.0.0
 
 Primeira versão publicada desde a 1.19.1 (08/03/2026, commit `27d5b91`). Reúne tudo o que entrou em `main` desde então.
