@@ -8,6 +8,7 @@ import type { IE2e } from "./e2e.interface";
 import type { IFlowChart } from "./form-flowchart.interface";
 import type { IForm } from "./form.interface";
 import type { IKanban } from "./kanban.interface";
+import type { TLanguage } from "./language.interface";
 import type { IPanel } from "./layout-panel.interface";
 import type { IList } from "./list.interface";
 import type { INotification } from "./notification.interface";
@@ -22,6 +23,10 @@ export interface IProject {
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
   skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service" | "aiAgent";
+  // Idiomas em que os textos TTranslatable (label, placeholder, tooltip, title)
+  // são declarados. Sem languages, o projeto é monolíngue em defaultLanguage.
+  languages?: TLanguage[];
+  defaultLanguage?: TLanguage;
   flows?: {
     authentication?: boolean;
     registrationMethod?: 'link' | 'code';

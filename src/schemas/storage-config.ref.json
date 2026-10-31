@@ -1,0 +1,30 @@
+{
+  "$id": "storage-config.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "Path prefix inside the bucket. E.g., 'public/movies/' or 'private/documents/'. The generator will determine the bucket based on the first segment ('public' or 'private')."
+    },
+    "fileNameStrategy": {
+      "type": "string",
+      "enum": [
+        "uuid",
+        "original",
+        "timestamp"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public",
+        "private"
+      ]
+    }
+  },
+  "required": [
+    "path",
+    "fileNameStrategy"
+  ]
+}

@@ -1,12 +1,13 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
 export interface IFormNumericInput {
   type: "numeric";
   name: string;
-  label: string;
-  placeholder?: string;
-  tooltip?: string;
+  label: TTranslatable;
+  placeholder?: TTranslatable;
+  tooltip?: TTranslatable;
   prefix?: string;
   suffix?: string;
   decimalScale?: number;

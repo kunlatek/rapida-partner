@@ -1,0 +1,17 @@
+{
+  "$id": "translatable.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "oneOf": [
+    { "type": "string" },
+    {
+      "type": "object",
+      "properties": {
+        "pt-BR": { "type": "string" },
+        "en-US": { "type": "string" },
+        "es-ES": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    }
+  ]
+}

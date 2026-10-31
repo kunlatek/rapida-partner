@@ -15,7 +15,7 @@
       "enum": ["submit", "reset", "link", "apiRequest", "modal"]
     },
     "label": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "todo": {
       "type": "string"
@@ -30,7 +30,7 @@
       "type": "string"
     },
     "tooltip": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "isDisabled": {
       "type": "boolean"

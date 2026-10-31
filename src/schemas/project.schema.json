@@ -23,6 +23,17 @@
         "aiAgent"
       ]
     },
+    "languages": {
+      "type": "array",
+      "items": {
+        "$ref": "language.ref.json"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "defaultLanguage": {
+      "$ref": "language.ref.json"
+    },
     "flows": {
       "type": "object",
       "properties": {

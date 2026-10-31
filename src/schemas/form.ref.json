@@ -10,10 +10,10 @@
       "type": "string"
     },
     "title": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "subtitle": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "icon": {
       "type": "string"

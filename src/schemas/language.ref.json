@@ -1,0 +1,6 @@
+{
+  "$id": "language.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "string",
+  "enum": ["pt-BR", "en-US", "es-ES"]
+}

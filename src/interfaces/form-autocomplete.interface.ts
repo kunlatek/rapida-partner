@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { EDataType } from "../enums/form.enum";
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
@@ -6,9 +7,9 @@ export interface IFormAutocomplete {
   type: "autocomplete";
   name: string;
   dataType: EDataType;
-  label: string;
-  placeholder?: string;
-  tooltip?: string;
+  label: TTranslatable;
+  placeholder?: TTranslatable;
+  tooltip?: TTranslatable;
   isAutofocus?: boolean;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;

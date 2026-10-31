@@ -11,7 +11,7 @@
       "type": "string"
     },
     "label": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "options": {
       "type": "array",
@@ -39,7 +39,7 @@
       }
     },
     "tooltip": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "isDisabled": {
       "type": "boolean"
