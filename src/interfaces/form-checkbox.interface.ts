@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 // MODIFICATION BASED ON: src/interfaces/form-checkbox.interface.ts
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
@@ -5,9 +6,9 @@ import type { IBusinessRule } from "./project.interface";
 export interface IFormCheckbox {
   type: "checkbox";
   name: string;
-  label: string;
+  label: TTranslatable;
   options: ICheckboxOption[];
-  tooltip?: string;
+  tooltip?: TTranslatable;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;

@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { IFormCondition } from "./condition.interface";
 import type { IOptionsApi } from "./form-autocomplete.interface";
 import type { IBusinessRule } from "./project.interface";
@@ -7,9 +8,9 @@ export interface IFormSelect {
   type: "select";
   name: string;
   dataType: EDataType;
-  label: string;
-  placeholder?: string;
-  tooltip?: string;
+  label: TTranslatable;
+  placeholder?: TTranslatable;
+  tooltip?: TTranslatable;
   isAutofocus?: boolean;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;

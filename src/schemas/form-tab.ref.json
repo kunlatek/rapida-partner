@@ -26,7 +26,7 @@
             "type":"string"
           },
           "title": {
-            "type":"string"
+            "$ref": "translatable.ref.json"
           },
           "elements": {
             "$ref": "form-one-of.ref.json"

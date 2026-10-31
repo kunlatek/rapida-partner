@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { EDataType } from "../enums/form.enum";
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
@@ -12,9 +13,9 @@ export interface IFormFile {
   type: "file";
   name: string;
   dataType: EDataType;
-  label: string;
-  placeholder?: string;
-  tooltip?: string;
+  label: TTranslatable;
+  placeholder?: TTranslatable;
+  tooltip?: TTranslatable;
   accept?: Record<string, string[]>;
   isMultiple?: boolean;
   isProfilePicture?: boolean;

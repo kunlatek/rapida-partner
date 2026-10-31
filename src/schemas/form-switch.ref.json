@@ -11,10 +11,10 @@
       "type": "string"
     },
     "label": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "tooltip": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "isDisabled": {
       "type": "boolean"

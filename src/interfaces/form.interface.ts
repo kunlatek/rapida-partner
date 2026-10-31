@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { IFormArray } from "./form-array.interface";
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IFormButton } from "./form-button.interface";
@@ -19,9 +20,9 @@ import type { IRecordReminder } from "./record-reminder.interface";
 export interface IForm {
   componentType: "form";
   id: string;
-  title: string;
+  title: TTranslatable;
   elements: IFormElement[];
-  subtitle?: string;
+  subtitle?: TTranslatable;
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
   businessRules?: IBusinessRule[];

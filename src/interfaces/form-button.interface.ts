@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { IFormCondition } from "./condition.interface";
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule, IComponent } from "./project.interface";
@@ -5,11 +6,11 @@ import type { IBusinessRule, IComponent } from "./project.interface";
 export interface IFormButton {
   type: "button";
   id: string;
-  label: string;
+  label: TTranslatable;
   actionType: "submit" | "reset" | "link" | "apiRequest" | "modal";
   todo?: string;
   icon?: string;
-  tooltip?: string;
+  tooltip?: TTranslatable;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;

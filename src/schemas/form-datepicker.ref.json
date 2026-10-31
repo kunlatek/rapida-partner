@@ -11,13 +11,13 @@
       "type": "string"
     },
     "label": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "placeholder": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "tooltip": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "minDate": {
       "type": "string",

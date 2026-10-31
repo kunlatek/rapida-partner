@@ -1,3 +1,4 @@
+import type { TTranslatable } from "./translatable.interface";
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
@@ -9,9 +10,9 @@ interface IRadioOption {
 export interface IFormRadioGroup {
   type: "radiogroup";
   name: string;
-  label: string;
+  label: TTranslatable;
   options: IRadioOption[];
-  tooltip?: string;
+  tooltip?: TTranslatable;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
