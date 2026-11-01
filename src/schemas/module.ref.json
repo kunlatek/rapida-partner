@@ -9,7 +9,7 @@
         "type": "string"
       },
       "title": {
-        "type": "string"
+        "$ref": "translatable.ref.json"
       },
       "icon": {
         "type": "string"
