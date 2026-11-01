@@ -3,7 +3,7 @@ import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
 
 interface IRadioOption {
-  label: string;
+  label: TTranslatable;
   value: string | number | boolean;
 }
 

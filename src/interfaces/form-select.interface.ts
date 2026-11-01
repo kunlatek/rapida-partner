@@ -29,7 +29,7 @@ export interface IFormSelect {
 }
 
 export interface ISelectOption {
-  label: string;
+  label: TTranslatable;
   value: string | number | boolean;
   isDisabled?: boolean;
   isSelected?: boolean;

@@ -18,7 +18,7 @@
         "type": "object",
         "properties": {
           "label": {
-            "type": "string"
+            "$ref": "translatable.ref.json"
           },
           "value": {
             "oneOf": [

@@ -21,7 +21,7 @@ export interface IFormCheckbox {
 }
 
 export interface ICheckboxOption {
-  label: string;
+  label: TTranslatable;
   value: string | number | boolean;
   isDisabled?: boolean;
   isSelected?: boolean;
