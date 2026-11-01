@@ -10,7 +10,7 @@
       "type": "string"
     },
     "title": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "icon": {
       "type": "string"
@@ -96,7 +96,7 @@
                 "type": "string"
               },
               "label": {
-                "type": "string"
+                "$ref": "translatable.ref.json"
               },
               "backgroundColor": {
                 "oneOf": [
@@ -175,7 +175,7 @@
                   "type": "boolean"
                 },
                 "text": {
-                  "type": "string"
+                  "$ref": "translatable.ref.json"
                 }
               }
             },
@@ -219,7 +219,7 @@
                       "type": "boolean"
                     },
                     "text": {
-                      "type": "string"
+                      "$ref": "translatable.ref.json"
                     }
                   }
                 },
@@ -243,7 +243,7 @@
                       "type": "boolean"
                     },
                     "text": {
-                      "type": "string"
+                      "$ref": "translatable.ref.json"
                     }
                   }
                 },
