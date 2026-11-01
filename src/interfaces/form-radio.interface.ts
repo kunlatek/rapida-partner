@@ -21,7 +21,7 @@ export interface IFormRadio {
 }
 
 export interface IRadioOption {
-  label: string;
+  label: TTranslatable;
   value: string | number | boolean;
   isDisabled?: boolean;
   isSelected?: boolean;
