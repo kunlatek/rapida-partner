@@ -4,11 +4,12 @@ import type { IContract, IPublicContract } from "./form-contract.interface";
 import type { IApiRequest } from "./form-input.interface";
 import type { IFormElement } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { TTranslatable } from "./translatable.interface";
 
 export interface IList {
   componentType: "list";
   id: string; // named according to component file name (<id>.<componentType>.ts)
-  title: string;
+  title: TTranslatable;
   userStory?: string;
   guards?: string[];
   dataSource: IApiRequest;
@@ -16,7 +17,7 @@ export interface IList {
   isListItemSelectable?: boolean;
   listItems: {
     property?: string; // property taken from dataSource response. e.g.: "email"
-    label?: string; // label to property. e.g.: "E-mail"
+    label?: TTranslatable; // label to property. e.g.: "E-mail"
     type?:
     | "title"
     | "subtitle"
@@ -49,7 +50,7 @@ export interface IList {
   };
   callsToActionMenu?: {
     icon: string; // Material icons e.g: "pencil"
-    label: string; // e.g: "Editar"
+    label: TTranslatable; // e.g: "Editar"
     action: {
       linkAfterAction?: {
         // frontend url to be redirected on action completition
@@ -70,8 +71,8 @@ export interface IList {
         propertiesAsPathParam?: string[]; // if, for example, ["_id", "email"], then "/user/<_id>/<email>"
         verb: "get" | "post" | "put" | "softDelete" | "hardDelete";
         dialog?: {
-          title: string;
-          message: string;
+          title: TTranslatable;
+          message: TTranslatable;
         };
       };
     };

@@ -11,7 +11,7 @@
       "description": "Named according to component file name (<id>.<componentType>.ts)"
     },
     "title": {
-      "type": "string"
+      "$ref": "translatable.ref.json"
     },
     "guards": {
       "type": "array",
@@ -41,7 +41,7 @@
             "description": "Property name in the response object. e.g.: 'email'"
           },
           "label": {
-            "type": "string",
+            "$ref": "translatable.ref.json",
             "description": "Label to property. e.g.: 'E-mail'"
           },
           "type": {
@@ -136,7 +136,7 @@
             "description": "Material icons e.g: 'pencil'"
           },
           "label": {
-            "type": "string",
+            "$ref": "translatable.ref.json",
             "description": "e.g: 'Editar'"
           },
           "action": {
@@ -218,10 +218,10 @@
                     "type": "object",
                     "properties": {
                       "title": {
-                        "type": "string"
+                        "$ref": "translatable.ref.json"
                       },
                       "message": {
-                        "type": "string"
+                        "$ref": "translatable.ref.json"
                       }
                     },
                     "required": ["title", "message"]
