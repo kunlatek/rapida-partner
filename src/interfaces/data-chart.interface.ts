@@ -1,5 +1,6 @@
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { TTranslatable } from "./translatable.interface";
 
 export type IChartType =
   | "line"
@@ -26,7 +27,7 @@ export interface IChartLabelFormatter {
 export interface IChartAxisOptions {
   title?: {
     display?: boolean;
-    text?: string;
+    text?: TTranslatable;
   };
   grid?: {
     display?: boolean;
@@ -46,7 +47,7 @@ export interface IChartOptions {
   plugins?: {
     title?: {
       display?: boolean;
-      text?: string;
+      text?: TTranslatable;
     };
     legend?: {
       display?: boolean;
@@ -65,7 +66,7 @@ export interface IChartOptions {
 export interface IDataChart {
   componentType: "dataChart";
   id: string;
-  title: string;
+  title: TTranslatable;
   userStory?: string;
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
@@ -90,7 +91,7 @@ export interface IDataChart {
 
 export interface IChartDataset {
   property: string;
-  label: string;
+  label: TTranslatable;
   backgroundColor?: string | string[];
   borderColor?: string | string[];
   borderWidth?: number;
