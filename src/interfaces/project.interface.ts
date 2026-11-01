@@ -15,6 +15,7 @@ import type { INotification } from "./notification.interface";
 import type { IBackend } from "./project-backend.interface";
 import type { IProjectRepositories } from "./project-repositories.interface";
 import type { IStyle } from "./project-style.interface";
+import type { TTranslatable } from "./translatable.interface";
 
 export interface IProject {
   id: string;
@@ -166,7 +167,7 @@ export interface IBusinessRule {
 
 export interface IModule {
   id: string;
-  title: string;
+  title: TTranslatable;
   icon: string;
   components: IComponent[];
   businessRules?: IBusinessRule[];
