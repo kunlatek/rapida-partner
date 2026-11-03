@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.2.0
+
+### ✨ Novidades
+
+- **i18n**: novos tipos `TLanguage` (`"pt-BR" | "en-US" | "es-ES"`) e `TTranslatable` (`string | Partial<Record<TLanguage, string>>`). `IProject.languages` e `IProject.defaultLanguage` (opcionais) declaram os idiomas do projeto. Schemas `language.ref.json` e `translatable.ref.json` adicionados.
+- Passam a aceitar `TTranslatable`:
+  - `IForm`: `title`/`subtitle`, `label`/`placeholder`/`tooltip` dos elements, `title` de fieldset e de tab.
+  - Opções: `label` de `ISelectOption`, `IRadioOption` (radio e radiogroup) e `ICheckboxOption`.
+  - `IList`: `title`, `listItems[].label`, `callsToActionMenu[].label` e `callsToActionMenu[].action.request.dialog.{title,message}`.
+  - `IModule.title`.
+  - `IDataChart`: `title`, `datasets[].label`, `options.plugins.title.text` e `options.scales.{x,y}.title.text`.
+
+### 🐛 Correções
+
+- `storageConfig` do input `WYSIWYG` agora é validado pelo schema (`storage-config.ref.json`, extraído do `form-file` e reutilizado no `form-input`).
+
+Mudança aditiva para quem escreve projetos: `string` continua válida e é tratada como texto no idioma padrão, então nenhum projeto existente precisa migrar. Quem **lê** esses campos (ex.: `rapida-code-generator`) precisa tratar também o mapa por idioma.
+
 ## 2.1.0
 
 ### ✨ Novidades
