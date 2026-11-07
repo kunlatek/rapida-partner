@@ -25,7 +25,11 @@ interface IFormInputBase {
   todo?: string;
   maxLength?: number;
   minLength?: number;
-  apiRequest?: IApiRequest;
+  /**
+   * Chamadas feitas ao preencher o campo, em ordem: a seguinte só é tentada se a anterior falhar ou não
+   * preencher nenhum campo (chamada reserva). Cada item segue IApiRequest.
+   */
+  apiRequest?: IApiRequest[];
   businessRules?: IBusinessRule[];
   mask?: string | string[];
   suffix?: string;

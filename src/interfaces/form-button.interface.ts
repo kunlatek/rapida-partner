@@ -15,7 +15,8 @@ export interface IFormButton {
   isDisabledOnUpdate?: boolean;
   isHidden?: boolean;
   conditions?: IFormCondition;
-  apiRequest?: IApiRequest;
+  /** Chamadas em ordem: a seguinte só é tentada se a anterior falhar (chamada reserva). */
+  apiRequest?: IApiRequest[];
   onSuccessRedirect?: {
     url: string;
     openIn: "sameTab" | "newTab" | "newWindow";
@@ -32,7 +33,7 @@ export interface IFormButton {
     closeButtonLabel?: string;
     actionButtonLabel?: string;
     actionButtonType?: "submit" | "reset" | "link" | "apiRequest" | "modal";
-    actionButtonApiRequest?: IApiRequest;
+    actionButtonApiRequest?: IApiRequest[];
     actionButtonBusinessRules?: IBusinessRule[];
     conditions?: IFormCondition;
   },

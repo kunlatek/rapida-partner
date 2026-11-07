@@ -213,7 +213,7 @@ export const companyForm: IForm = {
                   name: "addressOneZipCode",
                   type: "input",
                   dataType: EDataType.NVARCHAR,
-                  apiRequest: {
+                  apiRequest: [{
                     endpoint: "https://brasilapi.com.br/api/cep/v1/",
                     paramType: "path",
                     formFieldsFilledByApiResponse: [
@@ -234,7 +234,7 @@ export const companyForm: IForm = {
                         propertiesFromApiToFillFormField: ["state"],
                       },
                     ],
-                  },
+                  }],
                   validators: ["cep"],
                 },
                 {
@@ -297,7 +297,7 @@ export const companyForm: IForm = {
                   name: "addressTwoZipCode",
                   type: "input",
                   dataType: EDataType.NVARCHAR,
-                  apiRequest: {
+                  apiRequest: [{
                     endpoint: "https://brasilapi.com.br/api/cep/v1/",
                     paramType: "path",
                     formFieldsFilledByApiResponse: [
@@ -318,7 +318,7 @@ export const companyForm: IForm = {
                         propertiesFromApiToFillFormField: ["state"],
                       },
                     ],
-                  },
+                  }],
                   validators: ["cep"],
                 },
                 {

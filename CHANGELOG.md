@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.0
+
+### 💥 Mudança incompatível
+
+- `apiRequest` passa a ser uma **lista** de `IApiRequest` em `IFormInput` (`apiRequest`) e em `IFormButton` (`apiRequest` e `modal.actionButtonApiRequest`). Cada item mantém o formato do objeto de antes, e a ordem da lista é a ordem das chamadas: a seguinte só é tentada se a anterior falhar ou não preencher nenhum campo (chamada reserva). Ex.: CNPJ pela BrasilAPI e, se ela falhar, por outra fonte.
+- Schemas `form-input.ref.json` e `form-button.ref.json` exigem array com pelo menos um item. `dataSource` de listas, cards, gráficos, tabelas, grids e kanban continua sendo um único `IApiRequest`.
+
+**Migração:** envolva cada `apiRequest: { ... }` em colchetes, `apiRequest: [{ ... }]`, e o mesmo para `actionButtonApiRequest`.
+
 ## 2.4.0
 
 ### ✨ Novidades
