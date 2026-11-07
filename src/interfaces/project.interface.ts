@@ -108,7 +108,17 @@ interface IBusinessPLan {
  * `{ exceljs: "4.4.0" }`). O gerador soma ao package.json do lado correspondente quando o `framework`
  * bate com o ativo na geração; se o pacote já existir no template com outra versão, mantém a do
  * template e avisa.
+ *
+ * `files`: arquivos novos que o código complementar cria no projeto gerado (ex.: testes unitários,
+ * fixtures), quando o `framework` bate com o ativo. `path` é relativo à raiz do projeto gerado, sem
+ * `..` e sem caminho absoluto; a geração falha se o arquivo já existir (gerado pelo template ou por
+ * outra regra), para nunca sobrescrever código gerado em silêncio.
  */
+export interface IComplementaryFile {
+  path: string;
+  content: string;
+}
+
 export interface IBusinessRule {
   rule: {
     description: string;
@@ -127,6 +137,7 @@ export interface IBusinessRule {
         }[];
         dependencies?: Record<string, string>;
         devDependencies?: Record<string, string>;
+        files?: IComplementaryFile[];
       };
       frontendComplementaryCode?: {
         framework:
@@ -143,6 +154,7 @@ export interface IBusinessRule {
         }[];
         dependencies?: Record<string, string>;
         devDependencies?: Record<string, string>;
+        files?: IComplementaryFile[];
       };
     }[];
     implementation?: {
@@ -158,6 +170,7 @@ export interface IBusinessRule {
       }[];
       dependencies?: Record<string, string>;
       devDependencies?: Record<string, string>;
+      files?: IComplementaryFile[];
     };
     frontendComplementaryCode?: {
       framework:
@@ -174,6 +187,7 @@ export interface IBusinessRule {
       }[];
       dependencies?: Record<string, string>;
       devDependencies?: Record<string, string>;
+      files?: IComplementaryFile[];
     };
   };
 }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.0
+
+### ✨ Novidades
+
+- `backendComplementaryCode` e `frontendComplementaryCode` de `IBusinessRule` (na regra e nas subregras) aceitam `files`: arquivos novos (`{ path, content }`) que o `rapida-code-generator` cria no projeto gerado quando o `framework` bate com o ativo — por exemplo, testes unitários e fixtures de um motor de regras. `path` é relativo à raiz do projeto gerado, sem `..` e sem caminho absoluto, e a geração falha se o arquivo já existir. Nova interface `IComplementaryFile`; schema `business-rules.ref.json` atualizado.
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
 ## 2.3.0
 
 ### ✨ Novidades
