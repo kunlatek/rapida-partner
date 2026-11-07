@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0
+
+### ✨ Novidades
+
+- `backendComplementaryCode` e `frontendComplementaryCode` de `IBusinessRule` (na regra e nas subregras) aceitam `dependencies` e `devDependencies`: pacotes npm que o código complementar usa, no formato nome -> versão exata (ex.: `{ exceljs: "4.4.0" }`). O `rapida-code-generator` soma esses pacotes ao `package.json` do lado correspondente quando o `framework` bate com o ativo. Se o pacote já existir no template com outra versão, mantém a do template e avisa. Schema `business-rules.ref.json` atualizado, só com versões exatas (`1.2.3` ou `1.2.3-beta.1`).
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
 ## 2.2.0
 
 ### ✨ Novidades

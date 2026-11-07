@@ -103,6 +103,11 @@ interface IBusinessPLan {
  * Para ancorar a inserção num ponto específico, a primeira linha de `codeStartLocation` precisa já ser
  * essa linha (estendendo o texto para frente, se necessário, só para ganhar unicidade).
  * "replace" substitui exatamente o trecho casado (substring, não a linha inteira) pelo `code`.
+ *
+ * `dependencies`/`devDependencies`: pacotes npm que o `code` usa, nome -> versão exata (ex.:
+ * `{ exceljs: "4.4.0" }`). O gerador soma ao package.json do lado correspondente quando o `framework`
+ * bate com o ativo na geração; se o pacote já existir no template com outra versão, mantém a do
+ * template e avisa.
  */
 export interface IBusinessRule {
   rule: {
@@ -120,6 +125,8 @@ export interface IBusinessRule {
           codeStartLocation: string;
           code: string;
         }[];
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
       };
       frontendComplementaryCode?: {
         framework:
@@ -134,6 +141,8 @@ export interface IBusinessRule {
           codeStartLocation: string;
           code: string;
         }[];
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
       };
     }[];
     implementation?: {
@@ -147,6 +156,8 @@ export interface IBusinessRule {
         codeStartLocation: string;
         code: string;
       }[];
+      dependencies?: Record<string, string>;
+      devDependencies?: Record<string, string>;
     };
     frontendComplementaryCode?: {
       framework:
@@ -161,6 +172,8 @@ export interface IBusinessRule {
         codeStartLocation: string;
         code: string;
       }[];
+      dependencies?: Record<string, string>;
+      devDependencies?: Record<string, string>;
     };
   };
 }
