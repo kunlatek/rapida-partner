@@ -69,6 +69,22 @@
                     "code"
                   ]
                 }
+              },
+              "dependencies": {
+                "type": "object",
+                "description": "Pacotes npm que o código complementar precisa, nome -> versão exata (ex.: \"exceljs\": \"4.4.0\"). O gerador soma ao package.json do lado (backend/frontend) quando o framework bate com o ativo.",
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                }
+              },
+              "devDependencies": {
+                "type": "object",
+                "description": "Como dependencies, mas vai para devDependencies do package.json.",
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                }
               }
             },
             "required": [
@@ -114,6 +130,22 @@
                     "codeStartLocationReference",
                     "code"
                   ]
+                }
+              },
+              "dependencies": {
+                "type": "object",
+                "description": "Pacotes npm que o código complementar precisa, nome -> versão exata (ex.: \"exceljs\": \"4.4.0\"). O gerador soma ao package.json do lado (backend/frontend) quando o framework bate com o ativo.",
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                }
+              },
+              "devDependencies": {
+                "type": "object",
+                "description": "Como dependencies, mas vai para devDependencies do package.json.",
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
                 }
               }
             },
@@ -191,6 +223,22 @@
                               "code"
                             ]
                           }
+                        },
+                        "dependencies": {
+                          "type": "object",
+                          "description": "Pacotes npm que o código complementar precisa, nome -> versão exata (ex.: \"exceljs\": \"4.4.0\"). O gerador soma ao package.json do lado (backend/frontend) quando o framework bate com o ativo.",
+                          "additionalProperties": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                          }
+                        },
+                        "devDependencies": {
+                          "type": "object",
+                          "description": "Como dependencies, mas vai para devDependencies do package.json.",
+                          "additionalProperties": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                          }
                         }
                       },
                       "required": [
@@ -237,6 +285,22 @@
                               "codeStartLocation",
                               "code"
                             ]
+                          }
+                        },
+                        "dependencies": {
+                          "type": "object",
+                          "description": "Pacotes npm que o código complementar precisa, nome -> versão exata (ex.: \"exceljs\": \"4.4.0\"). O gerador soma ao package.json do lado (backend/frontend) quando o framework bate com o ativo.",
+                          "additionalProperties": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                          }
+                        },
+                        "devDependencies": {
+                          "type": "object",
+                          "description": "Como dependencies, mas vai para devDependencies do package.json.",
+                          "additionalProperties": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
                           }
                         }
                       },
