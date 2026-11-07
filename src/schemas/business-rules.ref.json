@@ -85,6 +85,27 @@
                   "type": "string",
                   "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
                 }
+              },
+              "files": {
+                "type": "array",
+                "description": "Arquivos novos que o código complementar cria no projeto gerado (ex.: testes unitários, fixtures). path é relativo à raiz do projeto gerado, sem '..' e sem caminho absoluto; a geração falha se o arquivo já existir.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^(?![/\\\\])(?!.*(^|[/\\\\])\\.\\.([/\\\\]|$))[^\\0]+$"
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "content"
+                  ],
+                  "additionalProperties": false
+                }
               }
             },
             "required": [
@@ -146,6 +167,27 @@
                 "additionalProperties": {
                   "type": "string",
                   "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                }
+              },
+              "files": {
+                "type": "array",
+                "description": "Arquivos novos que o código complementar cria no projeto gerado (ex.: testes unitários, fixtures). path é relativo à raiz do projeto gerado, sem '..' e sem caminho absoluto; a geração falha se o arquivo já existir.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^(?![/\\\\])(?!.*(^|[/\\\\])\\.\\.([/\\\\]|$))[^\\0]+$"
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "content"
+                  ],
+                  "additionalProperties": false
                 }
               }
             },
@@ -239,6 +281,27 @@
                             "type": "string",
                             "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
                           }
+                        },
+                        "files": {
+                          "type": "array",
+                          "description": "Arquivos novos que o código complementar cria no projeto gerado (ex.: testes unitários, fixtures). path é relativo à raiz do projeto gerado, sem '..' e sem caminho absoluto; a geração falha se o arquivo já existir.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "path": {
+                                "type": "string",
+                                "pattern": "^(?![/\\\\])(?!.*(^|[/\\\\])\\.\\.([/\\\\]|$))[^\\0]+$"
+                              },
+                              "content": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "path",
+                              "content"
+                            ],
+                            "additionalProperties": false
+                          }
                         }
                       },
                       "required": [
@@ -301,6 +364,27 @@
                           "additionalProperties": {
                             "type": "string",
                             "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+                          }
+                        },
+                        "files": {
+                          "type": "array",
+                          "description": "Arquivos novos que o código complementar cria no projeto gerado (ex.: testes unitários, fixtures). path é relativo à raiz do projeto gerado, sem '..' e sem caminho absoluto; a geração falha se o arquivo já existir.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "path": {
+                                "type": "string",
+                                "pattern": "^(?![/\\\\])(?!.*(^|[/\\\\])\\.\\.([/\\\\]|$))[^\\0]+$"
+                              },
+                              "content": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "path",
+                              "content"
+                            ],
+                            "additionalProperties": false
                           }
                         }
                       },
