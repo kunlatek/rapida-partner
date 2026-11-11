@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.2.0
+
+### ✨ Novidades
+
+- `skeleton` aceita `"ecommerce"`: loja de um único vendedor, o dono dos dados da instância. `"marketplace"` fica reservado para vários vendedores; até a camada multivendedor existir, o `rapida-code-generator` gera o mesmo núcleo de loja para os dois.
+- `IBackend.marketplace` ganha:
+  - `sellerWorkspaceId`: a loja só lê produtos, preços e estoque desse workspace;
+  - `sellerServiceAuth` (`issuer`, `audience`, `privateKey`, `keyId`): identidade da loja como chamador confiável do vendedor (RFC 7523), para gravar a saída de estoque das vendas aprovadas;
+  - `stockOutDefaults`: campos fixos dessa saída de estoque (ex.: `responsibleId` da pessoa padrão do ambiente).
+- Nova interface `ISellerServiceAuth`. Schemas `project.schema.json` e `backend.ref.json` atualizados.
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
 ## 3.1.0
 
 ### ✨ Novidades
