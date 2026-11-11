@@ -56,6 +56,10 @@ interface IMarketplace {
   stockInEndpoint: string;
   stockOutEndpoint: string;
   productBaseUrl: string;
+  // Endpoint, na mesma base de productBaseUrl, das configurações de venda dos
+  // produtos (productId, price, isActive). Quando presente, o preço de venda
+  // vem daqui e o backend calcula o valor do pedido; sem ele, usa product.price.
+  productSellingSettingsEndpoint?: string;
 }
 
 interface IService {
