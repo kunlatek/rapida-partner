@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0
+
+### ✨ Novidades
+
+- `IBackend.marketplace` aceita `productSellingSettingsEndpoint` (opcional): endpoint, na mesma base de `productBaseUrl`, das configurações de venda dos produtos (`productId`, `price`, `isActive`). Com ele, o `rapida-code-generator` passa a mostrar o preço de venda real na vitrine e a calcular o valor do pedido no backend, sem confiar no preço enviado pelo navegador. Sem ele, continua usando `product.price`. Schema `backend.ref.json` atualizado.
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
 ## 3.0.0
 
 ### 💥 Mudança incompatível
