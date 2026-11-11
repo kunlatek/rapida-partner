@@ -23,7 +23,10 @@ export interface IProject {
   description: string;
   businessPlan?: IBusinessPLan;
   businessRules?: IBusinessRule[];
-  skeleton: "backoffice" | "marketplace" | "landingPage" | "socialNetwork" | "service" | "aiAgent";
+  // "ecommerce": loja de um único vendedor (o dono dos dados da instância).
+  // "marketplace": vários vendedores; enquanto a camada multivendedor não existe,
+  // o rapida-code-generator gera para os dois o mesmo núcleo de loja.
+  skeleton: "backoffice" | "ecommerce" | "marketplace" | "landingPage" | "socialNetwork" | "service" | "aiAgent";
   // Idiomas em que os textos TTranslatable (label, placeholder, tooltip, title)
   // são declarados. Sem languages, o projeto é monolíngue em defaultLanguage.
   languages?: TLanguage[];

@@ -105,7 +105,22 @@
         "stockInEndpoint": { "type": "string" },
         "stockOutEndpoint": { "type": "string" },
         "productBaseUrl": { "type": "string" },
-        "productSellingSettingsEndpoint": { "type": "string" }
+        "productSellingSettingsEndpoint": { "type": "string" },
+        "sellerWorkspaceId": { "type": "string" },
+        "sellerServiceAuth": {
+          "type": "object",
+          "properties": {
+            "issuer": { "type": "string" },
+            "audience": { "type": "string" },
+            "privateKey": { "type": "string" },
+            "keyId": { "type": "string" }
+          },
+          "required": ["issuer", "audience", "privateKey"]
+        },
+        "stockOutDefaults": {
+          "type": "object",
+          "additionalProperties": { "type": ["string", "number", "boolean"] }
+        }
       },
       "required": ["paymentGateways", "productsAutocomplete", "stockInEndpoint", "stockOutEndpoint", "productBaseUrl"]
     },
