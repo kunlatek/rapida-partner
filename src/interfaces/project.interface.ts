@@ -199,6 +199,10 @@ export interface IModule {
   id: string;
   title: TTranslatable;
   icon: string;
+  // Grupo do menu lateral: módulos com o mesmo menuGroup aparecem juntos sob
+  // esse cabeçalho, na posição do primeiro deles. Sem menuGroup, o módulo fica
+  // fora de grupo, como sempre foi (link solto com 1 tela, seção com várias).
+  menuGroup?: TTranslatable;
   components: IComponent[];
   businessRules?: IBusinessRule[];
   todo?: ITodo[];
