@@ -67,6 +67,12 @@ export interface IProject {
   }[];
   e2e?: IE2e;
   modules?: IModule[];
+  // Grupos do menu lateral para as telas que não vêm de módulos. Use o mesmo
+  // texto de um IModule.menuGroup para juntá-las a esse grupo.
+  menu?: {
+    homeGroup?: TTranslatable; // grupo do Painel (/); sem ele, fica solto no topo
+    flowsGroup?: TTranslatable; // membros, papéis, convites e notificações, como links soltos no grupo
+  };
   styles?: IStyle[];
   flowChart?: IFlowChart;
   dashboard?: IComponent[];
@@ -203,6 +209,9 @@ export interface IModule {
   // esse cabeçalho, na posição do primeiro deles. Sem menuGroup, o módulo fica
   // fora de grupo, como sempre foi (link solto com 1 tela, seção com várias).
   menuGroup?: TTranslatable;
+  // "section" (padrão): com várias telas, o módulo vira um item recolhível.
+  // "flat": cada tela do módulo vira um link solto no menu (ou no menuGroup).
+  menuDisplay?: "section" | "flat";
   components: IComponent[];
   businessRules?: IBusinessRule[];
   todo?: ITodo[];
