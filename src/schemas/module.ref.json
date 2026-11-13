@@ -17,6 +17,10 @@
       "menuGroup": {
         "$ref": "translatable.ref.json"
       },
+      "menuDisplay": {
+        "type": "string",
+        "enum": ["section", "flat"]
+      },
       "components": {
         "type": "array",
         "items": {

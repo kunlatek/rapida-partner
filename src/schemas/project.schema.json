@@ -161,6 +161,18 @@
     "modules": {
       "$ref": "module.ref.json"
     },
+    "menu": {
+      "type": "object",
+      "properties": {
+        "homeGroup": {
+          "$ref": "translatable.ref.json"
+        },
+        "flowsGroup": {
+          "$ref": "translatable.ref.json"
+        }
+      },
+      "additionalProperties": false
+    },
     "flowChart": {
       "$ref": "form-flowchart.ref.json"
     },
