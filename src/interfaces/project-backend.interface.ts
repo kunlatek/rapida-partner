@@ -60,6 +60,10 @@ interface IMarketplace {
   // produtos (productId, price, isActive). Quando presente, o preço de venda
   // vem daqui e o backend calcula o valor do pedido; sem ele, usa product.price.
   productSellingSettingsEndpoint?: string;
+  // Endpoint, na mesma base de productBaseUrl, da configuração da loja
+  // (IStoreSettings) salva no Backoffice do vendedor pelo módulo
+  // getStoreSettingsModule. Sem ele, a loja usa só IProject.store.defaults.
+  storeSettingsEndpoint?: string;
   // Workspace do vendedor (dono dos dados). A loja só lê produtos, preços e
   // estoque desse workspace e grava nele as movimentações de estoque.
   sellerWorkspaceId?: string;

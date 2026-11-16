@@ -1,0 +1,17 @@
+{
+  "$id": "project-store.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "blog"]
+      },
+      "uniqueItems": true
+    },
+    "defaults": { "$ref": "store-settings.ref.json" }
+  },
+  "additionalProperties": false
+}

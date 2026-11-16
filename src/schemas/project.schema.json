@@ -199,6 +199,9 @@
     },
     "repositories": {
       "$ref": "project-repositories.ref.json"
+    },
+    "store": {
+      "$ref": "project-store.ref.json"
     }
   },
   "required": ["id", "title", "description", "skeleton"]

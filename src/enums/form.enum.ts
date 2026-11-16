@@ -4,6 +4,8 @@ export enum EDataType {
   NUMBER = "number",
   PASSWORD = "password",
   EMAIL = "email",
+  // Cor em hexadecimal de 6 dígitos ("#RRGGBB"): seletor de cor no form e
+  // amostra da cor na list/detail.
   COLOR = "color",
   DATE = "date",
   WYSIWYG = "wysiwyg",

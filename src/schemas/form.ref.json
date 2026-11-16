@@ -25,6 +25,9 @@
         "isAuthorized"
       ]
     },
+    "isSingleRecord": {
+      "type": "boolean"
+    },
     "businessRules": {
       "$ref": "business-rules.ref.json"
     },
