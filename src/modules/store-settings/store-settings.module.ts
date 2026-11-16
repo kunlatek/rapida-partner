@@ -46,7 +46,7 @@ export const getStoreSettingsForm = (options: IStoreSettingsModuleOptions = {}):
     {
       id: "storeSettings",
       endpoint: STORE_SETTINGS_ENDPOINT,
-      actions: ["get", "update"],
+      actions: ["create", "get", "update"],
       request: { entity: "storeSettings", fields: [] },
     },
   ],

@@ -26,8 +26,10 @@ export interface IForm {
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
   // Cadastro de registro único por workspace (ex.: configuração da loja): o
-  // gerador cria só a tela de edição direta, sem listagem nem "novo"; o "get"
-  // devolve o registro do workspace e o "update" o cria se ainda não existir.
+  // gerador cria só a tela de edição direta, na rota da entidade, sem listagem
+  // nem "novo". A tela lê o registro pelo "get" (a lista do workspace tem no
+  // máximo um item), cria no primeiro salvamento ("create") e atualiza depois
+  // ("update"); o contrato precisa dessas três ações.
   isSingleRecord?: boolean;
   businessRules?: IBusinessRule[];
   userStory?: string;
