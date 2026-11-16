@@ -1,0 +1,35 @@
+{
+  "$id": "referral-curation.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "minRatingCount": { "type": "integer", "minimum": 0 },
+    "minNormalizedRating": { "type": "number", "minimum": 0, "maximum": 1 },
+    "minDiscountFromBaseline": { "type": "number", "minimum": 0, "maximum": 1 },
+    "priceBaseline": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "enum": ["sourceHistory"] },
+        "windowDays": { "type": "integer", "minimum": 1 },
+        "minSnapshots": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["kind", "windowDays"],
+      "additionalProperties": false
+    },
+    "freeShippingOnly": { "type": "boolean" },
+    "tieBreakers": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["fastestDelivery", "highestCommission", "lowestPrice"] },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "minRatingCount",
+    "minNormalizedRating",
+    "minDiscountFromBaseline",
+    "priceBaseline",
+    "freeShippingOnly",
+    "tieBreakers"
+  ],
+  "additionalProperties": false
+}

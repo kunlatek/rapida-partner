@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.4.0
+
+### ✨ Novidades
+
+- `skeleton` aceita `"referralCommerce"`: vitrine sem venda própria, com a mesma cara da loja. Cada produto leva, por link de afiliado, para o anúncio na fonte de origem (Shopee, Amazon ou Mercado Livre), onde a compra acontece.
+- `IProject.referralCuration` (nova interface `IReferralCuration`): filtros e desempate dos produtos exibidos.
+  - Mínimo de avaliações, nota mínima normalizada em 0..1 (0.9 = 4.5/5 = 9/10) e desconto mínimo sobre o preço médio.
+  - Preço médio = histórico do próprio anúncio na mesma fonte (`priceBaseline.kind: "sourceHistory"`, `windowDays`, `minSnapshots`).
+  - Só frete grátis (`freeShippingOnly`) e ordem de desempate (`tieBreakers`: `fastestDelivery`, `highestCommission`, `lowestPrice`).
+  - O mesmo produto em fontes diferentes é identificado só pelo GTIN/EAN.
+- `IBackend.referralSources` (nova interface `IReferralSourceIntegration`, tipo `TReferralSource`): credenciais, tag de afiliado e comissão padrão de cada fonte, por ambiente. `"mercadoLivre"` é o catálogo de afiliados; `"mercadoPago"` continua sendo só gateway de pagamento.
+- `IBackend.scheduledJobs` (nova interface `IScheduledJob`): frequência (`cron`, `timezone`) dos jobs que o skeleton gera, por `id`. Primeiro id conhecido: `"referralPriceSnapshot"`, a captura de preços do `referralCommerce`.
+- Schemas novos `referral-curation.ref.json`, `referral-source-integration.ref.json` e `scheduled-job.ref.json`, ligados em `project.schema.json` e `backend.ref.json`.
+
+Mudança aditiva: nenhum projeto existente precisa migrar.
+
+⚠️ O `rapida-code-generator` ainda não gera o skeleton `"referralCommerce"`. Até ele ganhar suporte, um projeto com esse skeleton é gerado como backoffice, sem aviso (ver `docs/architecture-review-2026-11-16.md`, S3). Não use em projeto real antes disso.
+
 ## 3.2.0
 
 ### ✨ Novidades

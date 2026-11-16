@@ -17,6 +17,7 @@ import type { IProjectRepositories } from "./project-repositories.interface";
 import type { IStyle } from "./project-style.interface";
 import type { TTranslatable } from "./translatable.interface";
 import type { IProjectStore } from "./store-settings.interface";
+import type { IReferralCuration } from "./referral-curation.interface";
 
 export interface IProject {
   id: string;
@@ -27,7 +28,18 @@ export interface IProject {
   // "ecommerce": loja de um único vendedor (o dono dos dados da instância).
   // "marketplace": vários vendedores; enquanto a camada multivendedor não existe,
   // o rapida-code-generator gera para os dois o mesmo núcleo de loja.
-  skeleton: "backoffice" | "ecommerce" | "marketplace" | "landingPage" | "socialNetwork" | "service" | "aiAgent";
+  // "referralCommerce": vitrine sem venda própria; cada produto leva por link de
+  // afiliado para o anúncio na fonte de origem (IBackend.referralSources), com
+  // a curadoria de IProject.referralCuration. Requer suporte no gerador.
+  skeleton:
+    | "backoffice"
+    | "ecommerce"
+    | "marketplace"
+    | "referralCommerce"
+    | "landingPage"
+    | "socialNetwork"
+    | "service"
+    | "aiAgent";
   // Idiomas em que os textos TTranslatable (label, placeholder, tooltip, title)
   // são declarados. Sem languages, o projeto é monolíngue em defaultLanguage.
   languages?: TLanguage[];
@@ -83,6 +95,8 @@ export interface IProject {
   // Só para skeleton "ecommerce"/"marketplace": funcionalidades opcionais
   // geradas e valores iniciais da configuração da loja.
   store?: IProjectStore;
+  // Só para skeleton "referralCommerce": filtros e desempate dos produtos exibidos.
+  referralCuration?: IReferralCuration;
 }
 
 export interface IFrontend {

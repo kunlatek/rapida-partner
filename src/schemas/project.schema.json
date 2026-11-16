@@ -18,6 +18,7 @@
         "backoffice",
         "ecommerce",
         "marketplace",
+        "referralCommerce",
         "landingPage",
         "socialNetwork",
         "service",
@@ -202,6 +203,9 @@
     },
     "store": {
       "$ref": "project-store.ref.json"
+    },
+    "referralCuration": {
+      "$ref": "referral-curation.ref.json"
     }
   },
   "required": ["id", "title", "description", "skeleton"]

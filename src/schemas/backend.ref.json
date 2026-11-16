@@ -44,6 +44,14 @@
       "type": "array",
       "items": { "$ref": "trusted-caller.ref.json" }
     },
+    "referralSources": {
+      "type": "array",
+      "items": { "$ref": "referral-source-integration.ref.json" }
+    },
+    "scheduledJobs": {
+      "type": "array",
+      "items": { "$ref": "scheduled-job.ref.json" }
+    },
     "storage": {
       "type": "object",
       "properties": {
