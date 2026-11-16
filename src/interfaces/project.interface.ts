@@ -16,6 +16,7 @@ import type { IBackend } from "./project-backend.interface";
 import type { IProjectRepositories } from "./project-repositories.interface";
 import type { IStyle } from "./project-style.interface";
 import type { TTranslatable } from "./translatable.interface";
+import type { IProjectStore } from "./store-settings.interface";
 
 export interface IProject {
   id: string;
@@ -79,6 +80,9 @@ export interface IProject {
   aiAgentConfig?: IAiAgentConfig;
   notifications?: INotification[];
   repositories?: IProjectRepositories;
+  // Só para skeleton "ecommerce"/"marketplace": funcionalidades opcionais
+  // geradas e valores iniciais da configuração da loja.
+  store?: IProjectStore;
 }
 
 export interface IFrontend {

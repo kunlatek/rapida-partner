@@ -25,6 +25,10 @@ export interface IForm {
   subtitle?: TTranslatable;
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
+  // Cadastro de registro único por workspace (ex.: configuração da loja): o
+  // gerador cria só a tela de edição direta, sem listagem nem "novo"; o "get"
+  // devolve o registro do workspace e o "update" o cria se ainda não existir.
+  isSingleRecord?: boolean;
   businessRules?: IBusinessRule[];
   userStory?: string;
   contracts: IContract[];

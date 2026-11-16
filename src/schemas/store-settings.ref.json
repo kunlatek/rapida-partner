@@ -1,0 +1,39 @@
+{
+  "$id": "store-settings.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "tagline": { "type": "string" },
+    "primaryColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "secondaryColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "inkColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "font": {
+      "type": "string",
+      "enum": ["inter", "poppins", "nunito", "montserrat", "roboto", "lato"]
+    },
+    "radius": { "type": "string", "enum": ["none", "soft", "rounded"] },
+    "pageSize": { "type": "integer", "minimum": 1 },
+    "whatsappNumber": { "type": "string", "pattern": "^[0-9]{10,15}$" },
+    "phone": { "type": "string" },
+    "email": { "type": "string" },
+    "weekdayHours": { "type": "string" },
+    "saturdayHours": { "type": "string" },
+    "companyName": { "type": "string" },
+    "cnpj": { "type": "string" },
+    "address": { "type": "string" },
+    "instagramUrl": { "type": "string" },
+    "facebookUrl": { "type": "string" },
+    "tiktokUrl": { "type": "string" },
+    "youtubeUrl": { "type": "string" },
+    "cashDiscountPercent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "maxInstallments": { "type": "integer", "minimum": 0 },
+    "whatsappButtonEnabled": { "type": "boolean" },
+    "stockAvailabilityEnabled": { "type": "boolean" },
+    "cashDiscountEnabled": { "type": "boolean" },
+    "installmentsEnabled": { "type": "boolean" },
+    "favoritesEnabled": { "type": "boolean" },
+    "blogEnabled": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}
