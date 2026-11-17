@@ -15,7 +15,7 @@
 
 - `IReferralCuration.search` é obrigatório.
 - `IReferralSourceIntegration` vira união discriminada por `source` (`IShopeeReferralIntegration`, `IAmazonReferralIntegration`, `IMercadoLivreReferralIntegration`), com as chaves de `credentials` de cada programa: Shopee `appId`/`secret`; Amazon `credentialId`/`credentialSecret` e, opcionais, `version`/`marketplace`; Mercado Livre `clientId`/`clientSecret` e, opcional, `mattTool`. Chave desconhecida é rejeitada.
-- `affiliateTag` fica opcional na Shopee: a API já devolve o link atribuído à conta dona do AppID; quando presente, é usado como sub-id.
+- `affiliateTag` fica opcional na Shopee: a API já devolve o link atribuído à conta dona do AppID. Hoje o gerador não usa o valor; o uso como sub-id depende de confirmar a API com conta real.
 - `IScheduledJob.id` passa a ser `TScheduledJobId` (hoje só `"referralPriceSnapshot"`): id digitado errado é rejeitado em vez de cair na frequência padrão sem aviso.
 - `IReferralPriceBaseline.minSnapshots` conta dias distintos com captura, não capturas, e a média exclui o dia corrente.
 

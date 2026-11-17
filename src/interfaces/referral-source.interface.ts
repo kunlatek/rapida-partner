@@ -24,7 +24,8 @@ interface IReferralSourceIntegrationBase {
 /**
  * Shopee Afiliados (Open API). AppID e Secret ficam na página Open API do painel
  * de afiliado. A API devolve o link de oferta já atribuído à conta dona do AppID,
- * por isso `affiliateTag` é opcional: quando presente, vai como sub-id do link.
+ * por isso `affiliateTag` é opcional e hoje não é usado pelo gerador. O uso como
+ * sub-id do link depende de confirmar a API com conta real.
  */
 export interface IShopeeReferralIntegration extends IReferralSourceIntegrationBase {
   source: "shopee";
