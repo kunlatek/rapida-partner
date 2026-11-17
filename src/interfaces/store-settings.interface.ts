@@ -10,7 +10,8 @@ export type TStoreFeature =
   | "cashDiscount"
   | "installments"
   | "favorites"
-  | "blog";
+  | "blog"
+  | "shipping";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -65,6 +66,24 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // Só têm efeito com as funcionalidades "cashDiscount" e "installments".
   cashDiscountPercent?: number;
   maxInstallments?: number;
+
+  // Só têm efeito com a funcionalidade "shipping". CEP de onde os pedidos
+  // saem (somente dígitos), frete grátis a partir de um valor e a tabela de
+  // faixas de CEP com valor e prazo. CEP fora de toda faixa não é atendido.
+  originZipCode?: string;
+  freeShippingAbove?: number;
+  shippingRanges?: IStoreShippingRange[];
+}
+
+/** Faixa de CEP (inclusiva, somente dígitos) com valor e prazo do frete. */
+export interface IStoreShippingRange {
+  // Nome da faixa mostrado ao cliente (ex.: "Capital", "Nordeste").
+  label?: string;
+  zipCodeStart: string;
+  zipCodeEnd: string;
+  price: number;
+  // Prazo de entrega em dias úteis.
+  deliveryDays: number;
 }
 
 /**

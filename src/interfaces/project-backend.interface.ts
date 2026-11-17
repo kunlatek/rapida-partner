@@ -75,6 +75,40 @@ interface IMarketplace {
   // Campos fixos da saída de estoque gravada no vendedor a cada venda aprovada
   // (ex.: stockOutType, hasSerialNumber, responsibleId da pessoa padrão).
   stockOutDefaults?: Record<string, string | number | boolean>;
+  // Saldo já somado no vendedor: agregações (IPublicContract.aggregations) das
+  // entradas e das saídas de estoque agrupadas por productId, somando
+  // inputQuantity e outputQuantity. Com os dois, a loja deixa de ler todas as
+  // movimentações (ex.: "/stock-ins/aggregations/balance").
+  stockInAggregateEndpoint?: string;
+  stockOutAggregateEndpoint?: string;
+  // Pedidos enviados ao vendedor (módulo pronto getStoreOrdersModule, contrato
+  // público com access "trustedCallers"). A loja cria o pedido aprovado e lê
+  // dali o andamento da entrega (em separação, enviado, entregue, rastreio).
+  storeOrdersEndpoint?: string;
+  // Categorias e marcas do vendedor, para menu, filtros e navegação da vitrine.
+  categoriesEndpoint?: string;
+  brandsEndpoint?: string;
+  // Em que campo do produto do vendedor está cada informação usada pela
+  // vitrine. O gerador tem um padrão para cada campo omitido.
+  productFieldMap?: IMarketplaceProductFieldMap;
+}
+
+export interface IMarketplaceProductFieldMap {
+  // Referência à categoria (padrão "categoryId").
+  category?: string;
+  // Referência à marca (padrão "brandId").
+  brand?: string;
+  // Lista de tags (padrão "productsTags").
+  tags?: string;
+  // Modelo (padrão "productModel").
+  model?: string;
+  // Peso e medidas, usados por cotação de frete por transportadora.
+  weight?: string;
+  height?: string;
+  width?: string;
+  length?: string;
+  // Lista de propriedades da ficha técnica (padrão "othersProperties").
+  properties?: string;
 }
 
 export interface ISellerServiceAuth {

@@ -40,6 +40,37 @@
       },
       "description": "Browser origins allowed via CORS. Does not protect against server-to-server calls."
     },
+    "aggregations": {
+      "type": "array",
+      "description": "Grouped sums exposed at GET <endpoint>/aggregations/<id>, with the contract's access.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]+$"
+          },
+          "groupBy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sum": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "groupBy",
+          "sum"
+        ],
+        "additionalProperties": false
+      }
+    },
     "request": {
       "type": "object",
       "properties": {

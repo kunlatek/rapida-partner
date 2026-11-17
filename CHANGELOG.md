@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.6.0
+
+Contratos do Grupo B da evolução do skeleton ecommerce/marketplace (itens L07, L08, L13 e L15). Todas as mudanças são aditivas: nenhum projeto existente precisa mudar. O comportamento novo depende de suporte no `rapida-code-generator`.
+
+### ✨ Novidades
+
+- **Agregação em contrato público** (`IPublicContract.aggregations`, nova interface `IContractAggregation`): somas agrupadas por um campo (`groupBy` + `sum`), calculadas no banco e expostas com o mesmo `access` do contrato em `GET <endpoint>/aggregations/<id>`. A resposta é `{ _id, <campo>: <total> }[]`.
+- **Saldo de estoque somado no vendedor** (L13): `IMarketplace.stockInAggregateEndpoint` e `stockOutAggregateEndpoint` apontam para agregações das entradas e saídas agrupadas por `productId`. Com elas, a loja deixa de ler todas as movimentações.
+- **Pedidos enviados ao vendedor** (L07): módulo pronto `getStoreOrdersModule` (`src/modules/store-orders`), com lista e formulário "Pedidos da loja" no Backoffice do vendedor. O contrato público `storeOrdersFromStore` (create, get, update; `trustedCallers` por padrão, um pedido por `storeOrderId`) recebe o pedido da loja. O vendedor atualiza andamento (`TStoreOrderFulfillmentStatus`: recebido, em separação, enviado, entregue, cancelado) e rastreio. Tipo `IStoreOrder` com os campos do form. A loja aponta para ele em `IMarketplace.storeOrdersEndpoint`.
+- **Frete por faixa de CEP** (L08): `TStoreFeature` ganha `"shipping"`. `IStoreSettings` ganha `originZipCode`, `freeShippingAbove`, `shippingRanges` (nova interface `IStoreShippingRange`: faixa de CEP inclusiva, valor e prazo em dias úteis) e o liga e desliga `shippingEnabled`. O módulo `getStoreSettingsModule` mostra esses campos quando recebe `"shipping"` em `features`.
+- **Categorias, marcas e ficha técnica** (L15): `IMarketplace.categoriesEndpoint` e `brandsEndpoint`, e `IMarketplace.productFieldMap` (nova interface `IMarketplaceProductFieldMap`), que diz em que campo do produto do vendedor estão categoria, marca, tags, modelo, peso, medidas e propriedades. O formulário de categoria (com hierarquia) fica em `rapida-projects`.
+
 ## 3.5.0
 
 ### ✨ Novidades

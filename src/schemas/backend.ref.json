@@ -129,6 +129,26 @@
         "stockOutDefaults": {
           "type": "object",
           "additionalProperties": { "type": ["string", "number", "boolean"] }
+        },
+        "stockInAggregateEndpoint": { "type": "string" },
+        "stockOutAggregateEndpoint": { "type": "string" },
+        "storeOrdersEndpoint": { "type": "string" },
+        "categoriesEndpoint": { "type": "string" },
+        "brandsEndpoint": { "type": "string" },
+        "productFieldMap": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string", "minLength": 1 },
+            "brand": { "type": "string", "minLength": 1 },
+            "tags": { "type": "string", "minLength": 1 },
+            "model": { "type": "string", "minLength": 1 },
+            "weight": { "type": "string", "minLength": 1 },
+            "height": { "type": "string", "minLength": 1 },
+            "width": { "type": "string", "minLength": 1 },
+            "length": { "type": "string", "minLength": 1 },
+            "properties": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
         }
       },
       "required": ["paymentGateways", "productsAutocomplete", "stockInEndpoint", "stockOutEndpoint", "productBaseUrl"]

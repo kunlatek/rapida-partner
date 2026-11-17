@@ -10,7 +10,37 @@ const FEATURE_LABELS: Record<TStoreFeature, ReturnType<typeof tr>> = {
   installments: tr("Anunciar parcelas sem juros", "Show interest-free installments", "Anunciar cuotas sin interés"),
   favorites: tr("Favoritos", "Favorites", "Favoritos"),
   blog: tr("Blog", "Blog", "Blog"),
+  shipping: tr("Cobrar frete por faixa de CEP", "Charge shipping by ZIP code range", "Cobrar envío por rango de código postal"),
 };
+
+const shippingElements: IFormElement[] = [
+  {
+    type: "input",
+    name: "originZipCode",
+    dataType: EDataType.TEXT,
+    label: tr("CEP de origem", "Origin ZIP code", "Código postal de origen"),
+    tooltip: tr("Somente dígitos (ex.: 57035000)", "Digits only (e.g. 57035000)", "Solo dígitos (ej.: 57035000)"),
+    validators: ["onlyNumbers"],
+  },
+  {
+    type: "input",
+    name: "freeShippingAbove",
+    dataType: EDataType.CURRENCY,
+    label: tr("Frete grátis acima de", "Free shipping above", "Envío gratis a partir de"),
+  },
+  {
+    type: "array",
+    name: "shippingRanges",
+    label: tr("Faixas de CEP", "ZIP code ranges", "Rangos de código postal"),
+    elements: [
+      { type: "input", name: "label", dataType: EDataType.TEXT, label: tr("Nome da faixa", "Range name", "Nombre del rango") },
+      { type: "input", name: "zipCodeStart", dataType: EDataType.TEXT, label: tr("CEP inicial", "First ZIP code", "Código postal inicial"), isRequired: true, validators: ["onlyNumbers"] },
+      { type: "input", name: "zipCodeEnd", dataType: EDataType.TEXT, label: tr("CEP final", "Last ZIP code", "Código postal final"), isRequired: true, validators: ["onlyNumbers"] },
+      { type: "input", name: "price", dataType: EDataType.CURRENCY, label: tr("Valor do frete", "Shipping price", "Precio del envío"), isRequired: true },
+      { type: "input", name: "deliveryDays", dataType: EDataType.INTEGER, label: tr("Prazo (dias úteis)", "Delivery time (business days)", "Plazo (días hábiles)"), isRequired: true },
+    ],
+  },
+];
 
 const featureDetails = (feature: TStoreFeature): IFormElement[] => {
   if (feature === "cashDiscount") {
@@ -34,6 +64,7 @@ const featureDetails = (feature: TStoreFeature): IFormElement[] => {
       },
     ];
   }
+  if (feature === "shipping") return shippingElements;
   return [];
 };
 

@@ -28,12 +28,30 @@
     "youtubeUrl": { "type": "string" },
     "cashDiscountPercent": { "type": "number", "minimum": 0, "maximum": 100 },
     "maxInstallments": { "type": "integer", "minimum": 0 },
+    "originZipCode": { "type": "string", "pattern": "^[0-9]{8}$" },
+    "freeShippingAbove": { "type": "number", "minimum": 0 },
+    "shippingRanges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "zipCodeStart": { "type": "string", "pattern": "^[0-9]{8}$" },
+          "zipCodeEnd": { "type": "string", "pattern": "^[0-9]{8}$" },
+          "price": { "type": "number", "minimum": 0 },
+          "deliveryDays": { "type": "integer", "minimum": 0 }
+        },
+        "required": ["zipCodeStart", "zipCodeEnd", "price", "deliveryDays"],
+        "additionalProperties": false
+      }
+    },
     "whatsappButtonEnabled": { "type": "boolean" },
     "stockAvailabilityEnabled": { "type": "boolean" },
     "cashDiscountEnabled": { "type": "boolean" },
     "installmentsEnabled": { "type": "boolean" },
     "favoritesEnabled": { "type": "boolean" },
-    "blogEnabled": { "type": "boolean" }
+    "blogEnabled": { "type": "boolean" },
+    "shippingEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
 }

@@ -28,10 +28,30 @@ export interface IPublicContract {
    * contra chamadas servidor-a-servidor (use `access: "trustedCallers"` para isso).
    */
   allowedOrigins?: string[];
+  /**
+   * Somas agrupadas por um campo, calculadas no banco e expostas com o mesmo
+   * `access` do contrato em `GET <endpoint>/aggregations/<id>` (aceita o mesmo
+   * `filters` da listagem e respeita o workspace). Ex.: saldo de estoque por
+   * produto sem varrer todas as movimentações.
+   */
+  aggregations?: IContractAggregation[];
   request?: IContractRequest;
   conditions?: IFormCondition;
   businessRules?: IBusinessRule[];
   userStory?: string;
+}
+
+/**
+ * Agregação de um contrato público. A resposta é uma lista de
+ * `{ _id: <valor de groupBy>, <campo de sum>: <total> }`.
+ */
+export interface IContractAggregation {
+  // Último segmento da rota: GET <endpoint>/aggregations/<id>.
+  id: string;
+  // Campo pelo qual os registros são agrupados (ex.: "productId").
+  groupBy: string;
+  // Campos numéricos somados em cada grupo (ex.: ["inputQuantity"]).
+  sum: string[];
 }
 
 export interface IContractRequest {
