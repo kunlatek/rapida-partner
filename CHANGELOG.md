@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.6.1
+
+### 🐛 Correções
+
+- `getStoreOrdersModule`: a unicidade de `storeOrderId` por workspace passa do contrato público para o contrato interno do form, que é de onde o gerador cria o índice único. Na 3.6.0 o índice não era criado, e a loja podia gravar o mesmo pedido duas vezes.
+
 ## 3.6.0
 
 Contratos do Grupo B da evolução do skeleton ecommerce/marketplace (itens L07, L08, L13 e L15). Todas as mudanças são aditivas: nenhum projeto existente precisa mudar. O comportamento novo depende de suporte no `rapida-code-generator`.

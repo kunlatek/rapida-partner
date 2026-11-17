@@ -17,6 +17,11 @@ export interface IStoreOrdersModuleOptions {
 
 const ENTITY = "storeOrders";
 
+// Um pedido por storeOrderId em cada workspace. Fica no contrato interno do
+// form, de onde o gerador cria o índice único, e não no público: o reenvio do
+// mesmo pedido pela loja é recusado em vez de duplicar.
+const UNIQUE_STORE_ORDER = [{ identificator: "storeOrderIdPerWorkspace", fields: ["storeOrderId"] }];
+
 export const getStoreOrderForm = (options: IStoreOrdersModuleOptions = {}): IForm => ({
   componentType: "form",
   id: "storeOrderForm",
@@ -39,7 +44,7 @@ export const getStoreOrderForm = (options: IStoreOrdersModuleOptions = {}): IFor
       id: ENTITY,
       endpoint: STORE_ORDERS_ENDPOINT,
       actions: ["get", "getById", "update"],
-      request: { entity: ENTITY, fields: [] },
+      request: { entity: ENTITY, fields: [], uniqueConstraints: UNIQUE_STORE_ORDER },
     },
   ],
   publicContracts: [
@@ -49,11 +54,7 @@ export const getStoreOrderForm = (options: IStoreOrdersModuleOptions = {}): IFor
       actions: ["create", "get", "update"],
       access: options.publicAccess ?? "trustedCallers",
       ...(options.allowedOrigins ? { allowedOrigins: options.allowedOrigins } : {}),
-      request: {
-        entity: ENTITY,
-        fields: [],
-        uniqueConstraints: [{ identificator: "storeOrderIdPerWorkspace", fields: ["storeOrderId"] }],
-      },
+      request: { entity: ENTITY, fields: [] },
     },
   ],
 });
