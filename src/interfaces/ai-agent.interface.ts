@@ -62,21 +62,21 @@ export interface IAiAgentConfig {
   };
 
   businessContext: {
-    // Not used by the code generator today (kept only for compatibility).
-    // Contracts come from this project's modules and, optionally, from
-    // targetBackendDefinitionFile.
-    targetBackendProjectId?: string;
-
-    // Optional path to an ALREADY COMPILED rapidaObject.json of the target
-    // backend project (NOT the .ts source — the loader parses it as JSON),
-    // resolved relative to the directory of this agent's own
-    // rapidaObject.json. When provided, the code generator loads this file
-    // and resolves contract bindings against it in addition to the current
-    // project. When omitted, contracts are resolved only from the current
-    // project's modules — the simplest and only end-to-end tested setup
-    // today is embedding the same modules directly in this project (see
-    // katia.ts), rather than pointing at an external compiled file.
-    targetBackendDefinitionFile?: string;
+    // Backend in ANOTHER Rapida project (e.g. a separate ERP). Without it the
+    // agent talks to this project's own backend (backend[] and modules).
+    // With it, the agent calls only the target backend:
+    // - definitionFile: ALREADY COMPILED rapidaObject.json of the target
+    //   project (not the .ts source), relative to the directory of this
+    //   agent's rapidaObject.json. Contracts, fixed-tool endpoints and the
+    //   history endpoint are resolved against it only.
+    // - baseUrl: the target backend URL (with or without /api/v1), written to
+    //   BOT_API_BASE_URL.
+    // The bot user (botCredentials) must exist on the target backend: this
+    // project's own backend does not create it when targetBackend is set.
+    targetBackend?: {
+      definitionFile: string;
+      baseUrl: string;
+    };
 
     // exposedContracts only covers *additional* domain actions. The agent
     // ships fixed tools according to `capabilities` (identity → /people,
@@ -95,7 +95,7 @@ export interface IAiAgentConfig {
     //
     // Besides the fixed tools, the agent itself stores and reads the
     // conversation history at /whatsapp-chat-histories: some module of the
-    // project (or of targetBackendDefinitionFile) must expose that endpoint —
+    // project (or of targetBackend) must expose that endpoint —
     // usually whatsappModule from rapida-projects. Code generation fails
     // without it.
     //
