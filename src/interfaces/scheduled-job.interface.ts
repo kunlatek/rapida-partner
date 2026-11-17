@@ -3,8 +3,15 @@
  * - "referralPriceSnapshot": captura de preços dos anúncios do skeleton
  *   "referralCommerce" (base de `IReferralPriceBaseline`). Respeite o limite
  *   de requisições das APIs de afiliado ao escolher a frequência.
+ * - "aiAgentAppointmentReminder": lembrete de agendamento do agente de IA
+ *   (`IAiAgentConfig.jobs.reminder`). Roda no processo do agente, não no
+ *   backend Nest. O `timezone` também é o fuso em que os horários dos
+ *   agendamentos estão gravados. Sem entrada, o agente usa "*\/2 * * * *" e
+ *   "America/Sao_Paulo".
  */
-export type TScheduledJobId = "referralPriceSnapshot";
+export type TScheduledJobId =
+  | "referralPriceSnapshot"
+  | "aiAgentAppointmentReminder";
 
 /**
  * Job agendado do backend gerado (`IBackend.scheduledJobs`), por ambiente.
