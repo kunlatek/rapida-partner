@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.1.0
+
+### ✨ Novidades
+
+- `IAiAgentConfig.capabilities` (`identity`, `scheduling`, `knowledgeBase`, `media`, todos `true` por padrão): liga ou desliga cada grupo de tools fixas. Grupo desligado não é gerado, não aparece no prompt padrão nem na conferência de endpoints; o lembrete só existe com `scheduling`.
+- `IAgentContractBinding.description`: texto que o LLM lê para decidir quando chamar a tool, com precedência sobre o `userStory` do contrato.
+- `IAgentContractBinding.idPrompt`: de onde o LLM tira o id nas ações `getById`/`update`/`softDelete`/`hardDelete`.
+- Placeholder `{{TOOLS_TABLE}}` no `systemPromptTemplate`, trocado na geração pela tabela das tools geradas. Os placeholders existentes (`{{ASSISTANT_NAME}}`, `{{CURRENT_DATE}}`, `{{USER_NAME}}`) passam a estar documentados.
+
+### 🔧 Ajustes
+
+- `humanHandoff.contacts[].whatsappPhoneNumber` exige formato E.164 (`+` e de 8 a 15 dígitos).
+- `agentIdentity.knowledgeBaseFile` fica opcional (padrão `data/knowledge.md`).
+- `businessContext.targetBackendProjectId` fica opcional e documentado como não usado.
+- Comentário da lista de tools fixas completo (`mostrar_imagem`, `escalar_para_humano`); nome repetido passa a falhar na geração.
+
+Aditiva, exceto o E.164: `ficharapidaComercial` precisa trocar o telefone provisório.
+
+
 ## 4.0.0
 
 ### 💥 Mudanças que quebram

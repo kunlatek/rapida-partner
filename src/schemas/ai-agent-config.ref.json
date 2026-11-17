@@ -26,7 +26,7 @@
           "type": "string"
         }
       },
-      "required": ["name", "systemPromptTemplate", "knowledgeBaseFile"],
+      "required": ["name", "systemPromptTemplate"],
       "additionalProperties": false
     },
     "infrastructure": {
@@ -71,6 +71,14 @@
               },
               "toolName": {
                 "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "idPrompt": {
+                "type": "string",
+                "minLength": 1
               },
               "action": {
                 "type": "string",
@@ -159,7 +167,17 @@
           "additionalProperties": false
         }
       },
-      "required": ["targetBackendProjectId", "exposedContracts"],
+      "required": ["exposedContracts"],
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "identity": { "type": "boolean" },
+        "scheduling": { "type": "boolean" },
+        "knowledgeBase": { "type": "boolean" },
+        "media": { "type": "boolean" }
+      },
       "additionalProperties": false
     },
     "humanHandoff": {
@@ -177,7 +195,8 @@
                 "type": "string"
               },
               "whatsappPhoneNumber": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^\\+[1-9][0-9]{7,14}$"
               }
             },
             "required": ["name", "useCase", "whatsappPhoneNumber"],
