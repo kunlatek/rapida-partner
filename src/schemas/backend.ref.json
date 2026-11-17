@@ -89,6 +89,17 @@
         "whatsappVerifyToken": { "type": "string" }
       }
     },
+    "aiAgentWhatsapp": {
+      "type": "object",
+      "properties": {
+        "whatsappToken": { "type": "string" },
+        "whatsappPhoneNumberId": { "type": "string" },
+        "whatsappVerifyToken": { "type": "string" },
+        "whatsappBusinessAccountId": { "type": "string" },
+        "whatsappAppSecret": { "type": "string" }
+      },
+      "required": ["whatsappToken", "whatsappPhoneNumberId", "whatsappVerifyToken"]
+    },
     "telegram": {
       "type": "object",
       "properties": {
