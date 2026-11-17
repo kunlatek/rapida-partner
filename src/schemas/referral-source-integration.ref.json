@@ -1,16 +1,143 @@
 {
   "$id": "referral-source-integration.ref.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "source": { "type": "string", "enum": ["shopee", "amazon", "mercadoLivre"] },
-    "credentials": {
+  "oneOf": [
+    {
       "type": "object",
-      "additionalProperties": { "type": "string" }
+      "properties": {
+        "source": {
+          "const": "shopee"
+        },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "appId": {
+              "type": "string"
+            },
+            "secret": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "appId",
+            "secret"
+          ],
+          "additionalProperties": false
+        },
+        "affiliateTag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultCommissionRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "defaultDeliveryDays": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "source",
+        "credentials"
+      ],
+      "additionalProperties": false
     },
-    "affiliateTag": { "type": "string", "minLength": 1 },
-    "defaultCommissionRate": { "type": "number", "minimum": 0, "maximum": 1 }
-  },
-  "required": ["source", "credentials", "affiliateTag"],
-  "additionalProperties": false
+    {
+      "type": "object",
+      "properties": {
+        "source": {
+          "const": "amazon"
+        },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "credentialId": {
+              "type": "string"
+            },
+            "credentialSecret": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "marketplace": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "credentialId",
+            "credentialSecret"
+          ],
+          "additionalProperties": false
+        },
+        "affiliateTag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultCommissionRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "defaultDeliveryDays": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "source",
+        "credentials",
+        "affiliateTag"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "source": {
+          "const": "mercadoLivre"
+        },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "clientId": {
+              "type": "string"
+            },
+            "clientSecret": {
+              "type": "string"
+            },
+            "mattTool": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "clientId",
+            "clientSecret"
+          ],
+          "additionalProperties": false
+        },
+        "affiliateTag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultCommissionRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "defaultDeliveryDays": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "source",
+        "credentials",
+        "affiliateTag"
+      ],
+      "additionalProperties": false
+    }
+  ]
 }

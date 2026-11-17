@@ -3,24 +3,245 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "minRatingCount": { "type": "integer", "minimum": 0 },
-    "minNormalizedRating": { "type": "number", "minimum": 0, "maximum": 1 },
-    "minDiscountFromBaseline": { "type": "number", "minimum": 0, "maximum": 1 },
+    "minRatingCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minNormalizedRating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "minDiscountFromBaseline": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "priceBaseline": {
       "type": "object",
       "properties": {
-        "kind": { "type": "string", "enum": ["sourceHistory"] },
-        "windowDays": { "type": "integer", "minimum": 1 },
-        "minSnapshots": { "type": "integer", "minimum": 1 }
+        "kind": {
+          "type": "string",
+          "enum": [
+            "sourceHistory"
+          ]
+        },
+        "windowDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minSnapshots": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
-      "required": ["kind", "windowDays"],
+      "required": [
+        "kind",
+        "windowDays"
+      ],
       "additionalProperties": false
     },
-    "freeShippingOnly": { "type": "boolean" },
+    "freeShippingOnly": {
+      "type": "boolean"
+    },
     "tieBreakers": {
       "type": "array",
-      "items": { "type": "string", "enum": ["fastestDelivery", "highestCommission", "lowestPrice"] },
+      "items": {
+        "type": "string",
+        "enum": [
+          "fastestDelivery",
+          "highestCommission",
+          "lowestPrice"
+        ]
+      },
       "uniqueItems": true
+    },
+    "search": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "categories": {
+          "type": "object",
+          "properties": {
+            "shopee": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "amazon": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "mercadoLivre": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "maxListingsPerQuery": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "keywords"
+      ],
+      "additionalProperties": false
+    },
+    "missingData": {
+      "type": "object",
+      "properties": {
+        "ratingCount": {
+          "type": "string",
+          "enum": [
+            "reject",
+            "skip"
+          ]
+        },
+        "rating": {
+          "type": "string",
+          "enum": [
+            "reject",
+            "skip"
+          ]
+        },
+        "freeShipping": {
+          "type": "string",
+          "enum": [
+            "reject",
+            "skip"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceOverrides": {
+      "type": "object",
+      "properties": {
+        "shopee": {
+          "type": "object",
+          "properties": {
+            "missingData": {
+              "type": "object",
+              "properties": {
+                "ratingCount": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "rating": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "freeShipping": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "amazon": {
+          "type": "object",
+          "properties": {
+            "missingData": {
+              "type": "object",
+              "properties": {
+                "ratingCount": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "rating": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "freeShipping": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "mercadoLivre": {
+          "type": "object",
+          "properties": {
+            "missingData": {
+              "type": "object",
+              "properties": {
+                "ratingCount": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "rating": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                },
+                "freeShipping": {
+                  "type": "string",
+                  "enum": [
+                    "reject",
+                    "skip"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
   },
   "required": [
@@ -29,7 +250,8 @@
     "minDiscountFromBaseline",
     "priceBaseline",
     "freeShippingOnly",
-    "tieBreakers"
+    "tieBreakers",
+    "search"
   ],
   "additionalProperties": false
 }
