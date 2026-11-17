@@ -64,6 +64,13 @@ export interface IProject {
     apiKey: string;
     service: "embedding" | "chat" | "custom" | "cost";
   }[];
+  // Chave do Gemini (Google AI). Hoje só o agente de IA usa, quando
+  // aiAgentConfig.infrastructure.aiProvider é "gemini" (GEMINI_API_KEY do
+  // .env gerado).
+  geminiIntegration?: {
+    apiKey: string;
+    service: "chat";
+  }[];
   openaiIntegration?: {
     apiKey: string;
     // "transcription": speech-to-text (Whisper) used by aiAgent projects to

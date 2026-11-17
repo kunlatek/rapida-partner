@@ -39,7 +39,15 @@ export interface IAiAgentConfig {
     // request but does not process incoming messages yet. Prefer
     // "whatsapp"/"telegram" until it is implemented.
     messengers: ("whatsapp" | "instagram" | "telegram")[];
+    // The provider key comes from the project integrations, always with
+    // service "chat": deepseekIntegration, geminiIntegration or
+    // openaiIntegration. The code generator warns when it is missing (the
+    // generated .env would ship an empty key).
     aiProvider: "deepseek" | "gemini" | "openai";
+    // Model name sent to the provider. Known values (the generator warns on
+    // anything else): deepseek → "deepseek-chat", "deepseek-reasoner";
+    // gemini → "gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.5-pro";
+    // openai → "gpt-4o-mini", "gpt-4o", "gpt-4.1-mini", "gpt-4.1".
     model: string;
   };
 
@@ -69,6 +77,12 @@ export interface IAiAgentConfig {
     // "softDelete"/"hardDelete" actions the generator already injects a
     // generic required "id" tool parameter — do not add your own id/_id
     // entry to formFields, it will create a duplicate, unused parameter.
+    //
+    // Besides the fixed tools, the agent itself stores and reads the
+    // conversation history at /whatsapp-chat-histories: some module of the
+    // project (or of targetBackendDefinitionFile) must expose that endpoint —
+    // usually whatsappModule from rapida-projects. Code generation fails
+    // without it.
     //
     // The target backend also needs a dedicated user account for the bot to
     // authenticate against (see botCredentials below) — this is separate from
@@ -100,7 +114,9 @@ export interface IAiAgentConfig {
   };
 
   // Optional limits for incoming audio messages (transcribed through the
-  // project's openaiIntegration with service "transcription").
+  // project's openaiIntegration with service "transcription"). Without that
+  // key audio stays off: the agent answers that it cannot process audio, and
+  // the code generator warns.
   audio?: {
     // Longer audios are rejected before download/transcription.
     // Defaults to 300.

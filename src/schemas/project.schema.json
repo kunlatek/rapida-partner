@@ -112,6 +112,23 @@
         "required": ["apiKey", "service"]
       }
     },
+    "geminiIntegration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string",
+            "enum": ["chat"]
+          }
+        },
+        "required": ["apiKey", "service"],
+        "additionalProperties": false
+      }
+    },
     "openaiIntegration": {
       "type": "array",
       "items": {
