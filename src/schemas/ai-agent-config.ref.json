@@ -157,17 +157,19 @@
           "description": "Credentials of the dedicated bot user on the target backend (BOT_API_EMAIL/BOT_API_PASSWORD in the generated agent .env).",
           "properties": {
             "email": {
-              "type": "string"
+              "type": "string",
+              "minLength": 3
             },
             "password": {
-              "type": "string"
+              "type": "string",
+              "minLength": 8
             }
           },
           "required": ["email", "password"],
           "additionalProperties": false
         }
       },
-      "required": ["exposedContracts"],
+      "required": ["exposedContracts", "botCredentials"],
       "additionalProperties": false
     },
     "capabilities": {
