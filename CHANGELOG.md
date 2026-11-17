@@ -1,5 +1,12 @@
 # Changelog
 
+## 6.0.1
+
+### 📝 Documentação
+
+- `aiAgentConfig` passa a ser descrito como capacidade do projeto: o gerador cria o agente sempre que ele existe, em qualquer skeleton. `skeleton: "aiAgent"` fica documentado como sinônimo de `"backoffice"`. Requer o `rapida-code-generator` com a decisão D2 aplicada.
+
+
 ## 6.0.0
 
 ### 💥 Mudanças que quebram

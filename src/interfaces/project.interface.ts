@@ -31,6 +31,8 @@ export interface IProject {
   // "referralCommerce": vitrine sem venda própria; cada produto leva por link de
   // afiliado para o anúncio na fonte de origem (IBackend.referralSources), com
   // a curadoria de IProject.referralCuration. Requer suporte no gerador.
+  // "aiAgent": sinônimo de "backoffice" (mesmo painel). O agente de IA não
+  // depende do skeleton: é gerado sempre que aiAgentConfig existe.
   skeleton:
     | "backoffice"
     | "ecommerce"
@@ -96,6 +98,9 @@ export interface IProject {
   styles?: IStyle[];
   flowChart?: IFlowChart;
   dashboard?: IComponent[];
+  // Agente de IA (Kunlatalk) do projeto. Com ele, o gerador cria o agente em
+  // qualquer skeleton (ex.: um backoffice ou uma loja com atendente), além do
+  // frontend e do backend.
   aiAgentConfig?: IAiAgentConfig;
   notifications?: INotification[];
   repositories?: IProjectRepositories;
