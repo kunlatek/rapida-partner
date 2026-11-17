@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.7.0
+
+### ✨ Novidades
+
+- `IProject.geminiIntegration` (`service: "chat"`): chave do Gemini para o agente de IA com `aiProvider: "gemini"`. Antes não havia campo e o `GEMINI_API_KEY` do `.env` gerado saía sempre vazio.
+
+### 📝 Documentação
+
+- `IAiAgentConfig`: o agente exige um módulo que exponha `/whatsapp-chat-histories` (histórico de conversa); de onde vem a chave do provedor; modelos conhecidos por provedor; áudio sem chave de transcrição fica desligado.
+
+Aditiva: nenhum projeto precisa migrar.
+
+
 ## 3.6.1
 
 ### 🐛 Correções
