@@ -1,0 +1,16 @@
+{
+  "$id": "referral-source-integration.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "source": { "type": "string", "enum": ["shopee", "amazon", "mercadoLivre"] },
+    "credentials": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "affiliateTag": { "type": "string", "minLength": 1 },
+    "defaultCommissionRate": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "required": ["source", "credentials", "affiliateTag"],
+  "additionalProperties": false
+}

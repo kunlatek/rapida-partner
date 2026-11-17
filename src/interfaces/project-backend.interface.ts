@@ -1,6 +1,8 @@
 import type { IFormAutocomplete } from "./form-autocomplete.interface";
 import type { IList } from "./list.interface";
 import type { ITrustedCaller } from "./trusted-caller.interface";
+import type { IReferralSourceIntegration } from "./referral-source.interface";
+import type { IScheduledJob } from "./scheduled-job.interface";
 
 interface IDatabase {
   provider:
@@ -111,6 +113,10 @@ export interface IBackend {
   email?: IEmail;
   marketplace?: IMarketplace;
   service?: IService;
+  // Só para skeleton "referralCommerce": uma entrada por fonte de afiliado.
+  referralSources?: IReferralSourceIntegration[];
+  // Frequência dos jobs agendados que o skeleton/funcionalidade gera.
+  scheduledJobs?: IScheduledJob[];
   mercadoPagoIntegration?: {
     publicKey?: string;
     accessToken?: string;
