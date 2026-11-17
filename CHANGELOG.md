@@ -1,5 +1,16 @@
 # Changelog
 
+## 6.0.0
+
+### 💥 Mudanças que quebram
+
+- `aiAgentConfig.infrastructure.messengers` deixa de aceitar `"instagram"`: o adaptador gerado era um stub que descartava as mensagens. O schema passa a exigir ao menos um mensageiro, sem repetição. Migração mecânica: tirar `"instagram"` da lista (só o `katia` declarava).
+
+### ✨ Novidades
+
+- `IBackend.telegram.telegramBotToken`: token do bot do Telegram, por ambiente, para o agente com o mensageiro `"telegram"`. Antes não havia campo e o `TELEGRAM_BOT_TOKEN` saía sempre vazio. Telegram segue sem validação em conversa real.
+
+
 ## 5.0.0
 
 ### 💥 Mudanças que quebram

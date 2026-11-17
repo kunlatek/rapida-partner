@@ -45,10 +45,10 @@ export interface IAiAgentConfig {
   };
 
   infrastructure: {
-    // "instagram" is a stub today: the generated webhook accepts the
-    // request but does not process incoming messages yet. Prefer
-    // "whatsapp"/"telegram" until it is implemented.
-    messengers: ("whatsapp" | "instagram" | "telegram")[];
+    // At least one. "whatsapp" uses backend[].whatsapp (Meta Cloud API);
+    // "telegram" uses backend[].telegram.telegramBotToken and is not yet
+    // validated in a real conversation.
+    messengers: ("whatsapp" | "telegram")[];
     // The provider key comes from the project integrations, always with
     // service "chat": deepseekIntegration, geminiIntegration or
     // openaiIntegration. The code generator warns when it is missing (the

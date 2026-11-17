@@ -46,6 +46,11 @@ interface IWhatsapp {
   whatsappAppSecret?: string;
 }
 
+interface ITelegram {
+  // Token do bot criado no BotFather. Importe de constants/secrets.
+  telegramBotToken: string;
+}
+
 interface IEmail {
   smtpUser?: string;
   smtpPass?: string;
@@ -144,6 +149,10 @@ export interface IBackend {
   storage?: IStorage;
   logging?: ILogging;
   whatsapp?: IWhatsapp;
+  // Só para o agente de IA com o mensageiro "telegram"
+  // (aiAgentConfig.infrastructure.messengers). Vai para TELEGRAM_BOT_TOKEN do
+  // .env do agente; o backend Nest não usa.
+  telegram?: ITelegram;
   email?: IEmail;
   marketplace?: IMarketplace;
   service?: IService;

@@ -34,10 +34,11 @@
       "properties": {
         "messengers": {
           "type": "array",
-          "description": "\"instagram\" is a stub today (webhook does not process incoming messages yet).",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string",
-            "enum": ["whatsapp", "instagram", "telegram"]
+            "enum": ["whatsapp", "telegram"]
           }
         },
         "aiProvider": {
