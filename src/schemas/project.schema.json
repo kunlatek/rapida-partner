@@ -208,5 +208,25 @@
       "$ref": "referral-curation.ref.json"
     }
   },
-  "required": ["id", "title", "description", "skeleton"]
+  "required": ["id", "title", "description", "skeleton"],
+  "if": {
+    "properties": { "skeleton": { "const": "referralCommerce" } },
+    "required": ["skeleton"]
+  },
+  "then": {
+    "required": ["referralCuration", "backend"],
+    "properties": {
+      "backend": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["referralSources"],
+          "properties": {
+            "referralSources": { "type": "array", "minItems": 1 }
+          }
+        }
+      }
+    }
+  }
 }

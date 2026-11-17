@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.5.0
+
+### ✨ Novidades
+
+- `IReferralCuration.search` (nova interface `IReferralSearch`): o que buscar nas fontes — `keywords` (ao menos um termo), `categories` com os ids nativos de categoria por fonte e `maxListingsPerQuery`. Substitui a variável `REFERRAL_SEED_KEYWORDS` do `.env` gerado.
+- Regra para dado ausente na fonte (tipos `TReferralCriterion`, `TReferralMissingDataPolicy`):
+  - `IReferralCuration.missingData`: por critério (`ratingCount`, `rating`, `freeShipping`), `"reject"` ou `"skip"`. Padrão `"reject"`, igual ao comportamento anterior.
+  - `IReferralCuration.sourceOverrides`: exceção por fonte, que prevalece nos critérios listados (ex.: tolerar frete desconhecido só na Shopee).
+- `IReferralSourceIntegration.defaultDeliveryDays`: prazo assumido para os anúncios da fonte, já que nenhuma API de afiliado informa prazo por item. Sem ele, a fonte perde o desempate `fastestDelivery`.
+- `project.schema.json` exige `referralCuration` e ao menos uma fonte em cada `backend[].referralSources` quando `skeleton` é `"referralCommerce"`. Antes o erro só aparecia no gerador.
+
+### 💥 Mudanças que quebram (sem projeto afetado hoje)
+
+- `IReferralCuration.search` é obrigatório.
+- `IReferralSourceIntegration` vira união discriminada por `source` (`IShopeeReferralIntegration`, `IAmazonReferralIntegration`, `IMercadoLivreReferralIntegration`), com as chaves de `credentials` de cada programa: Shopee `appId`/`secret`; Amazon `credentialId`/`credentialSecret` e, opcionais, `version`/`marketplace`; Mercado Livre `clientId`/`clientSecret` e, opcional, `mattTool`. Chave desconhecida é rejeitada.
+- `affiliateTag` fica opcional na Shopee: a API já devolve o link atribuído à conta dona do AppID. Hoje o gerador não usa o valor; o uso como sub-id depende de confirmar a API com conta real.
+- `IScheduledJob.id` passa a ser `TScheduledJobId` (hoje só `"referralPriceSnapshot"`): id digitado errado é rejeitado em vez de cair na frequência padrão sem aviso.
+- `IReferralPriceBaseline.minSnapshots` conta dias distintos com captura, não capturas, e a média exclui o dia corrente.
+
+Nenhum projeto em `rapida-projects` usa o skeleton `"referralCommerce"`, então ninguém migra. Requer o `rapida-code-generator` com o suporte a estes campos.
+
 ## 3.4.0
 
 ### ✨ Novidades
@@ -16,7 +37,25 @@
 
 Mudança aditiva: nenhum projeto existente precisa migrar.
 
-⚠️ O `rapida-code-generator` ainda não gera o skeleton `"referralCommerce"`. Até ele ganhar suporte, um projeto com esse skeleton é gerado como backoffice, sem aviso (ver `docs/architecture-review-2026-11-16.md`, S3). Não use em projeto real antes disso.
+Requer o `rapida-code-generator` com a PR kunlatek/rapida-code-generator#66 (suporte ao skeleton `"referralCommerce"`).
+
+## 3.3.0
+
+### ✨ Novidades
+
+- `IModule.menuGroup` (`TTranslatable`): módulos com o mesmo grupo aparecem juntos sob esse cabeçalho no menu lateral.
+- `IModule.menuDisplay` e `IProject.menu` (`homeGroup`, `flowsGroup`) para organizar o menu lateral.
+- Configuração da loja:
+  - `IStoreSettings`: identidade, visual (cores em hex, fonte, arredondamento, produtos por página), contato, dados legais, redes, comercial e liga e desliga (`<feature>Enabled`) das funcionalidades opcionais;
+  - `IProject.store`: funcionalidades geradas (`features`) e valores iniciais (`defaults`), com `project-store.ref.json` e `store-settings.ref.json`;
+  - `IMarketplace.storeSettingsEndpoint`: de onde a loja lê a configuração salva no backoffice do vendedor;
+  - `src/modules/store-settings`: primeiro módulo pronto exportado pelo partner (`getStoreSettingsModule`), com contrato `create`, `get` e `update`.
+- `IForm.isSingleRecord`: cadastro de registro único por workspace. A tela lê pelo `get`, cria no primeiro salvamento e atualiza depois, sem listagem, sem "novo" e sem endpoint de upsert.
+- `EDataType.COLOR` documentado como `"#RRGGBB"`.
+
+### 🐛 Correções
+
+- `form-input.ref.json`: `defaultValue` aceita boolean, como a interface já dizia.
 
 ## 3.2.0
 
