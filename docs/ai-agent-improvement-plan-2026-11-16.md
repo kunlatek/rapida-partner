@@ -599,3 +599,91 @@ Observações sobre a ordem:
 - **Decisões pendentes**: 7 (D1 a D7).
 - **Itens breaking com decisão manual**: I-04 (lembrete: destinatário e modelo de mensagem), I-25 (usuário do bot obrigatório e provisionado), I-31 (segredos que faltam nos projetos), I-33 (desligar agenda na Yara e no Pier Zero 8).
 - **Itens sem bloqueio por decisão**: I-01, I-02, I-03, I-05 a I-13, I-18, I-19, I-24, I-26, I-27, I-29, I-34, mais as partes mínimas de I-14, I-17, I-23, I-28 e I-30. I-16 e I-20 não dependem de decisão em si, mas ficam melhores depois de I-15 (D1), porque a lista de tools fixas passa a variar.
+
+---
+
+## 6. Execução (estado em 2026-11-17)
+
+Todos os itens têm PR, menos a mudança de pastas do I-32 (pós-merge, abaixo). Nada além do #22 da DSL foi mergeado.
+
+### 6.1 Pilhas de PRs
+
+Cada PR tem como base o branch do anterior da mesma pilha. Mergear de baixo para cima, sem apagar o branch do PR mergeado até mergear o seguinte (senão o GitHub fecha o PR empilhado em vez de retargetar).
+
+**rapida-partner (DSL)** — cada merge exige `npm publish` da versão do PR antes de mergear o que depende dela nos outros repositórios.
+
+| PR | Itens | Versão | Estado |
+| --- | --- | --- | --- |
+| kunlatek/rapida-partner#22 | I-01 (comentário), I-08 (`geminiIntegration`), I-24 | 3.7.0 | mergeado e publicado |
+| kunlatek/rapida-partner#23 | I-22, I-04 (DSL) — D5 | 4.0.0 | aberto |
+| kunlatek/rapida-partner#24 | I-15, I-16, I-18, I-19, I-20, I-23, I-17 mínimo — D1 | 4.1.0 | aberto |
+| kunlatek/rapida-partner#26 | I-25 — D4 | 5.0.0 | aberto |
+| kunlatek/rapida-partner#27 | I-21 — D6 | 6.0.0 | aberto |
+| kunlatek/rapida-partner#28 | I-28 (comentários) — D2 | 6.0.1 | aberto |
+| kunlatek/rapida-partner#29 | I-17 — D3 | 7.0.0 | aberto |
+| kunlatek/rapida-partner#30 | I-29, I-26 | 7.1.0 | aberto |
+
+**rapida-code-generator** — duas pilhas.
+
+| PR | Itens | Requer DSL |
+| --- | --- | --- |
+| kunlatek/rapida-code-generator#72 | Lote 0: I-34 (gate de regressão, `bun run typecheck:ai-agent`) | — |
+| kunlatek/rapida-code-generator#73 | Lote 1: I-01, I-02, I-03, I-05, I-09 | — |
+| kunlatek/rapida-code-generator#74 | Lote 2: I-06, I-07, I-10 | — |
+| kunlatek/rapida-code-generator#75 | Lote 3: I-08 (aviso), I-11, I-12, I-13, I-14, I-24 | 3.7.0 |
+| kunlatek/rapida-code-generator#77 | Lote 8: I-22, I-04 | 4.0.0 |
+| kunlatek/rapida-code-generator#78 | Lote 5: I-15 a I-20, I-23, I-17 mínimo | 4.1.0 |
+| kunlatek/rapida-code-generator#79 | Lote 7: I-25 (`AiAgentBotModule` no Nest), I-08 (erro) | 5.0.0 |
+| kunlatek/rapida-code-generator#80 | I-21 | 6.0.0 |
+| kunlatek/rapida-code-generator#82 | I-17 (opção B) | 7.0.0 |
+| kunlatek/rapida-code-generator#83 | I-29, I-26 | 7.1.0 |
+
+Pilha separada, a partir de `main`: kunlatek/rapida-code-generator#76 (Lote 4: I-27, aviso do I-28) → kunlatek/rapida-code-generator#81 (I-28, gatilho por `aiAgentConfig`).
+
+O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irmão), não pelo npm: para testar um PR do gerador, o checkout do rapida-partner precisa estar no PR da DSL correspondente.
+
+**rapida-projects**
+
+| PR | Itens | Requer DSL |
+| --- | --- | --- |
+| kunlatek/rapida-projects#62 | I-06: Pier Zero 8 sem `JWT_SECRET` como App Secret (base `main`, independente) | — |
+| kunlatek/rapida-projects#61 | I-30: `katia` com histórico e chave do DeepSeek | — (requer gerador #73) |
+| kunlatek/rapida-projects#63 | I-22: `scheduledJobs`; lembrete desligado na Yara | 4.0.0 |
+| kunlatek/rapida-projects#64 | I-23: telefone real do Gio na Kécia | 4.1.0 |
+| kunlatek/rapida-projects#65 | I-33, I-30, I-19: agenda desligada (Yara, Pier Zero 8), `{{TOOLS_TABLE}}` no `katia`, descrições | 4.1.0 |
+| kunlatek/rapida-projects#66 | I-31: `botCredentials` e chave `"chat"` | 5.0.0 |
+| kunlatek/rapida-projects#67 | I-21: `katia` só com WhatsApp | 6.0.0 |
+| kunlatek/rapida-projects#68 | I-32 (parte): material da Yara junto do projeto; id `pierZero8Backoffice` | — |
+| kunlatek/rapida-projects#70 | I-17: sem `targetBackendProjectId` | 7.0.0 |
+| kunlatek/rapida-projects#71 | I-29: `aiAgentWhatsapp` nos 6 projetos | 7.1.0 |
+
+A `main` do rapida-projects andou depois que a pilha foi aberta (kunlatek/rapida-projects#69 subiu a dependência para `rapida-partner` 3.6.0; #72, Grupo B da loja). A pilha precisa de rebase sobre a `main` atual, e a dependência em `package.json` deve subir junto com cada versão da DSL mergeada e publicada.
+
+**agents-library**: kunlatek/agents-library#24 (gate da skill MOTOR) e kunlatek/agents-library#25 (tools fixas/capabilities, Instagram, gatilho do agente, log em pt-BR na skill LIVE). Mergear junto com os PRs do gerador correspondentes.
+
+### 6.2 O que depende de alguém com acesso
+
+- **Segredos do bot no Infisical (ambiente `dev`)** — sem eles a montagem desses projetos falha dizendo qual falta:
+  - `kunlatek-dev`: `KATIA_BOT_API_EMAIL`/`KATIA_BOT_API_PASSWORD`, `AUTO_CENTER_BOT_API_EMAIL`/`AUTO_CENTER_BOT_API_PASSWORD`, `YARA_BOT_API_EMAIL`/`YARA_BOT_API_PASSWORD`;
+  - `ficha-rapida`: `BOT_API_EMAIL`/`BOT_API_PASSWORD`;
+  - `pier-zero-8`: `BOT_API_EMAIL`/`BOT_API_PASSWORD` existem, mas vazios.
+  Senha com 8 ou mais caracteres. Yara e Auto Center já estão no ar com credenciais preenchidas à mão no Coolify: usar os mesmos valores ou atualizar agente e backend juntos (o backend passa a impor a senha do `.env`).
+- **Modelos de lembrete** aprovados no WhatsApp Manager de cada conta (cliente e profissional), declarados em `aiAgentConfig.jobs.reminder.whatsappTemplates`. Sem eles o lembrete sai em texto livre, que só chega dentro da janela de 24 h.
+- **Telefone do profissional** no cadastro da Karol (o do Ryzzan está vazio; o lembrete de profissional não chega a ninguém).
+- **App Secret da Meta** (`whatsappAppSecret`) por tenant, para o agente validar a assinatura do webhook.
+- **`npm publish`** de cada versão da DSL: exige o código do autenticador. No terminal interativo o `node` do nvm não está no PATH; usar `export PATH=/home/ryzzan/.nvm/versions/node/v16.18.0/bin:$PATH` antes.
+
+### 6.3 Depois do merge
+
+- Regerar e reimplantar Yara, Karol e Auto Center (fluxo `rapida → develop`) e rodar o LIVE em cada um (`rapida-project-ai-agent-live-test`). Conferir: criação do usuário do bot no log do backend (`Usuário do agente de IA pronto no workspace …`), `[API] Authentication successful` no agente, lembrete 24 h antes (não 27 h) para cliente e profissional, escalada para humano, prompt da Yara (repetir a pergunta de disponibilidade), backend sem `whatsapp-flows`.
+- Primeira conversa real do `katia` (I-30).
+- I-32, pendência pós-merge: mover `katia`, `autoCenterBackoffice`, `kunlatalkBackoffice` e `ficharapidaComercial` de `projects/aiAgent/` para `projects/backoffice/<cliente>/`, num PR à parte, atualizando o caminho do `katia` no gate da skill MOTOR e os caminhos no vault.
+- Vault (`obsidian-knowledge-capture`): a nota "skeleton vs aiAgentConfig" de `RAPIDA/RAPIDA CODE GENERATOR.md` fica obsoleta com o I-28.
+
+### 6.4 Não testado de verdade
+
+Telegram (sem conversa real), backend externo (sem projeto piloto), criação do usuário do bot contra um MongoDB real, envio de lembrete por modelo aprovado e a janela de 24 h.
+
+### 6.5 Ambiente usado
+
+Worktrees ao lado dos checkouts principais: `rapida-partner-ai-agent`, `rapida-code-generator-ai-agent` (com `node_modules/rapida-partner` apontando para `rapida-partner-ai-agent`) e `rapida-projects-ai-agent` (com `node_modules` ligado ao do checkout principal). Montagens com segredos rodam em `infisical run` no tenant do projeto (ids em `rapida-projects/src/constants/secrets/infisical-projects.json`).
