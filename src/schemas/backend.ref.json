@@ -89,6 +89,14 @@
         "whatsappVerifyToken": { "type": "string" }
       }
     },
+    "telegram": {
+      "type": "object",
+      "properties": {
+        "telegramBotToken": { "type": "string", "minLength": 1 }
+      },
+      "required": ["telegramBotToken"],
+      "additionalProperties": false
+    },
     "email": {
       "type": "object",
       "properties": {
