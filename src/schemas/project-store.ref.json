@@ -7,7 +7,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "blog", "shipping"]
+        "enum": ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "blog", "shipping", "coupons", "reviews", "returns"]
       },
       "uniqueItems": true
     },

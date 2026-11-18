@@ -154,6 +154,10 @@
         "storeOrdersEndpoint": { "type": "string" },
         "categoriesEndpoint": { "type": "string" },
         "brandsEndpoint": { "type": "string" },
+        "couponsEndpoint": { "type": "string" },
+        "reviewsEndpoint": { "type": "string" },
+        "returnsEndpoint": { "type": "string" },
+        "blogPostsEndpoint": { "type": "string" },
         "productFieldMap": {
           "type": "object",
           "properties": {

@@ -43,7 +43,8 @@ export interface IPublicContract {
 
 /**
  * Agregação de um contrato público. A resposta é uma lista de
- * `{ _id: <valor de groupBy>, <campo de sum>: <total> }`.
+ * `{ _id: <valor de groupBy>, <campo de sum>: <total> }`, mais `count` com
+ * o número de registros quando `count` é true.
  */
 export interface IContractAggregation {
   // Último segmento da rota: GET <endpoint>/aggregations/<id>.
@@ -52,6 +53,9 @@ export interface IContractAggregation {
   groupBy: string;
   // Campos numéricos somados em cada grupo (ex.: ["inputQuantity"]).
   sum: string[];
+  // Inclui em cada grupo o número de registros, em "count" (ex.: média de
+  // notas = soma de rating / count).
+  count?: boolean;
 }
 
 export interface IContractRequest {
