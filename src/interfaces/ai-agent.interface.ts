@@ -128,22 +128,48 @@ export interface IAiAgentConfig {
 
   // Optional background jobs configuration. Values become the generated
   // defaults of the agent's job services and can still be overridden at
-  // runtime through each service's updateConfig method.
+  // runtime through config/rules.json.
   jobs?: {
+    // Appointment reminder sent through WhatsApp. Frequency and timezone live
+    // in IBackend.scheduledJobs (id "aiAgentAppointmentReminder"), per
+    // environment; the timezone is also the one appointment times are stored
+    // in.
     reminder?: {
       // Defaults to true. The reminder job is only generated when the
       // whatsapp messenger is active.
       enabled?: boolean;
-      // Cron expression. Defaults to "*/2 * * * *".
-      cronInterval?: string;
       // How many minutes ahead of the appointment the reminder fires.
       // Defaults to 1440 (24 hours).
       minutesAhead?: number;
-      // IANA timezone for the cron scheduler.
-      // Defaults to "America/Sao_Paulo".
-      timezone?: string;
+      // Who gets the reminder: the person who booked ("client",
+      // appointment.personId) and/or the professional ("professional",
+      // first of appointment.involvedPeopleId). Defaults to both.
+      recipients?: TAppointmentReminderRecipient[];
+      // WhatsApp message templates approved in Meta's WhatsApp Manager, one
+      // per recipient. Meta only delivers free text up to 24 h after the
+      // recipient's last message to this number; outside that window only an
+      // approved template is delivered. Without a template the agent sends
+      // free text (and the code generator warns).
+      whatsappTemplates?: {
+        // Body parameters, in order: {{1}} client name, {{2}} date
+        // (dd/mm/aaaa), {{3}} time (HH:mm), {{4}} professional name.
+        client?: IWhatsappMessageTemplate;
+        // Body parameters, in order: {{1}} professional name, {{2}} date
+        // (dd/mm/aaaa), {{3}} time (HH:mm), {{4}} client name, {{5}} client
+        // phone.
+        professional?: IWhatsappMessageTemplate;
+      };
     };
   };
+}
+
+export type TAppointmentReminderRecipient = "client" | "professional";
+
+export interface IWhatsappMessageTemplate {
+  // Template name exactly as approved in WhatsApp Manager.
+  name: string;
+  // Template language code. Defaults to "pt_BR".
+  languageCode?: string;
 }
 
 export interface IAgentContractBinding {

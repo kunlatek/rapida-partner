@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.0
+
+### 💥 Mudanças que quebram
+
+- `IAiAgentConfig.jobs.reminder.cronInterval` e `.timezone` saem. A frequência e o fuso do lembrete passam a ficar em `IBackend.scheduledJobs`, com o id novo `"aiAgentAppointmentReminder"` (por ambiente, como os demais jobs). O `timezone` também é o fuso em que os horários dos agendamentos estão gravados. Migração mecânica: mover os dois valores para uma entrada `{ id: "aiAgentAppointmentReminder", cron, timezone }` em cada `backend[]` do projeto.
+
+### ✨ Novidades
+
+- `jobs.reminder.recipients` (`TAppointmentReminderRecipient[]`): quem recebe o lembrete, `"client"` (quem agendou) e/ou `"professional"` (o profissional do agendamento). Padrão: os dois.
+- `jobs.reminder.whatsappTemplates` (`IWhatsappMessageTemplate`): modelo aprovado na Meta por destinatário, com a ordem dos parâmetros documentada. Fora da janela de 24 h a Meta só entrega modelo aprovado.
+
+Requer o `rapida-code-generator` com o lembrete lendo `scheduledJobs`.
+
+
 ## 3.7.0
 
 ### ✨ Novidades
