@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.0.0
+
+### 💥 Mudanças que quebram
+
+- `businessContext.targetBackendProjectId` (nunca lido) e `businessContext.targetBackendDefinitionFile` saem. No lugar, `businessContext.targetBackend: { definitionFile, baseUrl }` torna o backend em outro projeto Rapida de primeira classe: o agente resolve contratos, endpoints das tools fixas e histórico só no projeto alvo e chama a URL dele (`BOT_API_BASE_URL`). O usuário do bot precisa existir no backend alvo. Migração mecânica: remover `targetBackendProjectId` dos projetos (nenhum usava `targetBackendDefinitionFile`).
+
+
 ## 6.1.1
 
 ### 📝 Documentação

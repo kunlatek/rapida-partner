@@ -55,12 +55,15 @@
     "businessContext": {
       "type": "object",
       "properties": {
-        "targetBackendProjectId": {
-          "type": "string"
-        },
-        "targetBackendDefinitionFile": {
-          "type": "string",
-          "description": "Path to an ALREADY COMPILED rapidaObject.json of the target backend (not the .ts source), resolved relative to the directory of this agent's own rapidaObject.json."
+        "targetBackend": {
+          "type": "object",
+          "description": "Backend in another Rapida project: compiled rapidaObject.json (relative to this agent's rapidaObject.json) and its URL.",
+          "properties": {
+            "definitionFile": { "type": "string", "minLength": 1 },
+            "baseUrl": { "type": "string", "minLength": 1 }
+          },
+          "required": ["definitionFile", "baseUrl"],
+          "additionalProperties": false
         },
         "exposedContracts": {
           "type": "array",
