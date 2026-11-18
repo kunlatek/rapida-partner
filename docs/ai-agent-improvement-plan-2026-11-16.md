@@ -604,7 +604,7 @@ Observações sobre a ordem:
 
 ## 6. Execução (estado em 2026-11-18)
 
-As três pilhas (DSL, gerador e projetos) foram mergeadas em 2026-11-18, e a DSL 7.1.0 está publicada. Pendentes: os dois PRs da agents-library, a mudança de pastas do I-32 (pós-merge, abaixo) e o que depende de alguém com acesso (6.2).
+As três pilhas (DSL, gerador e projetos) foram mergeadas em 2026-11-18, e a DSL 7.1.0 está publicada. Os PRs da agents-library e a mudança de pastas do I-32 também foram mergeados. Pendente: o que depende de alguém com acesso (6.2) e, depois disso, a reimplantação e os testes LIVE (6.3).
 
 ### 6.1 Pilhas de PRs
 
@@ -657,7 +657,7 @@ O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irm�
 | kunlatek/rapida-projects#70 | I-17: sem `targetBackendProjectId` | 7.0.0 |
 | kunlatek/rapida-projects#71 | I-29: `aiAgentWhatsapp` nos 6 projetos | 7.1.0 |
 
-**agents-library**: kunlatek/agents-library#24 (gate da skill MOTOR) e kunlatek/agents-library#25 (tools fixas/capabilities, Instagram, gatilho do agente, log em pt-BR na skill LIVE). Ainda abertos; os PRs do gerador correspondentes já foram mergeados.
+**agents-library**: kunlatek/agents-library#24 (gate da skill MOTOR) e kunlatek/agents-library#25 (tools fixas/capabilities, Instagram, gatilho do agente, log em pt-BR na skill LIVE), mergeados.
 
 ### 6.2 O que depende de alguém com acesso
 
@@ -665,6 +665,7 @@ O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irm�
   - `kunlatek-dev`: `KATIA_BOT_API_EMAIL`/`KATIA_BOT_API_PASSWORD`, `AUTO_CENTER_BOT_API_EMAIL`/`AUTO_CENTER_BOT_API_PASSWORD`, `YARA_BOT_API_EMAIL`/`YARA_BOT_API_PASSWORD`;
   - `ficha-rapida`: `BOT_API_EMAIL`/`BOT_API_PASSWORD`;
   - `pier-zero-8`: `BOT_API_EMAIL`/`BOT_API_PASSWORD` existem, mas vazios.
+  - Conferido em 2026-11-18: ainda faltam todos acima; só o tenant `kunlatalk` (Karol) tem `BOT_API_EMAIL`/`BOT_API_PASSWORD` preenchidos, e nenhum dos quatro tenants tem App Secret da Meta.
   Senha com 8 ou mais caracteres. Yara e Auto Center já estão no ar com credenciais preenchidas à mão no Coolify: usar os mesmos valores ou atualizar agente e backend juntos (o backend passa a impor a senha do `.env`).
 - **Modelos de lembrete** aprovados no WhatsApp Manager de cada conta (cliente e profissional), declarados em `aiAgentConfig.jobs.reminder.whatsappTemplates`. Sem eles o lembrete sai em texto livre, que só chega dentro da janela de 24 h.
 - **Telefone do profissional** no cadastro da Karol (o do Ryzzan está vazio; o lembrete de profissional não chega a ninguém).
@@ -675,8 +676,8 @@ O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irm�
 
 - Regerar e reimplantar Yara, Karol e Auto Center (fluxo `rapida → develop`) e rodar o LIVE em cada um (`rapida-project-ai-agent-live-test`). Conferir: criação do usuário do bot no log do backend (`Usuário do agente de IA pronto no workspace …`), `[API] Authentication successful` no agente, lembrete 24 h antes (não 27 h) para cliente e profissional, escalada para humano, prompt da Yara (repetir a pergunta de disponibilidade), backend sem `whatsapp-flows`.
 - Primeira conversa real do `katia` (I-30).
-- I-32, pendência pós-merge: mover `katia`, `autoCenterBackoffice`, `kunlatalkBackoffice` e `ficharapidaComercial` de `projects/aiAgent/` para `projects/backoffice/<cliente>/`, num PR à parte, atualizando o caminho do `katia` no gate da skill MOTOR e os caminhos no vault.
-- Vault (`obsidian-knowledge-capture`): a nota "skeleton vs aiAgentConfig" de `RAPIDA/RAPIDA CODE GENERATOR.md` fica obsoleta com o I-28.
+- ~~I-32: mover `katia`, `autoCenterBackoffice`, `kunlatalkBackoffice` e `ficharapidaComercial` de `projects/aiAgent/` para `projects/backoffice/<cliente>/`~~ — feito em 2026-11-18: kunlatek/rapida-projects#75 (pastas), kunlatek/agents-library#27 (caminho do `katia` na skill MOTOR) e caminhos no vault. A pasta `projects/aiAgent/` não existe mais.
+- ~~Vault: a nota "skeleton vs aiAgentConfig" de `RAPIDA/RAPIDA CODE GENERATOR.md` fica obsoleta com o I-28~~ — feito em 2026-11-18: virou a descrição do gatilho atual (agente gerado sempre que há `aiAgentConfig`).
 
 ### 6.4 Não testado de verdade
 
