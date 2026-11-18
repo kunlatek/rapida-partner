@@ -7,12 +7,25 @@
 - `businessContext.targetBackendProjectId` (nunca lido) e `businessContext.targetBackendDefinitionFile` saem. No lugar, `businessContext.targetBackend: { definitionFile, baseUrl }` torna o backend em outro projeto Rapida de primeira classe: o agente resolve contratos, endpoints das tools fixas e histórico só no projeto alvo e chama a URL dele (`BOT_API_BASE_URL`). O usuário do bot precisa existir no backend alvo. Migração mecânica: remover `targetBackendProjectId` dos projetos (nenhum usava `targetBackendDefinitionFile`).
 
 
-## 6.0.1
+## 6.1.1
 
 ### 📝 Documentação
 
 - `aiAgentConfig` passa a ser descrito como capacidade do projeto: o gerador cria o agente sempre que ele existe, em qualquer skeleton. `skeleton: "aiAgent"` fica documentado como sinônimo de `"backoffice"`. Requer o `rapida-code-generator` com a decisão D2 aplicada.
 
+## 6.1.0
+
+Segunda rodada de contratos do Grupo B da evolução do skeleton ecommerce/marketplace (itens L17, L20, L25, L26, L27 e L28). Todas as mudanças são aditivas: nenhum projeto existente precisa mudar. O comportamento novo na loja depende de suporte no `rapida-code-generator`; no Backoffice do vendedor, os módulos prontos já geram telas e rotas comuns.
+
+### ✨ Novidades
+
+- **Cupom** (L17): `TStoreFeature` ganha `"coupons"`. Módulo pronto `getStoreCouponsModule` (`src/modules/store-coupons`), com lista e formulário "Cupons" e o contrato público `storeCouponsFromStore` (get, `trustedCallers` por padrão; um código por workspace). Tipo `IStoreCoupon` (`TStoreCouponDiscountType`: percentual ou valor fixo; pedido mínimo, validade e limites de uso total e por cliente). A loja aponta para ele em `IMarketplace.couponsEndpoint`; o uso é contado pelos pedidos da loja.
+- **Páginas institucionais e legais** (L20): `IStoreSettings` ganha `aboutText`, `privacyPolicyText`, `termsText`, `returnsPolicyText` (texto rico) e `cookieNoticeText`. O módulo `getStoreSettingsModule` ganha a aba "Páginas". Cada página só é publicada quando tem texto.
+- **Banners e destaques** (L25): `IStoreSettings` ganha `banners` (`IStoreBanner`: imagem, título, subtítulo, link e texto do botão), `benefits` (`IStoreBenefit`: ícone Lucide, título e texto) e `featuredProductIds`. O módulo de configuração ganha a aba "Vitrine"; a nova opção `featuredProductsApi` diz de onde vêm os produtos (padrão `/products`).
+- **Avaliações** (L26): `TStoreFeature` ganha `"reviews"`. Módulo pronto `getStoreReviewsModule`, com moderação (`TStoreReviewStatus`) e resposta do vendedor, contrato público `storeReviewsFromStore` (create, get; uma avaliação por produto e pedido) e a agregação `rating` (soma das notas e contagem, para a média). Tipo `IStoreReview`. A loja aponta para ele em `IMarketplace.reviewsEndpoint`.
+- **Devolução e troca** (L27): `TStoreFeature` ganha `"returns"` e `IStoreSettings.returnWindowDays` (prazo para pedir, em dias após a entrega). Módulo pronto `getStoreReturnsModule`, contrato público `storeReturnsFromStore` (create, get). Tipo `IStoreReturnRequest` (`TStoreReturnType`, `TStoreReturnReason`, `TStoreReturnStatus`, `IStoreReturnItem`). A loja aponta para ele em `IMarketplace.returnsEndpoint`; o reembolso continua sendo da loja.
+- **Blog** (L28): módulo pronto `getStoreBlogModule` para a funcionalidade `"blog"`, que já existia, com artigos (título, nome na URL, resumo, capa, conteúdo em texto rico, data de publicação) e o contrato público `storeBlogPostsFromStore` (get, getById). Tipo `IStoreBlogPost`. A loja aponta para ele em `IMarketplace.blogPostsEndpoint`.
+- `IContractAggregation.count`: inclui em cada grupo o número de registros em `count`.
 
 ## 6.0.0
 

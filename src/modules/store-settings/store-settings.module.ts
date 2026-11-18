@@ -6,6 +6,7 @@ import type { TStoreFeature } from "../../interfaces/store-settings.interface";
 import { contactElements, legalElements, socialElements } from "./contact-legal.elements";
 import { getFeatureElements } from "./features.elements";
 import { identityElements, visualElements } from "./identity-visual.elements";
+import { getShowcaseElements, pagesElements, type IFeaturedProductsApi } from "./pages-showcase.elements";
 import { tr } from "./translations";
 
 export const STORE_SETTINGS_ENDPOINT = "/store-settings";
@@ -17,9 +18,11 @@ export interface IStoreSettingsModuleOptions {
   // da loja, com o token de serviço de IMarketplace.sellerServiceAuth.
   publicAccess?: IPublicContract["access"];
   allowedOrigins?: string[];
+  // Produtos do vendedor oferecidos em "Produtos em destaque" (aba Vitrine).
+  featuredProductsApi?: IFeaturedProductsApi;
 }
 
-const buildTabs = (features: TStoreFeature[]): IFormTab => ({
+const buildTabs = (features: TStoreFeature[], productsApi?: IFeaturedProductsApi): IFormTab => ({
   type: "tab",
   id: "storeSettingsTabs",
   tabs: [
@@ -28,6 +31,8 @@ const buildTabs = (features: TStoreFeature[]): IFormTab => ({
     { id: "contact", title: tr("Contato", "Contact", "Contacto"), elements: contactElements },
     { id: "legal", title: tr("Dados legais", "Legal data", "Datos legales"), elements: legalElements },
     { id: "social", title: tr("Redes sociais", "Social media", "Redes sociales"), elements: socialElements },
+    { id: "showcase", title: tr("Vitrine", "Storefront", "Escaparate"), elements: getShowcaseElements(productsApi) },
+    { id: "pages", title: tr("Páginas", "Pages", "Páginas"), elements: pagesElements },
     ...(features.length
       ? [{ id: "features", title: tr("Funcionalidades", "Features", "Funcionalidades"), elements: getFeatureElements(features) }]
       : []),
@@ -41,7 +46,7 @@ export const getStoreSettingsForm = (options: IStoreSettingsModuleOptions = {}):
   icon: "palette",
   guards: "isAuthorized",
   isSingleRecord: true,
-  elements: [buildTabs(options.features ?? [])],
+  elements: [buildTabs(options.features ?? [], options.featuredProductsApi)],
   contracts: [
     {
       id: "storeSettings",
