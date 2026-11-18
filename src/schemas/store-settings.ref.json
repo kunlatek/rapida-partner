@@ -45,13 +45,51 @@
         "additionalProperties": false
       }
     },
+    "returnWindowDays": { "type": "integer", "minimum": 0 },
+    "aboutText": { "type": "string" },
+    "privacyPolicyText": { "type": "string" },
+    "termsText": { "type": "string" },
+    "returnsPolicyText": { "type": "string" },
+    "cookieNoticeText": { "type": "string" },
+    "banners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string" },
+          "title": { "type": "string", "minLength": 1 },
+          "subtitle": { "type": "string" },
+          "linkUrl": { "type": "string" },
+          "linkLabel": { "type": "string" }
+        },
+        "required": ["title"],
+        "additionalProperties": false
+      }
+    },
+    "benefits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": { "type": "string" },
+          "title": { "type": "string", "minLength": 1 },
+          "text": { "type": "string" }
+        },
+        "required": ["title"],
+        "additionalProperties": false
+      }
+    },
+    "featuredProductIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "whatsappButtonEnabled": { "type": "boolean" },
     "stockAvailabilityEnabled": { "type": "boolean" },
     "cashDiscountEnabled": { "type": "boolean" },
     "installmentsEnabled": { "type": "boolean" },
     "favoritesEnabled": { "type": "boolean" },
     "blogEnabled": { "type": "boolean" },
-    "shippingEnabled": { "type": "boolean" }
+    "shippingEnabled": { "type": "boolean" },
+    "couponsEnabled": { "type": "boolean" },
+    "reviewsEnabled": { "type": "boolean" },
+    "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
 }

@@ -11,7 +11,10 @@ export type TStoreFeature =
   | "installments"
   | "favorites"
   | "blog"
-  | "shipping";
+  | "shipping"
+  | "coupons"
+  | "reviews"
+  | "returns";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -73,6 +76,47 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   originZipCode?: string;
   freeShippingAbove?: number;
   shippingRanges?: IStoreShippingRange[];
+
+  // Só tem efeito com a funcionalidade "returns": dias, a partir da entrega,
+  // em que o cliente pode pedir devolução ou troca (o CDC exige ao menos 7
+  // para compra fora da loja física).
+  returnWindowDays?: number;
+
+  // Páginas institucionais e legais, em HTML (editor de texto rico). Cada
+  // página só é publicada, com link no rodapé, quando tem texto. O contato usa
+  // os campos de contato acima.
+  aboutText?: string;
+  privacyPolicyText?: string;
+  termsText?: string;
+  returnsPolicyText?: string;
+  // Texto do aviso de cookies; sem ele, o aviso não aparece.
+  cookieNoticeText?: string;
+
+  // Home: banners do carrossel (na ordem), benefícios e produtos em destaque
+  // (ids dos produtos do vendedor). Sem banners nem benefícios, a vitrine usa
+  // os textos padrão.
+  banners?: IStoreBanner[];
+  benefits?: IStoreBenefit[];
+  featuredProductIds?: string[];
+}
+
+/** Banner do carrossel da home. */
+export interface IStoreBanner {
+  // URL da imagem (upload no Backoffice).
+  image?: string;
+  title: string;
+  subtitle?: string;
+  // Destino do botão: caminho da loja (ex.: "/busca?categoria=blu-ray") ou URL.
+  linkUrl?: string;
+  linkLabel?: string;
+}
+
+/** Benefício mostrado na home (ex.: "Frete grátis acima de R$ 300"). */
+export interface IStoreBenefit {
+  // Nome de um ícone Lucide (ex.: "truck", "shield-check").
+  icon?: string;
+  title: string;
+  text?: string;
 }
 
 /** Faixa de CEP (inclusiva, somente dígitos) com valor e prazo do frete. */

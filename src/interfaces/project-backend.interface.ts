@@ -96,6 +96,18 @@ interface IMarketplace {
   // Em que campo do produto do vendedor está cada informação usada pela
   // vitrine. O gerador tem um padrão para cada campo omitido.
   productFieldMap?: IMarketplaceProductFieldMap;
+  // Cupons do vendedor (módulo pronto getStoreCouponsModule, funcionalidade
+  // "coupons"). A loja valida o código e desconta no servidor.
+  couponsEndpoint?: string;
+  // Avaliações (módulo pronto getStoreReviewsModule, funcionalidade
+  // "reviews"). A loja cria a avaliação de quem recebeu o pedido e lê as
+  // aprovadas; a nota média vem da agregação "<endpoint>/aggregations/rating".
+  reviewsEndpoint?: string;
+  // Pedidos de devolução e troca (módulo pronto getStoreReturnsModule,
+  // funcionalidade "returns").
+  returnsEndpoint?: string;
+  // Artigos do blog (módulo pronto getStoreBlogModule, funcionalidade "blog").
+  blogPostsEndpoint?: string;
 }
 
 export interface IMarketplaceProductFieldMap {

@@ -11,6 +11,9 @@ const FEATURE_LABELS: Record<TStoreFeature, ReturnType<typeof tr>> = {
   favorites: tr("Favoritos", "Favorites", "Favoritos"),
   blog: tr("Blog", "Blog", "Blog"),
   shipping: tr("Cobrar frete por faixa de CEP", "Charge shipping by ZIP code range", "Cobrar envío por rango de código postal"),
+  coupons: tr("Aceitar cupons de desconto", "Accept discount coupons", "Aceptar cupones de descuento"),
+  reviews: tr("Avaliações de produtos", "Product reviews", "Reseñas de productos"),
+  returns: tr("Pedidos de devolução e troca", "Return and exchange requests", "Solicitudes de devolución y cambio"),
 };
 
 const shippingElements: IFormElement[] = [
@@ -65,6 +68,16 @@ const featureDetails = (feature: TStoreFeature): IFormElement[] => {
     ];
   }
   if (feature === "shipping") return shippingElements;
+  if (feature === "returns") {
+    return [
+      {
+        type: "input",
+        name: "returnWindowDays",
+        dataType: EDataType.INTEGER,
+        label: tr("Prazo para pedir (dias após a entrega)", "Request window (days after delivery)", "Plazo para solicitar (días tras la entrega)"),
+      },
+    ];
+  }
   return [];
 };
 
