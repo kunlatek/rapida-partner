@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.0
+
+### 💥 Mudanças que quebram
+
+- `aiAgentConfig.businessContext.botCredentials` passa a ser obrigatório, com e-mail (mínimo 3 caracteres) e senha (mínimo 8). O backend Nest gerado cria esse usuário de serviço ao subir, de forma idempotente e com a senha do `.env`, no workspace do dono (`flows.invitation.mainUserEmail`), com o papel `"aiAgent"` limitado às entidades que as tools do agente usam. Migração manual: cada projeto precisa de segredo próprio no Infisical do tenant.
+
+
 ## 4.1.0
 
 ### ✨ Novidades

@@ -99,17 +99,17 @@ export interface IAiAgentConfig {
     // usually whatsappModule from rapida-projects. Code generation fails
     // without it.
     //
-    // The target backend also needs a dedicated user account for the bot to
-    // authenticate against (see botCredentials below) — this is separate from
-    // flows.invitation.mainUserEmail and must be provisioned manually on the
-    // target backend.
+    // The agent authenticates on the backend with a dedicated service user
+    // (botCredentials below), separate from flows.invitation.mainUserEmail.
     exposedContracts: IAgentContractBinding[];
 
-    // Credentials of the dedicated bot user on the target backend (written to
-    // BOT_API_EMAIL/BOT_API_PASSWORD in the generated agent .env). The account
-    // itself still has to be provisioned on the target backend. Import the
-    // values from constants/secrets — never write them literally in a project.
-    botCredentials?: {
+    // Credentials of the agent's service user (BOT_API_EMAIL/BOT_API_PASSWORD
+    // in the generated agent and backend .env). The generated Nest backend
+    // creates this user on startup — idempotently, aligning the password with
+    // the .env — inside the workspace of flows.invitation.mainUserEmail, with
+    // an "aiAgent" role limited to the entities the agent's tools use. Import
+    // the values from constants/secrets — never write them literally.
+    botCredentials: {
       email: string;
       password: string;
     };
