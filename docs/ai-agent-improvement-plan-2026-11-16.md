@@ -602,28 +602,28 @@ Observações sobre a ordem:
 
 ---
 
-## 6. Execução (estado em 2026-11-17)
+## 6. Execução (estado em 2026-11-18)
 
-Todos os itens têm PR, menos a mudança de pastas do I-32 (pós-merge, abaixo). Nada além do #22 da DSL foi mergeado.
+As três pilhas (DSL, gerador e projetos) foram mergeadas em 2026-11-18, e a DSL 7.1.0 está publicada. Pendentes: os dois PRs da agents-library, a mudança de pastas do I-32 (pós-merge, abaixo) e o que depende de alguém com acesso (6.2).
 
 ### 6.1 Pilhas de PRs
 
-Cada PR tem como base o branch do anterior da mesma pilha. Mergear de baixo para cima, sem apagar o branch do PR mergeado até mergear o seguinte (senão o GitHub fecha o PR empilhado em vez de retargetar).
+Os PRs foram mergeados de baixo para cima, mudando a base de cada um para `main` antes do merge. Os branches dos PRs mergeados não foram apagados.
 
 **rapida-partner (DSL)** — cada merge exige `npm publish` da versão do PR antes de mergear o que depende dela nos outros repositórios.
 
 | PR | Itens | Versão | Estado |
 | --- | --- | --- | --- |
 | kunlatek/rapida-partner#22 | I-01 (comentário), I-08 (`geminiIntegration`), I-24 | 3.7.0 | mergeado e publicado |
-| kunlatek/rapida-partner#23 | I-22, I-04 (DSL) — D5 | 4.0.0 | aberto |
-| kunlatek/rapida-partner#24 | I-15, I-16, I-18, I-19, I-20, I-23, I-17 mínimo — D1 | 4.1.0 | aberto |
-| kunlatek/rapida-partner#26 | I-25 — D4 | 5.0.0 | aberto |
-| kunlatek/rapida-partner#27 | I-21 — D6 | 6.0.0 | aberto |
-| kunlatek/rapida-partner#28 | I-28 (comentários) — D2 | 6.0.1 | aberto |
-| kunlatek/rapida-partner#29 | I-17 — D3 | 7.0.0 | aberto |
-| kunlatek/rapida-partner#30 | I-29, I-26 | 7.1.0 | aberto |
+| kunlatek/rapida-partner#23 | I-22, I-04 (DSL) — D5 | 4.0.0 | mergeado e publicado |
+| kunlatek/rapida-partner#24 | I-15, I-16, I-18, I-19, I-20, I-23, I-17 mínimo — D1 | 4.1.0 | mergeado e publicado |
+| kunlatek/rapida-partner#26 | I-25 — D4 | 5.0.0 | mergeado e publicado |
+| kunlatek/rapida-partner#27 | I-21 — D6 | 6.0.0 | mergeado; 6.0.0 **não publicada**: o 6.1.0 (kunlatek/rapida-partner#34, loja) saiu da `main` já com o #27 e cobre o 6.0.0 |
+| kunlatek/rapida-partner#28 | I-28 (comentários) — D2 | 6.1.1 | mergeado e publicado (era 6.0.1; virou 6.1.1 por causa do 6.1.0 da loja) |
+| kunlatek/rapida-partner#29 | I-17 — D3 | 7.0.0 | mergeado e publicado |
+| kunlatek/rapida-partner#30 | I-29, I-26 | 7.1.0 | mergeado e publicado |
 
-**rapida-code-generator** — duas pilhas.
+**rapida-code-generator** — duas pilhas, todas mergeadas. Na `main` resultante, `bun test` (294 testes) e `bun run typecheck:ai-agent` (4 combinações) passam, com a DSL 7.1.0.
 
 | PR | Itens | Requer DSL |
 | --- | --- | --- |
@@ -642,7 +642,7 @@ Pilha separada, a partir de `main`: kunlatek/rapida-code-generator#76 (Lote 4: I
 
 O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irmão), não pelo npm: para testar um PR do gerador, o checkout do rapida-partner precisa estar no PR da DSL correspondente.
 
-**rapida-projects**
+**rapida-projects** — todos mergeados, e a dependência subiu para `rapida-partner` 7.1.0 em kunlatek/rapida-projects#74. Os 11 arquivos de projeto com `aiAgentConfig` passam no `tsc --noEmit` contra a DSL 7.1.0. A montagem completa não foi rodada: depende dos segredos do bot (6.2).
 
 | PR | Itens | Requer DSL |
 | --- | --- | --- |
@@ -657,9 +657,7 @@ O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irm�
 | kunlatek/rapida-projects#70 | I-17: sem `targetBackendProjectId` | 7.0.0 |
 | kunlatek/rapida-projects#71 | I-29: `aiAgentWhatsapp` nos 6 projetos | 7.1.0 |
 
-A `main` do rapida-projects andou depois que a pilha foi aberta (kunlatek/rapida-projects#69 subiu a dependência para `rapida-partner` 3.6.0; #72, Grupo B da loja). A pilha precisa de rebase sobre a `main` atual, e a dependência em `package.json` deve subir junto com cada versão da DSL mergeada e publicada.
-
-**agents-library**: kunlatek/agents-library#24 (gate da skill MOTOR) e kunlatek/agents-library#25 (tools fixas/capabilities, Instagram, gatilho do agente, log em pt-BR na skill LIVE). Mergear junto com os PRs do gerador correspondentes.
+**agents-library**: kunlatek/agents-library#24 (gate da skill MOTOR) e kunlatek/agents-library#25 (tools fixas/capabilities, Instagram, gatilho do agente, log em pt-BR na skill LIVE). Ainda abertos; os PRs do gerador correspondentes já foram mergeados.
 
 ### 6.2 O que depende de alguém com acesso
 
@@ -671,7 +669,7 @@ A `main` do rapida-projects andou depois que a pilha foi aberta (kunlatek/rapida
 - **Modelos de lembrete** aprovados no WhatsApp Manager de cada conta (cliente e profissional), declarados em `aiAgentConfig.jobs.reminder.whatsappTemplates`. Sem eles o lembrete sai em texto livre, que só chega dentro da janela de 24 h.
 - **Telefone do profissional** no cadastro da Karol (o do Ryzzan está vazio; o lembrete de profissional não chega a ninguém).
 - **App Secret da Meta** (`whatsappAppSecret`) por tenant, para o agente validar a assinatura do webhook.
-- **`npm publish`** de cada versão da DSL: exige o código do autenticador. No terminal interativo o `node` do nvm não está no PATH; usar `export PATH=/home/ryzzan/.nvm/versions/node/v16.18.0/bin:$PATH` antes.
+- **`npm publish`** de cada versão da DSL: exige o código do autenticador. No terminal interativo o `node` do nvm não está no PATH; usar `export PATH=/home/ryzzan/.nvm/versions/node/v16.18.0/bin:$PATH` antes. Não passar a saída do `npm publish` por pipe (o prompt do código falha com `EOTP`). Logo depois do publish, o registro pode levar alguns minutos para responder à versão nova (`npm view` e `npm install` dão 404/`notarget`).
 
 ### 6.3 Depois do merge
 
