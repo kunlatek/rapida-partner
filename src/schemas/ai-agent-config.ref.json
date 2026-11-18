@@ -11,7 +11,7 @@
         },
         "systemPromptTemplate": {
           "type": "string",
-          "description": "Literal markdown content of the system prompt (NOT a file path). Empty string triggers the generator's default prompt scaffold."
+          "description": "Conteúdo literal do system prompt em markdown (não um caminho de arquivo). Vazio, o gerador monta o prompt padrão."
         },
         "knowledgeBaseFile": {
           "type": "string"
@@ -57,7 +57,7 @@
       "properties": {
         "targetBackend": {
           "type": "object",
-          "description": "Backend in another Rapida project: compiled rapidaObject.json (relative to this agent's rapidaObject.json) and its URL.",
+          "description": "Backend em outro projeto Rapida: rapidaObject.json compilado (relativo ao rapidaObject.json deste agente) e a URL dele.",
           "properties": {
             "definitionFile": { "type": "string", "minLength": 1 },
             "baseUrl": { "type": "string", "minLength": 1 }
@@ -158,7 +158,7 @@
         },
         "botCredentials": {
           "type": "object",
-          "description": "Credentials of the dedicated bot user on the target backend (BOT_API_EMAIL/BOT_API_PASSWORD in the generated agent .env).",
+          "description": "Usuário de serviço do agente (BOT_API_EMAIL/BOT_API_PASSWORD no .env do agente e do backend); o backend gerado cria esse usuário ao subir.",
           "properties": {
             "email": {
               "type": "string",

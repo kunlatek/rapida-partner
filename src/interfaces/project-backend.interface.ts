@@ -160,7 +160,15 @@ export interface IBackend {
   trustedCallers?: ITrustedCaller[];
   storage?: IStorage;
   logging?: ILogging;
+  // Liga os fluxos de WhatsApp do backend Nest (webhooks, envio, grupos,
+  // permissão whatsapp-flows) e o monitoramento de custo. Não use para o
+  // agente de IA: as credenciais dele vão em aiAgentWhatsapp.
   whatsapp?: IWhatsapp;
+  // Credenciais do WhatsApp que o agente de IA usa (aiAgentConfig com o
+  // mensageiro "whatsapp"). Não geram os fluxos de WhatsApp do backend, só o
+  // monitoramento de custo. Sem este campo, o agente ainda lê backend.whatsapp
+  // (com aviso), o que também liga os fluxos do backend.
+  aiAgentWhatsapp?: IWhatsapp;
   // Só para o agente de IA com o mensageiro "telegram"
   // (aiAgentConfig.infrastructure.messengers). Vai para TELEGRAM_BOT_TOKEN do
   // .env do agente; o backend Nest não usa.

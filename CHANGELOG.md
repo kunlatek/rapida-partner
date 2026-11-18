@@ -1,5 +1,18 @@
 # Changelog
 
+## 7.1.0
+
+### ✨ Novidades
+
+- `IBackend.aiAgentWhatsapp`: credenciais do WhatsApp que o agente de IA usa, separadas de `IBackend.whatsapp`. `whatsapp` continua ligando os fluxos de WhatsApp do backend (webhooks, envio, grupos) e o monitoramento de custo; `aiAgentWhatsapp` não gera os fluxos, só o monitoramento. Sem o campo novo, o agente ainda lê `whatsapp` (o gerador avisa).
+
+Aditiva: os projetos com agente migram quando quiserem parar de gerar fluxos de WhatsApp que não usam.
+
+### 📝 Documentação
+
+- Comentários de `IAiAgentConfig` e as descrições do schema do agente em pt-BR, como o resto da DSL.
+
+
 ## 7.0.0
 
 ### 💥 Mudanças que quebram

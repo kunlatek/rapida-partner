@@ -6,125 +6,122 @@ export type TAgentSchemaType =
   | "array"
   | "object";
 
+// Agente de IA (Kunlatalk) do projeto: persona, canal, motor, o que ele pode
+// fazer no backend e rotinas. O gerador cria o agente sempre que este bloco
+// existe, em qualquer skeleton (IProject.aiAgentConfig).
 export interface IAiAgentConfig {
   agentIdentity: {
     name: string;
 
-    // LITERAL markdown content of the system prompt — NOT a file path.
-    // Example: "## Identidade\n\nVocê é a ...". When non-empty it is
-    // written verbatim to prompts/system.template.md. When empty (""), the
-    // code generator emits a default prompt scaffold including a tools
-    // table built from the active fixed tools and the exposedContracts.
+    // Conteúdo LITERAL do system prompt em markdown, não um caminho de
+    // arquivo. Exemplo: "## Identidade\n\nVocê é a ...". Preenchido, vai tal
+    // qual para prompts/system.template.md. Vazio (""), o gerador monta um
+    // prompt padrão com a tabela das tools fixas ativas e de exposedContracts.
     //
-    // Placeholders (plain text, not JS interpolation):
-    // - {{ASSISTANT_NAME}}: agentIdentity.name, replaced at runtime;
-    // - {{CURRENT_DATE}}: current date/time (pt-BR), replaced at runtime;
-    // - {{USER_NAME}}: the user's name from the session, replaced at runtime;
-    // - {{TOOLS_TABLE}}: replaced at generation time by the table of the
-    //   tools actually generated (active fixed tools + exposedContracts).
-    //   Prefer it over a hand-written tool list, which goes stale silently.
-    // The generator warns when a literal prompt cites a tool that does not
-    // exist, or (without {{TOOLS_TABLE}}) omits a generated tool.
+    // Placeholders (texto simples, não interpolação JS):
+    // - {{ASSISTANT_NAME}}: agentIdentity.name, trocado em runtime;
+    // - {{CURRENT_DATE}}: data e hora atuais (pt-BR), trocado em runtime;
+    // - {{USER_NAME}}: nome do usuário na sessão, trocado em runtime;
+    // - {{TOOLS_TABLE}}: trocado na geração pela tabela das tools realmente
+    //   geradas (fixas ativas + exposedContracts). Prefira a uma lista
+    //   escrita à mão, que fica desatualizada sem aviso.
+    // O gerador avisa quando um prompt literal cita uma tool que não existe
+    // ou, sem {{TOOLS_TABLE}}, deixa de citar uma tool gerada.
     systemPromptTemplate: string;
 
-    // Relative path (inside the generated agent) where the knowledge
-    // base markdown file is written and read from. Defaults to
-    // "data/knowledge.md".
+    // Caminho relativo (dentro do agente gerado) do arquivo markdown da base
+    // de conhecimento. Padrão: "data/knowledge.md".
     knowledgeBaseFile?: string;
 
-    // Optional brand/company name used by the default prompt scaffold.
-    // Falls back to the project title when omitted.
+    // Nome da marca/empresa usado pelo prompt padrão. Sem ele, vale o título
+    // do projeto.
     companyName?: string;
 
-    // Optional mission statement used by the default prompt scaffold.
+    // Missão usada pelo prompt padrão.
     mission?: string;
 
-    // Optional initial content for the knowledge base file. When
-    // omitted, a fill-in skeleton is generated.
+    // Conteúdo inicial da base de conhecimento. Sem ele, sai um esqueleto
+    // para preencher.
     knowledgeBaseContent?: string;
   };
 
   infrastructure: {
-    // At least one. "whatsapp" uses backend[].whatsapp (Meta Cloud API);
-    // "telegram" uses backend[].telegram.telegramBotToken and is not yet
-    // validated in a real conversation.
+    // Ao menos um. "whatsapp" usa backend[].aiAgentWhatsapp (Meta Cloud API);
+    // "telegram" usa backend[].telegram.telegramBotToken e ainda não foi
+    // validado em conversa real.
     messengers: ("whatsapp" | "telegram")[];
-    // The provider key comes from the project integrations, always with
-    // service "chat": deepseekIntegration, geminiIntegration or
-    // openaiIntegration. The code generator warns when it is missing (the
-    // generated .env would ship an empty key).
+    // A chave do provedor vem das integrações do projeto, sempre com
+    // service "chat": deepseekIntegration, geminiIntegration ou
+    // openaiIntegration. Sem ela a geração falha.
     aiProvider: "deepseek" | "gemini" | "openai";
-    // Model name sent to the provider. Known values (the generator warns on
-    // anything else): deepseek → "deepseek-chat", "deepseek-reasoner";
+    // Nome do modelo enviado ao provedor. Valores conhecidos (o gerador
+    // avisa para outros): deepseek → "deepseek-chat", "deepseek-reasoner";
     // gemini → "gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.5-pro";
     // openai → "gpt-4o-mini", "gpt-4o", "gpt-4.1-mini", "gpt-4.1".
     model: string;
   };
 
   businessContext: {
-    // Backend in ANOTHER Rapida project (e.g. a separate ERP). Without it the
-    // agent talks to this project's own backend (backend[] and modules).
-    // With it, the agent calls only the target backend:
-    // - definitionFile: ALREADY COMPILED rapidaObject.json of the target
-    //   project (not the .ts source), relative to the directory of this
-    //   agent's rapidaObject.json. Contracts, fixed-tool endpoints and the
-    //   history endpoint are resolved against it only.
-    // - baseUrl: the target backend URL (with or without /api/v1), written to
+    // Backend em OUTRO projeto Rapida (ex.: um ERP separado). Sem ele, o
+    // agente conversa com o backend do próprio projeto (backend[] e modules).
+    // Com ele, o agente chama só o backend alvo:
+    // - definitionFile: rapidaObject.json JÁ COMPILADO do projeto alvo (não o
+    //   .ts), relativo ao diretório do rapidaObject.json deste agente.
+    //   Contratos, endpoints das tools fixas e histórico vêm só dele.
+    // - baseUrl: URL do backend alvo (com ou sem /api/v1), gravada em
     //   BOT_API_BASE_URL.
-    // The bot user (botCredentials) must exist on the target backend: this
-    // project's own backend does not create it when targetBackend is set.
+    // O usuário do bot (botCredentials) precisa existir no backend alvo: o
+    // backend deste projeto não o cria quando há targetBackend.
     targetBackend?: {
       definitionFile: string;
       baseUrl: string;
     };
 
-    // exposedContracts only covers *additional* domain actions. The agent
-    // ships fixed tools according to `capabilities` (identity → /people,
-    // scheduling → /appointments and /availability-schedules, knowledge base,
-    // media) plus the handoff tool when humanHandoff has contacts. Their names
-    // are reserved — a binding with one of them fails code generation, as does
-    // a toolName repeated between bindings: cadastrar_usuario,
-    // atualizar_status_usuario, atualizar_telefone_usuario,
+    // exposedContracts cobre só as ações de domínio *adicionais*. O agente
+    // traz tools fixas conforme `capabilities` (identity → /people,
+    // scheduling → /appointments e /availability-schedules, base de
+    // conhecimento, mídia) e a tool de escalada quando humanHandoff tem
+    // contatos. Os nomes são reservados — um binding com um deles falha a
+    // geração, assim como um toolName repetido entre bindings:
+    // cadastrar_usuario, atualizar_status_usuario, atualizar_telefone_usuario,
     // atualizar_email_usuario, atualizar_genero_usuario,
     // checar_disponibilidade, criar_evento, meus_agendamentos,
     // cancelar_agendamento, consultar_base_conhecimento, mostrar_imagem,
-    // escalar_para_humano. Also note: for "update"/"getById"/
-    // "softDelete"/"hardDelete" actions the generator already injects a
-    // generic required "id" tool parameter — do not add your own id/_id
-    // entry to formFields, it will create a duplicate, unused parameter.
+    // escalar_para_humano. Nas ações "update"/"getById"/"softDelete"/
+    // "hardDelete" o gerador já injeta o parâmetro obrigatório "id" (descrito
+    // por idPrompt): não repita id/_id em formFields.
     //
-    // Besides the fixed tools, the agent itself stores and reads the
-    // conversation history at /whatsapp-chat-histories: some module of the
-    // project (or of targetBackend) must expose that endpoint —
-    // usually whatsappModule from rapida-projects. Code generation fails
-    // without it.
+    // Além das tools fixas, o próprio agente grava e lê o histórico de
+    // conversa em /whatsapp-chat-histories: algum módulo do projeto (ou do
+    // targetBackend) precisa expor esse endpoint — normalmente o
+    // whatsappModule do rapida-projects. Sem ele a geração falha.
     //
-    // The agent authenticates on the backend with a dedicated service user
-    // (botCredentials below), separate from flows.invitation.mainUserEmail.
+    // O agente se autentica no backend com um usuário de serviço próprio
+    // (botCredentials, abaixo), separado de flows.invitation.mainUserEmail.
     exposedContracts: IAgentContractBinding[];
 
-    // Credentials of the agent's service user (BOT_API_EMAIL/BOT_API_PASSWORD
-    // in the generated agent and backend .env). The generated Nest backend
-    // creates this user on startup — idempotently, aligning the password with
-    // the .env — inside the workspace of flows.invitation.mainUserEmail, with
-    // an "aiAgent" role limited to the entities the agent's tools use. Import
-    // the values from constants/secrets — never write them literally.
+    // Credenciais do usuário de serviço do agente (BOT_API_EMAIL/
+    // BOT_API_PASSWORD no .env do agente e do backend). O backend Nest gerado
+    // cria esse usuário ao subir — de forma idempotente, alinhando a senha com
+    // o .env — no workspace de flows.invitation.mainUserEmail, com o papel
+    // "aiAgent" limitado às entidades que as tools usam. Importe os valores
+    // de constants/secrets; nunca escreva literalmente.
     botCredentials: {
       email: string;
       password: string;
     };
   };
 
-  // Groups of fixed tools the agent ships. Each one defaults to true when
-  // omitted, so leaving the block out keeps every fixed tool. A disabled
-  // group is not generated, not offered to the LLM, left out of the default
-  // prompt and of the endpoint check.
-  // - identity: cadastrar_usuario and atualizar_*_usuario (/people), plus
-  //   recognizing a returning user by WhatsApp id;
+  // Grupos de tools fixas do agente. Cada um vale true quando omitido; sem o
+  // bloco, todas as tools fixas são geradas. Um grupo desligado não é
+  // gerado, não é oferecido ao LLM e sai do prompt padrão e da conferência
+  // de endpoints.
+  // - identity: cadastrar_usuario e atualizar_*_usuario (/people), e o
+  //   reconhecimento de quem volta a falar pelo id do WhatsApp;
   // - scheduling: checar_disponibilidade, criar_evento, meus_agendamentos,
-  //   cancelar_agendamento (/appointments, /availability-schedules) and the
-  //   appointment reminder job (needs identity);
-  // - knowledgeBase: consultar_base_conhecimento and the knowledge file;
+  //   cancelar_agendamento (/appointments, /availability-schedules) e o
+  //   lembrete de agendamento (precisa de identity);
+  // - knowledgeBase: consultar_base_conhecimento e o arquivo da base;
   // - media: mostrar_imagem.
   capabilities?: {
     identity?: boolean;
@@ -133,67 +130,62 @@ export interface IAiAgentConfig {
     media?: boolean;
   };
 
-  // Optional human handoff: when present with at least one contact, the
-  // code generator adds a fixed tool ("escalar_para_humano") that sends a
-  // WhatsApp text message (summary generated by the LLM itself + the name/
-  // contact of who it was talking to, taken from the current session —
-  // never asked as a tool argument, to avoid the LLM guessing/inventing a
-  // phone number) to one of the configured contacts' whatsappPhoneNumber.
-  // The agent keeps responding the original user normally after the
-  // handoff — this is a parallel notification to a human, not a channel
-  // switch/handover of the conversation itself. The notification always goes
-  // through the WhatsApp messenger (it must be active), whatever channel the
-  // conversation came from. Meta only delivers it if the contact messaged the
-  // agent's number in the last 24 h (same rule as the reminder; a template is
-  // not supported here yet).
+  // Escalada para humano: com ao menos um contato, o gerador acrescenta a
+  // tool fixa "escalar_para_humano", que manda uma mensagem de texto no
+  // WhatsApp (resumo escrito pelo LLM + nome e contato de quem estava na
+  // conversa, tirados da sessão — nunca pedidos como argumento, para o LLM
+  // não inventar telefone) para o whatsappPhoneNumber do contato escolhido.
+  // O agente continua atendendo normalmente: é um aviso paralelo a uma
+  // pessoa, não uma passagem da conversa. O aviso sai sempre pelo mensageiro
+  // WhatsApp (que precisa estar ativo), qualquer que seja o canal da
+  // conversa. A Meta só entrega se o contato tiver escrito para o número do
+  // agente nas últimas 24 h (mesma regra do lembrete; modelo aprovado ainda
+  // não é suportado aqui).
   humanHandoff?: {
     contacts: IHumanHandoffContact[];
   };
 
-  // Optional limits for incoming audio messages (transcribed through the
-  // project's openaiIntegration with service "transcription"). Without that
-  // key audio stays off: the agent answers that it cannot process audio, and
-  // the code generator warns.
+  // Limites para áudios recebidos (transcritos pela openaiIntegration do
+  // projeto com service "transcription"). Sem essa chave o áudio fica
+  // desligado: o agente responde que não consegue processar áudios, e o
+  // gerador avisa.
   audio?: {
-    // Longer audios are rejected before download/transcription.
-    // Defaults to 300.
+    // Áudios mais longos são recusados antes do download e da transcrição.
+    // Padrão: 300.
     maxDurationSeconds?: number;
-    // Minimum interval between two audios from the same user.
-    // Defaults to 10.
+    // Intervalo mínimo entre dois áudios do mesmo usuário. Padrão: 10.
     rateLimitIntervalSeconds?: number;
   };
 
-  // Optional background jobs configuration. Values become the generated
-  // defaults of the agent's job services and can still be overridden at
-  // runtime through config/rules.json.
+  // Rotinas em segundo plano. Os valores viram os padrões do agente gerado e
+  // ainda podem ser trocados em runtime por config/rules.json.
   jobs?: {
-    // Appointment reminder sent through WhatsApp. Frequency and timezone live
-    // in IBackend.scheduledJobs (id "aiAgentAppointmentReminder"), per
-    // environment; the timezone is also the one appointment times are stored
-    // in.
+    // Lembrete de agendamento pelo WhatsApp. Frequência e fuso ficam em
+    // IBackend.scheduledJobs (id "aiAgentAppointmentReminder"), por ambiente;
+    // o fuso também é o dos horários gravados nos agendamentos.
     reminder?: {
-      // Defaults to true. The reminder job is only generated when the
-      // whatsapp messenger is active.
+      // Padrão: true. O lembrete só é gerado com o mensageiro whatsapp e
+      // capabilities.scheduling.
       enabled?: boolean;
-      // How many minutes ahead of the appointment the reminder fires.
-      // Defaults to 1440 (24 hours).
+      // Quantos minutos antes do agendamento o lembrete sai. Padrão: 1440
+      // (24 horas).
       minutesAhead?: number;
-      // Who gets the reminder: the person who booked ("client",
-      // appointment.personId) and/or the professional ("professional",
-      // first of appointment.involvedPeopleId). Defaults to both.
+      // Quem recebe: quem agendou ("client", appointment.personId) e/ou o
+      // profissional ("professional", o primeiro de
+      // appointment.involvedPeopleId). Padrão: os dois.
       recipients?: TAppointmentReminderRecipient[];
-      // WhatsApp message templates approved in Meta's WhatsApp Manager, one
-      // per recipient. Meta only delivers free text up to 24 h after the
-      // recipient's last message to this number; outside that window only an
-      // approved template is delivered. Without a template the agent sends
-      // free text (and the code generator warns).
+      // Modelos de mensagem aprovados no WhatsApp Manager da Meta, um por
+      // destinatário. A Meta só entrega texto livre até 24 h depois da
+      // última mensagem do destinatário para este número; fora dessa janela,
+      // só modelo aprovado. Sem modelo, o agente manda texto livre (e o
+      // gerador avisa).
       whatsappTemplates?: {
-        // Body parameters, in order: {{1}} client name, {{2}} date
-        // (dd/mm/aaaa), {{3}} time (HH:mm), {{4}} professional name.
+        // Parâmetros do corpo, em ordem: {{1}} nome do cliente, {{2}} data
+        // (dd/mm/aaaa), {{3}} hora (HH:mm), {{4}} nome do profissional.
         client?: IWhatsappMessageTemplate;
-        // Body parameters, in order: {{1}} professional name, {{2}} date
-        // (dd/mm/aaaa), {{3}} time (HH:mm), {{4}} client name, {{5}} client
-        // phone.
+        // Parâmetros do corpo, em ordem: {{1}} nome do profissional, {{2}}
+        // data (dd/mm/aaaa), {{3}} hora (HH:mm), {{4}} nome do cliente, {{5}}
+        // telefone do cliente.
         professional?: IWhatsappMessageTemplate;
       };
     };
@@ -203,9 +195,9 @@ export interface IAiAgentConfig {
 export type TAppointmentReminderRecipient = "client" | "professional";
 
 export interface IWhatsappMessageTemplate {
-  // Template name exactly as approved in WhatsApp Manager.
+  // Nome do modelo exatamente como aprovado no WhatsApp Manager.
   name: string;
-  // Template language code. Defaults to "pt_BR".
+  // Código de idioma do modelo. Padrão: "pt_BR".
   languageCode?: string;
 }
 
@@ -214,13 +206,14 @@ export interface IAgentContractBinding {
 
   toolName: string;
 
-  // Text the LLM reads to decide when to call this tool. Takes precedence
-  // over the contract's userStory; the generator warns when neither exists.
+  // Texto que o LLM lê para decidir quando chamar a tool. Tem precedência
+  // sobre o userStory do contrato; o gerador avisa quando não há nenhum dos
+  // dois.
   description?: string;
 
-  // For getById/update/softDelete/hardDelete: where the LLM gets the record
-  // id from (e.g. "use o id retornado por consultar_reserva, nunca o CPF").
-  // Without it the tool only says "Identificador único do registro alvo".
+  // Em getById/update/softDelete/hardDelete: de onde o LLM tira o id do
+  // registro (ex.: "use o id retornado por consultar_reserva, nunca o CPF").
+  // Sem ele, a tool só diz "Identificador único do registro alvo".
   idPrompt?: string;
 
   action: "create" | "get" | "getById" | "update" | "softDelete" | "hardDelete";
@@ -233,10 +226,9 @@ export interface IAgentContractBinding {
 
       validationHint?: string;
 
-      // Optional explicit JSON-Schema type for the generated tool
-      // parameter. When provided it takes precedence over the code
-      // generator's defensive EDataType-to-schema mapping, making the
-      // tool parameter typing independent from the enum values.
+      // Tipo JSON Schema explícito do parâmetro gerado. Tem precedência
+      // sobre o mapeamento defensivo de EDataType feito pelo gerador, e
+      // deixa a tipagem do parâmetro independente dos valores do enum.
       schemaType?: TAgentSchemaType;
     }[];
 
@@ -250,18 +242,17 @@ export interface IAgentContractBinding {
 }
 
 export interface IHumanHandoffContact {
-  // Human-readable identifier the LLM uses to pick this contact
-  // (e.g. "Júlia"). Must be unique within humanHandoff.contacts.
+  // Nome que o LLM usa para escolher o contato (ex.: "Júlia"). Único dentro
+  // de humanHandoff.contacts.
   name: string;
 
-  // Free text describing when/why this contact should receive the
-  // handoff (e.g. "fecha reservas quando o hóspede confirma uma data
-  // disponível"). The LLM matches the escalation reason against this
-  // text to pick the right contact — same spirit as triggerKeywords
-  // above, not a fixed enum of categories.
+  // Texto livre dizendo quando/por que este contato recebe a escalada (ex.:
+  // "fecha reservas quando o hóspede confirma uma data disponível"). O LLM
+  // compara o motivo da escalada com este texto para escolher o contato —
+  // mesmo espírito de triggerKeywords, não uma lista fixa de categorias.
   useCase: string;
 
-  // E.164 phone number (e.g. "+558296539080") that receives the
-  // WhatsApp text message on handoff. Validated by the schema.
+  // Telefone em E.164 (ex.: "+558296539080") que recebe a mensagem de
+  // escalada no WhatsApp. Validado pelo schema.
   whatsappPhoneNumber: string;
 }
