@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.1.1
+
+### 📝 Documentação
+
+- `aiAgentConfig` passa a ser descrito como capacidade do projeto: o gerador cria o agente sempre que ele existe, em qualquer skeleton. `skeleton: "aiAgent"` fica documentado como sinônimo de `"backoffice"`. Requer o `rapida-code-generator` com a decisão D2 aplicada.
+
 ## 6.1.0
 
 Segunda rodada de contratos do Grupo B da evolução do skeleton ecommerce/marketplace (itens L17, L20, L25, L26, L27 e L28). Todas as mudanças são aditivas: nenhum projeto existente precisa mudar. O comportamento novo na loja depende de suporte no `rapida-code-generator`; no Backoffice do vendedor, os módulos prontos já geram telas e rotas comuns.
