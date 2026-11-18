@@ -604,7 +604,7 @@ Observações sobre a ordem:
 
 ## 6. Execução (estado em 2026-11-18)
 
-As três pilhas (DSL, gerador e projetos) foram mergeadas em 2026-11-18, e a DSL 7.1.0 está publicada. Os PRs da agents-library e a mudança de pastas do I-32 também foram mergeados. Pendente: o que depende de alguém com acesso (6.2) e, depois disso, a reimplantação e os testes LIVE (6.3).
+As três pilhas (DSL, gerador e projetos) foram mergeadas em 2026-11-18, e a DSL 7.1.0 está publicada. Os PRs da agents-library e a mudança de pastas do I-32 também foram mergeados. A Karol foi reimplantada e testada ao vivo (6.3). Pendente: o que depende de alguém com acesso (6.2) e, depois disso, a reimplantação e os testes LIVE da Yara e do Auto Center, e a primeira conversa do `katia` (6.3).
 
 ### 6.1 Pilhas de PRs
 
@@ -675,6 +675,11 @@ O gerador lê a DSL por symlink (`node_modules/rapida-partner` → checkout irm�
 ### 6.3 Depois do merge
 
 - Regerar e reimplantar Yara, Karol e Auto Center (fluxo `rapida → develop`) e rodar o LIVE em cada um (`rapida-project-ai-agent-live-test`). Conferir: criação do usuário do bot no log do backend (`Usuário do agente de IA pronto no workspace …`), `[API] Authentication successful` no agente, lembrete 24 h antes (não 27 h) para cliente e profissional, escalada para humano, prompt da Yara (repetir a pergunta de disponibilidade), backend sem `whatsapp-flows`.
+  - **Karol — feito em 2026-11-18.** Agente e backend regerados e implantados (kunlatek/kunlatalk#5, kunlatek/kunlatalk-backoffice-api#5; deploys com sucesso, `/health` do agente e `/api/v1/health` da API respondendo 200, backend sem `whatsapp-flows`/`whatsapp-webhooks`). LIVE no WhatsApp: apresentação, preço, disponibilidade, cadastro e agendamento, lista de agendamentos, regra do dia corrente e cancelamento. O LIVE achou dois defeitos do gerador, já corrigidos e reimplantados na Karol:
+    - `cancelar_agendamento` recusava o agendamento do próprio dono, porque `GET /appointments/:id` devolve `personId._id` e a tool lia `.id` (kunlatek/rapida-code-generator#88, kunlatek/kunlatalk#6);
+    - `meus_agendamentos` listava agendamentos passados (kunlatek/rapida-code-generator#89, kunlatek/kunlatalk#7).
+  - **Karol — pendente:** lembrete de 24 h e escalada para humano (não testados); `[API] Authentication successful` não foi lido nos logs, mas o login do bot na API nova responde 200. A aplicação da API no Coolify não tem `BOT_API_EMAIL`/`BOT_API_PASSWORD`, então o `AiAgentBotModule` só avisa e não cria nem atualiza o usuário do bot (o criado à mão continua valendo); para ligar, cadastrar as duas variáveis com os mesmos valores do agente.
+  - **Yara e Auto Center:** pendentes, dependem dos segredos do bot (6.2).
 - Primeira conversa real do `katia` (I-30).
 - ~~I-32: mover `katia`, `autoCenterBackoffice`, `kunlatalkBackoffice` e `ficharapidaComercial` de `projects/aiAgent/` para `projects/backoffice/<cliente>/`~~ — feito em 2026-11-18: kunlatek/rapida-projects#75 (pastas), kunlatek/agents-library#27 (caminho do `katia` na skill MOTOR) e caminhos no vault. A pasta `projects/aiAgent/` não existe mais.
 - ~~Vault: a nota "skeleton vs aiAgentConfig" de `RAPIDA/RAPIDA CODE GENERATOR.md` fica obsoleta com o I-28~~ — feito em 2026-11-18: virou a descrição do gatilho atual (agente gerado sempre que há `aiAgentConfig`).
