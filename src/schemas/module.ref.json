@@ -49,8 +49,11 @@
             {
               "$ref": "panel.ref.json"
             },
-            { 
-              "$ref": "kanban.ref.json" 
+            {
+              "$ref": "kanban.ref.json"
+            },
+            {
+              "$ref": "data-stat.ref.json"
             }
           ]
         }

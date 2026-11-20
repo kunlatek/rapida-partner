@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.2.0
+
+### ✨ Novidades
+
+- `IDataStat` (`componentType: "dataStat"`): indicador numérico (KPI) para `IProject.dashboard`. Um único valor calculado sobre os registros de um endpoint, como um `IDataChart` sem agrupamento: `value.aggregator` (`sum`, `avg`, `min`, `max`, `count`, o mesmo `IChartAggregator`), `value.property` e `value.dataType` (`EDataType`, que define a formatação: moeda, data, número). `filters` aceita os operadores de `IConditionElement` e datas relativas (`"$today"`, `"$startOfMonth"`, `"$startOfNextMonth"`…). `link` torna o indicador clicável e `space` define a largura na grade do painel.
+
+Aditiva: projetos sem `dataStat` não mudam. Requer o `rapida-code-generator` com suporte a `dataStat` no painel.
+
+
 ## 7.1.0
 
 ### ✨ Novidades

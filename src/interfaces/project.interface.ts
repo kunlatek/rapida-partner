@@ -2,6 +2,7 @@ import type { IAiAgentConfig } from "./ai-agent.interface";
 import type { IDataCard } from "./data-card.interface";
 import type { IDataChart } from "./data-chart.interface";
 import type { IDataDetail } from "./data-detail.interface";
+import type { IDataStat } from "./data-stat.interface";
 import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
 import type { IE2e } from "./e2e.interface";
@@ -261,4 +262,5 @@ export type IComponent =
   | IDataGrid
   | IDataDetail
   | IDataChart
+  | IDataStat
   | IPanel;
