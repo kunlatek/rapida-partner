@@ -1,5 +1,18 @@
 # Changelog
 
+## 7.2.0
+
+### ✨ Novidades
+
+- `IDataStat` (`componentType: "dataStat"`): indicador numérico (KPI) para `IProject.dashboard`. Um único valor calculado sobre os registros de um endpoint, como um `IDataChart` sem agrupamento: `value.aggregator` (`sum`, `avg`, `min`, `max`, `count`, o mesmo `IChartAggregator`), `value.property` e `value.dataType` (`EDataType`, que define a formatação: moeda, data, número). `filters` (`{ key, comparisonOperator, value }`, como `IConditionElement`) aceita os operadores de `IConditionElement` e datas relativas (`"$today"`, `"$startOfMonth"`, `"$startOfNextMonth"`…). `tone` define a cor do card conforme o valor (`neutral`, `success`, `warning`, `danger`), com regras no formato dos filtros sem o `key` (ex.: `> 0` → `danger`). `link` torna o card clicável; `action` (`{ label, route }`, `IDashboardLinkAction`) põe uma chamada de ação no rodapé (ex.: "Resolver agora"). `space` define a largura na grade do painel.
+- `IProject.menu.quickCreate` (`IQuickCreateItem[]`): atalhos de criação declarados uma vez (`formId`, `label`, `icon`). Viram o botão "Criar novo" no cabeçalho do painel e alimentam o card `quickCreate`; cada atalho só aparece para quem pode criar no módulo.
+- `IDataChart`: `chartType: "progressList"` (barras horizontais em HTML com o número ao lado, na ordem das opções do select agrupado), `data.labels.colors` (cor por valor: `neutral`, `primary`, `success`, `warning`, `danger`), `subtitle` (aceita `{{total}}`) e `action` (link no canto do card).
+- `emptyState` (`IDashboardEmptyState`) em `IDataChart` e `IDataStat`: ícone, título, explicação e ações (`primary`/`secondary`) no lugar da mensagem padrão quando não há dados.
+- `IProject.dashboard` passa a ser `TDashboardItem[]` (`IComponent | IDashboardBudgetMonitor | IDashboardQuickCreate`, schema `dashboard-item-one-of.ref.json`). Widgets que só existem no painel, fora de `IComponent` e dos módulos: `budgetMonitor` (card de consumo de serviços; requer `deepseekIntegration` ou `mongodbIntegration` com `service: "cost"`) e `quickCreate` (card de atalhos de criação).
+
+Aditiva: projetos sem `dataStat` não mudam. Requer o `rapida-code-generator` com suporte a `dataStat` no painel.
+
+
 ## 7.1.0
 
 ### ✨ Novidades

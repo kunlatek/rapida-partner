@@ -1,0 +1,19 @@
+{
+  "$id": "quick-create-item.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Atalho de criação: abre o cadastro do form formId (com a ação \"create\" no contrato).",
+  "properties": {
+    "formId": {
+      "type": "string"
+    },
+    "label": {
+      "$ref": "translatable.ref.json"
+    },
+    "icon": {
+      "type": "string"
+    }
+  },
+  "required": ["formId", "label"],
+  "additionalProperties": false
+}

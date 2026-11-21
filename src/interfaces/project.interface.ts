@@ -2,6 +2,12 @@ import type { IAiAgentConfig } from "./ai-agent.interface";
 import type { IDataCard } from "./data-card.interface";
 import type { IDataChart } from "./data-chart.interface";
 import type { IDataDetail } from "./data-detail.interface";
+import type { IDataStat } from "./data-stat.interface";
+import type {
+  IDashboardBudgetMonitor,
+  IDashboardQuickCreate,
+  IQuickCreateItem,
+} from "./dashboard-widget.interface";
 import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
 import type { IE2e } from "./e2e.interface";
@@ -94,10 +100,12 @@ export interface IProject {
   menu?: {
     homeGroup?: TTranslatable; // grupo do Painel (/); sem ele, fica solto no topo
     flowsGroup?: TTranslatable; // membros, papéis, convites e notificações, como links soltos no grupo
+    // Atalhos de criação: botão "Criar novo" no painel e card IDashboardQuickCreate.
+    quickCreate?: IQuickCreateItem[];
   };
   styles?: IStyle[];
   flowChart?: IFlowChart;
-  dashboard?: IComponent[];
+  dashboard?: TDashboardItem[];
   // Agente de IA (Kunlatalk) do projeto. Com ele, o gerador cria o agente em
   // qualquer skeleton (ex.: um backoffice ou uma loja com atendente), além do
   // frontend e do backend.
@@ -261,4 +269,14 @@ export type IComponent =
   | IDataGrid
   | IDataDetail
   | IDataChart
+  | IDataStat
   | IPanel;
+
+/**
+ * Item de IProject.dashboard: qualquer IComponent ou um widget que só existe
+ * no painel (budgetMonitor, quickCreate).
+ */
+export type TDashboardItem =
+  | IComponent
+  | IDashboardBudgetMonitor
+  | IDashboardQuickCreate;

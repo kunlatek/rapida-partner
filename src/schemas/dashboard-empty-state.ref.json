@@ -1,0 +1,37 @@
+{
+  "$id": "dashboard-empty-state.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Estado vazio de um card do painel: ícone, título, explicação e ações.",
+  "properties": {
+    "icon": {
+      "type": "string"
+    },
+    "title": {
+      "$ref": "translatable.ref.json"
+    },
+    "description": {
+      "$ref": "translatable.ref.json"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "dashboard-link-action.ref.json"
+          }
+        ],
+        "properties": {
+          "label": true,
+          "route": true,
+          "variant": {
+            "type": "string",
+            "enum": ["primary", "secondary"]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

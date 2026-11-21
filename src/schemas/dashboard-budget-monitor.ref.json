@@ -1,0 +1,16 @@
+{
+  "$id": "dashboard-budget-monitor.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Card de consumo de serviços no painel. Requer deepseekIntegration ou mongodbIntegration com service \"cost\".",
+  "properties": {
+    "componentType": {
+      "const": "budgetMonitor"
+    },
+    "id": {
+      "type": "string"
+    }
+  },
+  "required": ["componentType", "id"],
+  "additionalProperties": false
+}

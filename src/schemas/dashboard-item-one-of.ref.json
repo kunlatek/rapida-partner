@@ -1,0 +1,16 @@
+{
+  "$id": "dashboard-item-one-of.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Item de IProject.dashboard: um componente ou um widget que só existe no painel.",
+  "oneOf": [
+    {
+      "$ref": "component-one-of.ref.json"
+    },
+    {
+      "$ref": "dashboard-budget-monitor.ref.json"
+    },
+    {
+      "$ref": "dashboard-quick-create.ref.json"
+    }
+  ]
+}
