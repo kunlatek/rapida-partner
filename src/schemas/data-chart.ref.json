@@ -12,6 +12,10 @@
     "title": {
       "$ref": "translatable.ref.json"
     },
+    "subtitle": {
+      "$ref": "translatable.ref.json",
+      "description": "Texto abaixo do título. Aceita {{total}} (soma dos valores exibidos)."
+    },
     "icon": {
       "type": "string"
     },
@@ -42,8 +46,15 @@
         "scatter",
         "bubble",
         "area",
-        "polarArea"
+        "polarArea",
+        "progressList"
       ]
+    },
+    "action": {
+      "$ref": "dashboard-link-action.ref.json"
+    },
+    "emptyState": {
+      "$ref": "dashboard-empty-state.ref.json"
     },
     "limit": {
       "type": "number"
@@ -80,6 +91,20 @@
                 "regex": {
                   "type": "string"
                 }
+              }
+            },
+            "colors": {
+              "type": "object",
+              "description": "Cor por valor cru do campo agrupado, em progressList.",
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "neutral",
+                  "primary",
+                  "success",
+                  "warning",
+                  "danger"
+                ]
               }
             }
           },

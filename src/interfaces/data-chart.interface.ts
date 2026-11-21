@@ -1,7 +1,14 @@
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { TTranslatable } from "./translatable.interface";
+import type {
+  IDashboardEmptyState,
+  IDashboardLinkAction,
+} from "./dashboard-widget.interface";
 
+// "progressList": barras horizontais em HTML (rótulo, barra e número), sem
+// canvas. Usa a ordem das opções do select do campo agrupado, quando houver,
+// e o primeiro dataset. Bom para contagem por etapa/status.
 export type IChartType =
   | "line"
   | "bar"
@@ -11,7 +18,12 @@ export type IChartType =
   | "scatter"
   | "bubble"
   | "area"
-  | "polarArea";
+  | "polarArea"
+  | "progressList";
+
+// Cores do tema, para não prender o gráfico a um hex: "primary" segue
+// IProject.styles; as demais são as de status (cinza, verde, âmbar, vermelho).
+export type TChartColorToken = "neutral" | "primary" | "success" | "warning" | "danger";
 
 export type IChartAggregator = "sum" | "avg" | "min" | "max" | "count";
 
@@ -67,12 +79,19 @@ export interface IDataChart {
   componentType: "dataChart";
   id: string;
   title: TTranslatable;
+  // Texto abaixo do título. Aceita {{total}} (soma dos valores exibidos),
+  // ex.: { "pt-BR": "{{total}} tarefas no total" }.
+  subtitle?: TTranslatable;
   userStory?: string;
   icon?: string;
   guards?: "isAuthenticated" | "isAuthorized";
   businessRules?: IBusinessRule[];
   dataSource: IApiRequest;
   chartType: IChartType;
+  // Link no canto do card (ex.: "Abrir quadro").
+  action?: IDashboardLinkAction;
+  // Substitui a mensagem padrão quando não há dados.
+  emptyState?: IDashboardEmptyState;
   limit?: number;
   dimensions?: {
     width?: string;
@@ -83,6 +102,9 @@ export interface IDataChart {
     labels: {
       property: string;
       formatter?: IChartLabelFormatter;
+      // Cor por valor do campo agrupado (o valor cru, ex.: "blocked"), em
+      // "progressList". Valores sem cor usam "primary".
+      colors?: Record<string, TChartColorToken>;
     };
     datasets: IChartDataset[];
   };

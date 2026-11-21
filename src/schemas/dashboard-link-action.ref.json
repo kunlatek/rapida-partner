@@ -1,0 +1,16 @@
+{
+  "$id": "dashboard-link-action.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Link de ação de um card do painel (rota interna).",
+  "properties": {
+    "label": {
+      "$ref": "translatable.ref.json"
+    },
+    "link": {
+      "type": "string"
+    }
+  },
+  "required": ["label", "link"],
+  "additionalProperties": false
+}

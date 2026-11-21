@@ -1,6 +1,10 @@
 import type { EDataType } from "../enums/form.enum";
 import type { IConditionElement } from "./condition.interface";
 import type { IChartAggregator } from "./data-chart.interface";
+import type {
+  IDashboardEmptyState,
+  IDashboardLinkAction,
+} from "./dashboard-widget.interface";
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { TTranslatable } from "./translatable.interface";
@@ -101,10 +105,10 @@ export interface IDataStat {
   link?: string;
   // Chamada de ação no rodapé do card (ex.: "Resolver agora"). Com `action`, o
   // card deixa de ser clicável por inteiro e só a ação navega.
-  action?: {
-    label: TTranslatable;
-    link: string;
-  };
+  action?: IDashboardLinkAction;
+  // Substitui "Nenhum registro encontrado." quando não há valor (ex.: "min"
+  // sem nenhum registro).
+  emptyState?: IDashboardEmptyState;
   // Largura na grade de 4 colunas do painel, como `space` dos campos de formulário.
   space?: 1 | 2 | 3 | 4;
 }

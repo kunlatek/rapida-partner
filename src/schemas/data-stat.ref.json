@@ -124,17 +124,10 @@
       "type": "string"
     },
     "action": {
-      "type": "object",
-      "properties": {
-        "label": {
-          "$ref": "translatable.ref.json"
-        },
-        "link": {
-          "type": "string"
-        }
-      },
-      "required": ["label", "link"],
-      "additionalProperties": false
+      "$ref": "dashboard-link-action.ref.json"
+    },
+    "emptyState": {
+      "$ref": "dashboard-empty-state.ref.json"
     },
     "space": {
       "type": "integer",

@@ -34,3 +34,25 @@ export interface IDashboardQuickCreate {
   id: string;
   title?: TTranslatable;
 }
+
+/**
+ * Link de ação de um card do painel (ex.: "Abrir quadro", "Resolver agora").
+ * `link` é uma rota interna.
+ */
+export interface IDashboardLinkAction {
+  label: TTranslatable;
+  link: string;
+}
+
+/**
+ * Estado vazio de um card do painel (IDataChart/IDataStat sem dados): ícone,
+ * título, explicação e ações para o usuário sair dele (ex.: "Configurar perfil
+ * fiscal"). A primeira ação "primary" vira o botão principal. Sem emptyState,
+ * o card mostra a mensagem padrão.
+ */
+export interface IDashboardEmptyState {
+  icon?: string;
+  title?: TTranslatable;
+  description?: TTranslatable;
+  actions?: (IDashboardLinkAction & { variant?: "primary" | "secondary" })[];
+}
