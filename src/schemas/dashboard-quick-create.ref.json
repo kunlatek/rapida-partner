@@ -1,0 +1,19 @@
+{
+  "$id": "dashboard-quick-create.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Card de atalhos de criação no painel, com os itens de menu.quickCreate.",
+  "properties": {
+    "componentType": {
+      "const": "quickCreate"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "$ref": "translatable.ref.json"
+    }
+  },
+  "required": ["componentType", "id"],
+  "additionalProperties": false
+}

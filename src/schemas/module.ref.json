@@ -54,6 +54,12 @@
             },
             {
               "$ref": "data-stat.ref.json"
+            },
+            {
+              "$ref": "dashboard-budget-monitor.ref.json"
+            },
+            {
+              "$ref": "dashboard-quick-create.ref.json"
             }
           ]
         }

@@ -3,6 +3,11 @@ import type { IDataCard } from "./data-card.interface";
 import type { IDataChart } from "./data-chart.interface";
 import type { IDataDetail } from "./data-detail.interface";
 import type { IDataStat } from "./data-stat.interface";
+import type {
+  IDashboardBudgetMonitor,
+  IDashboardQuickCreate,
+  IQuickCreateItem,
+} from "./dashboard-widget.interface";
 import type { IDataGrid } from "./data-grid.interface";
 import type { IDataTable } from "./data-table.interface";
 import type { IE2e } from "./e2e.interface";
@@ -95,6 +100,8 @@ export interface IProject {
   menu?: {
     homeGroup?: TTranslatable; // grupo do Painel (/); sem ele, fica solto no topo
     flowsGroup?: TTranslatable; // membros, papéis, convites e notificações, como links soltos no grupo
+    // Atalhos de criação: botão "Criar novo" no painel e card IDashboardQuickCreate.
+    quickCreate?: IQuickCreateItem[];
   };
   styles?: IStyle[];
   flowChart?: IFlowChart;
@@ -263,4 +270,6 @@ export type IComponent =
   | IDataDetail
   | IDataChart
   | IDataStat
+  | IDashboardBudgetMonitor
+  | IDashboardQuickCreate
   | IPanel;

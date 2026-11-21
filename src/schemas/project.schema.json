@@ -187,6 +187,12 @@
         },
         "flowsGroup": {
           "$ref": "translatable.ref.json"
+        },
+        "quickCreate": {
+          "type": "array",
+          "items": {
+            "$ref": "quick-create-item.ref.json"
+          }
         }
       },
       "additionalProperties": false
