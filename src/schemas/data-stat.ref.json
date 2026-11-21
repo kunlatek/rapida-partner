@@ -36,7 +36,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "field": {
+          "key": {
             "type": "string"
           },
           "comparisonOperator": {
@@ -46,7 +46,7 @@
             "description": "Valor comparado. Aceita as datas relativas \"$now\", \"$today\", \"$tomorrow\", \"$startOfMonth\", \"$startOfNextMonth\", \"$startOfYear\" e \"$startOfNextYear\"; \"in\"/\"nin\" recebem uma lista."
           }
         },
-        "required": ["field", "comparisonOperator", "value"],
+        "required": ["key", "comparisonOperator", "value"],
         "additionalProperties": false,
         "if": {
           "properties": { "comparisonOperator": { "enum": ["in", "nin"] } }
@@ -124,7 +124,16 @@
       "type": "string"
     },
     "action": {
-      "$ref": "dashboard-link-action.ref.json"
+      "allOf": [
+        {
+          "$ref": "dashboard-link-action.ref.json"
+        }
+      ],
+      "properties": {
+        "label": true,
+        "route": true
+      },
+      "additionalProperties": false
     },
     "emptyState": {
       "$ref": "dashboard-empty-state.ref.json"
@@ -134,5 +143,6 @@
       "enum": [1, 2, 3, 4]
     }
   },
-  "required": ["componentType", "id", "title", "dataSource", "value"]
+  "required": ["componentType", "id", "title", "dataSource", "value"],
+  "additionalProperties": false
 }

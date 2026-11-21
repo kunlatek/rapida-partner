@@ -16,20 +16,19 @@
     "actions": {
       "type": "array",
       "items": {
-        "type": "object",
+        "allOf": [
+          {
+            "$ref": "dashboard-link-action.ref.json"
+          }
+        ],
         "properties": {
-          "label": {
-            "$ref": "translatable.ref.json"
-          },
-          "link": {
-            "type": "string"
-          },
+          "label": true,
+          "route": true,
           "variant": {
             "type": "string",
             "enum": ["primary", "secondary"]
           }
         },
-        "required": ["label", "link"],
         "additionalProperties": false
       }
     }

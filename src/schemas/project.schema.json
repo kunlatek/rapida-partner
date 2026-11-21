@@ -218,7 +218,7 @@
     "dashboard": {
       "type": "array",
       "items": {
-        "$ref": "component-one-of.ref.json"
+        "$ref": "dashboard-item-one-of.ref.json"
       }
     },
     "repositories": {

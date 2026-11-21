@@ -51,7 +51,16 @@
       ]
     },
     "action": {
-      "$ref": "dashboard-link-action.ref.json"
+      "allOf": [
+        {
+          "$ref": "dashboard-link-action.ref.json"
+        }
+      ],
+      "properties": {
+        "label": true,
+        "route": true
+      },
+      "additionalProperties": false
     },
     "emptyState": {
       "$ref": "dashboard-empty-state.ref.json"

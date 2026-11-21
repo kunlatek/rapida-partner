@@ -37,11 +37,11 @@ export interface IDashboardQuickCreate {
 
 /**
  * Link de ação de um card do painel (ex.: "Abrir quadro", "Resolver agora").
- * `link` é uma rota interna.
+ * `route` é uma rota interna, como em `action.link.route` de IDataCard.
  */
 export interface IDashboardLinkAction {
   label: TTranslatable;
-  link: string;
+  route: string;
 }
 
 /**

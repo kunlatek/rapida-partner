@@ -40,7 +40,7 @@ type TDataStatScalar = string | number | boolean | null;
  * "in"/"nin" recebem uma lista em `value`.
  */
 export interface IDataStatFilter {
-  field: string;
+  key: string;
   comparisonOperator: IConditionElement["comparisonOperator"];
   value: TDataStatScalar | TDataStatScalar[] | TDataStatRelativeDate;
 }
@@ -53,12 +53,12 @@ export type TDataStatTone = "neutral" | "success" | "warning" | "danger";
 
 /**
  * Regra de tom avaliada sobre o valor já calculado, no mesmo formato de
- * IDataStatFilter sem o `field`. Ex.: `{ comparisonOperator: ">", value: 0,
+ * IDataStatFilter sem o `key`. Ex.: `{ comparisonOperator: ">", value: 0,
  * tone: "danger" }` deixa o card vermelho quando houver algo vencido; com
  * valor de data, `{ comparisonOperator: "<", value: "$tomorrow", tone: "warning" }`
  * avisa o que vence até hoje.
  */
-export interface IDataStatToneRule extends Omit<IDataStatFilter, "field"> {
+export interface IDataStatToneRule extends Omit<IDataStatFilter, "key"> {
   tone: TDataStatTone;
 }
 

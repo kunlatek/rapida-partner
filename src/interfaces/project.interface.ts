@@ -105,7 +105,7 @@ export interface IProject {
   };
   styles?: IStyle[];
   flowChart?: IFlowChart;
-  dashboard?: IComponent[];
+  dashboard?: TDashboardItem[];
   // Agente de IA (Kunlatalk) do projeto. Com ele, o gerador cria o agente em
   // qualquer skeleton (ex.: um backoffice ou uma loja com atendente), além do
   // frontend e do backend.
@@ -270,6 +270,13 @@ export type IComponent =
   | IDataDetail
   | IDataChart
   | IDataStat
-  | IDashboardBudgetMonitor
-  | IDashboardQuickCreate
   | IPanel;
+
+/**
+ * Item de IProject.dashboard: qualquer IComponent ou um widget que só existe
+ * no painel (budgetMonitor, quickCreate).
+ */
+export type TDashboardItem =
+  | IComponent
+  | IDashboardBudgetMonitor
+  | IDashboardQuickCreate;
