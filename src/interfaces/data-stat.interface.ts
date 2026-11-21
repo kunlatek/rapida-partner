@@ -42,6 +42,23 @@ export interface IDataStatFilter {
 }
 
 /**
+ * Tom do card: "neutral" (padrão), "success" (valor em verde), "warning"
+ * (card âmbar) e "danger" (card vermelho).
+ */
+export type TDataStatTone = "neutral" | "success" | "warning" | "danger";
+
+/**
+ * Regra de tom avaliada sobre o valor já calculado, no mesmo formato de
+ * IDataStatFilter sem o `field`. Ex.: `{ comparisonOperator: ">", value: 0,
+ * tone: "danger" }` deixa o card vermelho quando houver algo vencido; com
+ * valor de data, `{ comparisonOperator: "<", value: "$tomorrow", tone: "warning" }`
+ * avisa o que vence até hoje.
+ */
+export interface IDataStatToneRule extends Omit<IDataStatFilter, "field"> {
+  tone: TDataStatTone;
+}
+
+/**
  * Indicador numérico (KPI) do painel: um único valor calculado sobre os
  * registros de um endpoint, como um IDataChart sem agrupamento. Hoje o gerador
  * só o desenha em IProject.dashboard.
@@ -71,11 +88,23 @@ export interface IDataStat {
     // INTEGER, DECIMAL etc. Sem dataType, o valor é exibido como número.
     dataType?: EDataType;
   };
+  // Cor do card conforme o valor. As regras são avaliadas em ordem e a
+  // primeira que casar define o tom; sem nenhuma, vale `default` ("neutral").
+  tone?: {
+    default?: TDataStatTone;
+    rules?: IDataStatToneRule[];
+  };
   // Máximo de registros lidos para "sum" e "avg" (padrão 1000). "count",
   // "min" e "max" são resolvidos pelo backend e não dependem desse limite.
   limit?: number;
-  // Rota interna aberta ao clicar no indicador (ex.: "/payable-receivable-accounts").
+  // Rota interna aberta ao clicar no card inteiro (ex.: "/payable-receivable-accounts").
   link?: string;
+  // Chamada de ação no rodapé do card (ex.: "Resolver agora"). Com `action`, o
+  // card deixa de ser clicável por inteiro e só a ação navega.
+  action?: {
+    label: TTranslatable;
+    link: string;
+  };
   // Largura na grade de 4 colunas do painel, como `space` dos campos de formulário.
   space?: 1 | 2 | 3 | 4;
 }

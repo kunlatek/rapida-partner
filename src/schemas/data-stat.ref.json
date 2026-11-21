@@ -48,16 +48,12 @@
         },
         "required": ["field", "comparisonOperator", "value"],
         "additionalProperties": false,
-        "allOf": [
-          {
-            "if": {
-              "properties": { "comparisonOperator": { "enum": ["in", "nin"] } }
-            },
-            "then": {
-              "properties": { "value": { "type": "array" } }
-            }
-          }
-        ]
+        "if": {
+          "properties": { "comparisonOperator": { "enum": ["in", "nin"] } }
+        },
+        "then": {
+          "properties": { "value": { "type": "array" } }
+        }
       }
     },
     "value": {
@@ -83,12 +79,62 @@
         "required": ["property"]
       }
     },
+    "tone": {
+      "type": "object",
+      "description": "Cor do card conforme o valor calculado. A primeira regra que casar define o tom; sem nenhuma, vale default (\"neutral\").",
+      "properties": {
+        "default": {
+          "type": "string",
+          "enum": ["neutral", "success", "warning", "danger"]
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "comparisonOperator": {
+                "enum": ["===", ">", ">=", "in", "<", "<=", "!==", "nin"]
+              },
+              "value": {
+                "description": "Valor comparado com o resultado. Aceita as mesmas datas relativas dos filtros."
+              },
+              "tone": {
+                "type": "string",
+                "enum": ["neutral", "success", "warning", "danger"]
+              }
+            },
+            "required": ["comparisonOperator", "value", "tone"],
+            "additionalProperties": false,
+            "if": {
+              "properties": { "comparisonOperator": { "enum": ["in", "nin"] } }
+            },
+            "then": {
+              "properties": { "value": { "type": "array" } }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "limit": {
       "type": "integer",
       "minimum": 1
     },
     "link": {
       "type": "string"
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "$ref": "translatable.ref.json"
+        },
+        "link": {
+          "type": "string"
+        }
+      },
+      "required": ["label", "link"],
+      "additionalProperties": false
     },
     "space": {
       "type": "integer",
