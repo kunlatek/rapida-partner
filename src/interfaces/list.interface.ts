@@ -10,6 +10,7 @@ export interface IList {
   componentType: "list";
   id: string; // named according to component file name (<id>.<componentType>.ts)
   title: TTranslatable;
+  description?: TTranslatable; // frase abaixo do título da lista, dizendo para que ela serve
   userStory?: string;
   guards?: string[];
   dataSource: IApiRequest;
@@ -37,11 +38,16 @@ export interface IList {
     dataType: EDataType;
     isMultiple?: boolean;
     isExpansible?: boolean;
+    tones?: Record<string, TListTone>; // type "badge": tom de cada valor. e.g.: { "paid": "success", "overdue": "danger" }
+    mobilePriority?: 1 | 2 | 3; // 1 e 2 aparecem no card do celular; 3 só no desktop
+    relativeDate?: "plain" | "deadline"; // data com texto relativo abaixo ("há 3 dias"); "deadline" pinta o passado de vermelho e os próximos 7 dias de âmbar
     conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
     todo?: string;
   }[]; // properties taken from dataSource
   listFilters?: IFormElement[]; // filters to be applied on dataSource
+  quickFilters?: string[]; // até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para "Mais filtros". Sem isso, os 2 primeiros
+  tabs?: IListTabs; // abas com contador acima da tabela, uma por valor de `property`, mais "Todos"
   listActions?: IFormElement[]; // actions that can be performed on the list
   cardAsALink?: {
     link: string; // e.g.: "/user"
@@ -88,6 +94,20 @@ export interface IList {
     logicalOperator?: "&&" | "!" | "nor" | "||"; // && as default
   }[];
   pagination?: IListPagination;
+}
+
+export type TListTone = "neutral" | "success" | "warning" | "danger";
+
+export interface IListTabOption {
+  value: string | number | boolean;
+  label: TTranslatable;
+  tone?: TListTone; // cor do contador da aba
+}
+
+export interface IListTabs {
+  property: string; // e.g.: "status"
+  options?: IListTabOption[]; // sem options, usa as opções do select de mesmo nome no form do módulo
+  showCounts?: boolean; // contador em cada aba; padrão true
 }
 
 export interface IListPagination {

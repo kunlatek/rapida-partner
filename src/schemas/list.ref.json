@@ -13,6 +13,10 @@
     "title": {
       "$ref": "translatable.ref.json"
     },
+    "description": {
+      "$ref": "translatable.ref.json",
+      "description": "Frase abaixo do título da lista, dizendo para que ela serve."
+    },
     "guards": {
       "type": "array",
       "items": {
@@ -66,6 +70,21 @@
           },
           "isExpansible": {
             "type": "boolean"
+          },
+          "tones": {
+            "type": "object",
+            "description": "type 'badge': tom de cada valor. e.g.: { \"paid\": \"success\", \"overdue\": \"danger\" }",
+            "additionalProperties": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+          },
+          "mobilePriority": {
+            "type": "integer",
+            "enum": [1, 2, 3],
+            "description": "1 e 2 aparecem no card do celular; 3 só no desktop."
+          },
+          "relativeDate": {
+            "type": "string",
+            "enum": ["plain", "deadline"],
+            "description": "Data com texto relativo abaixo ('há 3 dias'); 'deadline' pinta o passado de vermelho e os próximos 7 dias de âmbar."
           },
           "isHtml": {
             "type": "boolean"
@@ -249,6 +268,39 @@
     },
     "listFilters": {
       "$ref": "form-one-of.ref.json"
+    },
+    "quickFilters": {
+      "type": "array",
+      "maxItems": 2,
+      "items": { "type": "string" },
+      "description": "Até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para 'Mais filtros'. Sem isso, os 2 primeiros."
+    },
+    "tabs": {
+      "type": "object",
+      "description": "Abas com contador acima da tabela, uma por valor de `property`, mais 'Todos'.",
+      "properties": {
+        "property": { "type": "string" },
+        "options": {
+          "type": "array",
+          "description": "Sem options, usa as opções do select de mesmo nome no form do módulo.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "number", "boolean"] },
+              "label": { "$ref": "translatable.ref.json" },
+              "tone": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+            },
+            "required": ["value", "label"],
+            "additionalProperties": false
+          }
+        },
+        "showCounts": {
+          "type": "boolean",
+          "description": "Contador em cada aba; padrão true."
+        }
+      },
+      "required": ["property"],
+      "additionalProperties": false
     },
     "contracts": {
       "type": "array",
