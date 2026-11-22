@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.1.0
+
+### ✨ Novidades
+
+Campos opcionais para escolher como as opções de checkbox e radio aparecem. Forms sem eles continuam como estão.
+
+- `display` (`TChoiceDisplay`) em `IFormCheckbox` e `IFormRadio`: `"list"` (padrão, uma opção por linha), `"chips"` (botões lado a lado, para opções curtas como dias da semana) ou `"cards"` (cartões com texto de apoio, para escolhas que mudam o resto do formulário).
+- `description` (`TTranslatable`) em `ICheckboxOption` e `IRadioOption`: texto de apoio da opção, mostrado com `display: "cards"`.
+
 ## 8.0.0
 
 ### 💥 Breaking
