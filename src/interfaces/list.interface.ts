@@ -48,7 +48,7 @@ export interface IList {
     todo?: string;
   }[]; // properties taken from dataSource
   listFilters?: IFormElement[]; // filters to be applied on dataSource
-  quickFilters?: string[]; // até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para "Mais filtros". Sem isso, os 2 primeiros
+  quickFilters?: string[]; // até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área "Mais filtros". Sem isso, todos ficam na área "Filtros"
   tabs?: IListTabs; // abas com contador acima da tabela, uma por valor de `property`, mais "Todos"
   listActions?: IFormElement[]; // actions that can be performed on the list
   cardAsALink?: {

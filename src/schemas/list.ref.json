@@ -273,7 +273,7 @@
       "type": "array",
       "maxItems": 2,
       "items": { "type": "string" },
-      "description": "Até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para 'Mais filtros'. Sem isso, os 2 primeiros."
+      "description": "Até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área 'Mais filtros'. Sem isso, todos ficam na área 'Filtros'."
     },
     "tabs": {
       "type": "object",

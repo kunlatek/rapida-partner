@@ -8,7 +8,7 @@ Campos opcionais em `IList` para a tabela padrão das listas. Listas sem eles co
 
 - `description` (`TTranslatable`): frase abaixo do título, dizendo para que a lista serve.
 - `tabs` (`IListTabs`): abas com contador acima da tabela, uma por valor de `property` mais "Todos". `options` (`IListTabOption[]`: `label` e `value` como no `ISelectOption`, mais `tone`) é opcional: sem ela, valem as opções do select de mesmo nome no form do módulo, com a cor de cada valor em `tones`. `showCounts` (padrão `true`) liga os contadores.
-- `quickFilters` (`string[]`, até 2): `name` dos `listFilters` que ficam ao lado da busca; os demais vão para "Mais filtros". Sem o campo, os 2 primeiros.
+- `quickFilters` (`string[]`, até 2): `name` dos `listFilters` que ficam ao lado da busca; os demais vão para a área "Mais filtros", que abre abaixo da busca. Sem o campo, a barra mostra só a busca e o botão "Filtros", e todos os filtros ficam na área.
 - Em `listItems`:
   - `tones` (`Record<string, TTone>`): tom de cada valor de uma coluna `badge` (`neutral`, `success`, `warning`, `danger`). Em outros tipos de coluna é ignorado.
   - `mobilePriority` (`1 | 2 | 3`): 1 e 2 aparecem no card do celular; 3 só no desktop.
