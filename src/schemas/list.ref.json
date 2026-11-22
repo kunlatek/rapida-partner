@@ -275,6 +275,14 @@
       "items": { "type": "string" },
       "description": "Até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área 'Mais filtros'. Sem isso, todos ficam na área 'Filtros'."
     },
+    "views": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": { "type": "string", "enum": ["table", "list"] },
+      "description": "Modos de ver a lista; o primeiro é o padrão. Com os dois, aparece o seletor Tabela/Lista."
+    },
     "kpis": {
       "type": "array",
       "maxItems": 4,

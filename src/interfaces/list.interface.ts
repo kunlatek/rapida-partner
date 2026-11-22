@@ -51,6 +51,7 @@ export interface IList {
   quickFilters?: string[]; // até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área "Mais filtros". Sem isso, todos ficam na área "Filtros"
   tabs?: IListTabs; // abas com contador acima da tabela, uma por valor de `property`, mais "Todos"
   kpis?: IListKpi[]; // até 4 números-resumo acima da tabela; clicar num deles filtra a lista
+  views?: TListView[]; // modos de ver a lista; o primeiro é o padrão. Com os dois, aparece o seletor Tabela/Lista e a escolha fica salva por pessoa e por tela
   listActions?: IFormElement[]; // actions that can be performed on the list
   cardAsALink?: {
     link: string; // e.g.: "/user"
@@ -125,3 +126,7 @@ export interface IListKpi {
   sumOf?: string; // campo numérico do form do módulo, e.g.: "accountAmount"
   tone?: TTone | "brand"; // "brand" no número principal (no máximo 1), "danger" para atraso, "warning" para hoje
 }
+
+// "table": tabela com colunas, para comparar e ordenar. "list": um card largo por registro, com
+// avatar, título, situação e até 4 campos, para entender e agir em cada um.
+export type TListView = "table" | "list";
