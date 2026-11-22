@@ -10,6 +10,10 @@ Campos opcionais para escolher como as opções de checkbox e radio aparecem. Fo
 - `description` (`TTranslatable`) em `ICheckboxOption` e `IRadioOption`: texto de apoio da opção, mostrado com `display: "cards"`.
 - `itemLabel` (`TTranslatable`) em `IFormArray`: nome de um item no singular ("dependente"), usado em "Adicionar dependente", no título de cada item e no remover. Sem ele, a tela usa "item".
 
+### 📝 Documentação
+
+- `IFormFile.maxSize` é o tamanho máximo de cada arquivo, em bytes (5 MB = 5242880). O front-end gerado mostra o limite na área de envio e recusa arquivos maiores.
+
 ## 8.0.0
 
 ### 💥 Breaking
