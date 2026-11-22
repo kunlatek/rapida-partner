@@ -2,6 +2,7 @@
 
 import { tsProjectToJsonProject } from "./src/controllers/ts_project_to_json_project";
 import { validateProjectJson } from "./src/utils/json";
+import { checkListReferences } from "./src/utils/list-references";
 import type { IProject } from "./src/interfaces/project.interface";
 import * as fs from "fs";
 import * as path from "path";
@@ -75,6 +76,10 @@ async function main() {
     if (!isValid) {
       console.error("Generated JSON validation failed.");
       process.exit(1);
+    }
+
+    for (const warning of checkListReferences(project)) {
+      console.warn("Aviso: " + warning);
     }
 
     console.info("Project JSON successfully generated and validated.");

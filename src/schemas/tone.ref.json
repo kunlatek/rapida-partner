@@ -1,0 +1,6 @@
+{
+  "$id": "tone.ref.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "string",
+  "enum": ["neutral", "success", "warning", "danger"]
+}
