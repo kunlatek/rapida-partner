@@ -43,6 +43,7 @@ export interface IList {
     tones?: Record<string, TTone>; // só em type "badge" (nos outros tipos é ignorado): tom de cada valor. e.g.: { "paid": "success", "overdue": "danger" }
     mobilePriority?: 1 | 2 | 3; // 1 e 2 aparecem no card do celular; 3 só no desktop
     relativeDate?: "plain" | "deadline"; // data com texto relativo abaixo ("há 3 dias"); "deadline" pinta o passado de vermelho e os próximos 7 dias de âmbar
+    columnGroup?: TTranslatable; // grupo da coluna (e.g.: "Valores"), escrito acima do nome e usado no seletor de colunas; colunas do mesmo grupo devem ficar juntas
     conditions?: IFormCondition;
     businessRules?: IBusinessRule[];
     todo?: string;
@@ -51,6 +52,8 @@ export interface IList {
   quickFilters?: string[]; // até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área "Mais filtros". Sem isso, todos ficam na área "Filtros"
   tabs?: IListTabs; // abas com contador acima da tabela, uma por valor de `property`, mais "Todos"
   kpis?: IListKpi[]; // até 4 números-resumo acima da tabela; clicar num deles filtra a lista
+  columnViews?: IListColumnView[]; // visualizações de colunas (e.g.: Resumo, Fiscal, Completo); com elas aparece o seletor de colunas e a escolha fica salva por pessoa e por tela
+  stickyStart?: boolean; // em tabelas largas, a coluna de identificação (title) fica fixa à esquerda e as ações à direita enquanto o meio rola
   views?: TListView[]; // modos de ver a lista; o primeiro é o padrão. Com os dois, aparece o seletor Tabela/Lista e a escolha fica salva por pessoa e por tela
   listActions?: IFormElement[]; // actions that can be performed on the list
   cardAsALink?: {
@@ -130,3 +133,8 @@ export interface IListKpi {
 // "table": tabela com colunas, para comparar e ordenar. "list": um card largo por registro, com
 // avatar, título, situação e até 4 campos, para entender e agir em cada um.
 export type TListView = "table" | "list";
+
+export interface IListColumnView {
+  label: TTranslatable; // e.g.: "Resumo"
+  columns: string[]; // property de cada listItem visível nesta visualização; a coluna title aparece sempre
+}
