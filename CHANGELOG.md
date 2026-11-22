@@ -10,6 +10,7 @@ Campos opcionais para escolher como as opções de checkbox e radio aparecem. Fo
 - `description` (`TTranslatable`) em `ICheckboxOption` e `IRadioOption`: texto de apoio da opção, mostrado com `display: "cards"`.
 - `itemLabel` (`TTranslatable`) em `IFormArray`: nome de um item no singular ("dependente"), usado em "Adicionar dependente", no título de cada item e no remover. Sem ele, a tela usa "item".
 - `recordTimestamp` (`boolean`) em `IFormSwitch`: consentimento. Ao ligar, o backend gerado grava a data e o usuário em `<name>At` e `<name>By`; ao desligar, limpa os dois. O formulário mostra "Registrado em ..." abaixo do switch.
+- `kpis` (`IListKpi[]`, até 4) em `IList`: números-resumo acima da tabela. Cada um conta os registros do `filter` (filtro Mongo, com `"$today"` e `"$tomorrow"` para datas do dia) ou, com `sumOf`, soma esse campo numérico. `tone` (`TTone` ou `"brand"`) colore o valor. Clicar aplica o filtro na lista.
 - `range` (`boolean`) em `IFormDatePicker`, só em `listFilters`: o filtro vira um período com "De" e "Até" e atalhos (hoje, esta semana, este mês, mês passado), e a lista mostra os registros com a data dentro dele. Em formulários é ignorado.
 
 ### 📝 Documentação

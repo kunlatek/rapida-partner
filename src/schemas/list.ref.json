@@ -275,6 +275,23 @@
       "items": { "type": "string" },
       "description": "Até 2 `name` de listFilters que ficam ao lado da busca; os demais vão para a área 'Mais filtros'. Sem isso, todos ficam na área 'Filtros'."
     },
+    "kpis": {
+      "type": "array",
+      "maxItems": 4,
+      "description": "Até 4 números-resumo acima da tabela; clicar num deles filtra a lista.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "$ref": "translatable.ref.json" },
+          "description": { "$ref": "translatable.ref.json" },
+          "filter": { "type": "object" },
+          "sumOf": { "type": "string" },
+          "tone": { "oneOf": [{ "$ref": "tone.ref.json" }, { "const": "brand" }] }
+        },
+        "required": ["label"],
+        "additionalProperties": false
+      }
+    },
     "tabs": {
       "type": "object",
       "description": "Abas com contador acima da tabela, uma por valor de `property`, mais 'Todos'.",
