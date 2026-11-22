@@ -27,7 +27,7 @@ export type TStoreRadius = "none" | "soft" | "rounded";
 /**
  * Configuração da loja: identidade, visual, contato, dados legais, redes,
  * comercial e liga e desliga. É o registro único editado no Backoffice do
- * vendedor pelo módulo pronto `getStoreSettingsModule` (os nomes dos campos do
+ * vendedor pelo módulo de rapida-projects `getStoreSettingsModule` (os nomes dos campos do
  * form são estas mesmas chaves) e também o formato dos valores iniciais em
  * `IProjectStore.defaults`.
  *

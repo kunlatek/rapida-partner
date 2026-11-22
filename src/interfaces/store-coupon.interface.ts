@@ -2,10 +2,10 @@
 export type TStoreCouponDiscountType = "percentage" | "value";
 
 /**
- * Cupom de desconto cadastrado no Backoffice do vendedor pelo módulo pronto
+ * Cupom de desconto cadastrado no Backoffice do vendedor pelo módulo de rapida-projects
  * getStoreCouponsModule e lido pela loja por IMarketplace.couponsEndpoint. A
  * loja valida e desconta no servidor; o uso é contado pelos pedidos da loja.
- * Os campos são os nomes do form do módulo pronto.
+ * Os campos são os nomes do form do módulo de rapida-projects.
  */
 export interface IStoreCoupon {
   // Código digitado pelo cliente; um por workspace, sem diferenciar maiúsculas.

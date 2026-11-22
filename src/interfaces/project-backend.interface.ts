@@ -68,7 +68,7 @@ interface IMarketplace {
   // vem daqui e o backend calcula o valor do pedido; sem ele, usa product.price.
   productSellingSettingsEndpoint?: string;
   // Endpoint, na mesma base de productBaseUrl, da configuração da loja
-  // (IStoreSettings) salva no Backoffice do vendedor pelo módulo
+  // (IStoreSettings) salva no Backoffice do vendedor pelo módulo de rapida-projects
   // getStoreSettingsModule. Sem ele, a loja usa só IProject.store.defaults.
   storeSettingsEndpoint?: string;
   // Workspace do vendedor (dono dos dados). A loja só lê produtos, preços e
@@ -86,7 +86,7 @@ interface IMarketplace {
   // movimentações (ex.: "/stock-ins/aggregations/balance").
   stockInAggregateEndpoint?: string;
   stockOutAggregateEndpoint?: string;
-  // Pedidos enviados ao vendedor (módulo pronto getStoreOrdersModule, contrato
+  // Pedidos enviados ao vendedor (módulo de rapida-projects getStoreOrdersModule, contrato
   // público com access "trustedCallers"). A loja cria o pedido aprovado e lê
   // dali o andamento da entrega (em separação, enviado, entregue, rastreio).
   storeOrdersEndpoint?: string;
@@ -96,17 +96,17 @@ interface IMarketplace {
   // Em que campo do produto do vendedor está cada informação usada pela
   // vitrine. O gerador tem um padrão para cada campo omitido.
   productFieldMap?: IMarketplaceProductFieldMap;
-  // Cupons do vendedor (módulo pronto getStoreCouponsModule, funcionalidade
+  // Cupons do vendedor (módulo de rapida-projects getStoreCouponsModule, funcionalidade
   // "coupons"). A loja valida o código e desconta no servidor.
   couponsEndpoint?: string;
-  // Avaliações (módulo pronto getStoreReviewsModule, funcionalidade
+  // Avaliações (módulo de rapida-projects getStoreReviewsModule, funcionalidade
   // "reviews"). A loja cria a avaliação de quem recebeu o pedido e lê as
   // aprovadas; a nota média vem da agregação "<endpoint>/aggregations/rating".
   reviewsEndpoint?: string;
-  // Pedidos de devolução e troca (módulo pronto getStoreReturnsModule,
+  // Pedidos de devolução e troca (módulo de rapida-projects getStoreReturnsModule,
   // funcionalidade "returns").
   returnsEndpoint?: string;
-  // Artigos do blog (módulo pronto getStoreBlogModule, funcionalidade "blog").
+  // Artigos do blog (módulo de rapida-projects getStoreBlogModule, funcionalidade "blog").
   blogPostsEndpoint?: string;
 }
 
