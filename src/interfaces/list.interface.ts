@@ -5,6 +5,8 @@ import type { IApiRequest } from "./form-input.interface";
 import type { IFormElement } from "./form.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { TTranslatable } from "./translatable.interface";
+import type { ISelectOption } from "./form-select.interface";
+import type { TTone } from "./tone.interface";
 
 export interface IList {
   componentType: "list";
@@ -38,7 +40,7 @@ export interface IList {
     dataType: EDataType;
     isMultiple?: boolean;
     isExpansible?: boolean;
-    tones?: Record<string, TListTone>; // type "badge": tom de cada valor. e.g.: { "paid": "success", "overdue": "danger" }
+    tones?: Record<string, TTone>; // só em type "badge" (nos outros tipos é ignorado): tom de cada valor. e.g.: { "paid": "success", "overdue": "danger" }
     mobilePriority?: 1 | 2 | 3; // 1 e 2 aparecem no card do celular; 3 só no desktop
     relativeDate?: "plain" | "deadline"; // data com texto relativo abaixo ("há 3 dias"); "deadline" pinta o passado de vermelho e os próximos 7 dias de âmbar
     conditions?: IFormCondition;
@@ -96,17 +98,14 @@ export interface IList {
   pagination?: IListPagination;
 }
 
-export type TListTone = "neutral" | "success" | "warning" | "danger";
-
-export interface IListTabOption {
-  value: string | number | boolean;
-  label: TTranslatable;
-  tone?: TListTone; // cor do contador da aba
+export interface IListTabOption extends Pick<ISelectOption, "label" | "value"> {
+  tone?: TTone; // cor do contador da aba
 }
 
 export interface IListTabs {
   property: string; // e.g.: "status"
   options?: IListTabOption[]; // sem options, usa as opções do select de mesmo nome no form do módulo
+  tones?: Record<string, TTone>; // tom de cada aba pelo valor, para usar com as opções do select. e.g.: { "overdue": "danger" }
   showCounts?: boolean; // contador em cada aba; padrão true
 }
 

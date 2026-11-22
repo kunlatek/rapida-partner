@@ -7,14 +7,17 @@
 Campos opcionais em `IList` para a tabela padrão das listas. Listas sem eles continuam como estão.
 
 - `description` (`TTranslatable`): frase abaixo do título, dizendo para que a lista serve.
-- `tabs` (`IListTabs`): abas com contador acima da tabela, uma por valor de `property` mais "Todos". `options` (`IListTabOption[]`: `value`, `label`, `tone`) é opcional: sem ela, valem as opções do select de mesmo nome no form do módulo. `showCounts` (padrão `true`) liga os contadores.
+- `tabs` (`IListTabs`): abas com contador acima da tabela, uma por valor de `property` mais "Todos". `options` (`IListTabOption[]`: `label` e `value` como no `ISelectOption`, mais `tone`) é opcional: sem ela, valem as opções do select de mesmo nome no form do módulo, com a cor de cada valor em `tones`. `showCounts` (padrão `true`) liga os contadores.
 - `quickFilters` (`string[]`, até 2): `name` dos `listFilters` que ficam ao lado da busca; os demais vão para "Mais filtros". Sem o campo, os 2 primeiros.
 - Em `listItems`:
-  - `tones` (`Record<string, TListTone>`): tom de cada valor de uma coluna `badge` (`neutral`, `success`, `warning`, `danger`).
+  - `tones` (`Record<string, TTone>`): tom de cada valor de uma coluna `badge` (`neutral`, `success`, `warning`, `danger`). Em outros tipos de coluna é ignorado.
   - `mobilePriority` (`1 | 2 | 3`): 1 e 2 aparecem no card do celular; 3 só no desktop.
   - `relativeDate` (`"plain" | "deadline"`): texto relativo abaixo da data ("há 3 dias", "em 4 dias"); `deadline` pinta o passado de vermelho e os próximos 7 dias de âmbar.
 
-Requer o `rapida-code-generator` com a tabela padrão.
+- `TTone` (`tone.interface.ts`, schema `tone.ref.json`): tom de cor único, usado pelas listas e pelo `IDataStat`. `TDataStatTone` continua existindo como apelido de `TTone`.
+- `bun index.ts` avisa quando `quickFilters` cita um nome fora de `listFilters` ou quando `tabs.property` não existe em nenhum form do módulo (sem `tabs.options`).
+
+Requer o `rapida-code-generator` com a tabela padrão (rapida-code-generator#100).
 
 
 ## 7.2.0

@@ -84,8 +84,7 @@
       "description": "Cor do card conforme o valor calculado. A primeira regra que casar define o tom; sem nenhuma, vale default (\"neutral\").",
       "properties": {
         "default": {
-          "type": "string",
-          "enum": ["neutral", "success", "warning", "danger"]
+          "$ref": "tone.ref.json"
         },
         "rules": {
           "type": "array",
@@ -99,8 +98,7 @@
                 "description": "Valor comparado com o resultado. Aceita as mesmas datas relativas dos filtros."
               },
               "tone": {
-                "type": "string",
-                "enum": ["neutral", "success", "warning", "danger"]
+                "$ref": "tone.ref.json"
               }
             },
             "required": ["comparisonOperator", "value", "tone"],

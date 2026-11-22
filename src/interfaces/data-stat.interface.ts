@@ -8,6 +8,7 @@ import type {
 import type { IApiRequest } from "./form-input.interface";
 import type { IBusinessRule } from "./project.interface";
 import type { TTranslatable } from "./translatable.interface";
+import type { TTone } from "./tone.interface";
 
 /**
  * Datas relativas, resolvidas no navegador no momento da consulta.
@@ -49,7 +50,7 @@ export interface IDataStatFilter {
  * Tom do card: "neutral" (padrão), "success" (valor em verde), "warning"
  * (card âmbar) e "danger" (card vermelho).
  */
-export type TDataStatTone = "neutral" | "success" | "warning" | "danger";
+export type TDataStatTone = TTone;
 
 /**
  * Regra de tom avaliada sobre o valor já calculado, no mesmo formato de

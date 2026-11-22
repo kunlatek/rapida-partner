@@ -73,8 +73,8 @@
           },
           "tones": {
             "type": "object",
-            "description": "type 'badge': tom de cada valor. e.g.: { \"paid\": \"success\", \"overdue\": \"danger\" }",
-            "additionalProperties": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+            "description": "Só em type 'badge' (nos outros tipos é ignorado): tom de cada valor. e.g.: { \"paid\": \"success\", \"overdue\": \"danger\" }",
+            "additionalProperties": { "$ref": "tone.ref.json" }
           },
           "mobilePriority": {
             "type": "integer",
@@ -288,11 +288,16 @@
             "properties": {
               "value": { "type": ["string", "number", "boolean"] },
               "label": { "$ref": "translatable.ref.json" },
-              "tone": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+              "tone": { "$ref": "tone.ref.json" }
             },
             "required": ["value", "label"],
             "additionalProperties": false
           }
+        },
+        "tones": {
+          "type": "object",
+          "description": "Tom de cada aba pelo valor, para usar com as opções do select. e.g.: { \"overdue\": \"danger\" }",
+          "additionalProperties": { "$ref": "tone.ref.json" }
         },
         "showCounts": {
           "type": "boolean",
