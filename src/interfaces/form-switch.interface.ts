@@ -16,4 +16,7 @@ export interface IFormSwitch {
   businessRules?: IBusinessRule[];
   elementDescription?: string;
   space?: 1 | 2 | 3 | 4;
+  // Consentimento: ao ligar, o backend grava a data e o usuário em <name>At e <name>By
+  // (ao desligar, limpa os dois). O formulário mostra "Registrado em ..." abaixo do switch.
+  recordTimestamp?: boolean;
 }

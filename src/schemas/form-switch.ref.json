@@ -43,6 +43,9 @@
     },
     "elementDescription": {
       "type": "string"
+    },
+    "recordTimestamp": {
+      "type": "boolean"
     }
   },
   "required": ["type", "name", "label"]
