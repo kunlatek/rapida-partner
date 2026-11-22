@@ -19,4 +19,8 @@ export interface IFormDatePicker {
   businessRules?: IBusinessRule[];
   elementDescription?: string;
   space?: 1 | 2 | 3 | 4;
+  // Só em listFilters: vira um filtro de período, com "De" e "Até" e atalhos (hoje, esta
+  // semana, este mês, mês passado). Busca os registros com a data dentro do período.
+  // Em formulários é ignorado.
+  range?: boolean;
 }
