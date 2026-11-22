@@ -1,6 +1,6 @@
 /**
  * Artigo do blog da loja (funcionalidade "blog"), escrito no Backoffice do
- * vendedor pelo módulo pronto getStoreBlogModule e lido pela loja por
+ * vendedor pelo módulo de rapida-projects getStoreBlogModule e lido pela loja por
  * IMarketplace.blogPostsEndpoint. Os campos são os nomes do form.
  */
 export interface IStoreBlogPost {

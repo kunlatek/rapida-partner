@@ -1,6 +1,6 @@
 /**
  * Andamento da entrega de um pedido no vendedor. O pagamento continua sendo da
- * loja; separação, envio e rastreio são do vendedor (módulo pronto
+ * loja; separação, envio e rastreio são do vendedor (módulo de rapida-projects
  * getStoreOrdersModule).
  */
 export type TStoreOrderFulfillmentStatus = "received" | "preparing" | "shipped" | "delivered" | "cancelled";
@@ -14,7 +14,7 @@ export interface IStoreOrderItem {
 
 /**
  * Pedido aprovado que a loja envia ao vendedor por IMarketplace.storeOrdersEndpoint.
- * Os campos são os nomes do form do módulo pronto.
+ * Os campos são os nomes do form do módulo de rapida-projects.
  */
 export interface IStoreOrder {
   // Id do pedido na loja; um pedido por storeOrderId.

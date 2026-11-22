@@ -65,6 +65,12 @@ Para criar seu próprio "mapa", utilize as interfaces TypeScript disponíveis na
 - `form.interface.ts`, `list.interface.ts`, `data-table.interface.ts`, `data-chart.interface.ts`, etc.: Definem os tipos de componentes de UI e suas propriedades (campos de formulário, listas, tabelas, gráficos, etc.).
     
 
+#### O que fica (e o que não fica) neste pacote
+
+O `rapida-partner` guarda só o **contrato** da DSL: interfaces (`src/interfaces/`), enums (`src/enums/`), schemas (`src/schemas/`) e o `index.ts` que monta e valida o `rapidaObject.json`.
+
+Instâncias da DSL — módulos, forms, lists e elements prontos para um projeto usar — ficam no `rapida-projects` (por exemplo, os módulos do Backoffice do vendedor da loja estão em `rapida-projects/src/modules/store/`). Quando um contrato de integração exige nomes de campos fixos (como `IStoreSettings` e `IStoreOrder`), a interface fica aqui e o módulo que a preenche fica lá, tipado contra ela.
+
 ### 5. Como Funciona a Validação
 
 A validação é feita através do módulo `src/utils/json.ts`, que utiliza as bibliotecas `ajv` e `ajv-formats`. O processo:

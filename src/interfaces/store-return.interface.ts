@@ -14,7 +14,7 @@ export interface IStoreReturnItem {
 
 /**
  * Pedido de devolução ou troca aberto pelo cliente em Minha conta e enviado
- * pela loja ao vendedor (IMarketplace.returnsEndpoint, módulo pronto
+ * pela loja ao vendedor (IMarketplace.returnsEndpoint, módulo de rapida-projects
  * getStoreReturnsModule). O vendedor aprova ou recusa e acompanha o retorno;
  * o reembolso continua sendo da loja (estorno no gateway). Os campos são os
  * nomes do form.

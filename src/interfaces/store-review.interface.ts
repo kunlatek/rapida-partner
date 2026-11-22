@@ -3,7 +3,7 @@ export type TStoreReviewStatus = "pending" | "approved" | "rejected";
 
 /**
  * Avaliação de produto enviada pela loja ao vendedor (IMarketplace.reviewsEndpoint,
- * módulo pronto getStoreReviewsModule). Só cliente com pedido entregue avalia;
+ * módulo de rapida-projects getStoreReviewsModule). Só cliente com pedido entregue avalia;
  * o vendedor modera e pode responder. Os campos são os nomes do form.
  */
 export interface IStoreReview {

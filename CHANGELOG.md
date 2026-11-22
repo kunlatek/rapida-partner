@@ -1,5 +1,15 @@
 # Changelog
 
+## 8.0.0
+
+### 💥 Breaking
+
+Os módulos prontos da loja saem do pacote. O `rapida-partner` volta a guardar só contratos (interfaces, enums, schemas e o `index.ts`); instâncias da DSL ficam no `rapida-projects`.
+
+- Removido `src/modules/` (`getStoreSettingsModule`, `getStoreOrdersModule`, `getStoreCouponsModule`, `getStoreReviewsModule`, `getStoreReturnsModule`, `getStoreBlogModule`). Eles estão agora em `rapida-projects/src/modules/store/`, com o mesmo conteúdo.
+- Migração: troque `rapida-partner/src/modules/<módulo>/...` por `src/modules/store/<módulo>/...` do `rapida-projects`. O `rapidaObject.json` gerado não muda.
+- Interfaces, schemas e `IMarketplace` não mudam; só os comentários passam a apontar para o `rapida-projects`.
+
 ## 7.3.0
 
 ### ✨ Novidades
