@@ -74,7 +74,7 @@
           "tones": {
             "type": "object",
             "description": "type 'badge': tom de cada valor. e.g.: { \"paid\": \"success\", \"overdue\": \"danger\" }",
-            "additionalProperties": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+            "additionalProperties": { "type": "string", "enum": ["neutral", "info", "success", "warning", "danger", "accent"] }
           },
           "mobilePriority": {
             "type": "integer",
@@ -288,7 +288,7 @@
             "properties": {
               "value": { "type": ["string", "number", "boolean"] },
               "label": { "$ref": "translatable.ref.json" },
-              "tone": { "type": "string", "enum": ["neutral", "success", "warning", "danger"] }
+              "tone": { "type": "string", "enum": ["neutral", "info", "success", "warning", "danger", "accent"] }
             },
             "required": ["value", "label"],
             "additionalProperties": false

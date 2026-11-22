@@ -1,5 +1,26 @@
 # Changelog
 
+## 7.4.0
+
+### ✨ Novidades
+
+Campos opcionais em `IKanban` para o kanban com filtros de pessoas. Kanbans sem eles continuam como estão.
+
+- `itemsLabel` (`TTranslatable`): nome dos cards no plural ("tarefas"), usado no resumo do topo e em "Mostrando X de Y".
+- `createLabel` (`TTranslatable`): texto do botão de criar ("Nova tarefa").
+- `columnTones` (`Record<string, TListTone>`): cor do ponto de cada coluna, pelo valor da coluna.
+- `doneColumns` (`string[]`): colunas finais; cards nelas não contam como atrasados.
+- `hideEmptyColumns` (padrão `true`): começa recolhendo as colunas sem cards.
+- `quickFilters` (`IKanbanQuickFilter[]`): botões de filtro rápido com contador. `match`: `overdue` (data de `property` antes de hoje), `dueToday` (igual a hoje) ou `equals` (igual a `value`).
+- Em `kanbanCardItems`:
+  - `type: "person"`: pessoa do card (avatar com iniciais). `roleShort` é a letra do papel no avatar; `labelFields` são os campos do nome (sem eles, os do autocomplete de mesmo nome no form relacionado). As pessoas alimentam os filtros "Só eu", "Pessoas", "Sem responsável" e "Papel".
+  - `type: "level"` com `levels`: valores do menor para o maior, mostrados como tracinhos (ex.: complexidade).
+  - `tones` e `icons` (para `badge`): cor e ícone Lucide de cada valor (ex.: prioridade).
+  - `relativeDate` (`"plain" | "deadline"`) em datas: prazo com texto relativo; `deadline` pinta o atraso de vermelho e os próximos 7 dias de âmbar.
+- `TListTone` ganha `info` (azul) e `accent` (roxo), também aceitos nas listas.
+
+Requer o `rapida-code-generator` com o kanban de tarefas.
+
 ## 7.3.0
 
 ### ✨ Novidades

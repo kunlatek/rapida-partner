@@ -13,6 +13,45 @@
       "type": "string",
       "description": "ID do formulário relacionado para criação/edição de cards (opcional)"
     },
+    "itemsLabel": {
+      "$ref": "translatable.ref.json",
+      "description": "Nome dos cards no plural, usado no resumo e na contagem. e.g.: 'tarefas'"
+    },
+    "createLabel": {
+      "$ref": "translatable.ref.json",
+      "description": "Texto do botão de criar. e.g.: 'Nova tarefa'"
+    },
+    "columnTones": {
+      "type": "object",
+      "description": "Cor do ponto de cada coluna, pelo valor da coluna.",
+      "additionalProperties": { "type": "string", "enum": ["neutral", "info", "success", "warning", "danger", "accent"] }
+    },
+    "doneColumns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Valores das colunas finais: cards nelas não contam como atrasados."
+    },
+    "hideEmptyColumns": {
+      "type": "boolean",
+      "description": "Começa recolhendo as colunas sem cards; padrão true."
+    },
+    "quickFilters": {
+      "type": "array",
+      "description": "Botões de filtro rápido com contador, abaixo da busca.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "$ref": "translatable.ref.json" },
+          "tone": { "type": "string", "enum": ["neutral", "info", "success", "warning", "danger", "accent"] },
+          "property": { "type": "string" },
+          "match": { "type": "string", "enum": ["overdue", "dueToday", "equals"] },
+          "value": { "type": ["string", "number", "boolean"] }
+        },
+        "required": ["id", "label", "property", "match"],
+        "additionalProperties": false
+      }
+    },
     "boardsProperty": {
       "$ref": "form-autocomplete.ref.json",
       "description": "Element autocomplete que associa o card a um board e precisa estar presente no form de tasks relacionados ao kanban"
@@ -64,7 +103,9 @@
               "images",
               "icon",
               "badge",
-              "editable"
+              "editable",
+              "person",
+              "level"
             ]
           },
           "isHtml": {
@@ -90,6 +131,35 @@
           },
           "isExpansible": {
             "type": "boolean"
+          },
+          "tones": {
+            "type": "object",
+            "description": "type 'badge': tom de cada valor.",
+            "additionalProperties": { "type": "string", "enum": ["neutral", "info", "success", "warning", "danger", "accent"] }
+          },
+          "icons": {
+            "type": "object",
+            "description": "type 'badge': ícone Lucide de cada valor.",
+            "additionalProperties": { "type": "string" }
+          },
+          "relativeDate": {
+            "type": "string",
+            "enum": ["plain", "deadline"],
+            "description": "Datas: texto relativo ('em 3 dias'); 'deadline' pinta o atraso de vermelho e os próximos 7 dias de âmbar."
+          },
+          "levels": {
+            "type": "array",
+            "items": { "type": ["string", "number"] },
+            "description": "type 'level': valores do menor para o maior, um tracinho por valor."
+          },
+          "roleShort": {
+            "type": "string",
+            "description": "type 'person': letra do papel no avatar."
+          },
+          "labelFields": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "type 'person': campos do nome da pessoa; sem isso, os do autocomplete de mesmo nome no form relacionado."
           },
           "conditions": {
             "$ref": "condition.ref.json"

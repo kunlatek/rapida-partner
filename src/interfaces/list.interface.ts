@@ -96,7 +96,7 @@ export interface IList {
   pagination?: IListPagination;
 }
 
-export type TListTone = "neutral" | "success" | "warning" | "danger";
+export type TListTone = "neutral" | "info" | "success" | "warning" | "danger" | "accent"; // info: azul; accent: roxo
 
 export interface IListTabOption {
   value: string | number | boolean;
