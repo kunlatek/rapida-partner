@@ -31,6 +31,9 @@
     },
     "isRequired": {
       "type": "boolean"
+    },
+    "itemLabel": {
+      "$ref": "translatable.ref.json"
     }
   },
   "required": [
