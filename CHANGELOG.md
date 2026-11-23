@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.2.0
+
+### ✨ Novidades
+
+Campos opcionais em `IAgentContractBinding.intentMapping.formFields[]` para o agente de IA consultar dados de clientes sem expor registros de terceiros. Bindings sem eles continuam como estão.
+
+- `isRequired` (`boolean`): o parâmetro entra em `required` no schema da tool em qualquer action, inclusive `"get"`, e a tool gerada recusa a chamada sem ele antes de chamar a API.
+- `matchMode` (`"exact" | "partial"`, só em `"get"`): `"exact"` compara o texto inteiro (sem diferenciar maiúsculas) em vez de buscar por trecho. Padrão `"partial"`.
+
 ## 8.1.1
 
 ### 🐛 Correções
