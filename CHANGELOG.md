@@ -1,5 +1,15 @@
 # Changelog
 
+## 8.1.1
+
+### 🐛 Correções
+
+Só avisos da validação; nenhum contrato muda.
+
+- `recordTimestamp` dentro de um array ou fora do primeiro form do módulo agora dá aviso: o backend gerado só grava o consentimento no nível de cima do primeiro form, então nesses lugares o aceite não era registrado. Os forms de perfil (`flows.profiles`) também são conferidos.
+- A colisão dos campos do consentimento compara o nome como o gerador grava no backend: `accepted-terms` gera `accepted_termsAt`.
+- Primeiros testes do pacote (`bun test`), para `checkFormReferences`.
+
 ## 8.1.0
 
 ### ✨ Novidades
