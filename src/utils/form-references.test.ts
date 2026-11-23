@@ -29,9 +29,14 @@ describe("recordTimestamp", () => {
     expect(warnings).toEqual(["f: recordTimestamp em \"terms\" está dentro de um array; só vale no nível de cima do form, e o aceite não é registrado"]);
   });
 
-  test("num segundo form do módulo avisa que o aceite não é registrado", () => {
-    const warnings = checkFormReferences(projectWith([form("first", [input("name")]), form("second", [consent("terms")])]));
-    expect(warnings).toEqual(["second: recordTimestamp em \"terms\" só vale no primeiro form do módulo; neste o aceite não é registrado"]);
+  test("num segundo form do módulo, com entidade própria, grava normalmente", () => {
+    expect(checkFormReferences(projectWith([form("first", [input("name")]), form("second", [consent("terms")])]))).toEqual([]);
+  });
+
+  test("num form que repete a entidade de um form anterior avisa que o aceite não é registrado", () => {
+    const contracts = [{ id: "people", endpoint: "/people", actions: ["create"] }];
+    const warnings = checkFormReferences(projectWith([{ ...form("first", [input("name")]), contracts }, { ...form("second", [consent("terms")]), contracts }]));
+    expect(warnings).toEqual(["second: recordTimestamp em \"terms\" não grava nada: o form usa a mesma entidade (contracts[0].id) de outro form anterior, e o backend vem daquele"]);
   });
 
   test("forms de perfil (pessoa e empresa) também gravam, e a colisão é conferida", () => {

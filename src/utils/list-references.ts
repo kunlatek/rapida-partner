@@ -1,31 +1,17 @@
 import type { IList } from "../interfaces/list.interface";
 import type { IComponent, IModule, IProject } from "../interfaces/project.interface";
-import { allFields, fieldScopes, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
+import { formEntitiesOf, type IFormEntity } from "./entities";
+import { allFields, type IFlatElement } from "./form-elements";
+import { kpiFieldsOf, kpiWarnings } from "./list-kpi-references";
 
-interface IModuleFields {
-  names: Set<string>;
-  fields: Map<string, IFlatElement>;
-}
+const NO_GROUP: string = "<sem grupo>";
 
 const namesOf = (elements: unknown[] | undefined): Set<string> =>
   new Set(allFields(elements).flatMap((field: IFlatElement): string[] => (field.name ? [field.name] : [])));
 
 const isList = (component: IComponent): component is IList => component.componentType === "list";
 
-const namedFields = (fields: IFlatElement[]): [string, IFlatElement][] =>
-  fields.flatMap((field: IFlatElement): [string, IFlatElement][] => (field.name ? [[field.name, field]] : []));
-
-// names: todos os campos, inclusive de arrays (tabs.property). fields: só o nível de cima de cada form,
-// que é o que o registro tem e o que os KPIs conseguem contar e somar.
-const moduleFieldsOf = (module: IModule): IModuleFields => {
-  const elementsOf = (component: IComponent): unknown[] | undefined =>
-    component.componentType === "form" ? component.elements : undefined;
-  const forms: IComponent[] = module.components.filter((component: IComponent) => component.componentType === "form");
-  return {
-    names: new Set(namedFields(forms.flatMap((form: IComponent) => allFields(elementsOf(form)))).map(([name]) => name)),
-    fields: new Map(namedFields(forms.flatMap((form: IComponent) => fieldScopes(elementsOf(form))[0]))),
-  };
-};
+const isForm = (component: IComponent): boolean => component.componentType === "form";
 
 const columnViewWarnings = (list: IList): string[] => {
   const properties = new Set(list.listItems.map((item) => item.property).filter(Boolean));
@@ -36,64 +22,44 @@ const columnViewWarnings = (list: IList): string[] => {
   );
 };
 
+// Compara cada coluna com a anterior, contando "sem grupo" como um grupo, para pegar também um grupo
+// interrompido por uma coluna sem columnGroup.
 const columnGroupWarnings = (list: IList): string[] => {
-  const groups: string[] = list.listItems.filter((item) => item.columnGroup).map((item) => JSON.stringify(item.columnGroup));
-  const seen: string[] = [];
+  if (!list.listItems.some((item) => item.columnGroup)) return [];
+  const groups: string[] = list.listItems.map((item) => (item.columnGroup ? JSON.stringify(item.columnGroup) : NO_GROUP));
+  const closed = new Set<string>();
   const warnings: string[] = [];
   groups.forEach((group: string, index: number) => {
-    if (index > 0 && group !== groups[index - 1] && seen.includes(group)) {
+    const previous: string | undefined = groups[index - 1];
+    if (previous !== undefined && previous !== group) closed.add(previous);
+    if (group !== NO_GROUP && group !== previous && closed.has(group)) {
       warnings.push(list.id + ": o columnGroup " + group + " aparece separado; deixe as colunas do mesmo grupo juntas");
     }
-    if (!seen.includes(group)) seen.push(group);
   });
   return warnings;
 };
 
-const kpiWarnings = (list: IList, fields: Map<string, IFlatElement>): string[] => {
-  const kpis = list.kpis ?? [];
+const listWarnings = (list: IList, module: IModule, entities: IFormEntity[]): string[] => {
   const warnings: string[] = [];
-  if (kpis.filter((kpi) => kpi.tone === "brand").length > 1) {
-    warnings.push(list.id + ": mais de um KPI com tone \"brand\"; use no máximo um");
-  }
-  for (const kpi of kpis) {
-    if (kpi.sumOf) {
-      const field = fields.get(kpi.sumOf);
-      if (!field) warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
-      else if (!NUMERIC_DATA_TYPES.includes((field.dataType ?? "").toLowerCase())) {
-        warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não é um campo numérico");
-      }
-    }
-    for (const condition of Array.isArray(kpi.filter) ? kpi.filter : []) {
-      if (!fields.has(condition.field)) {
-        warnings.push(list.id + ": kpis.filter cita o campo \"" + condition.field + "\", que não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
-      }
-    }
-  }
-  return warnings;
-};
-
-const listWarnings = (list: IList, moduleFields: IModuleFields): string[] => {
-  const warnings: string[] = [];
+  const moduleForms: IComponent[] = module.components.filter(isForm);
   const filterNames: Set<string> = namesOf(list.listFilters);
   for (const name of list.quickFilters ?? []) {
-    if (!filterNames.has(name)) {
-      warnings.push(list.id + ": quickFilters cita \"" + name + "\", que não está em listFilters");
-    }
+    if (!filterNames.has(name)) warnings.push(list.id + ": quickFilters cita \"" + name + "\", que não está em listFilters");
   }
   const tabs = list.tabs;
-  if (tabs && !tabs.options?.length && !moduleFields.names.has(tabs.property)) {
-    warnings.push(
-      list.id + ": tabs.property \"" + tabs.property + "\" não existe em nenhum form do módulo e tabs.options está vazio",
-    );
+  const moduleNames = new Set<string>(moduleForms.flatMap((form: IComponent) => [...namesOf("elements" in form ? form.elements : undefined)]));
+  if (tabs && !tabs.options?.length && !moduleNames.has(tabs.property)) {
+    warnings.push(list.id + ": tabs.property \"" + tabs.property + "\" não existe em nenhum form do módulo e tabs.options está vazio");
   }
-  return [...warnings, ...columnViewWarnings(list), ...columnGroupWarnings(list), ...kpiWarnings(list, moduleFields.fields)];
+  const { fields, source } = kpiFieldsOf(list, entities, moduleForms);
+  const kpis: string[] = list.kpis?.length ? kpiWarnings(list, fields, source) : [];
+  return [...warnings, ...columnViewWarnings(list), ...columnGroupWarnings(list), ...kpis];
 };
 
 // Nomes citados por texto (quickFilters, tabs.property, columnViews, kpis) que o schema não consegue conferir.
-export const checkListReferences = (project: IProject): string[] =>
-  (project.modules ?? []).flatMap((module: IModule): string[] => {
-    const lists: IList[] = module.components.filter(isList);
-    if (lists.length === 0) return [];
-    const moduleFields: IModuleFields = moduleFieldsOf(module);
-    return lists.flatMap((list: IList) => listWarnings(list, moduleFields));
-  });
+export const checkListReferences = (project: IProject): string[] => {
+  const entities: IFormEntity[] = formEntitiesOf(project);
+  return (project.modules ?? []).flatMap((module: IModule): string[] =>
+    module.components.filter(isList).flatMap((list: IList) => listWarnings(list, module, entities)),
+  );
+};
