@@ -330,7 +330,10 @@
                 }
               },
               "required": ["field", "op", "value"],
-              "additionalProperties": false
+              "additionalProperties": false,
+              "if": { "properties": { "op": { "const": "in" } } },
+              "then": { "properties": { "value": { "type": "array", "minItems": 1 } } },
+              "else": { "properties": { "value": { "not": { "type": "array" } } } }
             }
           },
           "sumOf": { "type": "string" },

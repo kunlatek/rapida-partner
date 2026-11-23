@@ -1,39 +1,26 @@
 import type { IList } from "../interfaces/list.interface";
 import type { IComponent, IModule, IProject } from "../interfaces/project.interface";
-import { flattenElements, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
+import { allFields, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
 
-interface INamedNode {
-  name?: string;
-  elements?: unknown[];
-  tabs?: { elements?: unknown[] }[];
+interface IModuleFields {
+  names: Set<string>;
+  fields: Map<string, IFlatElement>;
 }
 
-const namesOf = (elements: unknown[] | undefined): string[] =>
-  (elements ?? []).flatMap((element: unknown): string[] => {
-    const node = (element ?? {}) as INamedNode;
-    return [
-      ...(node.name ? [node.name] : []),
-      ...namesOf(node.elements),
-      ...namesOf((node.tabs ?? []).flatMap((tab) => tab.elements ?? [])),
-    ];
-  });
+const namesOf = (elements: unknown[] | undefined): Set<string> =>
+  new Set(allFields(elements).flatMap((field: IFlatElement): string[] => (field.name ? [field.name] : [])));
 
 const isList = (component: IComponent): component is IList => component.componentType === "list";
 
-const formNamesOf = (module: IModule): Set<string> =>
-  new Set(
-    module.components.flatMap((component: IComponent): string[] =>
-      component.componentType === "form" ? namesOf(component.elements) : [],
-    ),
+const moduleFieldsOf = (module: IModule): IModuleFields => {
+  const fields: IFlatElement[] = module.components.flatMap((component: IComponent): IFlatElement[] =>
+    component.componentType === "form" ? allFields(component.elements) : [],
   );
-
-const formFieldsOf = (module: IModule): Map<string, IFlatElement> =>
-  new Map(
-    module.components
-      .flatMap((component: IComponent): IFlatElement[] => (component.componentType === "form" ? flattenElements(component.elements) : []))
-      .filter((field: IFlatElement): field is IFlatElement & { name: string } => typeof field.name === "string")
-      .map((field) => [field.name, field] as [string, IFlatElement]),
+  const named: [string, IFlatElement][] = fields.flatMap((field: IFlatElement): [string, IFlatElement][] =>
+    field.name ? [[field.name, field]] : [],
   );
+  return { names: new Set(named.map(([name]) => name)), fields: new Map(named) };
+};
 
 const columnViewWarnings = (list: IList): string[] => {
   const properties = new Set(list.listItems.map((item) => item.property).filter(Boolean));
@@ -80,26 +67,28 @@ const kpiWarnings = (list: IList, fields: Map<string, IFlatElement>): string[] =
   return warnings;
 };
 
-const listWarnings = (list: IList, module: IModule): string[] => {
+const listWarnings = (list: IList, moduleFields: IModuleFields): string[] => {
   const warnings: string[] = [];
-  const formNames = formNamesOf(module);
-  const filterNames = new Set(namesOf(list.listFilters));
+  const filterNames: Set<string> = namesOf(list.listFilters);
   for (const name of list.quickFilters ?? []) {
     if (!filterNames.has(name)) {
       warnings.push(list.id + ": quickFilters cita \"" + name + "\", que não está em listFilters");
     }
   }
   const tabs = list.tabs;
-  if (tabs && !tabs.options?.length && !formNames.has(tabs.property)) {
+  if (tabs && !tabs.options?.length && !moduleFields.names.has(tabs.property)) {
     warnings.push(
       list.id + ": tabs.property \"" + tabs.property + "\" não existe em nenhum form do módulo e tabs.options está vazio",
     );
   }
-  return [...warnings, ...columnViewWarnings(list), ...columnGroupWarnings(list), ...kpiWarnings(list, formFieldsOf(module))];
+  return [...warnings, ...columnViewWarnings(list), ...columnGroupWarnings(list), ...kpiWarnings(list, moduleFields.fields)];
 };
 
 // Nomes citados por texto (quickFilters, tabs.property, columnViews, kpis) que o schema não consegue conferir.
 export const checkListReferences = (project: IProject): string[] =>
-  (project.modules ?? []).flatMap((module: IModule): string[] =>
-    module.components.filter(isList).flatMap((list: IList) => listWarnings(list, module)),
-  );
+  (project.modules ?? []).flatMap((module: IModule): string[] => {
+    const lists: IList[] = module.components.filter(isList);
+    if (lists.length === 0) return [];
+    const moduleFields: IModuleFields = moduleFieldsOf(module);
+    return lists.flatMap((list: IList) => listWarnings(list, moduleFields));
+  });
