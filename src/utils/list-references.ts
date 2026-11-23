@@ -1,6 +1,6 @@
 import type { IList } from "../interfaces/list.interface";
 import type { IComponent, IModule, IProject } from "../interfaces/project.interface";
-import { allFields, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
+import { allFields, fieldScopes, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
 
 interface IModuleFields {
   names: Set<string>;
@@ -12,14 +12,19 @@ const namesOf = (elements: unknown[] | undefined): Set<string> =>
 
 const isList = (component: IComponent): component is IList => component.componentType === "list";
 
+const namedFields = (fields: IFlatElement[]): [string, IFlatElement][] =>
+  fields.flatMap((field: IFlatElement): [string, IFlatElement][] => (field.name ? [[field.name, field]] : []));
+
+// names: todos os campos, inclusive de arrays (tabs.property). fields: só o nível de cima de cada form,
+// que é o que o registro tem e o que os KPIs conseguem contar e somar.
 const moduleFieldsOf = (module: IModule): IModuleFields => {
-  const fields: IFlatElement[] = module.components.flatMap((component: IComponent): IFlatElement[] =>
-    component.componentType === "form" ? allFields(component.elements) : [],
-  );
-  const named: [string, IFlatElement][] = fields.flatMap((field: IFlatElement): [string, IFlatElement][] =>
-    field.name ? [[field.name, field]] : [],
-  );
-  return { names: new Set(named.map(([name]) => name)), fields: new Map(named) };
+  const elementsOf = (component: IComponent): unknown[] | undefined =>
+    component.componentType === "form" ? component.elements : undefined;
+  const forms: IComponent[] = module.components.filter((component: IComponent) => component.componentType === "form");
+  return {
+    names: new Set(namedFields(forms.flatMap((form: IComponent) => allFields(elementsOf(form)))).map(([name]) => name)),
+    fields: new Map(namedFields(forms.flatMap((form: IComponent) => fieldScopes(elementsOf(form))[0]))),
+  };
 };
 
 const columnViewWarnings = (list: IList): string[] => {
@@ -53,14 +58,14 @@ const kpiWarnings = (list: IList, fields: Map<string, IFlatElement>): string[] =
   for (const kpi of kpis) {
     if (kpi.sumOf) {
       const field = fields.get(kpi.sumOf);
-      if (!field) warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não existe em nenhum form do módulo");
+      if (!field) warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
       else if (!NUMERIC_DATA_TYPES.includes((field.dataType ?? "").toLowerCase())) {
         warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não é um campo numérico");
       }
     }
     for (const condition of Array.isArray(kpi.filter) ? kpi.filter : []) {
       if (!fields.has(condition.field)) {
-        warnings.push(list.id + ": kpis.filter cita o campo \"" + condition.field + "\", que não existe em nenhum form do módulo");
+        warnings.push(list.id + ": kpis.filter cita o campo \"" + condition.field + "\", que não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
       }
     }
   }
