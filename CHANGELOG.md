@@ -1,6 +1,6 @@
 # Changelog
 
-## 8.1.2
+## 8.2.1
 
 ### 🐛 Correções
 
@@ -11,6 +11,15 @@ Só avisos da validação; nenhum contrato muda.
 - `kpis.sumOf` precisa ser um `input` numérico, como exige a rota de soma do backend gerado. Um select com `dataType` numérico passa a avisar.
 - `columnGroup` interrompido por uma coluna sem grupo passa a avisar.
 - Testes para `checkListReferences` (`list-references.test.ts`).
+
+## 8.2.0
+
+### ✨ Novidades
+
+Campos opcionais em `IAgentContractBinding.intentMapping.formFields[]` para o agente de IA consultar dados de clientes sem expor registros de terceiros. Bindings sem eles continuam como estão.
+
+- `isRequired` (`boolean`): o parâmetro entra em `required` no schema da tool em qualquer action, inclusive `"get"`, e a tool gerada recusa a chamada sem ele antes de chamar a API.
+- `matchMode` (`"exact" | "partial"`, só em `"get"`): `"exact"` compara o texto inteiro (sem diferenciar maiúsculas) em vez de buscar por trecho. Padrão `"partial"`.
 
 ## 8.1.1
 

@@ -230,6 +230,21 @@ export interface IAgentContractBinding {
       // sobre o mapeamento defensivo de EDataType feito pelo gerador, e
       // deixa a tipagem do parâmetro independente dos valores do enum.
       schemaType?: TAgentSchemaType;
+
+      // Parâmetro obrigatório da tool. Em "create" o gerador já usa o
+      // isRequired do form; aqui vale para qualquer action, inclusive "get".
+      // A tool gerada recusa a chamada sem o parâmetro antes de chamar a API,
+      // sem depender do LLM. Use em consultas de dados de clientes (pedido,
+      // devolução) para que uma chamada sem filtro não liste registros de
+      // terceiros.
+      isRequired?: boolean;
+
+      // Só em "get": como o filtro compara o texto. "partial" (padrão) busca
+      // por trecho, sem diferenciar maiúsculas; "exact" exige o valor inteiro
+      // (sem diferenciar maiúsculas em texto), para que um pedaço de e-mail
+      // não encontre registros de outra pessoa. Campos id/*Id(s), enums e
+      // tipos não textuais já comparam pelo valor exato.
+      matchMode?: "exact" | "partial";
     }[];
 
     triggerKeywords: string[];
