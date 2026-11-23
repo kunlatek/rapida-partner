@@ -14,4 +14,7 @@ export interface IFormArray {
   businessRules?: IBusinessRule[];
   elementDescription?: string;
   isRequired?: boolean;
+  // Nome de um item, no singular ("dependente"), para "Adicionar dependente",
+  // "Dependente 2" e "Remover dependente 2". Sem ele, a tela usa "item".
+  itemLabel?: TTranslatable;
 }

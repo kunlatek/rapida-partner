@@ -19,6 +19,7 @@ export interface IFormFile {
   accept?: Record<string, string[]>;
   isMultiple?: boolean;
   isProfilePicture?: boolean;
+  // Tamanho máximo de cada arquivo, em bytes (5 MB = 5242880).
   maxSize?: number;
   isDisabled?: boolean;
   isDisabledOnUpdate?: boolean;

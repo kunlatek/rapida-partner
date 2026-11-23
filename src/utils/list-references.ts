@@ -1,51 +1,99 @@
 import type { IList } from "../interfaces/list.interface";
 import type { IComponent, IModule, IProject } from "../interfaces/project.interface";
+import { allFields, fieldScopes, NUMERIC_DATA_TYPES, type IFlatElement } from "./form-elements";
 
-interface INamedNode {
-  name?: string;
-  elements?: unknown[];
-  tabs?: { elements?: unknown[] }[];
+interface IModuleFields {
+  names: Set<string>;
+  fields: Map<string, IFlatElement>;
 }
 
-const namesOf = (elements: unknown[] | undefined): string[] =>
-  (elements ?? []).flatMap((element: unknown): string[] => {
-    const node = (element ?? {}) as INamedNode;
-    return [
-      ...(node.name ? [node.name] : []),
-      ...namesOf(node.elements),
-      ...namesOf((node.tabs ?? []).flatMap((tab) => tab.elements ?? [])),
-    ];
-  });
+const namesOf = (elements: unknown[] | undefined): Set<string> =>
+  new Set(allFields(elements).flatMap((field: IFlatElement): string[] => (field.name ? [field.name] : [])));
 
 const isList = (component: IComponent): component is IList => component.componentType === "list";
 
-const formNamesOf = (module: IModule): Set<string> =>
-  new Set(
-    module.components.flatMap((component: IComponent): string[] =>
-      component.componentType === "form" ? namesOf(component.elements) : [],
-    ),
-  );
+const namedFields = (fields: IFlatElement[]): [string, IFlatElement][] =>
+  fields.flatMap((field: IFlatElement): [string, IFlatElement][] => (field.name ? [[field.name, field]] : []));
 
-const listWarnings = (list: IList, formNames: Set<string>): string[] => {
+// names: todos os campos, inclusive de arrays (tabs.property). fields: só o nível de cima de cada form,
+// que é o que o registro tem e o que os KPIs conseguem contar e somar.
+const moduleFieldsOf = (module: IModule): IModuleFields => {
+  const elementsOf = (component: IComponent): unknown[] | undefined =>
+    component.componentType === "form" ? component.elements : undefined;
+  const forms: IComponent[] = module.components.filter((component: IComponent) => component.componentType === "form");
+  return {
+    names: new Set(namedFields(forms.flatMap((form: IComponent) => allFields(elementsOf(form)))).map(([name]) => name)),
+    fields: new Map(namedFields(forms.flatMap((form: IComponent) => fieldScopes(elementsOf(form))[0]))),
+  };
+};
+
+const columnViewWarnings = (list: IList): string[] => {
+  const properties = new Set(list.listItems.map((item) => item.property).filter(Boolean));
+  return (list.columnViews ?? []).flatMap((view) =>
+    view.columns
+      .filter((column: string) => !properties.has(column))
+      .map((column: string) => list.id + ": columnViews cita a coluna \"" + column + "\", que não está em listItems"),
+  );
+};
+
+const columnGroupWarnings = (list: IList): string[] => {
+  const groups: string[] = list.listItems.filter((item) => item.columnGroup).map((item) => JSON.stringify(item.columnGroup));
+  const seen: string[] = [];
   const warnings: string[] = [];
-  const filterNames = new Set(namesOf(list.listFilters));
+  groups.forEach((group: string, index: number) => {
+    if (index > 0 && group !== groups[index - 1] && seen.includes(group)) {
+      warnings.push(list.id + ": o columnGroup " + group + " aparece separado; deixe as colunas do mesmo grupo juntas");
+    }
+    if (!seen.includes(group)) seen.push(group);
+  });
+  return warnings;
+};
+
+const kpiWarnings = (list: IList, fields: Map<string, IFlatElement>): string[] => {
+  const kpis = list.kpis ?? [];
+  const warnings: string[] = [];
+  if (kpis.filter((kpi) => kpi.tone === "brand").length > 1) {
+    warnings.push(list.id + ": mais de um KPI com tone \"brand\"; use no máximo um");
+  }
+  for (const kpi of kpis) {
+    if (kpi.sumOf) {
+      const field = fields.get(kpi.sumOf);
+      if (!field) warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
+      else if (!NUMERIC_DATA_TYPES.includes((field.dataType ?? "").toLowerCase())) {
+        warnings.push(list.id + ": kpis.sumOf \"" + kpi.sumOf + "\" não é um campo numérico");
+      }
+    }
+    for (const condition of Array.isArray(kpi.filter) ? kpi.filter : []) {
+      if (!fields.has(condition.field)) {
+        warnings.push(list.id + ": kpis.filter cita o campo \"" + condition.field + "\", que não existe no nível de cima de nenhum form do módulo (campos de array não valem)");
+      }
+    }
+  }
+  return warnings;
+};
+
+const listWarnings = (list: IList, moduleFields: IModuleFields): string[] => {
+  const warnings: string[] = [];
+  const filterNames: Set<string> = namesOf(list.listFilters);
   for (const name of list.quickFilters ?? []) {
     if (!filterNames.has(name)) {
       warnings.push(list.id + ": quickFilters cita \"" + name + "\", que não está em listFilters");
     }
   }
   const tabs = list.tabs;
-  if (tabs && !tabs.options?.length && !formNames.has(tabs.property)) {
+  if (tabs && !tabs.options?.length && !moduleFields.names.has(tabs.property)) {
     warnings.push(
       list.id + ": tabs.property \"" + tabs.property + "\" não existe em nenhum form do módulo e tabs.options está vazio",
     );
   }
-  return warnings;
+  return [...warnings, ...columnViewWarnings(list), ...columnGroupWarnings(list), ...kpiWarnings(list, moduleFields.fields)];
 };
 
-// Nomes citados por texto (quickFilters e tabs.property) que o schema não consegue conferir.
+// Nomes citados por texto (quickFilters, tabs.property, columnViews, kpis) que o schema não consegue conferir.
 export const checkListReferences = (project: IProject): string[] =>
   (project.modules ?? []).flatMap((module: IModule): string[] => {
-    const formNames = formNamesOf(module);
-    return module.components.filter(isList).flatMap((list: IList) => listWarnings(list, formNames));
+    const lists: IList[] = module.components.filter(isList);
+    if (lists.length === 0) return [];
+    const moduleFields: IModuleFields = moduleFieldsOf(module);
+    return lists.flatMap((list: IList) => listWarnings(list, moduleFields));
   });

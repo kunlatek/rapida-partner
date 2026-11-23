@@ -32,6 +32,9 @@
           },
           "isSelected": {
             "type": "boolean"
+          },
+          "description": {
+            "$ref": "translatable.ref.json"
           }
         },
         "required": ["label", "value"]
@@ -67,6 +70,9 @@
     "space": {
       "type": "number",
       "enum": [1, 2, 3, 4]
+    },
+    "display": {
+      "$ref": "choice-display.ref.json"
     }
   },
   "required": ["type", "name", "label", "options"]

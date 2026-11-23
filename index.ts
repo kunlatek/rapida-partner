@@ -3,6 +3,7 @@
 import { tsProjectToJsonProject } from "./src/controllers/ts_project_to_json_project";
 import { validateProjectJson } from "./src/utils/json";
 import { checkListReferences } from "./src/utils/list-references";
+import { checkFormReferences } from "./src/utils/form-references";
 import type { IProject } from "./src/interfaces/project.interface";
 import * as fs from "fs";
 import * as path from "path";
@@ -78,7 +79,7 @@ async function main() {
       process.exit(1);
     }
 
-    for (const warning of checkListReferences(project)) {
+    for (const warning of [...checkListReferences(project), ...checkFormReferences(project)]) {
       console.warn("Aviso: " + warning);
     }
 
