@@ -125,7 +125,7 @@ export interface IListPagination {
 export interface IListKpi {
   label: TTranslatable;
   description?: TTranslatable; // contexto abaixo do valor, e.g.: "contas vencidas"
-  filter?: Record<string, unknown>; // filtro Mongo; "$today" e "$tomorrow" viram as datas do dia, e.g.: { "dueDate": { "$lt": "$today" } }
+  filter?: IListKpiCondition[]; // condições que o registro precisa cumprir (todas), e.g.: [{ field: "dueDate", op: "lt", value: "$today" }]
   sumOf?: string; // campo numérico do form do módulo, e.g.: "accountAmount"
   tone?: TTone | "brand"; // "brand" no número principal (no máximo 1), "danger" para atraso, "warning" para hoje
 }
@@ -137,4 +137,12 @@ export type TListView = "table" | "list";
 export interface IListColumnView {
   label: TTranslatable; // e.g.: "Resumo"
   columns: string[]; // property de cada listItem visível nesta visualização; a coluna title aparece sempre
+}
+
+export type TListKpiOperator = "eq" | "ne" | "lt" | "lte" | "gt" | "gte" | "in";
+
+export interface IListKpiCondition {
+  field: string; // name de um campo do form do módulo
+  op: TListKpiOperator;
+  value: string | number | boolean | (string | number)[]; // "$today" e "$tomorrow" viram as datas do dia; com "in", uma lista
 }

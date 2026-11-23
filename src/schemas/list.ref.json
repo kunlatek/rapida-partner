@@ -313,7 +313,26 @@
         "properties": {
           "label": { "$ref": "translatable.ref.json" },
           "description": { "$ref": "translatable.ref.json" },
-          "filter": { "type": "object" },
+          "filter": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": { "type": "string" },
+                "op": { "type": "string", "enum": ["eq", "ne", "lt", "lte", "gt", "gte", "in"] },
+                "value": {
+                  "oneOf": [
+                    { "type": "string" },
+                    { "type": "number" },
+                    { "type": "boolean" },
+                    { "type": "array", "items": { "type": ["string", "number"] } }
+                  ]
+                }
+              },
+              "required": ["field", "op", "value"],
+              "additionalProperties": false
+            }
+          },
           "sumOf": { "type": "string" },
           "tone": { "oneOf": [{ "$ref": "tone.ref.json" }, { "const": "brand" }] }
         },

@@ -2,6 +2,7 @@ import type { TTranslatable } from "./translatable.interface";
 // MODIFICATION BASED ON: src/interfaces/form-checkbox.interface.ts
 import type { IFormCondition } from "./condition.interface";
 import type { IBusinessRule } from "./project.interface";
+import type { TChoiceDisplay } from "./choice-display.interface";
 
 export interface IFormCheckbox {
   type: "checkbox";
@@ -18,13 +19,10 @@ export interface IFormCheckbox {
   businessRules?: IBusinessRule[];
   elementDescription?: string;
   space?: 1 | 2 | 3 | 4;
-  // Como as opções aparecem. "list" (padrão): uma por linha. "chips": botões lado a lado,
-  // para opções curtas (dias da semana, durações). "cards": cartões com a description de
-  // cada opção, para escolhas que mudam o resto do formulário.
-  display?: TChoiceDisplay;
+  display?: TChoiceDisplay; // ver choice-display.interface.ts
 }
 
-export type TChoiceDisplay = "list" | "chips" | "cards";
+export type { TChoiceDisplay } from "./choice-display.interface";
 
 export interface ICheckboxOption {
   label: TTranslatable;

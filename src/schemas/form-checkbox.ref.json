@@ -72,8 +72,7 @@
       "enum": [1, 2, 3, 4]
     },
     "display": {
-      "type": "string",
-      "enum": ["list", "chips", "cards"]
+      "$ref": "choice-display.ref.json"
     }
   },
   "required": ["type", "name", "label", "options"]
