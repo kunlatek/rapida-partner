@@ -122,6 +122,13 @@
                             "array",
                             "object"
                           ]
+                        },
+                        "isRequired": {
+                          "type": "boolean"
+                        },
+                        "matchMode": {
+                          "type": "string",
+                          "enum": ["exact", "partial"]
                         }
                       },
                       "required": ["fieldId", "naturalLanguagePrompt"],
