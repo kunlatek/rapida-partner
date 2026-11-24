@@ -64,6 +64,20 @@
     },
     "timeZone": { "type": "string" },
     "pickupAddress": { "type": "string" },
+    "deliveryDistricts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "price": { "type": "number", "minimum": 0 },
+          "deliveryTime": { "type": "string" }
+        },
+        "required": ["name", "price"],
+        "additionalProperties": false
+      }
+    },
+    "minimumOrderValue": { "type": "number", "minimum": 0 },
     "ordersPaused": { "type": "boolean" },
     "aboutText": { "type": "string" },
     "privacyPolicyText": { "type": "string" },
@@ -110,6 +124,7 @@
     "reviewsEnabled": { "type": "boolean" },
     "openingHoursEnabled": { "type": "boolean" },
     "pickupEnabled": { "type": "boolean" },
+    "districtDeliveryEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

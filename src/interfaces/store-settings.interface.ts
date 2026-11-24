@@ -16,7 +16,8 @@ export type TStoreFeature =
   | "reviews"
   | "returns"
   | "openingHours"
-  | "pickup";
+  | "pickup"
+  | "districtDelivery";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -38,6 +39,14 @@ export interface IStoreOpeningHours {
   weekday: TStoreWeekday;
   opensAt: string;
   closesAt: string;
+}
+
+/** Bairro atendido pela entrega local, com taxa e prazo mostrado ao cliente. */
+export interface IStoreDeliveryDistrict {
+  name: string;
+  price: number;
+  // Texto livre do prazo (ex.: "40 a 60 min").
+  deliveryTime?: string;
 }
 
 /** Catálogo em grade de cartões ou em lista (foto pequena ao lado do nome). */
@@ -120,6 +129,13 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // Só tem efeito com a funcionalidade "pickup": endereço de retirada mostrado
   // ao cliente; vazio usa address.
   pickupAddress?: string;
+  // Só tem efeito com a funcionalidade "districtDelivery": o cliente escolhe o
+  // bairro na lista e paga a taxa dele; bairro fora da lista não é atendido.
+  // Com ela ligada, o frete por faixa de CEP não é usado.
+  deliveryDistricts?: IStoreDeliveryDistrict[];
+  // Valor mínimo dos itens (subtotal) para fechar o pedido; 0 ou vazio não
+  // exige mínimo. Vale para toda loja com venda própria.
+  minimumOrderValue?: number;
   timeZone?: string;
   ordersPaused?: boolean;
 

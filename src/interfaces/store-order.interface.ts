@@ -44,6 +44,8 @@ export interface IStoreOrder {
   // Padrão "delivery". Na retirada não há endereço, e "shipped" quer dizer
   // pronto para retirar.
   deliveryMethod?: TStoreDeliveryMethod;
+  // Bairro escolhido na entrega por bairro (funcionalidade "districtDelivery").
+  deliveryDistrict?: string;
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;
