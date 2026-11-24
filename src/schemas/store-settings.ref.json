@@ -63,6 +63,7 @@
       }
     },
     "timeZone": { "type": "string" },
+    "pickupAddress": { "type": "string" },
     "ordersPaused": { "type": "boolean" },
     "aboutText": { "type": "string" },
     "privacyPolicyText": { "type": "string" },
@@ -108,6 +109,7 @@
     "couponsEnabled": { "type": "boolean" },
     "reviewsEnabled": { "type": "boolean" },
     "openingHoursEnabled": { "type": "boolean" },
+    "pickupEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

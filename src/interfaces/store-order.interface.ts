@@ -5,6 +5,9 @@
  */
 export type TStoreOrderFulfillmentStatus = "received" | "preparing" | "shipped" | "delivered" | "cancelled";
 
+/** Como o cliente recebe o pedido: entrega no endereço ou retirada na loja. */
+export type TStoreDeliveryMethod = "delivery" | "pickup";
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;
@@ -38,6 +41,9 @@ export interface IStoreOrder {
   total: number;
   currency: string;
   status: TStoreOrderFulfillmentStatus;
+  // Padrão "delivery". Na retirada não há endereço, e "shipped" quer dizer
+  // pronto para retirar.
+  deliveryMethod?: TStoreDeliveryMethod;
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;

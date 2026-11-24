@@ -15,7 +15,8 @@ export type TStoreFeature =
   | "coupons"
   | "reviews"
   | "returns"
-  | "openingHours";
+  | "openingHours"
+  | "pickup";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -116,6 +117,9 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // (padrão "America/Sao_Paulo"). weekdayHours e saturdayHours continuam como
   // texto de contato.
   openingHours?: IStoreOpeningHours[];
+  // Só tem efeito com a funcionalidade "pickup": endereço de retirada mostrado
+  // ao cliente; vazio usa address.
+  pickupAddress?: string;
   timeZone?: string;
   ordersPaused?: boolean;
 
