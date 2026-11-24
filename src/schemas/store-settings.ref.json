@@ -78,6 +78,7 @@
       }
     },
     "minimumOrderValue": { "type": "number", "minimum": 0 },
+    "reservationMinutes": { "type": "integer", "minimum": 5, "maximum": 60 },
     "ordersPaused": { "type": "boolean" },
     "aboutText": { "type": "string" },
     "privacyPolicyText": { "type": "string" },
@@ -129,6 +130,7 @@
     "itemNotesEnabled": { "type": "boolean" },
     "productOptionsEnabled": { "type": "boolean" },
     "productVariantsEnabled": { "type": "boolean" },
+    "stockReservationEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

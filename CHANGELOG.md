@@ -1,5 +1,15 @@
 # Changelog
 
+## 8.7.0
+
+### ✨ Novidades
+
+Reserva de estoque (Fase 4 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão.
+
+- `TStoreFeature` ganha `"stockReservation"` (ligada por padrão em services e events), com o liga e desliga `stockReservationEnabled` e `IStoreSettings.reservationMinutes` (de 5 a 60). O pedido aguardando pagamento segura o estoque por esse prazo; vencido, o pedido é cancelado, o link de pagamento expira e a quantidade volta.
+- `STORE_SEGMENT_RESERVATION_MINUTES` (retail 30, food 15, services 15, events 10) e `STORE_RESERVATION_MINUTES_RANGE` em `src/utils/store-segment.ts`.
+- Em services e events, o checkout não oferece boleto nem pagamento em lotérica (`ticket` e `atm`): eles levam dias para compensar e não cabem numa reserva de minutos.
+
 ## 8.6.0
 
 ### ✨ Novidades
