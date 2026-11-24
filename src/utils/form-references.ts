@@ -1,5 +1,6 @@
 import type { IForm } from "../interfaces/form.interface";
-import type { IComponent, IModule, IProject } from "../interfaces/project.interface";
+import type { IProject } from "../interfaces/project.interface";
+import { formEntitiesOf, type IFormEntity } from "./entities";
 import { fieldScopes, type IFlatElement } from "./form-elements";
 
 const RESERVED_FIELDS: string[] = ["createdAt", "createdBy", "updatedAt", "updatedBy", "deletedAt", "workspaceId"];
@@ -20,7 +21,7 @@ const consentWarnings = (form: IFormToCheck, fields: IFlatElement[], isRoot: boo
     return switches.map((field: IFlatElement) => form.id + ": recordTimestamp em \"" + field.name + "\" está dentro de um array; só vale no nível de cima do form, e o aceite não é registrado");
   }
   if (!form.recordsConsent) {
-    return switches.map((field: IFlatElement) => form.id + ": recordTimestamp em \"" + field.name + "\" só vale no primeiro form do módulo; neste o aceite não é registrado");
+    return switches.map((field: IFlatElement) => form.id + ": recordTimestamp em \"" + field.name + "\" não grava nada: o form usa a mesma entidade (contracts[0].id) de outro form anterior, e o backend vem daquele");
   }
   const names = new Set(fields.flatMap((field: IFlatElement): string[] => (field.name ? [backendName(field.name)] : [])));
   return switches.flatMap((field: IFlatElement): string[] =>
@@ -41,14 +42,14 @@ const formWarnings = (form: IFormToCheck): string[] =>
     ...consentWarnings(form, fields, index === 0),
   ]);
 
-// O backend gerado grava o consentimento só no primeiro form de cada módulo; os forms de perfil viram uma
-// collection só, então os dois gravam.
+// Cada form gera a própria entidade e grava o consentimento, menos quando repete a entidade de um form
+// anterior. Os forms de perfil viram uma collection só, então os dois gravam.
 const formsOf = (project: IProject): IFormToCheck[] => [
-  ...(project.modules ?? []).flatMap((module: IModule): IFormToCheck[] =>
-    module.components
-      .filter((component: IComponent) => component.componentType === "form")
-      .map((component: IComponent, index: number) => ({ id: component.id, elements: "elements" in component ? component.elements : undefined, recordsConsent: index === 0 })),
-  ),
+  ...formEntitiesOf(project).map((entity: IFormEntity) => ({
+    id: entity.component.id,
+    elements: "elements" in entity.component ? entity.component.elements : undefined,
+    recordsConsent: entity.ownsEntity,
+  })),
   ...[project.flows?.profiles?.personProfile, project.flows?.profiles?.companyProfile]
     .filter((form: IForm | undefined): form is IForm => !!form)
     .map((form: IForm) => ({ id: form.id, elements: form.elements, recordsConsent: true })),
