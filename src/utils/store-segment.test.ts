@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { STORE_SEGMENT_DEFAULT_FEATURES, storeFeaturesOf } from "./store-segment";
+import { STORE_SEGMENT_DEFAULT_FEATURES, STORE_SEGMENT_DEFAULT_SETTINGS, storeFeaturesOf } from "./store-segment";
 
 describe("storeFeaturesOf", () => {
   test("sem store ou sem segmento e sem lista, nenhuma funcionalidade", () => {
@@ -24,5 +24,15 @@ describe("storeFeaturesOf", () => {
 
   test("blog nunca vem no padrão", () => {
     for (const features of Object.values(STORE_SEGMENT_DEFAULT_FEATURES)) expect(features).not.toContain("blog");
+  });
+});
+
+describe("STORE_SEGMENT_DEFAULT_SETTINGS", () => {
+  test("retail mantém o catálogo de sempre", () => {
+    expect(STORE_SEGMENT_DEFAULT_SETTINGS.retail).toEqual({ catalogLayout: "grid", catalogColumns: 3, productImageAspect: "auto" });
+  });
+
+  test("food usa lista", () => {
+    expect(STORE_SEGMENT_DEFAULT_SETTINGS.food.catalogLayout).toBe("list");
   });
 });

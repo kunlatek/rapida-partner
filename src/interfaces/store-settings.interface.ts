@@ -24,6 +24,15 @@ export type TStoreFont = "inter" | "poppins" | "nunito" | "montserrat" | "roboto
 /** Arredondamento de cartões, botões e campos: reto, suave ou arredondado. */
 export type TStoreRadius = "none" | "soft" | "rounded";
 
+/** Catálogo em grade de cartões ou em lista (foto pequena ao lado do nome). */
+export type TStoreCatalogLayout = "grid" | "list";
+
+/**
+ * Proporção da foto no cartão do produto: "auto" mostra a foto inteira numa
+ * área fixa (o padrão de sempre); as outras recortam a foto na proporção.
+ */
+export type TStoreImageAspect = "auto" | "square" | "landscape" | "portrait";
+
 /**
  * Configuração da loja: identidade, visual, contato, dados legais, redes,
  * comercial e liga e desliga. É o registro único editado no Backoffice do
@@ -49,6 +58,10 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   font?: TStoreFont;
   radius?: TStoreRadius;
   pageSize?: number;
+  catalogLayout?: TStoreCatalogLayout;
+  // Colunas da grade no computador; só vale com catalogLayout "grid".
+  catalogColumns?: 2 | 3 | 4;
+  productImageAspect?: TStoreImageAspect;
 
   // Somente dígitos, com DDI (ex.: "5582999999999").
   whatsappNumber?: string;

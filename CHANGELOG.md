@@ -8,6 +8,7 @@ Segmento da loja. Projetos sem o campo continuam como estão.
 
 - `IProjectStore.segment` (`TStoreSegment`: `"retail"`, `"food"`, `"services"` ou `"events"`): um segmento por loja. Ele escolhe os padrões do segmento (textos, funcionalidades ligadas, rótulos do andamento do pedido, etapas do checkout); cada funcionalidade continua podendo ser ligada ou desligada em `features`. Sem ele, a loja se comporta como `"retail"`.
 - Sem `features`, vale o padrão do segmento (`STORE_SEGMENT_DEFAULT_FEATURES` em `src/utils/store-segment.ts`); com a lista, ela sempre vale, mesmo vazia. `storeFeaturesOf(store)` devolve a lista que vale, para o gerador e para o `getStoreSettingsModule`. Padrões: retail com tudo menos o blog; food com `whatsappButton`, `favorites`, `coupons` e `reviews`; services com `whatsappButton`, `stockAvailability`, `installments`, `coupons` e `reviews`; events com `stockAvailability`, `installments` e `coupons`.
+- Catálogo: `IStoreSettings.catalogLayout` (`TStoreCatalogLayout`: grade ou lista), `catalogColumns` (2, 3 ou 4 colunas da grade no computador) e `productImageAspect` (`TStoreImageAspect`: `"auto"`, a foto inteira como sempre, ou recortada em `"square"`, `"landscape"` e `"portrait"`). Sem eles, vale o padrão do segmento (`STORE_SEGMENT_DEFAULT_SETTINGS`): food em lista com foto quadrada, services e events com foto deitada, retail como sempre.
 - Aviso da validação: `store.segment` fora de skeleton `"ecommerce"`/`"marketplace"` é ignorado.
 
 ## 8.2.0
