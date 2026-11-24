@@ -4,7 +4,7 @@ export const DEFAULT_STORE_SEGMENT: TStoreSegment = "retail";
 
 export const STORE_SEGMENT_DEFAULT_FEATURES: Record<TStoreSegment, TStoreFeature[]> = {
   retail: ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "shipping", "coupons", "reviews", "returns"],
-  food: ["whatsappButton", "favorites", "coupons", "reviews"],
+  food: ["whatsappButton", "favorites", "coupons", "reviews", "openingHours"],
   services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews"],
   events: ["stockAvailability", "installments", "coupons"],
 };

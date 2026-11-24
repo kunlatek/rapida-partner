@@ -14,7 +14,8 @@ export type TStoreFeature =
   | "shipping"
   | "coupons"
   | "reviews"
-  | "returns";
+  | "returns"
+  | "openingHours";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -23,6 +24,20 @@ export type TStoreFont = "inter" | "poppins" | "nunito" | "montserrat" | "roboto
 
 /** Arredondamento de cartões, botões e campos: reto, suave ou arredondado. */
 export type TStoreRadius = "none" | "soft" | "rounded";
+
+/** Dia da semana de um horário de funcionamento. */
+export type TStoreWeekday = "sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday";
+
+/**
+ * Um período aberto num dia, em "HH:MM" no fuso da loja. Fechar antes de abrir
+ * (ex.: 18:00 às 02:00) é atravessar a meia-noite. Um dia pode ter vários
+ * períodos (ex.: almoço e jantar).
+ */
+export interface IStoreOpeningHours {
+  weekday: TStoreWeekday;
+  opensAt: string;
+  closesAt: string;
+}
 
 /** Catálogo em grade de cartões ou em lista (foto pequena ao lado do nome). */
 export type TStoreCatalogLayout = "grid" | "list";
@@ -94,6 +109,15 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // em que o cliente pode pedir devolução ou troca (o CDC exige ao menos 7
   // para compra fora da loja física).
   returnWindowDays?: number;
+
+  // Só têm efeito com a funcionalidade "openingHours": fora dos períodos, ou
+  // com ordersPaused, a loja não aceita pedidos (a API recusa e a vitrine
+  // avisa). Sem períodos, a loja fica sempre aberta. timeZone é um fuso IANA
+  // (padrão "America/Sao_Paulo"). weekdayHours e saturdayHours continuam como
+  // texto de contato.
+  openingHours?: IStoreOpeningHours[];
+  timeZone?: string;
+  ordersPaused?: boolean;
 
   // Páginas institucionais e legais, em HTML (editor de texto rico). Cada
   // página só é publicada, com link no rodapé, quando tem texto. O contato usa
