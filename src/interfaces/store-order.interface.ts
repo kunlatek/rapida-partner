@@ -8,6 +8,9 @@ export type TStoreOrderFulfillmentStatus = "received" | "preparing" | "shipped" 
 /** Como o cliente recebe o pedido: entrega no endereço ou retirada na loja. */
 export type TStoreDeliveryMethod = "delivery" | "pickup";
 
+/** Como o cliente paga: online (Mercado Pago) ou na entrega/retirada. */
+export type TStorePaymentMethod = "online" | "onDelivery";
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;
@@ -46,6 +49,12 @@ export interface IStoreOrder {
   deliveryMethod?: TStoreDeliveryMethod;
   // Bairro escolhido na entrega por bairro (funcionalidade "districtDelivery").
   deliveryDistrict?: string;
+  // Padrão "online". Com "onDelivery", o pedido chega confirmado e sem
+  // pagamento: changeFor é o valor para o troco, e o vendedor marca
+  // paymentReceived quando receber.
+  paymentMethod?: TStorePaymentMethod;
+  changeFor?: number;
+  paymentReceived?: boolean;
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;

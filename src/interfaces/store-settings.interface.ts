@@ -17,7 +17,8 @@ export type TStoreFeature =
   | "returns"
   | "openingHours"
   | "pickup"
-  | "districtDelivery";
+  | "districtDelivery"
+  | "payOnDelivery";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 

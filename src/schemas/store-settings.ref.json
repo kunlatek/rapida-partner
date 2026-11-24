@@ -125,6 +125,7 @@
     "openingHoursEnabled": { "type": "boolean" },
     "pickupEnabled": { "type": "boolean" },
     "districtDeliveryEnabled": { "type": "boolean" },
+    "payOnDeliveryEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

@@ -13,6 +13,7 @@ Segmento da loja. Projetos sem o campo continuam como estão.
 - Retirada na loja: `TStoreFeature` ganha `"pickup"` (ligada por padrão em food), com o liga e desliga `pickupEnabled` e `IStoreSettings.pickupAddress` (vazio usa `address`). `IStoreOrder.deliveryMethod` (`TStoreDeliveryMethod`: `"delivery"` ou `"pickup"`, padrão `"delivery"`): na retirada o pedido não tem endereço nem frete, e `"shipped"` quer dizer pronto para retirar.
 - Entrega por bairro: `TStoreFeature` ganha `"districtDelivery"` (ligada por padrão em food), com o liga e desliga `districtDeliveryEnabled` e `IStoreSettings.deliveryDistricts` (`IStoreDeliveryDistrict`: nome, taxa e prazo em texto). O cliente escolhe o bairro numa lista; bairro fora dela não é atendido. Com ela ligada, o frete por faixa de CEP não é usado.
 - Pedido mínimo: `IStoreSettings.minimumOrderValue` (subtotal dos itens); 0 ou vazio não exige mínimo.
+- Pagar na entrega: `TStoreFeature` ganha `"payOnDelivery"` (ligada por padrão em food), com o liga e desliga `payOnDeliveryEnabled`. `IStoreOrder` ganha `paymentMethod` (`TStorePaymentMethod`: `"online"` ou `"onDelivery"`), `changeFor` (troco para) e `paymentReceived` (o vendedor marca quando recebe). O pedido na entrega não passa pelo Mercado Pago, chega confirmado ao vendedor e baixa o estoque na confirmação.
 - Aviso da validação: `store.segment` fora de skeleton `"ecommerce"`/`"marketplace"` é ignorado.
 
 ## 8.2.0
