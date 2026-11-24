@@ -1,5 +1,17 @@
 # Changelog
 
+## 8.2.1
+
+### 🐛 Correções
+
+Só avisos da validação; nenhum contrato muda.
+
+- `recordTimestamp` num segundo form do módulo não dá mais aviso: cada form gera a própria entidade e grava o consentimento. O aviso da 8.1.1 estava errado. Agora só avisa quando o form repete a entidade (`contracts[0].id`) de um form anterior, caso em que o gerador não cria o backend dele.
+- `kpis.sumOf` e `kpis.filter` são conferidos contra o form da entidade da lista (o que tem o mesmo endpoint do `dataSource`), não contra todos os forms do módulo. Sem form com esse endpoint, continuam conferidos contra os forms do módulo.
+- `kpis.sumOf` precisa ser um `input` numérico, como exige a rota de soma do backend gerado. Um select com `dataType` numérico passa a avisar.
+- `columnGroup` interrompido por uma coluna sem grupo passa a avisar.
+- Testes para `checkListReferences` (`list-references.test.ts`).
+
 ## 8.2.0
 
 ### ✨ Novidades
