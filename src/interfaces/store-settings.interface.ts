@@ -131,6 +131,17 @@ export interface IStoreShippingRange {
 }
 
 /**
+ * Segmento da loja. Escolhe os padrões do segmento: textos, funcionalidades
+ * ligadas, rótulos do andamento do pedido e etapas do checkout. Cada
+ * funcionalidade continua podendo ser ligada ou desligada em `features`.
+ * - "retail": produtos com envio (o comportamento de sempre).
+ * - "food": cardápio, com entrega local ou retirada.
+ * - "services": serviços e passeios com data.
+ * - "events": shows e teatro, com sessões e ingressos.
+ */
+export type TStoreSegment = "retail" | "food" | "services" | "events";
+
+/**
  * Configuração da loja no projeto da própria loja (`IProject.store`).
  *
  * A loja lê a configuração salva no Backoffice do vendedor em
@@ -138,9 +149,13 @@ export interface IStoreShippingRange {
  * gravação e como reserva se a leitura falhar.
  */
 export interface IProjectStore {
-  // Funcionalidades opcionais geradas. Sem a lista, nenhuma é gerada. Passe a
-  // mesma lista para getStoreSettingsModule no Backoffice do vendedor, para o
-  // form só mostrar o liga e desliga do que a loja tem.
+  // Um segmento por loja; só vale para skeleton "ecommerce"/"marketplace".
+  // Sem ele, a loja se comporta como "retail".
+  segment?: TStoreSegment;
+  // Funcionalidades opcionais geradas. Sem a lista, vale o padrão do segmento
+  // (STORE_SEGMENT_DEFAULT_FEATURES); sem segmento, nenhuma é gerada. Passe a
+  // mesma lista (storeFeaturesOf) para getStoreSettingsModule no Backoffice do
+  // vendedor, para o form só mostrar o liga e desliga do que a loja tem.
   features?: TStoreFeature[];
   defaults?: IStoreSettings;
 }
