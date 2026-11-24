@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.5.0
+
+### ✨ Novidades
+
+Adicionais e opções do produto (Fase 3.1 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão.
+
+- `TStoreFeature` ganha `"productOptions"` (ligada por padrão em food), com o liga e desliga `productOptionsEnabled`.
+- `IStoreOptionGroup` (nome, obrigatório, mínimo e máximo de unidades) e `IStoreOption` (grupo, nome, preço padrão, máximo por opção, disponível, insumo e quantidade do insumo), lidos pela loja por `IMarketplace.optionGroupsEndpoint` e `IMarketplace.optionsEndpoint`. O cadastro é reaproveitável: cada produto lista as opções que oferece em `IProductOptionLink` (opção e preço, vazio usa o padrão).
+- `IStoreOrderItemSelection` ganha `optionId` e `quantity` (a mesma opção pode entrar mais de uma vez, até `maxQuantity`). `IStoreOrderItem` ganha `selectionsSummary`, as escolhas em texto para o vendedor.
+- `STORE_OPTION_MAX_QUANTITY` (10) em `src/utils/store-order.ts`.
+
 ## 8.4.0
 
 ### ✨ Novidades

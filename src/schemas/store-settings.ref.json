@@ -127,6 +127,7 @@
     "districtDeliveryEnabled": { "type": "boolean" },
     "payOnDeliveryEnabled": { "type": "boolean" },
     "itemNotesEnabled": { "type": "boolean" },
+    "productOptionsEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
