@@ -11,11 +11,28 @@ export type TStoreDeliveryMethod = "delivery" | "pickup";
 /** Como o cliente paga: online (Mercado Pago) ou na entrega/retirada. */
 export type TStorePaymentMethod = "online" | "onDelivery";
 
+/**
+ * Escolha do cliente numa linha do pedido (ex.: grupo "Ponto da carne", opção
+ * "Mal passado"). As opções e o acréscimo de preço vêm das fases seguintes do
+ * plano de segmentos; a linha já guarda o que foi escolhido.
+ */
+export interface IStoreOrderItemSelection {
+  group: string;
+  option: string;
+  // Acréscimo no preço unitário por esta escolha; 0 ou vazio quando não muda.
+  priceDelta?: number;
+}
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;
   quantity: number;
   unitPrice: number;
+  // Escolhas e observação do cliente nesta linha. Duas linhas do mesmo produto
+  // com escolhas ou observação diferentes são linhas separadas.
+  selections?: IStoreOrderItemSelection[];
+  // Observação do cliente (funcionalidade "itemNotes"), até STORE_ITEM_NOTE_MAX_LENGTH caracteres.
+  note?: string;
 }
 
 /**
