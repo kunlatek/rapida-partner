@@ -131,6 +131,12 @@ export interface IMarketplaceProductFieldMap {
   length?: string;
   // Lista de propriedades da ficha técnica (padrão "othersProperties").
   properties?: string;
+  // Variação como produto filho (funcionalidade "productVariants"): referência
+  // ao pai (padrão "parentProductId"), atributos do filho (padrão
+  // "variantAttributes") e se a combinação está ativa (padrão "isVariantActive").
+  parent?: string;
+  variantAttributes?: string;
+  variantActive?: string;
 }
 
 export interface ISellerServiceAuth {

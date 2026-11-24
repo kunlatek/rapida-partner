@@ -20,7 +20,8 @@ export type TStoreFeature =
   | "districtDelivery"
   | "payOnDelivery"
   | "itemNotes"
-  | "productOptions";
+  | "productOptions"
+  | "productVariants";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
