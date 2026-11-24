@@ -18,7 +18,8 @@ export type TStorePaymentMethod = "online" | "onDelivery";
 export interface IStoreOrderItemSelection {
   group: string;
   option: string;
-  // Acréscimo no preço unitário por unidade desta escolha; 0 ou vazio quando não muda.
+  // Quanto esta escolha muda o preço unitário, em reais, por unidade escolhida:
+  // positivo é acréscimo, negativo é desconto (ex.: meia-entrada); 0 ou vazio quando não muda.
   priceDelta?: number;
   // Id da opção (IStoreOption) e quantas vezes foi escolhida (padrão 1).
   optionId?: string;
