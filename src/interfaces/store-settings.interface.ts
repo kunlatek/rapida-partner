@@ -14,7 +14,11 @@ export type TStoreFeature =
   | "shipping"
   | "coupons"
   | "reviews"
-  | "returns";
+  | "returns"
+  | "openingHours"
+  | "pickup"
+  | "districtDelivery"
+  | "payOnDelivery";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -23,6 +27,37 @@ export type TStoreFont = "inter" | "poppins" | "nunito" | "montserrat" | "roboto
 
 /** Arredondamento de cartões, botões e campos: reto, suave ou arredondado. */
 export type TStoreRadius = "none" | "soft" | "rounded";
+
+/** Dia da semana de um horário de funcionamento. */
+export type TStoreWeekday = "sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday";
+
+/**
+ * Um período aberto num dia, em "HH:MM" no fuso da loja. Fechar antes de abrir
+ * (ex.: 18:00 às 02:00) é atravessar a meia-noite. Um dia pode ter vários
+ * períodos (ex.: almoço e jantar).
+ */
+export interface IStoreOpeningHours {
+  weekday: TStoreWeekday;
+  opensAt: string;
+  closesAt: string;
+}
+
+/** Bairro atendido pela entrega local, com taxa e prazo mostrado ao cliente. */
+export interface IStoreDeliveryDistrict {
+  name: string;
+  price: number;
+  // Texto livre do prazo (ex.: "40 a 60 min").
+  deliveryTime?: string;
+}
+
+/** Catálogo em grade de cartões ou em lista (foto pequena ao lado do nome). */
+export type TStoreCatalogLayout = "grid" | "list";
+
+/**
+ * Proporção da foto no cartão do produto: "auto" mostra a foto inteira numa
+ * área fixa (o padrão de sempre); as outras recortam a foto na proporção.
+ */
+export type TStoreImageAspect = "auto" | "square" | "landscape" | "portrait";
 
 /**
  * Configuração da loja: identidade, visual, contato, dados legais, redes,
@@ -49,6 +84,10 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   font?: TStoreFont;
   radius?: TStoreRadius;
   pageSize?: number;
+  catalogLayout?: TStoreCatalogLayout;
+  // Colunas da grade no computador; só vale com catalogLayout "grid".
+  catalogColumns?: 2 | 3 | 4;
+  productImageAspect?: TStoreImageAspect;
 
   // Somente dígitos, com DDI (ex.: "5582999999999").
   whatsappNumber?: string;
@@ -81,6 +120,25 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // em que o cliente pode pedir devolução ou troca (o CDC exige ao menos 7
   // para compra fora da loja física).
   returnWindowDays?: number;
+
+  // Só têm efeito com a funcionalidade "openingHours": fora dos períodos, ou
+  // com ordersPaused, a loja não aceita pedidos (a API recusa e a vitrine
+  // avisa). Sem períodos, a loja fica sempre aberta. timeZone é um fuso IANA
+  // (padrão "America/Sao_Paulo"). weekdayHours e saturdayHours continuam como
+  // texto de contato.
+  openingHours?: IStoreOpeningHours[];
+  // Só tem efeito com a funcionalidade "pickup": endereço de retirada mostrado
+  // ao cliente; vazio usa address.
+  pickupAddress?: string;
+  // Só tem efeito com a funcionalidade "districtDelivery": o cliente escolhe o
+  // bairro na lista e paga a taxa dele; bairro fora da lista não é atendido.
+  // Com ela ligada, o frete por faixa de CEP não é usado.
+  deliveryDistricts?: IStoreDeliveryDistrict[];
+  // Valor mínimo dos itens (subtotal) para fechar o pedido; 0 ou vazio não
+  // exige mínimo. Vale para toda loja com venda própria.
+  minimumOrderValue?: number;
+  timeZone?: string;
+  ordersPaused?: boolean;
 
   // Páginas institucionais e legais, em HTML (editor de texto rico). Cada
   // página só é publicada, com link no rodapé, quando tem texto. O contato usa
@@ -131,6 +189,17 @@ export interface IStoreShippingRange {
 }
 
 /**
+ * Segmento da loja. Escolhe os padrões do segmento: textos, funcionalidades
+ * ligadas, rótulos do andamento do pedido e etapas do checkout. Cada
+ * funcionalidade continua podendo ser ligada ou desligada em `features`.
+ * - "retail": produtos com envio (o comportamento de sempre).
+ * - "food": cardápio, com entrega local ou retirada.
+ * - "services": serviços e passeios com data.
+ * - "events": shows e teatro, com sessões e ingressos.
+ */
+export type TStoreSegment = "retail" | "food" | "services" | "events";
+
+/**
  * Configuração da loja no projeto da própria loja (`IProject.store`).
  *
  * A loja lê a configuração salva no Backoffice do vendedor em
@@ -138,9 +207,13 @@ export interface IStoreShippingRange {
  * gravação e como reserva se a leitura falhar.
  */
 export interface IProjectStore {
-  // Funcionalidades opcionais geradas. Sem a lista, nenhuma é gerada. Passe a
-  // mesma lista para getStoreSettingsModule no Backoffice do vendedor, para o
-  // form só mostrar o liga e desliga do que a loja tem.
+  // Um segmento por loja; só vale para skeleton "ecommerce"/"marketplace".
+  // Sem ele, a loja se comporta como "retail".
+  segment?: TStoreSegment;
+  // Funcionalidades opcionais geradas. Sem a lista, vale o padrão do segmento
+  // (STORE_SEGMENT_DEFAULT_FEATURES); sem segmento, nenhuma é gerada. Passe a
+  // mesma lista (storeFeaturesOf) para getStoreSettingsModule no Backoffice do
+  // vendedor, para o form só mostrar o liga e desliga do que a loja tem.
   features?: TStoreFeature[];
   defaults?: IStoreSettings;
 }
