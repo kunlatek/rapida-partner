@@ -6,6 +6,14 @@
 export type TStoreOptionPriceType = "add" | "percentOff";
 
 /**
+ * Tipo do grupo, para o vendedor ler o pedido no quadro (Fase 8.1): "option"
+ * (o padrão: tamanho, sabor, inteira/meia), "remove" (tirar um ingrediente:
+ * "SEM cebola"), "preparation" (modo de preparo: ponto da carne) e "addon"
+ * (adicional: "+ bacon").
+ */
+export type TStoreOptionGroupKind = "option" | "remove" | "preparation" | "addon";
+
+/**
  * Grupo de opções do produto (ex.: "Adicionais", "Ponto da carne"), cadastrado
  * no Backoffice do vendedor pelo módulo de rapida-projects getStoreOptionsModule
  * e lido pela loja por IMarketplace.optionGroupsEndpoint (funcionalidade
@@ -20,6 +28,8 @@ export interface IStoreOptionGroup {
   maxChoices?: number;
   displayOrder?: number;
   isActive?: boolean;
+  // Padrão "option".
+  kind?: TStoreOptionGroupKind;
 }
 
 /**
