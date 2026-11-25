@@ -21,7 +21,8 @@ export type TStoreFeature =
   | "payOnDelivery"
   | "itemNotes"
   | "productOptions"
-  | "productVariants";
+  | "productVariants"
+  | "stockReservation";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
@@ -140,6 +141,11 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // Valor mínimo dos itens (subtotal) para fechar o pedido; 0 ou vazio não
   // exige mínimo. Vale para toda loja com venda própria.
   minimumOrderValue?: number;
+  // Funcionalidade "stockReservation": por quantos minutos o pedido aguardando
+  // pagamento segura o estoque (de 5 a 60). Vencido o prazo, o pedido é
+  // cancelado, o link de pagamento expira e a quantidade volta. Sem o campo,
+  // vale o padrão do segmento (STORE_SEGMENT_RESERVATION_MINUTES).
+  reservationMinutes?: number;
   timeZone?: string;
   ordersPaused?: boolean;
 

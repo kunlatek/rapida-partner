@@ -77,6 +77,10 @@ export interface IStoreOrder {
   paymentMethod?: TStorePaymentMethod;
   changeFor?: number;
   paymentReceived?: boolean;
+  // Reserva de estoque (Fase 4.3): pago depois da reserva vencer, ou acima do
+  // estoque. O vendedor decide: manter, trocar (ex.: de sessão) ou estornar no
+  // painel do Mercado Pago; o estorno cancela o pedido na loja.
+  overCapacity?: boolean;
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;
