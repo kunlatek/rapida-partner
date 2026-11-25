@@ -11,7 +11,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "blog", "shipping", "coupons", "reviews", "returns", "openingHours", "pickup", "districtDelivery", "payOnDelivery", "itemNotes"]
+        "enum": ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "blog", "shipping", "coupons", "reviews", "returns", "openingHours", "pickup", "districtDelivery", "payOnDelivery", "itemNotes", "productOptions"]
       },
       "uniqueItems": true
     },

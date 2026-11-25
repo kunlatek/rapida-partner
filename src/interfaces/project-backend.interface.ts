@@ -108,6 +108,11 @@ interface IMarketplace {
   returnsEndpoint?: string;
   // Artigos do blog (módulo de rapida-projects getStoreBlogModule, funcionalidade "blog").
   blogPostsEndpoint?: string;
+  // Grupos de opções e opções dos produtos (módulo de rapida-projects
+  // getStoreOptionsModule, funcionalidade "productOptions"). Cada produto lista
+  // as opções que oferece em productOptions da configuração de venda.
+  optionGroupsEndpoint?: string;
+  optionsEndpoint?: string;
 }
 
 export interface IMarketplaceProductFieldMap {

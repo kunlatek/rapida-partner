@@ -19,7 +19,8 @@ export type TStoreFeature =
   | "pickup"
   | "districtDelivery"
   | "payOnDelivery"
-  | "itemNotes";
+  | "itemNotes"
+  | "productOptions";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 

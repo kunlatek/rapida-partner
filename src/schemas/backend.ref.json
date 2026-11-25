@@ -158,6 +158,8 @@
         "reviewsEndpoint": { "type": "string" },
         "returnsEndpoint": { "type": "string" },
         "blogPostsEndpoint": { "type": "string" },
+        "optionGroupsEndpoint": { "type": "string" },
+        "optionsEndpoint": { "type": "string" },
         "productFieldMap": {
           "type": "object",
           "properties": {

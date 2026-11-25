@@ -13,14 +13,17 @@ export type TStorePaymentMethod = "online" | "onDelivery";
 
 /**
  * Escolha do cliente numa linha do pedido (ex.: grupo "Ponto da carne", opção
- * "Mal passado"). As opções e o acréscimo de preço vêm das fases seguintes do
- * plano de segmentos; a linha já guarda o que foi escolhido.
+ * "Mal passado"). Com a funcionalidade "productOptions", vem de IStoreOption.
  */
 export interface IStoreOrderItemSelection {
   group: string;
   option: string;
-  // Acréscimo no preço unitário por esta escolha; 0 ou vazio quando não muda.
+  // Quanto esta escolha muda o preço unitário, em reais, por unidade escolhida:
+  // positivo é acréscimo, negativo é desconto (ex.: meia-entrada); 0 ou vazio quando não muda.
   priceDelta?: number;
+  // Id da opção (IStoreOption) e quantas vezes foi escolhida (padrão 1).
+  optionId?: string;
+  quantity?: number;
 }
 
 export interface IStoreOrderItem {
@@ -33,6 +36,8 @@ export interface IStoreOrderItem {
   selections?: IStoreOrderItemSelection[];
   // Observação do cliente (funcionalidade "itemNotes"), até STORE_ITEM_NOTE_MAX_LENGTH caracteres.
   note?: string;
+  // Escolhas em texto para o vendedor (ex.: "Adicionais: Bacon ×2, Queijo").
+  selectionsSummary?: string;
 }
 
 /**
