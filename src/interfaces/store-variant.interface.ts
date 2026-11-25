@@ -25,3 +25,30 @@ export interface IProductVariantFields {
   // Falso quando a combinação saiu da lista do pai: o filho não é apagado, só some da loja.
   isVariantActive?: boolean;
 }
+
+/**
+ * Sessão de um evento ou passeio (Fase 5.1): data, hora e local. Com os
+ * setores, o Backoffice gera um produto filho por sessão × setor, com estoque
+ * igual à capacidade do setor.
+ */
+export interface IProductSession {
+  sessionDate: string;
+  // "HH:MM" (campo de hora).
+  sessionTime: string;
+  venue?: string;
+}
+
+/** Setor de uma sessão (ex.: Pista, Camarote), com a capacidade e, se diferente do evento, o preço. */
+export interface IProductSector {
+  sectorName: string;
+  capacity: number;
+  price?: number;
+}
+
+export interface IProductSessionFields {
+  sessions?: IProductSession[];
+  sectors?: IProductSector[];
+  // No filho: quando a sessão começa (a loja esconde sessões que já começaram) e a capacidade lançada no estoque.
+  sessionStartsAt?: string;
+  sessionCapacity?: number;
+}

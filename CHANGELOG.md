@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.8.0
+
+### ✨ Novidades
+
+Sessões e setores (Fase 5.1 do plano de segmentos de loja).
+
+- `IProductSessionFields` (`src/interfaces/store-variant.interface.ts`): o evento ou passeio lista as sessões (`IProductSession`: data, hora "HH:MM" e local) e os setores (`IProductSector`: nome, capacidade e preço opcional). O Backoffice gera um produto filho por sessão × setor, como as variações, com estoque igual à capacidade; o filho guarda `sessionStartsAt` (a loja esconde a sessão que já começou) e `sessionCapacity`.
+- services e events passam a ter `"productVariants"` no padrão, para a escolha de sessão e setor.
+
 ## 8.7.0
 
 ### ✨ Novidades
