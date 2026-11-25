@@ -14,7 +14,7 @@ describe("storeFeaturesOf", () => {
 
   test("sem lista, vale o padrão do segmento", () => {
     expect(storeFeaturesOf({ segment: "food" })).toEqual(STORE_SEGMENT_DEFAULT_FEATURES.food);
-    expect(storeFeaturesOf({ segment: "events" })).toEqual(["stockAvailability", "installments", "coupons", "stockReservation", "productVariants", "productOptions", "attendees"]);
+    expect(storeFeaturesOf({ segment: "events" })).toEqual(["stockAvailability", "installments", "coupons", "stockReservation", "productVariants", "productOptions", "attendees", "tickets"]);
   });
 
   test("devolve uma cópia, sem alterar o padrão", () => {

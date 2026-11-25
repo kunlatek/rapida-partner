@@ -33,6 +33,20 @@ export interface IStoreOrderAttendee {
   document?: string;
 }
 
+/**
+ * Ingresso ou voucher (Fase 5.4): um por titular (ou por unidade, sem
+ * titulares), emitido quando o pagamento é aprovado. code é assinado pela loja
+ * (não é o id do pedido) e vai no QR; usedAt marca a entrada (Fase 5.5).
+ */
+export interface IStoreTicket {
+  code: string;
+  productId: string;
+  name: string;
+  attendeeName?: string;
+  halfPrice?: boolean;
+  usedAt?: string;
+}
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;

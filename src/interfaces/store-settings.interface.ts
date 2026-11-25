@@ -23,7 +23,8 @@ export type TStoreFeature =
   | "productOptions"
   | "productVariants"
   | "stockReservation"
-  | "attendees";
+  | "attendees"
+  | "tickets";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
