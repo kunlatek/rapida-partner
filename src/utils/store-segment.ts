@@ -3,7 +3,7 @@ import type { IProjectStore, IStoreSettings, TStoreFeature, TStoreSegment } from
 export const DEFAULT_STORE_SEGMENT: TStoreSegment = "retail";
 
 export const STORE_SEGMENT_DEFAULT_FEATURES: Record<TStoreSegment, TStoreFeature[]> = {
-  retail: ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "shipping", "coupons", "reviews", "returns"],
+  retail: ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "shipping", "coupons", "reviews", "returns", "productVariants"],
   food: ["whatsappButton", "favorites", "coupons", "reviews", "openingHours", "pickup", "districtDelivery", "payOnDelivery", "itemNotes", "productOptions"],
   services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews"],
   events: ["stockAvailability", "installments", "coupons"],

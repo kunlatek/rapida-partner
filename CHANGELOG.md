@@ -1,5 +1,15 @@
 # Changelog
 
+## 8.6.0
+
+### ✨ Novidades
+
+Variação como produto filho (Fase 3.3 do plano de segmentos de loja). Lojas sem a funcionalidade, ou sem produtos com filhos, continuam como estão.
+
+- `TStoreFeature` ganha `"productVariants"` (ligada por padrão em retail), com o liga e desliga `productVariantsEnabled`.
+- `IProductVariantFields` (`src/interfaces/store-variant.interface.ts`): o pai lista os atributos em `variantOptions` (`IProductVariantOption`: nome e valores separados por vírgula, ex.: Tamanho "P, M, G"); cada filho tem `parentProductId`, `variantAttributes` (`IProductVariantAttribute`) e `isVariantActive`. O filho é um produto com estoque próprio; sem configuração de venda própria, usa o preço, os descontos e os adicionais do pai.
+- `IMarketplaceProductFieldMap` ganha `parent`, `variantAttributes` e `variantActive`, para lojas cujo vendedor usa outros nomes.
+
 ## 8.5.0
 
 ### ✨ Novidades

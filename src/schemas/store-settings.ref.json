@@ -128,6 +128,7 @@
     "payOnDeliveryEnabled": { "type": "boolean" },
     "itemNotesEnabled": { "type": "boolean" },
     "productOptionsEnabled": { "type": "boolean" },
+    "productVariantsEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
