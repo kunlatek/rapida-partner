@@ -45,6 +45,8 @@ export interface IStoreTicket {
   attendeeName?: string;
   halfPrice?: boolean;
   usedAt?: string;
+  // Quem conferiu a entrada.
+  usedBy?: string;
 }
 
 export interface IStoreOrderItem {
@@ -107,4 +109,6 @@ export interface IStoreOrder {
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;
+  // Ingressos do pedido (Fase 5.4), enviados pela loja; a conferência na entrada (5.5) marca usedAt.
+  tickets?: IStoreTicket[];
 }

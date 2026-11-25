@@ -34,6 +34,9 @@ interface IFormInputBase {
   mask?: string | string[];
   suffix?: string;
   prefix?: string;
+  // Botão "Ler QR" ao lado do campo: a câmera do celular lê o código e preenche
+  // o valor (onde o navegador não lê, o campo continua para digitar). Fase 5.5.
+  scanQrCode?: boolean;
   defaultValue?: string | number | boolean;
   elementDescription?: string;
   space?: 1 | 2 | 3 | 4;

@@ -10,6 +10,7 @@ Sessões e setores (Fase 5.1 do plano de segmentos de loja).
 - services e events passam a ter `"productVariants"` e `"productOptions"` no padrão, para a escolha de sessão e setor e o preço por tipo (inteira/meia).
 - Titulares e participantes (Fase 5.3): `TStoreFeature` ganha `"attendees"` (padrão em events e services), com o liga e desliga `attendeesEnabled`. No checkout, a etapa de entrega dá lugar à de titulares (events: nome e CPF de cada ingresso) ou participantes (services: nome; CPF na meia-entrada). `IStoreOrderAttendee` e `IStoreOrderItem.attendeesSummary` (os titulares em texto para o vendedor).
 - Ingresso e voucher com QR (Fase 5.4): `TStoreFeature` ganha `"tickets"` (padrão em events e services), com o liga e desliga `ticketsEnabled`. Pago o pedido, a loja emite um `IStoreTicket` por titular (ou por unidade), com um código assinado que vai no QR, no e-mail e em "Minha conta"; a meia sai marcada.
+- Conferência na entrada (Fase 5.5): `IStoreOrder.tickets` (os ingressos chegam ao vendedor com o pedido) e `IStoreTicket.usedBy`. `IFormInput.scanQrCode` põe o botão "Ler QR" no campo (câmera do celular; onde o navegador não lê, digita-se o código).
 - Cota de meia-entrada: `IProductSessionFields.halfPriceQuotaPercent` (% da capacidade de cada sessão × setor; vazio, sem cota) e `IStoreOption.isHalfPrice` (a opção que conta na cota). A loja recusa a meia quando a cota acaba; a inteira continua à venda.
 
 ## 8.7.0

@@ -89,6 +89,9 @@
     "prefix": {
       "type": "string"
     },
+    "scanQrCode": {
+      "type": "boolean"
+    },
     "defaultValue": {
       "type": [
         "string",
