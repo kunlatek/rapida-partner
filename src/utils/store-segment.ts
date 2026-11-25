@@ -5,8 +5,8 @@ export const DEFAULT_STORE_SEGMENT: TStoreSegment = "retail";
 export const STORE_SEGMENT_DEFAULT_FEATURES: Record<TStoreSegment, TStoreFeature[]> = {
   retail: ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "shipping", "coupons", "reviews", "returns", "productVariants"],
   food: ["whatsappButton", "favorites", "coupons", "reviews", "openingHours", "pickup", "districtDelivery", "payOnDelivery", "itemNotes", "productOptions"],
-  services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews", "stockReservation", "productVariants"],
-  events: ["stockAvailability", "installments", "coupons", "stockReservation", "productVariants"],
+  services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews", "stockReservation", "productVariants", "productOptions"],
+  events: ["stockAvailability", "installments", "coupons", "stockReservation", "productVariants", "productOptions"],
 };
 
 /** Prazo da reserva de estoque, em minutos (funcionalidade "stockReservation"); retail e food só reservam se o projeto ligar. */

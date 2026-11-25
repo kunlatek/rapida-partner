@@ -48,6 +48,9 @@ export interface IProductSector {
 export interface IProductSessionFields {
   sessions?: IProductSession[];
   sectors?: IProductSector[];
+  // Cota de meia-entrada por sessão × setor, em % da capacidade (ex.: 40).
+  // Vazio: sem cota. Vale para as opções com IStoreOption.isHalfPrice.
+  halfPriceQuotaPercent?: number;
   // No filho: quando a sessão começa (a loja esconde sessões que já começaram) e a capacidade lançada no estoque.
   sessionStartsAt?: string;
   sessionCapacity?: number;
