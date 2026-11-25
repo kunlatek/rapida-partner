@@ -264,6 +264,8 @@ export interface IModule {
  */
 export interface IStoreOrdersBoard {
   segment: TStoreSegment;
+  // Configuração da loja no backoffice, para o selo "Recebendo pedidos" seguir o horário. Padrão "/store-settings".
+  settingsEndpoint?: string;
 }
 
 export interface ITodo {

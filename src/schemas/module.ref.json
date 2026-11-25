@@ -24,7 +24,8 @@
       "storeOrdersBoard": {
         "type": "object",
         "properties": {
-          "segment": { "type": "string", "enum": ["retail", "food", "services", "events"] }
+          "segment": { "type": "string", "enum": ["retail", "food", "services", "events"] },
+          "settingsEndpoint": { "type": "string" }
         },
         "required": ["segment"],
         "additionalProperties": false
