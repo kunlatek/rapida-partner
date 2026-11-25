@@ -26,6 +26,13 @@ export interface IStoreOrderItemSelection {
   quantity?: number;
 }
 
+/** Titular de um ingresso (events) ou participante de um passeio (services), Fase 5.3. */
+export interface IStoreOrderAttendee {
+  name: string;
+  // CPF, só dígitos: obrigatório em events e, em services, na meia-entrada.
+  document?: string;
+}
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;
@@ -38,6 +45,8 @@ export interface IStoreOrderItem {
   note?: string;
   // Escolhas em texto para o vendedor (ex.: "Adicionais: Bacon ×2, Queijo").
   selectionsSummary?: string;
+  // Titulares ou participantes em texto para o vendedor (ex.: "Ana Souza (CPF 123.456.789-09); Bruno Lima").
+  attendeesSummary?: string;
 }
 
 /**

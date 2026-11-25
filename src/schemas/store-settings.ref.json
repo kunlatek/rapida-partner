@@ -131,6 +131,7 @@
     "productOptionsEnabled": { "type": "boolean" },
     "productVariantsEnabled": { "type": "boolean" },
     "stockReservationEnabled": { "type": "boolean" },
+    "attendeesEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
