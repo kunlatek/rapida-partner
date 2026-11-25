@@ -1,5 +1,5 @@
 import type { TStoreOptionGroupKind } from "../interfaces/store-option.interface";
-import type { TStoreOnlinePaymentType } from "../interfaces/store-order.interface";
+import type { TStoreOnlinePaymentType, TStoreOrderFulfillmentStatus } from "../interfaces/store-order.interface";
 
 /** Tamanho máximo da observação do cliente numa linha do pedido (funcionalidade "itemNotes"). */
 export const STORE_ITEM_NOTE_MAX_LENGTH = 140;
@@ -25,3 +25,6 @@ export const storeOnlinePaymentTypeOf = (mercadoPagoPaymentType: string | undefi
   if (!mercadoPagoPaymentType) return undefined;
   return STORE_MERCADO_PAGO_PAYMENT_TYPES[mercadoPagoPaymentType] ?? "other";
 };
+
+/** Etapas do pedido no vendedor, na ordem do quadro (Fase 8); as duas últimas encerram o pedido. */
+export const STORE_ORDER_FULFILLMENT_STATUSES: TStoreOrderFulfillmentStatus[] = ["received", "preparing", "shipped", "delivered", "cancelled"];

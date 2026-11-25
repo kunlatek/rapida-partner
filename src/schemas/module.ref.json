@@ -21,6 +21,14 @@
         "type": "string",
         "enum": ["section", "flat"]
       },
+      "storeOrdersBoard": {
+        "type": "object",
+        "properties": {
+          "segment": { "type": "string", "enum": ["retail", "food", "services", "events"] }
+        },
+        "required": ["segment"],
+        "additionalProperties": false
+      },
       "components": {
         "type": "array",
         "items": {

@@ -22,7 +22,7 @@ import type { IBackend } from "./project-backend.interface";
 import type { IProjectRepositories } from "./project-repositories.interface";
 import type { IStyle } from "./project-style.interface";
 import type { TTranslatable } from "./translatable.interface";
-import type { IProjectStore } from "./store-settings.interface";
+import type { IProjectStore, TStoreSegment } from "./store-settings.interface";
 import type { IReferralCuration } from "./referral-curation.interface";
 
 export interface IProject {
@@ -250,9 +250,20 @@ export interface IModule {
   // "section" (padrão): com várias telas, o módulo vira um item recolhível.
   // "flat": cada tela do módulo vira um link solto no menu (ou no menuGroup).
   menuDisplay?: "section" | "flat";
+  // Quadro de pedidos do vendedor (Fase 8): no módulo de pedidos da loja
+  // (getStoreOrdersModule), o gerador cria as rotas e a tela do quadro.
+  storeOrdersBoard?: IStoreOrdersBoard;
   components: IComponent[];
   businessRules?: IBusinessRule[];
   todo?: ITodo[];
+}
+
+/**
+ * Quadro de pedidos do vendedor (Fase 8). retail e food ganham o Quadro
+ * (etapas e histórico); services e events, a Agenda (sessões e check-in).
+ */
+export interface IStoreOrdersBoard {
+  segment: TStoreSegment;
 }
 
 export interface ITodo {

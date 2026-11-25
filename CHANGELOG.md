@@ -11,6 +11,7 @@ Dados do quadro de pedidos do vendedor (Fase 8.1 do plano de segmentos de loja).
 - `TStoreOnlinePaymentType` e `IStoreOrder.onlinePaymentType`: o meio do pagamento online (Pix, cartão…), a partir do `payment_type_id` do Mercado Pago (`storeOnlinePaymentTypeOf` e `STORE_MERCADO_PAGO_PAYMENT_TYPES` em `src/utils/store-order.ts`).
 - `IStoreOrderSelectionLine` e `IStoreOrder.itemSelections`: as escolhas de todas as linhas numa lista só do pedido, com `itemIndex`, porque os forms do vendedor não guardam lista dentro de lista.
 - `IStoreOrder.seenAt`: quando o vendedor abriu ou mexeu no pedido pela primeira vez (sem ele, o quadro mostra "NOVO").
+- `IModule.storeOrdersBoard` (`IStoreOrdersBoard`, com o segmento da loja) e `module.ref.json` (Fase 8.2): no módulo de pedidos da loja, o gerador cria o quadro de pedidos do vendedor. `STORE_ORDER_FULFILLMENT_STATUSES` lista as etapas na ordem do quadro.
 
 ## 8.8.0
 
