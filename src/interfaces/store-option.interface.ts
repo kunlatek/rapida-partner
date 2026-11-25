@@ -15,8 +15,11 @@ export interface IStoreOptionGroup {
   name: string;
   // Com isRequired, o cliente precisa escolher pelo menos uma unidade (ou minChoices).
   isRequired?: boolean;
-  // Mínimo e máximo de unidades escolhidas no grupo; "bacon ×2" conta 2.
+  // Mínimo de unidades escolhidas no grupo; "bacon ×2" conta 2. Vazio: 1 com
+  // isRequired, 0 sem.
   minChoices?: number;
+  // Máximo de unidades escolhidas no grupo. 1 é escolha única (ex.: ponto da
+  // carne); 0 ou vazio, sem limite.
   maxChoices?: number;
   displayOrder?: number;
   isActive?: boolean;
@@ -34,18 +37,22 @@ export interface IStoreOption {
   price: number;
   // Padrão "add". Opção "percentOff" entra uma vez por linha (maxQuantity é ignorado).
   priceType?: TStoreOptionPriceType;
-  // Quantas vezes a mesma opção pode ser escolhida numa linha (padrão 1).
+  // Quantas vezes a mesma opção pode ser escolhida numa linha (padrão 1), até
+  // STORE_OPTION_MAX_QUANTITY (src/utils/store-order.ts, 10).
   maxQuantity?: number;
   // Desligado, a opção some de todos os produtos (ex.: o bacon acabou).
   isAvailable?: boolean;
   // Insumo baixado do estoque a cada unidade escolhida (um produto do vendedor).
   supplyProductId?: string;
+  // Quanto do insumo sai por unidade escolhida (padrão 1, quando vazio).
   supplyQuantity?: number;
   displayOrder?: number;
 }
 
 /**
- * Opção oferecida por um produto, em IProductSellingSetting.productOptions.
+ * Opção oferecida por um produto, no campo productOptions da configuração de
+ * venda do produto (form productSellingSettingForm de rapida-projects, que
+ * recebe a lista por withProductOptionsInSellingSettings).
  * Sem price, vale o preço padrão da opção; com ele, na mesma unidade do
  * priceType da opção (reais ou %).
  */
