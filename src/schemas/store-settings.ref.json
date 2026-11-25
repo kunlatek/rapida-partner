@@ -126,6 +126,7 @@
     "pickupEnabled": { "type": "boolean" },
     "districtDeliveryEnabled": { "type": "boolean" },
     "payOnDeliveryEnabled": { "type": "boolean" },
+    "itemNotesEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

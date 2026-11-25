@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.4.0
+
+### ✨ Novidades
+
+Linha do pedido com escolhas e observação (Fase 2 do plano de segmentos de loja). Pedidos sem escolhas nem observação continuam como estão.
+
+- `IStoreOrderItem` ganha `selections` (`IStoreOrderItemSelection`: grupo, opção e acréscimo de preço) e `note` (observação do cliente). Duas linhas do mesmo produto com escolhas ou observação diferentes são linhas separadas. As opções e os acréscimos são preenchidos pelas fases seguintes; esta versão só define onde a linha os guarda.
+- `TStoreFeature` ganha `"itemNotes"` (observação por item, ligada por padrão em food), com o liga e desliga `itemNotesEnabled`. `STORE_ITEM_NOTE_MAX_LENGTH` (140) em `src/utils/store-order.ts`.
+
 ## 8.3.0
 
 ### ✨ Novidades
