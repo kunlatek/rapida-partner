@@ -126,6 +126,9 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // em que o cliente pode pedir devolução ou troca (o CDC exige ao menos 7
   // para compra fora da loja física).
   returnWindowDays?: number;
+  // events e services (Fase 5.6): o cliente pede o cancelamento até estas horas
+  // antes da sessão (padrão STORE_CANCELLATION_DEADLINE_HOURS, 48).
+  cancellationDeadlineHours?: number;
 
   // Só têm efeito com a funcionalidade "openingHours": fora dos períodos, ou
   // com ordersPaused, a loja não aceita pedidos (a API recusa e a vitrine

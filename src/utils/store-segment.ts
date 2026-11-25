@@ -5,8 +5,8 @@ export const DEFAULT_STORE_SEGMENT: TStoreSegment = "retail";
 export const STORE_SEGMENT_DEFAULT_FEATURES: Record<TStoreSegment, TStoreFeature[]> = {
   retail: ["whatsappButton", "stockAvailability", "cashDiscount", "installments", "favorites", "shipping", "coupons", "reviews", "returns", "productVariants"],
   food: ["whatsappButton", "favorites", "coupons", "reviews", "openingHours", "pickup", "districtDelivery", "payOnDelivery", "itemNotes", "productOptions"],
-  services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews", "stockReservation", "productVariants", "productOptions", "attendees", "tickets"],
-  events: ["stockAvailability", "installments", "coupons", "stockReservation", "productVariants", "productOptions", "attendees", "tickets"],
+  services: ["whatsappButton", "stockAvailability", "installments", "coupons", "reviews", "stockReservation", "productVariants", "productOptions", "attendees", "tickets", "returns"],
+  events: ["stockAvailability", "installments", "coupons", "stockReservation", "productVariants", "productOptions", "attendees", "tickets", "returns"],
 };
 
 /** Prazo da reserva de estoque, em minutos (funcionalidade "stockReservation"); retail e food só reservam se o projeto ligar. */
@@ -18,6 +18,9 @@ export const STORE_SEGMENT_RESERVATION_MINUTES: Record<TStoreSegment, number> = 
 };
 
 export const STORE_RESERVATION_MINUTES_RANGE = { min: 5, max: 60 } as const;
+
+/** Cancelamento de ingresso e passeio (Fase 5.6): até quantas horas antes da sessão o cliente pode pedir. */
+export const STORE_CANCELLATION_DEADLINE_HOURS = 48;
 
 export const storeFeaturesOf = (store: IProjectStore | undefined): TStoreFeature[] => {
   if (store?.features) return [...store.features];

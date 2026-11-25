@@ -1,7 +1,10 @@
-/** O que o cliente pede: devolver (reembolso) ou trocar. */
-export type TStoreReturnType = "return" | "exchange";
+/**
+ * O que o cliente pede: devolver (reembolso) ou trocar; em events e services,
+ * cancelar o ingresso ou o passeio antes da sessão (Fase 5.6).
+ */
+export type TStoreReturnType = "return" | "exchange" | "cancellation";
 
-export type TStoreReturnReason = "defect" | "wrongItem" | "notAsDescribed" | "regret" | "other";
+export type TStoreReturnReason = "defect" | "wrongItem" | "notAsDescribed" | "regret" | "cantAttend" | "scheduleChange" | "other";
 
 /** Andamento do pedido de devolução ou troca no vendedor. */
 export type TStoreReturnStatus = "requested" | "approved" | "rejected" | "received" | "completed";
