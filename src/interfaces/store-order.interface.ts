@@ -26,6 +26,29 @@ export interface IStoreOrderItemSelection {
   quantity?: number;
 }
 
+/** Titular de um ingresso (events) ou participante de um passeio (services), Fase 5.3. */
+export interface IStoreOrderAttendee {
+  name: string;
+  // CPF, só dígitos: obrigatório em events e, em services, na meia-entrada.
+  document?: string;
+}
+
+/**
+ * Ingresso ou voucher (Fase 5.4): um por titular (ou por unidade, sem
+ * titulares), emitido quando o pagamento é aprovado. code é assinado pela loja
+ * (não é o id do pedido) e vai no QR; usedAt marca a entrada (Fase 5.5).
+ */
+export interface IStoreTicket {
+  code: string;
+  productId: string;
+  name: string;
+  attendeeName?: string;
+  halfPrice?: boolean;
+  usedAt?: string;
+  // Quem conferiu a entrada.
+  usedBy?: string;
+}
+
 export interface IStoreOrderItem {
   productId: string;
   name: string;
@@ -38,6 +61,8 @@ export interface IStoreOrderItem {
   note?: string;
   // Escolhas em texto para o vendedor (ex.: "Adicionais: Bacon ×2, Queijo").
   selectionsSummary?: string;
+  // Titulares ou participantes em texto para o vendedor (ex.: "Ana Souza (CPF 123.456.789-09); Bruno Lima").
+  attendeesSummary?: string;
 }
 
 /**
@@ -84,4 +109,6 @@ export interface IStoreOrder {
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;
+  // Ingressos do pedido (Fase 5.4), enviados pela loja; a conferência na entrada (5.5) marca usedAt.
+  tickets?: IStoreTicket[];
 }

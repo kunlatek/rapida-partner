@@ -37,6 +37,9 @@ export interface IStoreOption {
   price: number;
   // Padrão "add". Opção "percentOff" entra uma vez por linha (maxQuantity é ignorado).
   priceType?: TStoreOptionPriceType;
+  // Meia-entrada (Fase 5): cada unidade com esta opção conta na cota de meia da
+  // sessão (IProductSessionFields.halfPriceQuotaPercent).
+  isHalfPrice?: boolean;
   // Quantas vezes a mesma opção pode ser escolhida numa linha (padrão 1), até
   // STORE_OPTION_MAX_QUANTITY (src/utils/store-order.ts, 10).
   maxQuantity?: number;

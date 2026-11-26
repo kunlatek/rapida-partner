@@ -49,6 +49,7 @@
       }
     },
     "returnWindowDays": { "type": "integer", "minimum": 0 },
+    "cancellationDeadlineHours": { "type": "integer", "minimum": 0 },
     "openingHours": {
       "type": "array",
       "items": {
@@ -131,6 +132,8 @@
     "productOptionsEnabled": { "type": "boolean" },
     "productVariantsEnabled": { "type": "boolean" },
     "stockReservationEnabled": { "type": "boolean" },
+    "attendeesEnabled": { "type": "boolean" },
+    "ticketsEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
