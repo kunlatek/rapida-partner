@@ -79,6 +79,7 @@
       }
     },
     "minimumOrderValue": { "type": "number", "minimum": 0 },
+    "payOnDeliveryOnly": { "type": "boolean" },
     "reservationMinutes": { "type": "integer", "minimum": 5, "maximum": 60 },
     "ordersPaused": { "type": "boolean" },
     "aboutText": { "type": "string" },

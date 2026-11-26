@@ -1,3 +1,5 @@
+import type { TStoreOptionGroupKind } from "./store-option.interface";
+
 /**
  * Andamento da entrega de um pedido no vendedor. O pagamento continua sendo da
  * loja; separação, envio e rastreio são do vendedor (módulo de rapida-projects
@@ -12,6 +14,12 @@ export type TStoreDeliveryMethod = "delivery" | "pickup";
 export type TStorePaymentMethod = "online" | "onDelivery";
 
 /**
+ * Meio do pagamento online, informado pelo Mercado Pago (Fase 8.1), para o
+ * vendedor ver "Pago no Pix" ou "Pago no cartão". Veja storeOnlinePaymentTypeOf.
+ */
+export type TStoreOnlinePaymentType = "pix" | "creditCard" | "debitCard" | "boleto" | "accountMoney" | "other";
+
+/**
  * Escolha do cliente numa linha do pedido (ex.: grupo "Ponto da carne", opção
  * "Mal passado"). Com a funcionalidade "productOptions", vem de IStoreOption.
  */
@@ -23,6 +31,21 @@ export interface IStoreOrderItemSelection {
   priceDelta?: number;
   // Id da opção (IStoreOption) e quantas vezes foi escolhida (padrão 1).
   optionId?: string;
+  quantity?: number;
+  // Tipo do grupo (IStoreOptionGroup.kind); o quadro do vendedor pinta a etiqueta por ele.
+  kind?: TStoreOptionGroupKind;
+}
+
+/**
+ * Escolha de uma linha do pedido como o vendedor recebe (Fase 8.1). Os forms
+ * do vendedor não guardam lista dentro de lista, então as escolhas de todas as
+ * linhas vêm numa lista só do pedido, com itemIndex (posição em items, a partir de 0).
+ */
+export interface IStoreOrderSelectionLine {
+  itemIndex: number;
+  group: string;
+  option: string;
+  kind?: TStoreOptionGroupKind;
   quantity?: number;
 }
 
@@ -75,6 +98,8 @@ export interface IStoreOrder {
   storeName?: string;
   customerName?: string;
   customerEmail?: string;
+  // Telefone do cliente, só dígitos com DDD (Fase 8.1), para o WhatsApp do pedido.
+  customerPhone?: string;
   items: IStoreOrderItem[];
   // Endereço de entrega, em campos próprios (os forms não aninham objetos).
   addressZipCode?: string;
@@ -102,6 +127,8 @@ export interface IStoreOrder {
   paymentMethod?: TStorePaymentMethod;
   changeFor?: number;
   paymentReceived?: boolean;
+  // Meio do pagamento online (Fase 8.1); vazio no pagamento na entrega.
+  onlinePaymentType?: TStoreOnlinePaymentType;
   // Reserva de estoque (Fase 4.3): pago depois da reserva vencer, ou acima do
   // estoque. O vendedor decide: manter, trocar (ex.: de sessão) ou estornar no
   // painel do Mercado Pago; o estorno cancela o pedido na loja.
@@ -109,6 +136,10 @@ export interface IStoreOrder {
   trackingCode?: string;
   trackingUrl?: string;
   notes?: string;
+  // Quando o vendedor abriu ou mexeu no pedido pela primeira vez (Fase 8.1); sem ele, o quadro mostra "NOVO".
+  seenAt?: string;
+  // Escolhas de cada linha, para as etiquetas do quadro (Fase 8.1); selectionsSummary continua em cada item.
+  itemSelections?: IStoreOrderSelectionLine[];
   // Ingressos do pedido (Fase 5.4), enviados pela loja; a conferência na entrada (5.5) marca usedAt.
   tickets?: IStoreTicket[];
 }
