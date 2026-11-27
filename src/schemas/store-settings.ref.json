@@ -135,6 +135,7 @@
     "stockReservationEnabled": { "type": "boolean" },
     "attendeesEnabled": { "type": "boolean" },
     "ticketsEnabled": { "type": "boolean" },
+    "productBadgesEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.10.0
+
+### ✨ Novidades
+
+Selos no produto (Fase 7.4 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão; ela não entra no padrão de nenhum segmento.
+
+- `TStoreFeature` ganha `"productBadges"`, com o liga e desliga `productBadgesEnabled`. Só é gerada quando o projeto lista em `store.features`.
+- `IStoreBadge` e `TStoreBadgeTone` (`src/interfaces/store-badge.interface.ts`): selo com nome, ícone Lucide opcional, tom (`neutral`, `success`, `warning`, `danger` ou `brand`, a cor da loja), ativo e ordem. O cadastro é reaproveitável e lido pela loja por `IMarketplace.badgesEndpoint`; cada produto aponta os selos em `badgeIds` da configuração de venda (`IProductBadgeLinks`), e a variação sem configuração própria mostra os do principal.
+- `STORE_BADGE_TONES` e `STORE_BADGES_PER_CARD` (2 no cartão; a página do produto mostra todos) em `src/utils/store-badge.ts`.
+- Validação: `store.features` com `"productBadges"` sem `backend.marketplace.badgesEndpoint` e `productSellingSettingsEndpoint` num mesmo ambiente gera um aviso na montagem (`checkStoreReferences`).
+
 ## 8.9.0
 
 ### ✨ Novidades

@@ -24,7 +24,8 @@ export type TStoreFeature =
   | "productVariants"
   | "stockReservation"
   | "attendees"
-  | "tickets";
+  | "tickets"
+  | "productBadges";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 

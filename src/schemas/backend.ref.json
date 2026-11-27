@@ -160,6 +160,7 @@
         "blogPostsEndpoint": { "type": "string" },
         "optionGroupsEndpoint": { "type": "string" },
         "optionsEndpoint": { "type": "string" },
+        "badgesEndpoint": { "type": "string" },
         "productFieldMap": {
           "type": "object",
           "properties": {
