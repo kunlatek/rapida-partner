@@ -23,4 +23,8 @@ export interface IStoreCoupon {
   usageLimit?: number;
   usageLimitPerCustomer?: number;
   isActive: boolean;
+  // Vitrine de cupons (funcionalidade "couponShowcase"): o cupom aparece na
+  // página pública /cupons e pode ir para o aviso da home. Sem o campo, o
+  // cupom continua só para quem conhece o código.
+  isPublic?: boolean;
 }

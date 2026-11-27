@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.11.0
+
+### ✨ Novidades
+
+Vitrine de cupons (Fase 7.1 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão; ela não entra no padrão de nenhum segmento.
+
+- `TStoreFeature` ganha `"couponShowcase"`, com o liga e desliga `couponShowcaseEnabled`. Só funciona junto com `"coupons"` e `IMarketplace.couponsEndpoint`: a loja publica a página `/cupons` e um aviso na home com os cupons marcados para a vitrine.
+- `IStoreCoupon.isPublic`: o cupom aparece na vitrine (ativo, dentro do prazo e com uso disponível). Sem o campo, continua só para quem conhece o código.
+- `STORE_COUPON_SHOWCASE_LIMIT` (20) em `src/utils/store-coupon.ts`.
+- Validação: `"couponShowcase"` sem `"coupons"` ou sem `couponsEndpoint` gera aviso na montagem (`checkStoreReferences`).
+
 ## 8.10.0
 
 ### ✨ Novidades
