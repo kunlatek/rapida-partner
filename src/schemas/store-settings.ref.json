@@ -138,6 +138,7 @@
     "productBadgesEnabled": { "type": "boolean" },
     "couponShowcaseEnabled": { "type": "boolean" },
     "collectionsEnabled": { "type": "boolean" },
+    "crossSellEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

@@ -79,3 +79,14 @@ describe("coleções da home", () => {
     ]);
   });
 });
+
+describe("oferta ao adicionar", () => {
+  test("crossSell sem productSellingSettingsEndpoint avisa", () => {
+    const store = (marketplace: Record<string, string>): IProject =>
+      ({ id: "p", title: "p", skeleton: "ecommerce", store: { segment: "food", features: ["crossSell"] }, backend: [{ marketplace }] }) as unknown as IProject;
+    expect(checkStoreReferences(store({ productSellingSettingsEndpoint: "/product-selling-settings" }))).toEqual([]);
+    expect(checkStoreReferences(store({}))).toEqual([
+      "store.features \"crossSell\" precisa de backend.marketplace.productSellingSettingsEndpoint; sem ele a funcionalidade não é gerada",
+    ]);
+  });
+});

@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.13.0
+
+### ✨ Novidades
+
+Oferta ao adicionar, cross-sell (Fase 7.5 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão; ela não entra no padrão de nenhum segmento.
+
+- `TStoreFeature` ganha `"crossSell"`, com o liga e desliga `crossSellEnabled`. Ao adicionar um produto, a loja mostra as ofertas dele; a oferta aceita é outra linha do carrinho, com o preço especial.
+- `IProductCrossSellOffer` e `IProductCrossSellLinks` (`src/interfaces/store-cross-sell.interface.ts`): `crossSellOffers` na configuração de venda do produto de origem (produto ofertado e preço especial). O servidor só aplica o preço especial até a quantidade do produto de origem no mesmo pedido; o resto sai pelo preço normal.
+- `STORE_CROSS_SELL_OFFERS_LIMIT` (3) em `src/utils/store-cross-sell.ts`.
+- Validação: `"crossSell"` sem `productSellingSettingsEndpoint` gera aviso na montagem.
+
 ## 8.12.0
 
 ### ✨ Novidades
