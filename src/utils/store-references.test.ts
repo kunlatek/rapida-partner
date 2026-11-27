@@ -22,3 +22,30 @@ describe("store.segment", () => {
     ]);
   });
 });
+
+const storeWithBadges = (marketplaces: Array<Record<string, string>>): IProject =>
+  ({
+    id: "p",
+    title: "p",
+    skeleton: "ecommerce",
+    store: { features: ["productBadges"] },
+    backend: marketplaces.map((marketplace) => ({ marketplace })),
+  }) as unknown as IProject;
+
+describe("store.features com endereços obrigatórios", () => {
+  test("productBadges com os dois endereços num ambiente não avisa", () => {
+    expect(checkStoreReferences(storeWithBadges([{ badgesEndpoint: "/store-badges", productSellingSettingsEndpoint: "/product-selling-settings" }]))).toEqual([]);
+  });
+
+  test("productBadges sem badgesEndpoint ou sem a configuração de venda avisa", () => {
+    const warning = "store.features \"productBadges\" precisa de backend.marketplace.badgesEndpoint e backend.marketplace.productSellingSettingsEndpoint; sem eles a funcionalidade não é gerada";
+    expect(checkStoreReferences(storeWithBadges([{ productSellingSettingsEndpoint: "/product-selling-settings" }]))).toEqual([warning]);
+    expect(checkStoreReferences(storeWithBadges([{ badgesEndpoint: "/store-badges" }]))).toEqual([warning]);
+    expect(checkStoreReferences(storeWithBadges([]))).toEqual([warning]);
+  });
+
+  test("funcionalidade fora da lista, ou só no padrão de outro segmento, não avisa", () => {
+    expect(checkStoreReferences(projectWith("ecommerce", { segment: "food" }))).toEqual([]);
+    expect(checkStoreReferences(projectWith("referralCommerce", { features: ["productBadges"] }))).toEqual([]);
+  });
+});

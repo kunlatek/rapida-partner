@@ -113,6 +113,11 @@ interface IMarketplace {
   // as opções que oferece em productOptions da configuração de venda.
   optionGroupsEndpoint?: string;
   optionsEndpoint?: string;
+  // Selos dos produtos (módulo de rapida-projects getStoreBadgesModule,
+  // funcionalidade "productBadges"): o cadastro IStoreBadge. Cada produto aponta
+  // os selos em badgeIds da configuração de venda, por isso exige também
+  // productSellingSettingsEndpoint.
+  badgesEndpoint?: string;
 }
 
 export interface IMarketplaceProductFieldMap {
