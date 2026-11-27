@@ -13,6 +13,12 @@ type TMarketplaceEndpoint = keyof {
 /** Endereços de IMarketplace sem os quais a funcionalidade não é gerada. */
 const FEATURE_ENDPOINTS: Partial<Record<TStoreFeature, TMarketplaceEndpoint[]>> = {
   productBadges: ["badgesEndpoint", "productSellingSettingsEndpoint"],
+  couponShowcase: ["couponsEndpoint"],
+};
+
+/** Funcionalidades que só existem junto com outra. */
+const FEATURE_REQUIRES: Partial<Record<TStoreFeature, TStoreFeature>> = {
+  couponShowcase: "coupons",
 };
 
 const checkSegment = (project: IProject): string[] => {
@@ -31,9 +37,24 @@ const checkFeatureEndpoints = (project: IProject): string[] => {
     const endpoints = FEATURE_ENDPOINTS[feature];
     if (!endpoints || marketplaces.some((marketplace) => endpoints.every((endpoint) => !!marketplace[endpoint]))) return [];
     return [
-      "store.features \"" + feature + "\" precisa de backend.marketplace." + endpoints.join(" e backend.marketplace.") + "; sem eles a funcionalidade não é gerada",
+      "store.features \"" + feature + "\" precisa de backend.marketplace." + endpoints.join(" e backend.marketplace.") + (endpoints.length > 1 ? "; sem eles" : "; sem ele") + " a funcionalidade não é gerada",
     ];
   });
 };
 
-export const checkStoreReferences = (project: IProject): string[] => [...checkSegment(project), ...checkFeatureEndpoints(project)];
+const checkFeatureRequires = (project: IProject): string[] => {
+  if (!project.store || !SELLING_SKELETONS.includes(project.skeleton)) return [];
+  const features = storeFeaturesOf(project.store);
+  return features.flatMap((feature) => {
+    const required = FEATURE_REQUIRES[feature];
+    return required && !features.includes(required)
+      ? ["store.features \"" + feature + "\" só funciona junto com \"" + required + "\"; sem ela a funcionalidade não é gerada"]
+      : [];
+  });
+};
+
+export const checkStoreReferences = (project: IProject): string[] => [
+  ...checkSegment(project),
+  ...checkFeatureEndpoints(project),
+  ...checkFeatureRequires(project),
+];

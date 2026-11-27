@@ -49,3 +49,21 @@ describe("store.features com endereços obrigatórios", () => {
     expect(checkStoreReferences(projectWith("referralCommerce", { features: ["productBadges"] }))).toEqual([]);
   });
 });
+
+describe("vitrine de cupons", () => {
+  const store = (features: string[], marketplace: Record<string, string>): IProject =>
+    ({ id: "p", title: "p", skeleton: "ecommerce", store: { features }, backend: [{ marketplace }] }) as unknown as IProject;
+
+  test("com cupons e couponsEndpoint não avisa", () => {
+    expect(checkStoreReferences(store(["coupons", "couponShowcase"], { couponsEndpoint: "/store-coupons" }))).toEqual([]);
+  });
+
+  test("sem couponsEndpoint ou sem a funcionalidade de cupons avisa", () => {
+    expect(checkStoreReferences(store(["coupons", "couponShowcase"], {}))).toEqual([
+      "store.features \"couponShowcase\" precisa de backend.marketplace.couponsEndpoint; sem ele a funcionalidade não é gerada",
+    ]);
+    expect(checkStoreReferences(store(["couponShowcase"], { couponsEndpoint: "/store-coupons" }))).toEqual([
+      "store.features \"couponShowcase\" só funciona junto com \"coupons\"; sem ela a funcionalidade não é gerada",
+    ]);
+  });
+});
