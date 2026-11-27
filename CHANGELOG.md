@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.12.0
+
+### ✨ Novidades
+
+Várias coleções na home (Fase 7.2 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão; ela não entra no padrão de nenhum segmento.
+
+- `TStoreFeature` ganha `"collections"`, com o liga e desliga `collectionsEnabled`. Os "Destaques" (`featuredProductIds`) continuam como estão.
+- `IStoreCollection` (`src/interfaces/store-collection.interface.ts`): título, subtítulo, produtos na ordem, ordem entre coleções e ativa. É um cadastro próprio, lido pela loja por `IMarketplace.collectionsEndpoint`, porque os forms não guardam lista dentro de lista.
+- `STORE_HOME_COLLECTIONS_LIMIT` (6) e `STORE_COLLECTION_PRODUCTS_LIMIT` (8) em `src/utils/store-collection.ts`.
+- Validação: `"collections"` sem `collectionsEndpoint` gera aviso na montagem.
+
 ## 8.11.0
 
 ### ✨ Novidades

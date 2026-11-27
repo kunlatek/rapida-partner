@@ -118,6 +118,9 @@ interface IMarketplace {
   // os selos em badgeIds da configuração de venda, por isso exige também
   // productSellingSettingsEndpoint.
   badgesEndpoint?: string;
+  // Coleções da home (módulo de rapida-projects getStoreCollectionsModule,
+  // funcionalidade "collections"): o cadastro IStoreCollection.
+  collectionsEndpoint?: string;
 }
 
 export interface IMarketplaceProductFieldMap {

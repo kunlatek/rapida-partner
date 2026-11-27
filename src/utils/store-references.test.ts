@@ -67,3 +67,15 @@ describe("vitrine de cupons", () => {
     ]);
   });
 });
+
+describe("coleções da home", () => {
+  const store = (marketplace: Record<string, string>): IProject =>
+    ({ id: "p", title: "p", skeleton: "marketplace", store: { features: ["collections"] }, backend: [{ marketplace }] }) as unknown as IProject;
+
+  test("com collectionsEndpoint não avisa; sem ele avisa", () => {
+    expect(checkStoreReferences(store({ collectionsEndpoint: "/store-collections" }))).toEqual([]);
+    expect(checkStoreReferences(store({}))).toEqual([
+      "store.features \"collections\" precisa de backend.marketplace.collectionsEndpoint; sem ele a funcionalidade não é gerada",
+    ]);
+  });
+});

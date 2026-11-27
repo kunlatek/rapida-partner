@@ -14,6 +14,7 @@ type TMarketplaceEndpoint = keyof {
 const FEATURE_ENDPOINTS: Partial<Record<TStoreFeature, TMarketplaceEndpoint[]>> = {
   productBadges: ["badgesEndpoint", "productSellingSettingsEndpoint"],
   couponShowcase: ["couponsEndpoint"],
+  collections: ["collectionsEndpoint"],
 };
 
 /** Funcionalidades que só existem junto com outra. */
