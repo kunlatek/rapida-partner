@@ -16,6 +16,7 @@ const FEATURE_ENDPOINTS: Partial<Record<TStoreFeature, TMarketplaceEndpoint[]>> 
   couponShowcase: ["couponsEndpoint"],
   collections: ["collectionsEndpoint"],
   crossSell: ["productSellingSettingsEndpoint"],
+  loyalty: ["loyaltyTiersEndpoint", "loyaltyBenefitsEndpoint"],
 };
 
 /** Funcionalidades que só existem junto com outra. */

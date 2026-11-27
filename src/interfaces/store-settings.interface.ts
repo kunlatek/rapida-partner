@@ -28,7 +28,8 @@ export type TStoreFeature =
   | "productBadges"
   | "couponShowcase"
   | "collections"
-  | "crossSell";
+  | "crossSell"
+  | "loyalty";
 
 export type TStoreFeatureToggle = `${TStoreFeature}Enabled`;
 
