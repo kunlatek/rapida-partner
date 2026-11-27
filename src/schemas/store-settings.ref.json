@@ -137,6 +137,7 @@
     "ticketsEnabled": { "type": "boolean" },
     "productBadgesEnabled": { "type": "boolean" },
     "couponShowcaseEnabled": { "type": "boolean" },
+    "collectionsEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false

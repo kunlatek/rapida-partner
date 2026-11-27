@@ -161,6 +161,7 @@
         "optionGroupsEndpoint": { "type": "string" },
         "optionsEndpoint": { "type": "string" },
         "badgesEndpoint": { "type": "string" },
+        "collectionsEndpoint": { "type": "string" },
         "productFieldMap": {
           "type": "object",
           "properties": {
