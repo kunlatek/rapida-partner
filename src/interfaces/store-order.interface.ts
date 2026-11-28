@@ -14,6 +14,22 @@ export type TStoreDeliveryMethod = "delivery" | "pickup";
 export type TStorePaymentMethod = "online" | "onDelivery";
 
 /**
+ * Forma de pagamento detalhada escolhida no pedido (balcão, mesa ou checkout).
+ * Só aparecem as formas que o cliente ligou em IStoreSettings.paymentChoices.
+ * - "debitCard" e "creditCard": na maquininha.
+ * - "pixTerminal": Pix na maquininha (com taxa e prazo D+0).
+ * - "pixDirect": Pix direto para a chave da loja (IStoreSettings.pixKey), sem taxa.
+ * - "cash": dinheiro, com troco em changeFor.
+ */
+export type TStorePaymentChoice = "debitCard" | "creditCard" | "pixTerminal" | "pixDirect" | "cash";
+
+/**
+ * Destino do pedido na mesa: comer no local ou levar para casa. Obrigatório
+ * no checkout da mesa; sem ele o pedido não é confirmado.
+ */
+export type TStoreConsumptionMode = "dineIn" | "takeaway";
+
+/**
  * Meio do pagamento online, informado pelo Mercado Pago (Fase 8.1), para o
  * vendedor ver "Pago no Pix" ou "Pago no cartão". Veja storeOnlinePaymentTypeOf.
  */
@@ -129,6 +145,10 @@ export interface IStoreOrder {
   // pagamento: changeFor é o valor para o troco, e o vendedor marca
   // paymentReceived quando receber.
   paymentMethod?: TStorePaymentMethod;
+  // Forma detalhada escolhida (Pagamentos por pedido, fase 1); vazio em pedidos anteriores.
+  paymentChoice?: TStorePaymentChoice;
+  // Destino na mesa (fase 1): vazio fora da mesa.
+  consumptionMode?: TStoreConsumptionMode;
   changeFor?: number;
   paymentReceived?: boolean;
   // Meio do pagamento online (Fase 8.1); vazio no pagamento na entrega.

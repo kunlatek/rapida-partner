@@ -80,6 +80,17 @@
     },
     "minimumOrderValue": { "type": "number", "minimum": 0 },
     "payOnDeliveryOnly": { "type": "boolean" },
+    "paymentChoices": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["debitCard", "creditCard", "pixTerminal", "pixDirect", "cash"] }
+    },
+    "deliveryPaymentChoices": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["debitCard", "creditCard", "pixTerminal", "cash"] }
+    },
+    "pixKey": { "type": "string" },
     "reservationMinutes": { "type": "integer", "minimum": 5, "maximum": 60 },
     "ordersPaused": { "type": "boolean" },
     "aboutText": { "type": "string" },
