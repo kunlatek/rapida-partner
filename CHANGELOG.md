@@ -1,5 +1,17 @@
 # Changelog
 
+## 8.14.0
+
+### ✨ Novidades
+
+Fidelidade ligada ao pedido (Fase 7.3 do plano de segmentos de loja). Lojas sem a funcionalidade continuam como estão; ela não entra no padrão de nenhum segmento.
+
+- `TStoreFeature` ganha `"loyalty"`, com o liga e desliga `loyaltyEnabled`.
+- `IStoreLoyaltyTier` e `IStoreLoyaltyBenefit` (`src/interfaces/store-loyalty.interface.ts`): o mesmo cadastro de níveis e vantagens do `loyaltyTier`; na loja, `minVisits` conta os pedidos pagos no período, e a vantagem vira desconto automático em % no fechamento. Fidelidade e cupom não somam: vale o maior. Lidos por `IMarketplace.loyaltyTiersEndpoint` e `loyaltyBenefitsEndpoint`.
+- `IStoreOrder.loyaltyTierName` e `loyaltyDiscount`: o vendedor recebe o nível do cliente e o desconto que ele deu.
+- `STORE_LOYALTY_TIME_ZONE` em `src/utils/store-loyalty.ts`.
+- Validação: `"loyalty"` sem os dois endereços gera aviso na montagem.
+
 ## 8.13.0
 
 ### ✨ Novidades

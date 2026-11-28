@@ -90,3 +90,14 @@ describe("oferta ao adicionar", () => {
     ]);
   });
 });
+
+describe("fidelidade", () => {
+  test("loyalty sem os dois endereços avisa", () => {
+    const store = (marketplace: Record<string, string>): IProject =>
+      ({ id: "p", title: "p", skeleton: "ecommerce", store: { features: ["loyalty"] }, backend: [{ marketplace }] }) as unknown as IProject;
+    expect(checkStoreReferences(store({ loyaltyTiersEndpoint: "/loyalty-tiers", loyaltyBenefitsEndpoint: "/loyalty-benefits" }))).toEqual([]);
+    expect(checkStoreReferences(store({ loyaltyTiersEndpoint: "/loyalty-tiers" }))).toEqual([
+      "store.features \"loyalty\" precisa de backend.marketplace.loyaltyTiersEndpoint e backend.marketplace.loyaltyBenefitsEndpoint; sem eles a funcionalidade não é gerada",
+    ]);
+  });
+});
