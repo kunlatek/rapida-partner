@@ -162,6 +162,8 @@
         "optionsEndpoint": { "type": "string" },
         "badgesEndpoint": { "type": "string" },
         "collectionsEndpoint": { "type": "string" },
+        "loyaltyTiersEndpoint": { "type": "string" },
+        "loyaltyBenefitsEndpoint": { "type": "string" },
         "productFieldMap": {
           "type": "object",
           "properties": {

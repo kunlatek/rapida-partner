@@ -121,6 +121,10 @@ interface IMarketplace {
   // Coleções da home (módulo de rapida-projects getStoreCollectionsModule,
   // funcionalidade "collections"): o cadastro IStoreCollection.
   collectionsEndpoint?: string;
+  // Fidelidade (módulo de rapida-projects getStoreLoyaltyModule, funcionalidade
+  // "loyalty"): níveis (IStoreLoyaltyTier) e vantagens (IStoreLoyaltyBenefit).
+  loyaltyTiersEndpoint?: string;
+  loyaltyBenefitsEndpoint?: string;
 }
 
 export interface IMarketplaceProductFieldMap {

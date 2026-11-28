@@ -101,6 +101,10 @@ export interface IStoreOrder {
   // Telefone do cliente, só dígitos com DDD (Fase 8.1), para o WhatsApp do pedido.
   customerPhone?: string;
   items: IStoreOrderItem[];
+  // Fidelidade (funcionalidade "loyalty", Fase 7.3): nível do cliente no
+  // fechamento e o desconto que ele deu (já somado em discount).
+  loyaltyTierName?: string;
+  loyaltyDiscount?: number;
   // Endereço de entrega, em campos próprios (os forms não aninham objetos).
   addressZipCode?: string;
   addressStreet?: string;

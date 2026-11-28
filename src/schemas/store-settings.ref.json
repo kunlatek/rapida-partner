@@ -139,6 +139,7 @@
     "couponShowcaseEnabled": { "type": "boolean" },
     "collectionsEnabled": { "type": "boolean" },
     "crossSellEnabled": { "type": "boolean" },
+    "loyaltyEnabled": { "type": "boolean" },
     "returnsEnabled": { "type": "boolean" }
   },
   "additionalProperties": false
