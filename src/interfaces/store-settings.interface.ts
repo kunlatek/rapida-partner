@@ -1,3 +1,5 @@
+import type { TStorePaymentChoice } from "./store-order.interface";
+
 /**
  * Funcionalidades opcionais da loja (`skeleton` "ecommerce" ou "marketplace").
  * Cada uma tem duas camadas: `IProjectStore.features` decide se o código dela é
@@ -155,6 +157,13 @@ export interface IStoreSettings extends Partial<Record<TStoreFeatureToggle, bool
   // a loja deixa de oferecer o pagamento online. Só vale com payOnDeliveryEnabled ligado,
   // para a loja nunca ficar sem forma de pagamento.
   payOnDeliveryOnly?: boolean;
+  // Formas de pagamento detalhadas que o cliente liga para o balcão, a mesa e o checkout
+  // (Pagamentos por pedido, fase 1). Sem a lista, nenhuma forma detalhada aparece.
+  paymentChoices?: TStorePaymentChoice[];
+  // Formas da entrega que a loja liga (maquininha e dinheiro). Obrigatória quando o pagamento na entrega está ligado.
+  deliveryPaymentChoices?: TStorePaymentChoice[];
+  // Chave Pix da loja, usada pela forma "pixDirect" (sem taxa, com confirmação manual pelo vendedor).
+  pixKey?: string;
   // Funcionalidade "stockReservation": por quantos minutos o pedido aguardando
   // pagamento segura o estoque (de 5 a 60). Vencido o prazo, o pedido é
   // cancelado, o link de pagamento expira e a quantidade volta. Sem o campo,

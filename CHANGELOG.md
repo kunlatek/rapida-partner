@@ -1,5 +1,18 @@
 # Changelog
 
+## 8.15.0
+
+### ✨ Novidades
+
+Pagamentos por pedido (fase 1 do PDV genérico). Mudança aditiva: campos novos opcionais, nada renomeado nem removido.
+
+- `TStorePaymentChoice` (`"debitCard"`, `"creditCard"`, `"pixTerminal"`, `"pixDirect"`, `"cash"`) e `IStoreOrder.paymentChoice`: a forma detalhada escolhida no pedido.
+- `TStoreConsumptionMode` (`"dineIn"`, `"takeaway"`) e `IStoreOrder.consumptionMode`: destino do pedido na mesa.
+- `IStoreSettings.paymentChoices` (formas ligadas para balcão e mesa) e `IStoreSettings.pixKey` (chave Pix da loja, usada por `"pixDirect"`, sem taxa).
+- `IStoreSettings.deliveryPaymentChoices` (formas da entrega: maquininha e dinheiro; sem Pix direto), obrigatória quando o pagamento na entrega está ligado. `storeDeliveryPaymentChoicesOf` em `store-payment.ts`.
+- `src/utils/store-payment.ts`: `STORE_PAYMENT_CHOICES`, `STORE_CONSUMPTION_MODES`, `storePaymentChoicesOf` (só as formas ligadas; Pix direto só com chave) e `isStorePaymentChoiceAllowed`.
+- `store-settings.ref.json`: `paymentChoices` e `pixKey`.
+
 ## 8.14.0
 
 ### ✨ Novidades
